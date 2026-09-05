@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Quanto custa casar em Portugal? Simulador gratuito com 24 rubricas, ajustado à região, à época do ano e ao número de convidados. Estimativa imediata e sem registo.">
 <link rel="canonical" href="https://quantocustacasar.pt/">
-<meta name="robots" content="index, follow">
+<!-- Enquanto for protótipo o site não deve ser indexado.
+     No lançamento: trocar por  content="index, follow"  e ajustar o robots.txt. -->
+<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#245C86">
 
 <meta property="og:type" content="website">
@@ -816,7 +818,7 @@
               <label class="consent"><input type="checkbox" id="c1"><span>Quero receber a minha estimativa e ser contactado(a) pela equipa para organizar o casamento.</span></label>
               <label class="consent"><input type="checkbox" id="c2"><span>Autorizo a partilha dos meus dados com fornecedores parceiros (quintas, catering, fotografia, música) para receber propostas.</span></label>
               <p class="err" id="leadErr" hidden></p>
-              <button class="btn" type="submit">Receber a minha estimativa</button>
+              <button class="btn" type="submit" id="leadBtn">Receber a minha estimativa</button>
               <p class="legal">Os teus dados são usados apenas para te enviar a estimativa e as propostas que autorizares. Podes retirar o consentimento a qualquer momento.</p>
             </div>
           </form>
@@ -924,7 +926,7 @@
           <div style="display:grid; gap:11px; margin-top:16px;">
             <label class="consent"><input type="checkbox" id="sc1"><span>Autorizo o contacto para apresentação das condições de parceria.</span></label>
             <p class="err" id="supErr" hidden></p>
-            <button class="btn" type="submit">Quero receber as condições</button>
+            <button class="btn" type="submit" id="supBtn">Quero receber as condições</button>
           </div>
         </form>
       </div>
@@ -964,7 +966,7 @@
   </section>
 
   <!-- ================= ÁREA DA EQUIPA ================= -->
-  <div class="block" style="margin-top:44px;">
+  <div class="block" style="margin-top:44px;" id="areaEquipa" hidden>
     <details class="more team">
       <summary><span>Área da equipa &middot; tabela de preços e leads <span class="badge">Protótipo</span></span></summary>
       <div class="inner">
@@ -1077,6 +1079,43 @@
 
   const LS_PRECOS = "sim_casamento_precos_v1";
   const LS_LEADS  = "sim_casamento_leads_v1";
+
+  /* =========================================================
+     ENVIO DOS FORMULÁRIOS
+     ENDPOINT é o URL do serviço que recebe os pedidos dos casais e dos
+     fornecedores (Formspree, Web3Forms, uma função própria — qualquer um
+     que aceite um POST em JSON e permita pedidos a partir do browser).
+     Enquanto estiver vazio, o site funciona em modo protótipo: os dados
+     ficam guardados só neste navegador e o site diz isso a quem preenche.
+     CAMPOS_EXTRA junta campos fixos ao corpo do pedido, para os serviços
+     que precisam de uma chave — por exemplo { access_key: "..." }.
+     ========================================================= */
+  const ENDPOINT = "";
+  const CAMPOS_EXTRA = {};
+
+  function enviar(tipo, dados) {
+    if (!ENDPOINT) return Promise.resolve({ local: true });
+    const corpo = Object.assign({ tipo: tipo, origem: location.href }, CAMPOS_EXTRA, dados);
+    return fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(corpo)
+    }).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return { local: false };
+    });
+  }
+
+  function aEnviar(btn, sim) {
+    if (sim) {
+      btn.dataset.texto = btn.textContent;
+      btn.textContent = "A enviar\u2026";
+      btn.disabled = true;
+    } else {
+      btn.textContent = btn.dataset.texto || btn.textContent;
+      btn.disabled = false;
+    }
+  }
 
   /* ---------- estado ---------- */
   let RUBRICAS = clone(RUBRICAS_BASE);
@@ -1386,30 +1425,43 @@
       orcamento: estado.orcamento || null,
       partilhaFornecedores: $("c2").checked
     };
-    const leads = ler(LS_LEADS, []);
-    leads.unshift(lead);
-    gravar(LS_LEADS, leads.slice(0, 50));
-    renderLeads();
+    const btn = $("leadBtn");
+    aEnviar(btn, true);
 
-    const box = $("ctaBox");
-    box.textContent = "";
-    const ok = document.createElement("div");
-    ok.className = "ok-panel";
-    const t = document.createElement("div");
-    t.className = "tick"; t.textContent = "Obrigado, " + nome.split(" ")[0] + ".";
-    const p1 = document.createElement("p");
-    p1.style.margin = "0"; p1.style.fontSize = "15px";
-    p1.textContent = "Enviámos a estimativa de " + eur(arred(res.base, 50)) + " para " + email +
-      ". A equipa entra em contacto em 24 horas com propostas para " + estado.convidados + " convidados " +
-      (data ? "em " + data + "." : "na tua data.");
-    const p2 = document.createElement("p");
-    p2.className = "legal"; p2.style.marginBottom = "0";
-    p2.textContent = lead.partilhaFornecedores
-      ? "Vamos pedir propostas aos fornecedores parceiros da tua zona."
-      : "Não vamos partilhar os teus dados com fornecedores.";
-    ok.appendChild(t); ok.appendChild(p1); ok.appendChild(p2);
-    box.appendChild(ok);
-    box.scrollIntoView({ behavior: "smooth", block: "center" });
+    enviar("casal", lead).then(function (r) {
+      const leads = ler(LS_LEADS, []);
+      leads.unshift(lead);
+      gravar(LS_LEADS, leads.slice(0, 50));
+      renderLeads();
+
+      const box = $("ctaBox");
+      box.textContent = "";
+      const ok = document.createElement("div");
+      ok.className = "ok-panel";
+      const t = document.createElement("div");
+      t.className = "tick"; t.textContent = "Obrigado, " + nome.split(" ")[0] + ".";
+      const p1 = document.createElement("p");
+      p1.style.margin = "0"; p1.style.fontSize = "15px";
+      p1.textContent = r.local
+        ? "A tua estimativa é de " + eur(arred(res.base, 50)) + " para " + estado.convidados +
+          " convidados. Este site ainda está em construção: o pedido ficou guardado apenas neste " +
+          "navegador e ainda não chegou a ninguém."
+        : "Enviámos a estimativa de " + eur(arred(res.base, 50)) + " para " + email +
+          ". A equipa entra em contacto em 24 horas com propostas para " + estado.convidados + " convidados " +
+          (data ? "em " + data + "." : "na tua data.");
+      const p2 = document.createElement("p");
+      p2.className = "legal"; p2.style.marginBottom = "0";
+      p2.textContent = lead.partilhaFornecedores
+        ? "Vamos pedir propostas aos fornecedores parceiros da tua zona."
+        : "Não vamos partilhar os teus dados com fornecedores.";
+      ok.appendChild(t); ok.appendChild(p1); ok.appendChild(p2);
+      box.appendChild(ok);
+      box.scrollIntoView({ behavior: "smooth", block: "center" });
+    }).catch(function () {
+      aEnviar(btn, false);
+      err.hidden = false;
+      err.textContent = "Não conseguimos enviar o teu pedido agora. Verifica a ligação e tenta outra vez.";
+    });
   });
 
   /* ---------- área da equipa: editor de preços ---------- */
@@ -1558,25 +1610,60 @@
       return;
     }
     err.hidden = true;
-    const lista = ler(LS_FORN, []);
-    lista.unshift({
+    const fornecedor = {
       quando: new Date().toISOString(), empresa: empresa, categoria: $("sc").value,
       distrito: distrito, nome: nome, email: email, telefone: $("st").value.trim()
+    };
+    const btn = $("supBtn");
+    aEnviar(btn, true);
+
+    enviar("fornecedor", fornecedor).then(function (r) {
+      const lista = ler(LS_FORN, []);
+      lista.unshift(fornecedor);
+      gravar(LS_FORN, lista.slice(0, 50));
+      const box = $("supBox");
+      box.textContent = "";
+      const ok = document.createElement("div");
+      ok.className = "ok-panel";
+      const t = document.createElement("div");
+      t.className = "tick"; t.textContent = "Recebido.";
+      const p1 = document.createElement("p");
+      p1.style.margin = "0"; p1.style.fontSize = "15px";
+      p1.textContent = r.local
+        ? "O site ainda está em construção: o pedido de " + empresa + " ficou guardado apenas neste " +
+          "navegador e ainda não chegou a ninguém."
+        : "Entramos em contacto com " + empresa + " através de " + email +
+          " com as condições de parceria antes do lançamento.";
+      ok.appendChild(t); ok.appendChild(p1);
+      box.appendChild(ok);
+    }).catch(function () {
+      aEnviar(btn, false);
+      err.hidden = false;
+      err.textContent = "Não conseguimos enviar o pedido agora. Verifica a ligação e tenta outra vez.";
     });
-    gravar(LS_FORN, lista.slice(0, 50));
-    const box = $("supBox");
-    box.textContent = "";
-    const ok = document.createElement("div");
-    ok.className = "ok-panel";
-    const t = document.createElement("div");
-    t.className = "tick"; t.textContent = "Recebido.";
-    const p1 = document.createElement("p");
-    p1.style.margin = "0"; p1.style.fontSize = "15px";
-    p1.textContent = "Entramos em contacto com " + empresa + " através de " + email +
-      " com as condições de parceria antes do lançamento.";
-    ok.appendChild(t); ok.appendChild(p1);
-    box.appendChild(ok);
   });
+
+  /* ---------- área da equipa: só aparece com a chave no URL ---------- */
+  /* Abre em  .../#equipa  (ou  .../?equipa ). Muda CHAVE_EQUIPA para o
+     endereço deixar de ser adivinhável. Isto esconde o painel dos
+     visitantes, não o protege: quem ler o código-fonte encontra a chave.
+     A proteção a sério passa por mover a gestão para o backoffice. */
+  const CHAVE_EQUIPA = "equipa";
+  (function areaEquipa() {
+    const bloco = $("areaEquipa");
+    const naQuery = new RegExp("(^|&)" + CHAVE_EQUIPA + "(=|&|$)");
+    function atualizar() {
+      const visivel = location.hash.replace(/^#/, "") === CHAVE_EQUIPA ||
+                      naQuery.test(location.search.replace(/^\?/, ""));
+      bloco.hidden = !visivel;
+      if (visivel) {
+        const det = bloco.querySelector("details");
+        if (det) det.open = true;
+      }
+    }
+    atualizar();
+    window.addEventListener("hashchange", atualizar);
+  })();
 
   /* ---------- arranque ---------- */
   renderLeads();

@@ -1,0 +1,9 @@
+# Protótipo em construção: o site ainda não deve ser indexado.
+# No lançamento, substituir por:
+#   User-agent: *
+#   Disallow:
+#   Sitemap: https://quantocustacasar.pt/sitemap.xml
+# e trocar a meta robots do index.html para "index, follow".
+
+User-agent: *
+Disallow: /
