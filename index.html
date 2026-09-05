@@ -1652,8 +1652,10 @@
   (function areaEquipa() {
     const bloco = $("areaEquipa");
     const naQuery = new RegExp("(^|&)" + CHAVE_EQUIPA + "(=|&|$)");
+    let aberta = false;
     function atualizar() {
-      const visivel = location.hash.replace(/^#/, "") === CHAVE_EQUIPA ||
+      const visivel = aberta ||
+                      location.hash.replace(/^#/, "") === CHAVE_EQUIPA ||
                       naQuery.test(location.search.replace(/^\?/, ""));
       bloco.hidden = !visivel;
       if (visivel) {
@@ -1663,6 +1665,22 @@
     }
     atualizar();
     window.addEventListener("hashchange", atualizar);
+
+    /* Em pré-visualizações onde não se consegue editar o endereço (o site
+       dentro de uma moldura, por exemplo), escrever a chave no teclado,
+       fora dos campos do formulário, abre o painel na mesma. */
+    let teclado = "";
+    window.addEventListener("keydown", function (ev) {
+      if (ev.key.length !== 1 || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+      const campo = (ev.target.tagName || "").toUpperCase();
+      if (campo === "INPUT" || campo === "TEXTAREA" || campo === "SELECT") return;
+      teclado = (teclado + ev.key.toLowerCase()).slice(-CHAVE_EQUIPA.length);
+      if (teclado === CHAVE_EQUIPA.toLowerCase() && bloco.hidden) {
+        aberta = true;
+        atualizar();
+        bloco.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
   })();
 
   /* ---------- arranque ---------- */

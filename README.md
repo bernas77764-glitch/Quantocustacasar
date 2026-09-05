@@ -47,6 +47,10 @@ https://quantocustacasar.pt/#equipa
 A chave é a constante `CHAVE_EQUIPA` no script do `index.html` — muda-a para algo
 menos óbvio antes de publicar.
 
+Onde não se consegue editar o endereço — o site dentro de uma moldura, numa
+pré-visualização — basta escrever a chave no teclado, fora dos campos do
+formulário, para o painel abrir.
+
 Isto esconde o painel de quem visita o site, mas **não é uma proteção real**:
 quem abrir o código-fonte da página encontra a chave. Enquanto for um protótipo
 sem dados de terceiros, chega; a partir do momento em que as leads reais ficarem
