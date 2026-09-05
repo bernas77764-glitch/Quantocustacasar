@@ -1,0 +1,1588 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Quanto custa casar em Portugal? Simulador gratuito com 24 rubricas, ajustado à região, à época do ano e ao número de convidados. Estimativa imediata e sem registo.">
+<link rel="canonical" href="https://quantocustacasar.pt/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#245C86">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:site_name" content="Quanto Custa Casar">
+<meta property="og:url" content="https://quantocustacasar.pt/">
+<meta property="og:title" content="Quanto custa casar em Portugal? — Simulador gratuito">
+<meta property="og:description" content="Estimativa realista do teu casamento em segundos: 24 rubricas, ajustadas à tua região, à tua época e ao teu estilo.">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 1 L18 10 L27 14 L18 18 L14 27 L10 18 L1 14 L10 10 Z' fill='%23245C86'/%3E%3C/svg%3E">
+
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://quantocustacasar.pt/#site",
+      "url": "https://quantocustacasar.pt/",
+      "name": "Quanto Custa Casar",
+      "inLanguage": "pt-PT"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Simulador de custos de casamento",
+      "url": "https://quantocustacasar.pt/#simulador",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "pt-PT",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quanto custa casar em Portugal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende sobretudo da região, do mês e do número de convidados. Para 100 convidados na zona de Lisboa, em época alta e num formato clássico com tudo incluído, a estimativa ronda os 35.000 euros, cerca de 355 euros por convidado. Os mesmos 100 convidados no Centro do país, fora de época e num formato intimista, ficam à volta dos 19.500 euros."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O simulador de casamento é gratuito?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "É gratuito e não é preciso registo para simular. Os dados de contacto só são pedidos a quem quiser receber o orçamento detalhado por email e propostas de fornecedores."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "De onde vêm os preços usados na estimativa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "De intervalos de mercado praticados em Portugal, organizados por rubrica e revistos por profissionais de organização de casamentos. São valores indicativos: o preço final depende dos fornecedores escolhidos e da data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Os meus dados são partilhados com fornecedores?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Apenas com autorização expressa. São duas autorizações separadas: uma para contacto pela equipa e outra para partilha do pedido com fornecedores parceiros da região do casal. Qualquer uma pode ser retirada a qualquer momento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Com quanto tempo de antecedência devo planear o casamento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As quintas mais procuradas fecham sábados de época alta com 12 a 18 meses de antecedência. Simular cedo serve sobretudo para não reservar o espaço antes de saber quanto sobra para as restantes rubricas."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<title>Quanto Custa Casar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --paper: #FCFBF9;
+    --surface: #FFFFFF;
+    --surface-2: #F4F2EC;
+    --ink: #141C26;
+    --ink-2: #5A6875;
+    --ink-3: #8A96A2;
+    --line: #E4DFD5;
+    --line-soft: #EFEBE3;
+    --accent: #245C86;
+    --accent-deep: #17405F;
+    --accent-soft: #E5EDF4;
+    --on-accent: #FFFFFF;
+    --ochre: #A8712A;
+    --clay: #B0603C;
+    --clay-soft: #F7EAE2;
+    --good: #2E6B4F;
+    --crit: #9B3B2E;
+    --shadow: 0 1px 2px rgba(20,28,38,.06), 0 8px 24px -16px rgba(20,28,38,.22);
+
+    --f-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --f-body: "Karla", "Helvetica Neue", Arial, sans-serif;
+
+    --sp: 8px;
+    --radius: 10px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0F151C;
+      --surface: #161E27;
+      --surface-2: #1D2732;
+      --ink: #E9EEF3;
+      --ink-2: #9BA9B7;
+      --ink-3: #6D7C8B;
+      --line: #27323E;
+      --line-soft: #1F2A35;
+      --accent: #74AEDB;
+      --accent-deep: #A5CBE8;
+      --accent-soft: #1B2C3A;
+      --on-accent: #0F151C;
+      --ochre: #D9A253;
+      --clay: #DC9068;
+      --clay-soft: #2B211C;
+      --good: #63B48C;
+      --crit: #E08573;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -20px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"] {
+    --on-accent: #0F151C;
+    --paper: #0F151C;
+    --surface: #161E27;
+    --surface-2: #1D2732;
+    --ink: #E9EEF3;
+    --ink-2: #9BA9B7;
+    --ink-3: #6D7C8B;
+    --line: #27323E;
+    --line-soft: #1F2A35;
+    --accent: #74AEDB;
+    --accent-deep: #A5CBE8;
+    --accent-soft: #1B2C3A;
+    --ochre: #D9A253;
+    --clay: #DC9068;
+    --clay-soft: #2B211C;
+    --good: #63B48C;
+    --crit: #E08573;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -20px rgba(0,0,0,.8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px 80px; }
+
+  /* ---------- cabeçalho ---------- */
+  header.top {
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .top-inner {
+    max-width: 1160px; margin: 0 auto; padding: 34px 20px 30px;
+    display: grid; gap: 14px;
+  }
+  .eyebrow {
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+  h1 {
+    font-family: var(--f-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(30px, 5vw, 50px);
+    line-height: 1.05;
+    letter-spacing: -.015em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .sub { margin: 0; max-width: 62ch; color: var(--ink-2); font-size: 17px; }
+
+  /* ---------- layout ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+    padding-top: 34px;
+  }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 28px; padding-top: 24px; } }
+
+  .col-out { position: sticky; top: 20px; }
+  @media (max-width: 900px) { .col-out { position: static; } }
+
+  /* ---------- blocos ---------- */
+  .block { display: grid; gap: 14px; }
+  .block + .block { margin-top: 30px; }
+  h2 {
+    font-family: var(--f-display); font-weight: 600;
+    font-size: 21px; margin: 0; letter-spacing: -.01em;
+  }
+  .hint { color: var(--ink-2); font-size: 14px; margin: -4px 0 0; }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+
+  /* ---------- controlos ---------- */
+  .field { display: grid; gap: 7px; }
+  label.lab, .lab {
+    font-size: 12px; letter-spacing: .09em; text-transform: uppercase;
+    font-weight: 600; color: var(--ink-2);
+  }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
+
+  select, input[type="number"], input[type="text"], input[type="email"], input[type="tel"], input[type="month"] {
+    font-family: var(--f-body); font-size: 15px; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 8px; padding: 9px 11px; width: 100%;
+    font-variant-numeric: tabular-nums;
+  }
+  select { appearance: none; background-image: none; padding-right: 30px; }
+  .selwrap { position: relative; }
+  .selwrap::after {
+    content: ""; position: absolute; right: 12px; top: 50%; width: 7px; height: 7px;
+    border-right: 1.5px solid var(--ink-2); border-bottom: 1.5px solid var(--ink-2);
+    transform: translateY(-70%) rotate(45deg); pointer-events: none;
+  }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .guests { display: grid; grid-template-columns: 1fr 96px; gap: 14px; align-items: center; }
+  input[type="range"] { width: 100%; accent-color: var(--accent); }
+
+  .seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .seg button {
+    flex: 1; font-family: var(--f-body); font-size: 14px; font-weight: 500;
+    background: var(--surface); color: var(--ink-2); border: 0; padding: 9px 6px;
+    cursor: pointer; border-right: 1px solid var(--line);
+  }
+  .seg button:last-child { border-right: 0; }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); font-weight: 600; }
+
+  /* ---------- rubricas ---------- */
+  .grupo { border-top: 1px solid var(--line-soft); padding-top: 12px; margin-top: 4px; }
+  .grupo:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+  .grupo-t {
+    font-size: 12px; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--ink-3); font-weight: 700; margin-bottom: 6px;
+  }
+  .item {
+    display: grid; grid-template-columns: 20px 1fr auto; gap: 10px;
+    align-items: baseline; padding: 5px 0;
+  }
+  .item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); margin: 0; align-self: center; }
+  .item label { cursor: pointer; font-size: 15px; }
+  .item .un { color: var(--ink-3); font-size: 12.5px; }
+  .item .v { font-variant-numeric: tabular-nums; font-size: 14px; color: var(--ink-2); font-weight: 500; }
+  .item.off label, .item.off .v { color: var(--ink-3); text-decoration-color: var(--line); }
+
+  /* ---------- resultado ---------- */
+  .total-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow);
+    display: grid; gap: 6px;
+  }
+  .total-num {
+    font-family: var(--f-display); font-weight: 600;
+    font-size: clamp(38px, 7vw, 58px); line-height: 1;
+    letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+  }
+  .total-range { color: var(--ink-2); font-size: 15px; font-variant-numeric: tabular-nums; }
+  .total-meta {
+    display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 10px;
+    padding-top: 14px; border-top: 1px solid var(--line-soft);
+    font-size: 14px; color: var(--ink-2);
+  }
+  .total-meta b { color: var(--ink); font-variant-numeric: tabular-nums; font-weight: 600; }
+
+  /* meter orçamento */
+  .meter { display: grid; gap: 8px; margin-top: 16px; }
+  .meter-track {
+    height: 10px; background: var(--surface-2); border-radius: 999px; overflow: hidden;
+    border: 1px solid var(--line-soft);
+  }
+  .meter-fill { height: 100%; border-radius: 999px; background: var(--accent); transition: width .25s ease; }
+  .meter-msg { font-size: 14.5px; display: flex; gap: 8px; align-items: baseline; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; transform: translateY(-1px); }
+
+  /* barras */
+  .bars { display: grid; gap: 9px; }
+  .bar-row { display: grid; grid-template-columns: minmax(96px, 38%) 1fr auto; gap: 12px; align-items: center; }
+  .bar-lab { font-size: 14px; line-height: 1.25; color: var(--ink); }
+  .bar-track { height: 14px; background: var(--surface-2); border-radius: 4px; position: relative; }
+  .bar-fill {
+    height: 100%; background: var(--accent); border-radius: 0 4px 4px 0;
+    transition: width .3s ease; min-width: 2px;
+  }
+  .bar-val { font-size: 13.5px; font-variant-numeric: tabular-nums; color: var(--ink-2); font-weight: 600; min-width: 70px; text-align: right; }
+  .bar-row .bar-rng {
+    grid-column: 2 / 4; font-size: 12.5px; color: var(--ink-3);
+    font-variant-numeric: tabular-nums; opacity: 0; height: 0; transition: opacity .15s ease;
+  }
+  .bar-row:hover .bar-rng, .bar-row:focus-within .bar-rng { opacity: 1; height: auto; }
+
+  /* tabela */
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line-soft); }
+  th { font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.grp td { background: var(--surface-2); font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); }
+  tr.tot td { border-bottom: 0; border-top: 2px solid var(--line); font-weight: 700; font-size: 15.5px; }
+  .tablewrap { overflow-x: auto; }
+
+  details.more { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  details.more > summary {
+    cursor: pointer; padding: 13px 18px; font-weight: 600; font-size: 14.5px;
+    list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  }
+  details.more > summary::-webkit-details-marker { display: none; }
+  details.more > summary::after { content: "+"; color: var(--ink-3); font-size: 18px; }
+  details.more[open] > summary::after { content: "–"; }
+  details.more > .inner { padding: 0 18px 18px; }
+
+  /* ---------- CTA / lead ---------- */
+  .cta {
+    background: var(--accent-soft); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 24px; display: grid; gap: 14px;
+  }
+  .cta h2 { font-size: 23px; }
+  .cta p { margin: 0; font-size: 15px; color: var(--ink-2); max-width: 56ch; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+  .consent { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: start; font-size: 14px; color: var(--ink-2); }
+  .consent input { width: 16px; height: 16px; margin: 3px 0 0; accent-color: var(--accent); }
+  .btn {
+    font-family: var(--f-body); font-size: 15.5px; font-weight: 700;
+    background: var(--accent); color: var(--on-accent); border: 0; border-radius: 8px;
+    padding: 12px 22px; cursor: pointer; justify-self: start;
+    text-decoration: none; display: inline-block; line-height: 1.2;
+  }
+  .btn:hover { background: var(--accent-deep); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); font-weight: 600; }
+  .btn.ghost:hover { background: var(--surface-2); }
+  .err { color: var(--crit); font-size: 13.5px; }
+  .ok-panel { display: grid; gap: 10px; }
+  .ok-panel .tick { font-family: var(--f-display); font-size: 22px; font-weight: 600; }
+
+  .legal { font-size: 12.5px; color: var(--ink-3); max-width: 70ch; }
+
+  footer.foot { border-top: 1px solid var(--line); margin-top: 50px; padding-top: 22px; color: var(--ink-3); font-size: 13px; }
+
+  /* ---------- área da equipa ---------- */
+  .team table input[type="number"] { padding: 5px 7px; font-size: 13.5px; }
+  .team td { padding: 5px 6px; }
+  .btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .saved { font-size: 13.5px; color: var(--good); }
+  textarea {
+    width: 100%; min-height: 120px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12.5px; border: 1px solid var(--line); border-radius: 8px; padding: 10px;
+    background: var(--surface-2); color: var(--ink);
+  }
+  .badge {
+    display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ochre); border: 1px solid currentColor;
+    border-radius: 4px; padding: 1px 6px;
+  }
+
+
+  /* ---------- navegação e marca ---------- */
+  .nav {
+    max-width: 1160px; margin: 0 auto; padding: 16px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--ink); }
+  .brand-mark {
+    font-family: var(--f-display); font-weight: 700; font-size: 19px; letter-spacing: -.02em;
+  }
+  .brand-tld { font-size: 13px; color: var(--ink-3); font-weight: 600; }
+  .navlinks { display: flex; gap: 22px; align-items: center; }
+  .navlinks a { color: var(--ink-2); text-decoration: none; font-size: 14.5px; font-weight: 500; }
+  .navlinks a:hover { color: var(--accent); }
+  @media (max-width: 700px) { .navlinks a.hide-s { display: none; } }
+
+  /* ---------- chips do hero ---------- */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .chip {
+    font-size: 13px; font-weight: 600; color: var(--ink-2);
+    background: var(--surface-2); border: 1px solid var(--line);
+    border-radius: 999px; padding: 4px 12px;
+  }
+
+  /* ---------- secções ---------- */
+  .sec { border-top: 1px solid var(--line); padding: 58px 0 10px; }
+  .sec-head { max-width: 64ch; display: grid; gap: 10px; margin-bottom: 28px; }
+  .sec h2.big { font-size: clamp(24px, 3.4vw, 32px); letter-spacing: -.015em; text-wrap: balance; }
+  .sec-head p { margin: 0; color: var(--ink-2); font-size: 16px; }
+
+  /* passos */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  @media (max-width: 800px) { .steps { grid-template-columns: 1fr; gap: 20px; } }
+  .step { display: grid; gap: 8px; align-content: start; }
+  .step-n {
+    font-family: var(--f-display); font-size: 15px; font-weight: 700; color: var(--accent);
+    border-top: 2px solid var(--accent); padding-top: 10px; width: 100%;
+  }
+  .step h3 { margin: 0; font-size: 17px; font-family: var(--f-display); font-weight: 600; }
+  .step p { margin: 0; color: var(--ink-2); font-size: 15px; }
+
+  /* porque é gratuito */
+  .why {
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px 30px; display: grid; gap: 12px 34px;
+    grid-template-columns: 250px minmax(0, 1fr); align-items: start;
+  }
+  @media (max-width: 760px) { .why { grid-template-columns: 1fr; padding: 24px; } }
+  .why p { max-width: 62ch; }
+  .why h3 { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 19px; }
+  .why p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+
+  /* fornecedores */
+  .sup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  @media (max-width: 860px) { .sup-grid { grid-template-columns: 1fr; gap: 28px; } }
+  .sup-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+  .sup-list li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; font-size: 15.5px; color: var(--ink-2); }
+  .sup-list b { color: var(--ink); font-weight: 600; }
+  .tick-i { color: var(--accent); font-weight: 700; }
+
+  /* faq */
+  .faq { display: grid; gap: 0; max-width: 74ch; }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary {
+    cursor: pointer; padding: 16px 0; font-size: 16.5px; font-weight: 600;
+    list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: baseline;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--ink-3); font-size: 19px; }
+  .faq details[open] summary::after { content: "\2013"; }
+  .faq .a { padding: 0 0 18px; color: var(--ink-2); font-size: 15.5px; max-width: 66ch; }
+  .faq .a p { margin: 0 0 10px; }
+  .faq .a p:last-child { margin-bottom: 0; }
+
+
+  /* ---------- azulejo e hero ---------- */
+  .az-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .hero {
+    display: grid; grid-template-columns: 1.1fr .9fr; gap: 46px; align-items: center;
+  }
+  @media (max-width: 880px) { .hero { grid-template-columns: 1fr; gap: 30px; } }
+  .hero-copy { display: grid; gap: 14px; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 6px; }
+  .hero-cta .quiet { font-size: 14px; color: var(--ink-3); }
+
+  .tile-panel {
+    position: relative; border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--line); background: var(--accent-soft);
+    min-height: 268px; display: grid; place-items: center; padding: 26px;
+  }
+  .tile-panel svg.az {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    color: var(--accent); opacity: .8;
+  }
+  @media (max-width: 880px) { .tile-panel { min-height: 220px; } }
+
+  .ex-card {
+    position: relative; background: var(--surface); border: 1px solid var(--line);
+    border-radius: 8px; padding: 20px 22px; box-shadow: var(--shadow);
+    display: grid; gap: 3px; min-width: min(300px, 100%);
+  }
+  .ex-card .lab { color: var(--ochre); }
+  .ex-card .cond { font-size: 13.5px; color: var(--ink-2); margin-bottom: 6px; }
+  .ex-card .big {
+    font-family: var(--f-display); font-weight: 600; font-size: 36px; line-height: 1;
+    letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+  }
+  .ex-card .per { font-size: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+  /* banda de fundo full-bleed */
+  .band {
+    background: var(--surface-2);
+    box-shadow: 0 0 0 100vmax var(--surface-2);
+    clip-path: inset(0 -100vmax);
+    border-top: 1px solid var(--line);
+  }
+  .band.sec { padding-bottom: 58px; }
+
+  /* faixa de azulejo no rodapé */
+  .az-strip { height: 34px; margin-top: 46px; color: var(--accent); opacity: .5; }
+  .az-strip svg { width: 100%; height: 100%; display: block; }
+
+  /* marca com losango */
+  .brand-tile { width: 13px; height: 13px; color: var(--accent); flex: none; }
+
+
+  /* ---------- hero ilustrado ---------- */
+  .top-inner { padding: 40px 20px 38px; }
+  .hero { grid-template-columns: 1fr 1.06fr; gap: 52px; }
+  @media (max-width: 940px) { .hero { grid-template-columns: 1fr; gap: 26px; } }
+  .scene {
+    border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
+    box-shadow: var(--shadow); background: #EAF0F4; line-height: 0;
+  }
+  .scene svg { width: 100%; height: auto; display: block; }
+  .scene-cap {
+    background: var(--surface); border-top: 1px solid var(--line);
+    padding: 12px 16px; display: flex; justify-content: space-between;
+    align-items: baseline; gap: 12px; line-height: 1.4;
+  }
+  .scene-cap .l { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--clay); font-weight: 700; }
+  .scene-cap .r { font-size: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .scene-cap .r b { color: var(--ink); font-family: var(--f-display); font-size: 17px; font-weight: 600; }
+
+  /* vinhetas dos passos */
+  .step-art {
+    border-radius: 8px; overflow: hidden; background: var(--surface);
+    border: 1px solid var(--line); margin-bottom: 4px; line-height: 0;
+  }
+  .step-art svg { width: 100%; height: auto; display: block; }
+
+  /* ícones de categorias */
+  .cats { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 22px; }
+  .cat {
+    display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600;
+    color: var(--ink-2); background: var(--surface); border: 1px solid var(--line);
+    border-radius: 999px; padding: 6px 14px 6px 10px;
+  }
+  .cat svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<nav class="nav">
+  <a class="brand" href="#topo">
+    <svg class="brand-tile" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><path d="M14 1 L18 10 L27 14 L18 18 L14 27 L10 18 L1 14 L10 10 Z" fill="currentColor"/></svg>
+    <span class="brand-mark">Quanto Custa Casar</span><span class="brand-tld">.pt</span>
+  </a>
+  <div class="navlinks">
+    <a href="#como" class="hide-s">Como funciona</a>
+    <a href="#fornecedores" class="hide-s">Fornecedores</a>
+    <a href="#simulador">Simular</a>
+  </div>
+</nav>
+
+</head>
+<body>
+<svg class="az-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="azulejo" width="56" height="56" patternUnits="userSpaceOnUse">
+      <rect width="56" height="56" fill="none"/>
+      <rect x="0.5" y="0.5" width="55" height="55" fill="none" stroke="currentColor" stroke-width="1" opacity=".22"/>
+      <path d="M28 7 L35 21 L49 28 L35 35 L28 49 L21 35 L7 28 L21 21 Z" fill="currentColor" opacity=".14" stroke="currentColor" stroke-width="1.1" stroke-opacity=".45"/>
+      <path d="M28 14 L31.5 24.5 L42 28 L31.5 31.5 L28 42 L24.5 31.5 L14 28 L24.5 24.5 Z" fill="currentColor" opacity=".2"/>
+      <circle cx="28" cy="28" r="3.2" fill="currentColor" opacity=".4"/>
+      <circle cx="0" cy="0" r="2.4" fill="currentColor" opacity=".3"/>
+      <circle cx="56" cy="0" r="2.4" fill="currentColor" opacity=".3"/>
+      <circle cx="0" cy="56" r="2.4" fill="currentColor" opacity=".3"/>
+      <circle cx="56" cy="56" r="2.4" fill="currentColor" opacity=".3"/>
+    </pattern>
+  </defs>
+</svg>
+
+<header class="top" id="topo">
+  <div class="top-inner">
+    <div class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Simulador de custos &middot; Portugal 2026</div>
+        <h1>Quanto custa casar em Portugal?</h1>
+        <p class="sub">A maior parte dos casais só descobre o custo real do casamento depois de já ter reservado a quinta. Aqui descobres antes: 24 rubricas, ajustadas à tua região, à tua época e ao teu estilo.</p>
+        <div class="chips">
+          <span class="chip">24 rubricas</span>
+          <span class="chip">8 regiões do país</span>
+          <span class="chip">3 épocas do ano</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn" href="#simulador">Simular o meu casamento</a>
+          <span class="quiet">Grátis &middot; sem registo</span>
+        </div>
+      </div>
+
+      <figure class="scene" style="margin:0">
+        <svg viewBox="0 0 840 520" role="img" aria-label="Ilustração de uma quinta portuguesa ao fim da tarde, com mesa comprida posta e grinaldas de luzes">
+          <defs>
+            <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#BFD3E0"/>
+              <stop offset="52%" stop-color="#E8DCD2"/>
+              <stop offset="100%" stop-color="#F6E7D9"/>
+            </linearGradient>
+            <linearGradient id="chao" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C9BFA8"/>
+              <stop offset="100%" stop-color="#B7AC92"/>
+            </linearGradient>
+            <radialGradient id="sol" cx="18%" cy="62%" r="42%">
+              <stop offset="0%" stop-color="#F7D9AE" stop-opacity=".95"/>
+              <stop offset="100%" stop-color="#F7D9AE" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <rect width="840" height="520" fill="url(#ceu)"/>
+          <rect width="840" height="520" fill="url(#sol)"/>
+          <circle cx="150" cy="322" r="34" fill="#F9E2BC" opacity=".85"/>
+
+          <path d="M0 330 Q150 288 300 320 T600 312 T840 330 L840 400 L0 400 Z" fill="#9FA98F" opacity=".55"/>
+          <path d="M0 352 Q200 322 420 348 T840 342 L840 400 L0 400 Z" fill="#87957A" opacity=".55"/>
+
+          <g fill="#4E6B52">
+            <path d="M92 372 q-13 -74 13 -122 q26 48 13 122 z"/>
+            <path d="M141 376 q-10 -58 10 -96 q20 38 10 96 z"/>
+            <path d="M742 374 q-12 -68 12 -112 q24 44 12 112 z"/>
+            <path d="M788 378 q-9 -52 9 -86 q18 34 9 86 z"/>
+          </g>
+
+          <g>
+            <path d="M255 214 L420 158 L585 214 Z" fill="#B0603C"/>
+            <path d="M255 214 L420 158 L585 214 Z" fill="none" stroke="#8F4B2E" stroke-width="3"/>
+            <rect x="272" y="212" width="296" height="150" fill="#F5F1E9"/>
+            <rect x="272" y="212" width="296" height="150" fill="none" stroke="#D9D2C4" stroke-width="2"/>
+            <path d="M300 362 v-62 a26 26 0 0 1 52 0 v62 z" fill="#C6D3DC"/>
+            <path d="M394 362 v-62 a26 26 0 0 1 52 0 v62 z" fill="#B7C7D2"/>
+            <path d="M488 362 v-62 a26 26 0 0 1 52 0 v62 z" fill="#C6D3DC"/>
+            <path d="M300 362 v-62 a26 26 0 0 1 52 0 v62 M394 362 v-62 a26 26 0 0 1 52 0 v62 M488 362 v-62 a26 26 0 0 1 52 0 v62" fill="none" stroke="#8FA3B2" stroke-width="2.5"/>
+            <rect x="404" y="228" width="32" height="32" fill="#245C86" opacity=".22"/>
+            <path d="M420 230 L428 244 L420 258 L412 244 Z" fill="#245C86" opacity=".55"/>
+          </g>
+
+          <g stroke="#C99A55" stroke-width="2.5" fill="none">
+            <path d="M40 176 Q210 246 380 172"/>
+            <path d="M380 172 Q560 244 800 168"/>
+          </g>
+          <g fill="#F2C879">
+            <circle cx="98" cy="207" r="6"/><circle cx="160" cy="226" r="6"/><circle cx="222" cy="234" r="6"/>
+            <circle cx="284" cy="228" r="6"/><circle cx="340" cy="206" r="6"/>
+            <circle cx="440" cy="205" r="6"/><circle cx="510" cy="227" r="6"/><circle cx="580" cy="232" r="6"/>
+            <circle cx="650" cy="222" r="6"/><circle cx="716" cy="198" r="6"/>
+          </g>
+          <g fill="#F7DEA6" opacity=".5">
+            <circle cx="98" cy="207" r="13"/><circle cx="222" cy="234" r="13"/><circle cx="340" cy="206" r="13"/>
+            <circle cx="510" cy="227" r="13"/><circle cx="650" cy="222" r="13"/>
+          </g>
+
+          <rect y="374" width="840" height="146" fill="url(#chao)"/>
+
+          <g>
+            <rect x="150" y="404" width="540" height="20" rx="4" fill="#FBF8F2"/>
+            <path d="M150 424 h540 l-26 44 h-488 z" fill="#EFE9DC"/>
+            <g fill="#DED6C4">
+              <rect x="196" y="428" width="6" height="40"/><rect x="330" y="428" width="6" height="40"/>
+              <rect x="500" y="428" width="6" height="40"/><rect x="634" y="428" width="6" height="40"/>
+            </g>
+            <g fill="#5C7A5E">
+              <path d="M262 404 q-4 -22 6 -34 q10 12 6 34 z"/>
+              <path d="M420 402 q-5 -26 7 -40 q12 14 7 40 z"/>
+              <path d="M578 404 q-4 -22 6 -34 q10 12 6 34 z"/>
+            </g>
+            <g fill="#D98BA0">
+              <circle cx="268" cy="368" r="7"/><circle cx="427" cy="360" r="8"/><circle cx="584" cy="368" r="7"/>
+            </g>
+            <g fill="#C9C0AC">
+              <rect x="216" y="396" width="20" height="9" rx="2"/><rect x="360" y="396" width="20" height="9" rx="2"/>
+              <rect x="470" y="396" width="20" height="9" rx="2"/><rect x="606" y="396" width="20" height="9" rx="2"/>
+            </g>
+          </g>
+
+          <g fill="#A99E86">
+            <rect x="118" y="418" width="14" height="52" rx="4"/>
+            <rect x="708" y="418" width="14" height="52" rx="4"/>
+          </g>
+        </svg>
+        <figcaption class="scene-cap">
+          <span class="l">Exemplo</span>
+          <span class="r">100 convidados &middot; Lisboa &middot; época alta &nbsp; <b>35 300 €</b></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="grid" id="simulador">
+
+    <!-- ================= COLUNA ESQUERDA: CONTROLOS ================= -->
+    <div class="col-in">
+      <div class="block">
+        <h2>O teu casamento</h2>
+        <div class="panel" style="display:grid; gap:18px;">
+          <div class="field">
+            <label class="lab" for="convidados">Número de convidados</label>
+            <div class="guests">
+              <input type="range" id="convidadosRange" min="20" max="350" step="5" value="100" aria-label="Número de convidados">
+              <input type="number" id="convidados" min="10" max="600" step="1" value="100">
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label class="lab" for="regiao">Onde</label>
+              <div class="selwrap"><select id="regiao"></select></div>
+            </div>
+            <div class="field">
+              <label class="lab" for="epoca">Quando</label>
+              <div class="selwrap"><select id="epoca"></select></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="lab">Estilo do casamento</span>
+            <div class="seg" id="estilo" role="group" aria-label="Estilo do casamento"></div>
+            <p class="hint" id="estiloHint"></p>
+          </div>
+
+          <div class="field">
+            <label class="lab" for="orcamento">Orçamento que tens em mente (opcional)</label>
+            <input type="number" id="orcamento" min="0" step="500" placeholder="ex.: 20000" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>O que queres ter</h2>
+        <p class="hint">Desliga o que não se aplica. Os valores ao lado já contam com o número de convidados, a região e a época.</p>
+        <div class="panel" id="rubricas"></div>
+      </div>
+    </div>
+
+    <!-- ================= COLUNA DIREITA: RESULTADO ================= -->
+    <div class="col-out">
+      <div class="block">
+        <div class="total-card">
+          <span class="lab">Estimativa para o teu casamento</span>
+          <div class="total-num" id="total">—</div>
+          <div class="total-range" id="range"></div>
+          <div class="total-meta">
+            <span>Por convidado <b id="porConvidado">—</b></span>
+            <span>Convidados <b id="nConv">—</b></span>
+            <span>Rubricas incluídas <b id="nRub">—</b></span>
+          </div>
+          <div class="meter" id="meterWrap" hidden>
+            <div class="meter-track"><div class="meter-fill" id="meterFill" style="width:0%"></div></div>
+            <div class="meter-msg"><span class="dot" id="meterDot"></span><span id="meterMsg"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Onde vai o dinheiro</h2>
+        <p class="hint">As maiores rubricas da tua estimativa. Passa o rato por cima para ver o intervalo de preços.</p>
+        <div class="panel"><div class="bars" id="bars"></div></div>
+      </div>
+
+      <div class="block">
+        <details class="more">
+          <summary>Ver o detalhe rubrica a rubrica</summary>
+          <div class="inner tablewrap">
+            <table id="detalhe">
+              <thead><tr><th>Rubrica</th><th class="num">Mínimo</th><th class="num">Estimativa</th><th class="num">Máximo</th></tr></thead>
+              <tbody id="detalheBody"></tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+
+      <!-- ================= LEAD ================= -->
+      <div class="block">
+        <div class="cta" id="ctaBox">
+          <h2>Queres esta estimativa afinada ao teu caso?</h2>
+          <p>Enviamos-te o orçamento detalhado e propostas reais de quintas, catering, fotografia e música para a tua data. Sem custos para ti.</p>
+          <form id="leadForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label class="lab" for="ln">Nome</label>
+                <input type="text" id="ln" name="nome" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label class="lab" for="le">Email</label>
+                <input type="email" id="le" name="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label class="lab" for="lt">Telemóvel</label>
+                <input type="tel" id="lt" name="telefone" autocomplete="tel" required>
+              </div>
+              <div class="field">
+                <label class="lab" for="ld">Data prevista</label>
+                <input type="month" id="ld" name="data">
+              </div>
+            </div>
+            <div style="display:grid; gap:11px; margin-top:16px;">
+              <label class="consent"><input type="checkbox" id="c1"><span>Quero receber a minha estimativa e ser contactado(a) pela equipa para organizar o casamento.</span></label>
+              <label class="consent"><input type="checkbox" id="c2"><span>Autorizo a partilha dos meus dados com fornecedores parceiros (quintas, catering, fotografia, música) para receber propostas.</span></label>
+              <p class="err" id="leadErr" hidden></p>
+              <button class="btn" type="submit">Receber a minha estimativa</button>
+              <p class="legal">Os teus dados são usados apenas para te enviar a estimativa e as propostas que autorizares. Podes retirar o consentimento a qualquer momento.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= COMO FUNCIONA ================= -->
+  <section class="sec band" id="como">
+    <div class="sec-head">
+      <h2 class="big">Da estimativa às propostas reais</h2>
+      <p>O simulador dá-te o número. O que vem a seguir é o trabalho que ninguém tem paciência para fazer: pedir orçamentos, comparar e perceber o que está mesmo incluído em cada proposta.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-art"><svg viewBox="0 0 300 150" role="img" aria-label="Ilustração de um painel com cursor e valor"><rect width="300" height="150" fill="#EEF3F7"/><rect x="34" y="26" width="232" height="98" rx="7" fill="#FFFFFF" stroke="#D5DFE7" stroke-width="2"/><rect x="52" y="46" width="64" height="7" rx="3.5" fill="#B9C7D3"/><rect x="52" y="68" width="150" height="6" rx="3" fill="#DFE7ED"/><rect x="52" y="68" width="88" height="6" rx="3" fill="#245C86"/><circle cx="140" cy="71" r="10" fill="#FFFFFF" stroke="#245C86" stroke-width="3"/><rect x="52" y="94" width="46" height="14" rx="3" fill="#EDF1F5"/><rect x="106" y="94" width="46" height="14" rx="3" fill="#245C86" opacity=".85"/><rect x="160" y="94" width="46" height="14" rx="3" fill="#EDF1F5"/><rect x="196" y="40" width="56" height="26" rx="4" fill="#B0603C" opacity=".14"/><text x="224" y="58" font-family="Georgia,serif" font-size="17" font-weight="bold" fill="#B0603C" text-anchor="middle">€</text></svg></div>
+        <div class="step-n">01</div>
+        <h3>Simulas em dois minutos</h3>
+        <p>Escolhes convidados, região, época e o que queres ter no dia. O valor muda à medida que decides — vês logo o que é que cada escolha custa.</p>
+      </div>
+      <div class="step">
+        <div class="step-art"><svg viewBox="0 0 300 150" role="img" aria-label="Ilustração de um orçamento detalhado com barras"><rect width="300" height="150" fill="#EEF3F7"/><rect x="52" y="18" width="196" height="118" rx="7" fill="#FFFFFF" stroke="#D5DFE7" stroke-width="2"/><rect x="70" y="36" width="72" height="8" rx="4" fill="#1C3D57"/><g><rect x="70" y="60" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="120" y="59" width="108" height="8" rx="4" fill="#245C86"/></g><g><rect x="70" y="78" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="120" y="77" width="74" height="8" rx="4" fill="#245C86" opacity=".8"/></g><g><rect x="70" y="96" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="120" y="95" width="52" height="8" rx="4" fill="#245C86" opacity=".62"/></g><g><rect x="70" y="114" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="120" y="113" width="32" height="8" rx="4" fill="#245C86" opacity=".45"/></g></svg></div>
+        <div class="step-n">02</div>
+        <h3>Recebes o orçamento detalhado</h3>
+        <p>Rubrica a rubrica, com o intervalo de preços de cada uma e o custo por convidado. Fica teu, para levares para as reuniões com fornecedores.</p>
+      </div>
+      <div class="step">
+        <div class="step-art"><svg viewBox="0 0 300 150" role="img" aria-label="Ilustração de três propostas de fornecedores"><rect width="300" height="150" fill="#EEF3F7"/><g transform="rotate(-7 96 82)"><rect x="46" y="42" width="94" height="76" rx="6" fill="#FFFFFF" stroke="#D5DFE7" stroke-width="2"/><rect x="60" y="58" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="60" y="74" width="60" height="5" rx="2.5" fill="#E2E9EF"/><rect x="60" y="86" width="48" height="5" rx="2.5" fill="#E2E9EF"/></g><g><rect x="102" y="34" width="96" height="82" rx="6" fill="#FFFFFF" stroke="#245C86" stroke-width="2.5"/><rect x="118" y="52" width="46" height="7" rx="3.5" fill="#245C86"/><rect x="118" y="70" width="64" height="5" rx="2.5" fill="#DBE4EB"/><rect x="118" y="82" width="52" height="5" rx="2.5" fill="#DBE4EB"/><rect x="118" y="96" width="34" height="10" rx="3" fill="#B0603C" opacity=".2"/></g><g transform="rotate(7 214 82)"><rect x="168" y="42" width="94" height="76" rx="6" fill="#FFFFFF" stroke="#D5DFE7" stroke-width="2"/><rect x="182" y="58" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="182" y="74" width="60" height="5" rx="2.5" fill="#E2E9EF"/><rect x="182" y="86" width="48" height="5" rx="2.5" fill="#E2E9EF"/></g></svg></div>
+        <div class="step-n">03</div>
+        <h3>Pedimos as propostas por ti</h3>
+        <p>Falamos com quintas, catering, fotografia e música da tua zona, para a tua data e para o teu número de convidados. Comparas e decides.</p>
+      </div>
+    </div>
+
+    <div class="why" style="margin-top:38px; background:var(--surface);">
+      <h3>Porque é que é gratuito para ti</h3>
+      <p>Não pagas nada, em nenhuma fase. Quem paga são os fornecedores, porque um casal que já sabe a data, a região e o orçamento vale-lhes mais do que publicidade genérica. É por isso que só partilhamos os teus dados se autorizares, e apenas com fornecedores da tua zona.</p>
+    </div>
+  </section>
+
+  <!-- ================= FORNECEDORES ================= -->
+  <section class="sec" id="fornecedores">
+    <div class="sup-grid">
+      <div>
+        <div class="sec-head" style="margin-bottom:22px;">
+          <h2 class="big">É quinta, catering, fotógrafo ou DJ?</h2>
+          <p>Estamos a construir a rede de fornecedores parceiros para arrancar em 2026. Deixa os teus dados e entramos em contacto com as condições antes do lançamento.</p>
+        </div>
+        <div class="cats">
+          <span class="cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l9-7 9 7v11"/><path d="M9 21v-6a3 3 0 0 1 6 0v6"/></svg>Quintas</span>
+          <span class="cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="6"/><path d="M4 4v5M7 4v5M5.5 9v11M19 4c-1.5 2-1.5 5 0 7v9"/></svg>Catering</span>
+          <span class="cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.4"/></svg>Fotografia</span>
+          <span class="cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.8"/><circle cx="17.5" cy="16" r="2.8"/></svg>Música</span>
+          <span class="cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="2.6"/><path d="M12 6.4c0-2 1.4-3.4 3-3.4 0 2-1.2 3.4-3 3.4zM14.6 9c1.8-.9 3.6-.3 4.4 1.1-1.8.9-3.6.4-4.4-1.1zM12 11.6c0 2-1.4 3.4-3 3.4 0-2 1.2-3.4 3-3.4zM9.4 9c-1.8.9-3.6.3-4.4-1.1C6.8 7 8.6 7.5 9.4 9zM12 12v9"/></svg>Decoração</span>
+        </div>
+        <ul class="sup-list">
+          <li><span class="tick-i">&check;</span><span><b>Casais com trabalho de casa feito.</b> Chegam com data, número de convidados, região e orçamento já definidos.</span></li>
+          <li><span class="tick-i">&check;</span><span><b>Só da tua zona e da tua categoria.</b> Não enviamos pedidos de casamentos no Algarve a uma quinta do Minho.</span></li>
+          <li><span class="tick-i">&check;</span><span><b>Com consentimento explícito.</b> O casal autoriza a partilha antes de te chegar o contacto — sem risco de RGPD do teu lado.</span></li>
+          <li><span class="tick-i">&check;</span><span><b>Sabemos o que é converter leads.</b> É o que fazemos todos os dias noutro setor, com plataforma própria.</span></li>
+        </ul>
+      </div>
+
+      <div class="cta" id="supBox">
+        <h2>Quero ser fornecedor parceiro</h2>
+        <form id="supForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label class="lab" for="se">Empresa</label>
+              <input type="text" id="se" autocomplete="organization" required>
+            </div>
+            <div class="field">
+              <label class="lab" for="sc">Categoria</label>
+              <div class="selwrap"><select id="sc">
+                <option>Espaço / quinta</option>
+                <option>Catering e bebidas</option>
+                <option>Fotografia</option>
+                <option>Vídeo</option>
+                <option>Música / DJ / banda</option>
+                <option>Decoração e flores</option>
+                <option>Bolos e doçaria</option>
+                <option>Beleza e cabelo</option>
+                <option>Transporte</option>
+                <option>Outra</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="lab" for="sd">Distrito</label>
+              <input type="text" id="sd" placeholder="ex.: Braga" required>
+            </div>
+            <div class="field">
+              <label class="lab" for="sn">Nome do responsável</label>
+              <input type="text" id="sn" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label class="lab" for="sm">Email</label>
+              <input type="email" id="sm" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label class="lab" for="st">Telefone</label>
+              <input type="tel" id="st" autocomplete="tel">
+            </div>
+          </div>
+          <div style="display:grid; gap:11px; margin-top:16px;">
+            <label class="consent"><input type="checkbox" id="sc1"><span>Autorizo o contacto para apresentação das condições de parceria.</span></label>
+            <p class="err" id="supErr" hidden></p>
+            <button class="btn" type="submit">Quero receber as condições</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="sec" id="faq">
+    <div class="sec-head">
+      <h2 class="big">Perguntas que toda a gente faz</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Afinal, quanto custa casar em Portugal?</summary>
+        <div class="a">
+          <p>Não há um número só — há um intervalo enorme, e é por isso que a pergunta é tão difícil de responder. Para dar uma referência: 100 convidados na zona de Lisboa, em época alta e num formato clássico com tudo incluído, dá uma estimativa à volta dos 35.000 €, ou seja cerca de 355 € por convidado.</p>
+          <p>Os mesmos 100 convidados, no Centro do país, fora de época e num formato intimista, ficam à volta dos 19.500 € — pouco mais de metade. A região, o mês e o número de convidados pesam mais do que qualquer outra escolha que faças — e é exactamente isso que o simulador te mostra.</p>
+        </div>
+      </details>
+      <details>
+        <summary>O simulador é mesmo gratuito?</summary>
+        <div class="a"><p>É, e não precisas de deixar dados nenhuns para simular. Só pedimos o contacto se quiseres receber o orçamento detalhado por email e propostas de fornecedores.</p></div>
+      </details>
+      <details>
+        <summary>De onde vêm estes preços?</summary>
+        <div class="a"><p>De intervalos de mercado praticados em Portugal, organizados por rubrica e revistos por quem organiza casamentos há anos. São valores indicativos: o preço final depende sempre dos fornecedores que escolheres e da data. À medida que fecharmos orçamentos reais, os intervalos vão sendo afinados.</p></div>
+      </details>
+      <details>
+        <summary>Os meus dados vão parar às mãos de quem?</summary>
+        <div class="a"><p>Só de quem tu autorizares. São duas autorizações separadas: uma para a nossa equipa te contactar, outra para partilharmos o teu pedido com fornecedores parceiros da tua zona. Podes dar só a primeira, e podes retirar qualquer uma a qualquer momento.</p></div>
+      </details>
+      <details>
+        <summary>Com quanto tempo devo começar a planear?</summary>
+        <div class="a"><p>As quintas com procura alta fecham sábados de época alta com 12 a 18 meses de antecedência, e a data condiciona quase tudo o resto. Simular cedo serve sobretudo para não reservares o espaço antes de saberes o que sobra para o resto.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= ÁREA DA EQUIPA ================= -->
+  <div class="block" style="margin-top:44px;">
+    <details class="more team">
+      <summary><span>Área da equipa &middot; tabela de preços e leads <span class="badge">Protótipo</span></span></summary>
+      <div class="inner">
+        <p class="hint" style="margin-top:0">Bruna: substitui aqui os valores indicativos pelos reais. <b>Estimativa</b> é o valor típico que o simulador usa; mínimo e máximo definem o intervalo mostrado ao casal. Guardar grava neste navegador; <b>Copiar tabela</b> dá-te o ficheiro para me enviares e eu fixar como base do site.</p>
+        <div class="tablewrap">
+          <table id="editor">
+            <thead><tr><th>Rubrica</th><th>Unidade</th><th class="num">Mínimo</th><th class="num">Estimativa</th><th class="num">Máximo</th></tr></thead>
+            <tbody id="editorBody"></tbody>
+          </table>
+        </div>
+
+        <h2 style="margin-top:26px; font-size:17px;">Multiplicadores</h2>
+        <div class="tablewrap">
+          <table id="multEditor">
+            <thead><tr><th>Fator</th><th class="num">Multiplicador</th></tr></thead>
+            <tbody id="multBody"></tbody>
+          </table>
+        </div>
+
+        <div class="btnrow">
+          <button class="btn" type="button" id="btnGuardar">Guardar preços</button>
+          <button class="btn ghost" type="button" id="btnRepor">Repor valores indicativos</button>
+          <button class="btn ghost" type="button" id="btnCopiar">Copiar tabela (JSON)</button>
+          <span class="saved" id="savedMsg" hidden>Guardado.</span>
+        </div>
+        <textarea id="jsonOut" hidden readonly aria-label="Tabela de preços em JSON"></textarea>
+
+        <h2 style="margin-top:30px; font-size:17px;">Leads de teste</h2>
+        <p class="hint" style="margin-top:0">No protótipo as leads ficam guardadas apenas neste navegador, para poderes testar o percurso completo. Na versão final ligam-se ao email da equipa e ao backoffice.</p>
+        <div class="tablewrap"><table id="leadsTable"><tbody id="leadsBody"></tbody></table></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="az-strip" aria-hidden="true">
+    <svg preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#azulejo)"/></svg>
+  </div>
+
+  <footer class="foot" style="border-top:0; margin-top:18px;">
+    <p style="margin:0 0 6px"><b style="font-family:var(--f-display); font-size:15px; color:var(--ink-2)">Quanto Custa Casar</b></p>
+    <p style="margin:0">Estimativas indicativas para casamentos em Portugal, construídas a partir de intervalos de mercado e afinadas com a experiência da equipa. O valor final depende sempre dos fornecedores escolhidos e da data. Protótipo em construção &mdash; 2026.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     MODELO — valores indicativos (a validar pela Bruna)
+     unidade: "fixo" = preço único | "convidado" = por pessoa
+     mercado: true  = varia com região e época
+              false = preço nacional (retalho: alianças, roupa, lua de mel)
+     ========================================================= */
+  const RUBRICAS_BASE = [
+    { id:"espaco",     grupo:"O dia",            nome:"Espaço / quinta",                 un:"fixo",      min:1500, base:3000, max:6000, mercado:true,  on:true },
+    { id:"catering",   grupo:"O dia",            nome:"Catering e bebidas",              un:"convidado", min:55,   base:80,   max:130,  mercado:true,  on:true },
+    { id:"openbar",    grupo:"O dia",            nome:"Open bar / bar de noite",         un:"convidado", min:10,   base:18,   max:32,   mercado:true,  on:true },
+    { id:"bolo",       grupo:"O dia",            nome:"Bolo de noiva",                   un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:true },
+    { id:"cerimonia",  grupo:"O dia",            nome:"Cerimónia (taxas e celebrante)",  un:"fixo",      min:150,  base:300,  max:700,  mercado:true,  on:true },
+    { id:"somluz",     grupo:"O dia",            nome:"Som, luz e estruturas",           un:"fixo",      min:400,  base:900,  max:1800, mercado:true,  on:true },
+
+    { id:"foto",       grupo:"Imagem",           nome:"Fotografia",                      un:"fixo",      min:900,  base:1600, max:3000, mercado:true,  on:true },
+    { id:"video",      grupo:"Imagem",           nome:"Vídeo",                           un:"fixo",      min:800,  base:1500, max:2800, mercado:true,  on:true },
+    { id:"booth",      grupo:"Imagem",           nome:"Fotobooth / animação extra",      un:"fixo",      min:300,  base:600,  max:1200, mercado:true,  on:false },
+
+    { id:"dj",         grupo:"Música",           nome:"DJ",                              un:"fixo",      min:600,  base:950,  max:1600, mercado:true,  on:true },
+    { id:"banda",      grupo:"Música",           nome:"Banda ao vivo",                   un:"fixo",      min:1200, base:2200, max:4000, mercado:true,  on:false },
+    { id:"musicacer",  grupo:"Música",           nome:"Música da cerimónia",             un:"fixo",      min:250,  base:400,  max:800,  mercado:true,  on:true },
+
+    { id:"flores",     grupo:"Decoração",        nome:"Decoração e flores",              un:"fixo",      min:800,  base:1800, max:4000, mercado:true,  on:true },
+    { id:"mesas",      grupo:"Decoração",        nome:"Centros de mesa e mise en place",  un:"convidado", min:4,    base:8,    max:15,   mercado:true,  on:true },
+    { id:"papelaria",  grupo:"Decoração",        nome:"Convites e papelaria",            un:"convidado", min:3,    base:6,    max:12,   mercado:true,  on:true },
+    { id:"lembrancas", grupo:"Decoração",        nome:"Lembranças para os convidados",   un:"convidado", min:2,    base:5,    max:10,   mercado:true,  on:false },
+
+    { id:"vestido",    grupo:"Os noivos",        nome:"Vestido de noiva e acessórios",   un:"fixo",      min:900,  base:1800, max:3500, mercado:false, on:true },
+    { id:"fato",       grupo:"Os noivos",        nome:"Fato do noivo",                   un:"fixo",      min:350,  base:700,  max:1400, mercado:false, on:true },
+    { id:"aliancas",   grupo:"Os noivos",        nome:"Alianças",                        un:"fixo",      min:500,  base:1100, max:2500, mercado:false, on:true },
+    { id:"beleza",     grupo:"Os noivos",        nome:"Cabelo e maquilhagem",            un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:true },
+    { id:"transporte", grupo:"Os noivos",        nome:"Transporte dos noivos",           un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:false },
+
+    { id:"planner",    grupo:"Apoio",            nome:"Wedding planner e coordenação",   un:"fixo",      min:1200, base:2500, max:5000, mercado:true,  on:true },
+    { id:"criancas",   grupo:"Apoio",            nome:"Espaço e apoio para crianças",    un:"fixo",      min:200,  base:400,  max:700,  mercado:true,  on:false },
+
+    { id:"luamel",     grupo:"Depois do dia",    nome:"Lua de mel",                      un:"fixo",      min:2000, base:4000, max:9000, mercado:false, on:false }
+  ];
+
+  const MULT_BASE = {
+    regiao: {
+      lisboa:  { nome:"Lisboa e arredores", m:1.15 },
+      porto:   { nome:"Porto e arredores",  m:1.08 },
+      algarve: { nome:"Algarve",            m:1.20 },
+      norte:   { nome:"Norte (restante)",   m:0.95 },
+      centro:  { nome:"Centro",             m:0.92 },
+      alentejo:{ nome:"Alentejo",           m:0.95 },
+      madeira: { nome:"Madeira",            m:1.12 },
+      acores:  { nome:"Açores",             m:1.10 }
+    },
+    epoca: {
+      alta:  { nome:"Época alta (maio a setembro)", m:1.10 },
+      media: { nome:"Abril ou outubro",              m:1.00 },
+      baixa: { nome:"Novembro a março",              m:0.88 }
+    },
+    estilo: {
+      intimista:  { nome:"Intimista", m:0.82, desc:"Menos rubricas, fornecedores locais, decoração simples." },
+      classico:   { nome:"Clássico",  m:1.00, desc:"O casamento português típico: quinta, banquete e festa até de madrugada." },
+      sofisticado:{ nome:"Sofisticado", m:1.35, desc:"Quintas de topo, menu de autor, decoração de assinatura." }
+    }
+  };
+
+  const LS_PRECOS = "sim_casamento_precos_v1";
+  const LS_LEADS  = "sim_casamento_leads_v1";
+
+  /* ---------- estado ---------- */
+  let RUBRICAS = clone(RUBRICAS_BASE);
+  let MULT = clone(MULT_BASE);
+  const estado = { convidados: 100, regiao: "lisboa", epoca: "alta", estilo: "classico", orcamento: 0, ligadas: {} };
+  RUBRICAS.forEach(function (r) { estado.ligadas[r.id] = r.on; });
+
+  /* ---------- utilidades ---------- */
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  const nf = new Intl.NumberFormat("pt-PT", { style:"currency", currency:"EUR", maximumFractionDigits:0 });
+  function eur(n) { return nf.format(Math.round(n)); }
+  function arred(n, passo) { passo = passo || 10; return Math.round(n / passo) * passo; }
+  function ler(k, fb) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch (e) { return fb; } }
+  function gravar(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
+
+  /* ---------- carregar preços guardados ---------- */
+  (function carregar() {
+    const g = ler(LS_PRECOS, null);
+    if (!g) return;
+    if (Array.isArray(g.rubricas)) {
+      g.rubricas.forEach(function (s) {
+        const r = RUBRICAS.find(function (x) { return x.id === s.id; });
+        if (r) { r.min = s.min; r.base = s.base; r.max = s.max; }
+      });
+    }
+    if (g.mult) {
+      ["regiao","epoca","estilo"].forEach(function (dim) {
+        if (!g.mult[dim]) return;
+        Object.keys(g.mult[dim]).forEach(function (k) {
+          if (MULT[dim][k]) MULT[dim][k].m = g.mult[dim][k];
+        });
+      });
+    }
+  })();
+
+  /* ---------- cálculo ---------- */
+  function fator(r) {
+    let f = MULT.estilo[estado.estilo].m;
+    if (r.mercado) f *= MULT.regiao[estado.regiao].m * MULT.epoca[estado.epoca].m;
+    return f;
+  }
+  function valores(r) {
+    const f = fator(r);
+    const q = r.un === "convidado" ? estado.convidados : 1;
+    return { min: r.min * q * f, base: r.base * q * f, max: r.max * q * f };
+  }
+  function calcular() {
+    const linhas = [];
+    let tMin = 0, tBase = 0, tMax = 0;
+    RUBRICAS.forEach(function (r) {
+      const v = valores(r);
+      const ativa = !!estado.ligadas[r.id];
+      linhas.push({ r: r, v: v, ativa: ativa });
+      if (ativa) { tMin += v.min; tBase += v.base; tMax += v.max; }
+    });
+    return { linhas: linhas, min: tMin, base: tBase, max: tMax };
+  }
+
+  /* ---------- construir controlos ---------- */
+  const $ = function (id) { return document.getElementById(id); };
+
+  (function selects() {
+    const sr = $("regiao"), se = $("epoca");
+    Object.keys(MULT.regiao).forEach(function (k) {
+      const o = document.createElement("option");
+      o.value = k; o.textContent = MULT.regiao[k].nome; sr.appendChild(o);
+    });
+    Object.keys(MULT.epoca).forEach(function (k) {
+      const o = document.createElement("option");
+      o.value = k; o.textContent = MULT.epoca[k].nome; se.appendChild(o);
+    });
+    sr.value = estado.regiao; se.value = estado.epoca;
+    sr.addEventListener("change", function () { estado.regiao = sr.value; render(); });
+    se.addEventListener("change", function () { estado.epoca = se.value; render(); });
+  })();
+
+  (function segmentos() {
+    const box = $("estilo");
+    Object.keys(MULT.estilo).forEach(function (k) {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = MULT.estilo[k].nome;
+      b.setAttribute("aria-pressed", String(k === estado.estilo));
+      b.addEventListener("click", function () {
+        estado.estilo = k;
+        Array.prototype.forEach.call(box.children, function (c) { c.setAttribute("aria-pressed", "false"); });
+        b.setAttribute("aria-pressed", "true");
+        render();
+      });
+      box.appendChild(b);
+    });
+  })();
+
+  (function convidados() {
+    const rg = $("convidadosRange"), nb = $("convidados");
+    function set(v, from) {
+      v = Math.max(10, Math.min(600, parseInt(v, 10) || 100));
+      estado.convidados = v;
+      if (from !== "range") rg.value = Math.max(20, Math.min(350, v));
+      if (from !== "num") nb.value = v;
+      render();
+    }
+    rg.addEventListener("input", function () { set(rg.value, "range"); });
+    nb.addEventListener("input", function () { set(nb.value, "num"); });
+  })();
+
+  $("orcamento").addEventListener("input", function () {
+    estado.orcamento = parseInt(this.value, 10) || 0;
+    render();
+  });
+
+  /* ---------- lista de rubricas ---------- */
+  (function listaRubricas() {
+    const box = $("rubricas");
+    const grupos = [];
+    RUBRICAS.forEach(function (r) { if (grupos.indexOf(r.grupo) === -1) grupos.push(r.grupo); });
+    grupos.forEach(function (g) {
+      const d = document.createElement("div");
+      d.className = "grupo";
+      const t = document.createElement("div");
+      t.className = "grupo-t"; t.textContent = g;
+      d.appendChild(t);
+      RUBRICAS.filter(function (r) { return r.grupo === g; }).forEach(function (r) {
+        const row = document.createElement("div");
+        row.className = "item"; row.id = "item-" + r.id;
+        const cb = document.createElement("input");
+        cb.type = "checkbox"; cb.id = "cb-" + r.id; cb.checked = !!estado.ligadas[r.id];
+        cb.addEventListener("change", function () { estado.ligadas[r.id] = cb.checked; render(); });
+        const lb = document.createElement("label");
+        lb.setAttribute("for", cb.id);
+        lb.innerHTML = r.nome + (r.un === "convidado" ? ' <span class="un">por convidado</span>' : "");
+        const v = document.createElement("span");
+        v.className = "v"; v.id = "v-" + r.id;
+        row.appendChild(cb); row.appendChild(lb); row.appendChild(v);
+        d.appendChild(row);
+      });
+      box.appendChild(d);
+    });
+  })();
+
+  /* ---------- render ---------- */
+  function render() {
+    const res = calcular();
+    $("estiloHint").textContent = MULT.estilo[estado.estilo].desc;
+
+    // valores por rubrica na lista
+    res.linhas.forEach(function (l) {
+      const el = $("v-" + l.r.id);
+      if (el) el.textContent = eur(arred(l.v.base));
+      const row = $("item-" + l.r.id);
+      if (row) row.classList.toggle("off", !l.ativa);
+    });
+
+    // total
+    $("total").textContent = eur(arred(res.base, 50));
+    $("range").textContent = res.base > 0
+      ? "Intervalo provável: " + eur(arred(res.min, 50)) + " a " + eur(arred(res.max, 50))
+      : "Escolhe pelo menos uma rubrica.";
+    $("porConvidado").textContent = res.base > 0 ? eur(arred(res.base / estado.convidados, 5)) : "—";
+    $("nConv").textContent = String(estado.convidados);
+    $("nRub").textContent = String(res.linhas.filter(function (l) { return l.ativa; }).length);
+
+    // orçamento do casal
+    const mw = $("meterWrap");
+    if (estado.orcamento > 0 && res.base > 0) {
+      mw.hidden = false;
+      const cobertura = estado.orcamento / res.base;
+      const pct = Math.max(0, Math.min(1, cobertura));
+      $("meterFill").style.width = (pct * 100).toFixed(1) + "%";
+      let cor, msg;
+      if (cobertura >= 1) {
+        cor = "var(--good)";
+        msg = "O teu orçamento cobre a estimativa, com " + eur(arred(estado.orcamento - res.base, 50)) + " de folga.";
+      } else if (cobertura >= 0.8) {
+        cor = "var(--ochre)";
+        msg = "Faltam cerca de " + eur(arred(res.base - estado.orcamento, 50)) + " — dá para fechar cortando uma ou duas rubricas.";
+      } else {
+        cor = "var(--crit)";
+        msg = "O teu orçamento cobre " + Math.round(cobertura * 100) + "% da estimativa. Vale a pena rever convidados, época ou estilo.";
+      }
+      $("meterFill").style.background = cor;
+      $("meterDot").style.background = cor;
+      $("meterMsg").textContent = msg;
+    } else {
+      mw.hidden = true;
+    }
+
+    renderBarras(res);
+    renderDetalhe(res);
+  }
+
+  function renderBarras(res) {
+    const box = $("bars");
+    box.textContent = "";
+    const ativas = res.linhas.filter(function (l) { return l.ativa && l.v.base > 0; })
+                             .sort(function (a, b) { return b.v.base - a.v.base; });
+    if (!ativas.length) {
+      const p = document.createElement("p");
+      p.className = "hint"; p.textContent = "Escolhe as rubricas para veres a repartição.";
+      box.appendChild(p); return;
+    }
+    const topo = ativas.slice(0, 8);
+    const resto = ativas.slice(8);
+    const linhas = topo.map(function (l) {
+      return { nome: l.r.nome, base: l.v.base, min: l.v.min, max: l.v.max };
+    });
+    if (resto.length) {
+      linhas.push({
+        nome: "Outras " + resto.length + " rubricas",
+        base: resto.reduce(function (s, l) { return s + l.v.base; }, 0),
+        min:  resto.reduce(function (s, l) { return s + l.v.min; }, 0),
+        max:  resto.reduce(function (s, l) { return s + l.v.max; }, 0)
+      });
+    }
+    const maxv = Math.max.apply(null, linhas.map(function (l) { return l.base; }));
+    linhas.forEach(function (l) {
+      const row = document.createElement("div");
+      row.className = "bar-row"; row.tabIndex = 0;
+      const pctTotal = res.base > 0 ? Math.round((l.base / res.base) * 100) : 0;
+      row.setAttribute("aria-label", l.nome + ": " + eur(arred(l.base)) + ", " + pctTotal + "% do total");
+
+      const lab = document.createElement("div");
+      lab.className = "bar-lab"; lab.textContent = l.nome; lab.title = l.nome;
+
+      const track = document.createElement("div");
+      track.className = "bar-track";
+      const fill = document.createElement("div");
+      fill.className = "bar-fill";
+      fill.style.width = Math.max(1.5, (l.base / maxv) * 100) + "%";
+      track.appendChild(fill);
+
+      const val = document.createElement("div");
+      val.className = "bar-val"; val.textContent = eur(arred(l.base));
+
+      const rng = document.createElement("div");
+      rng.className = "bar-rng";
+      rng.textContent = pctTotal + "% do total · entre " + eur(arred(l.min)) + " e " + eur(arred(l.max));
+
+      row.appendChild(lab); row.appendChild(track); row.appendChild(val); row.appendChild(rng);
+      box.appendChild(row);
+    });
+  }
+
+  function renderDetalhe(res) {
+    const tb = $("detalheBody");
+    tb.textContent = "";
+    const grupos = [];
+    RUBRICAS.forEach(function (r) { if (grupos.indexOf(r.grupo) === -1) grupos.push(r.grupo); });
+    grupos.forEach(function (g) {
+      const linhas = res.linhas.filter(function (l) { return l.r.grupo === g && l.ativa; });
+      if (!linhas.length) return;
+      const gr = document.createElement("tr");
+      gr.className = "grp";
+      const gtd = document.createElement("td");
+      gtd.colSpan = 4; gtd.textContent = g;
+      gr.appendChild(gtd); tb.appendChild(gr);
+      linhas.forEach(function (l) {
+        const tr = document.createElement("tr");
+        [l.r.nome, eur(arred(l.v.min)), eur(arred(l.v.base)), eur(arred(l.v.max))].forEach(function (txt, i) {
+          const td = document.createElement("td");
+          td.textContent = txt;
+          if (i > 0) td.className = "num";
+          tr.appendChild(td);
+        });
+        tb.appendChild(tr);
+      });
+    });
+    const tot = document.createElement("tr");
+    tot.className = "tot";
+    [["Total", ""], [eur(arred(res.min, 50)), "num"], [eur(arred(res.base, 50)), "num"], [eur(arred(res.max, 50)), "num"]]
+      .forEach(function (c) {
+        const td = document.createElement("td");
+        td.textContent = c[0]; if (c[1]) td.className = c[1];
+        tot.appendChild(td);
+      });
+    tb.appendChild(tot);
+  }
+
+
+  /* ---------- formulário de lead ---------- */
+  $("leadForm").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    const err = $("leadErr");
+    const nome = $("ln").value.trim();
+    const email = $("le").value.trim();
+    const tel = $("lt").value.trim();
+    const data = $("ld").value;
+    const problemas = [];
+    if (nome.length < 2) problemas.push("o teu nome");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) problemas.push("um email válido");
+    if (tel.replace(/\D/g, "").length < 9) problemas.push("um telemóvel válido");
+    if (!$("c1").checked) problemas.push("a autorização para te contactarmos");
+    if (problemas.length) {
+      err.hidden = false;
+      err.textContent = "Falta " + problemas.join(", ").replace(/, ([^,]*)$/, " e $1") + ".";
+      return;
+    }
+    err.hidden = true;
+    const res = calcular();
+    const lead = {
+      quando: new Date().toISOString(),
+      nome: nome, email: email, telefone: tel, data: data || "—",
+      convidados: estado.convidados,
+      regiao: MULT.regiao[estado.regiao].nome,
+      epoca: MULT.epoca[estado.epoca].nome,
+      estilo: MULT.estilo[estado.estilo].nome,
+      estimativa: arred(res.base, 50),
+      orcamento: estado.orcamento || null,
+      partilhaFornecedores: $("c2").checked
+    };
+    const leads = ler(LS_LEADS, []);
+    leads.unshift(lead);
+    gravar(LS_LEADS, leads.slice(0, 50));
+    renderLeads();
+
+    const box = $("ctaBox");
+    box.textContent = "";
+    const ok = document.createElement("div");
+    ok.className = "ok-panel";
+    const t = document.createElement("div");
+    t.className = "tick"; t.textContent = "Obrigado, " + nome.split(" ")[0] + ".";
+    const p1 = document.createElement("p");
+    p1.style.margin = "0"; p1.style.fontSize = "15px";
+    p1.textContent = "Enviámos a estimativa de " + eur(arred(res.base, 50)) + " para " + email +
+      ". A equipa entra em contacto em 24 horas com propostas para " + estado.convidados + " convidados " +
+      (data ? "em " + data + "." : "na tua data.");
+    const p2 = document.createElement("p");
+    p2.className = "legal"; p2.style.marginBottom = "0";
+    p2.textContent = lead.partilhaFornecedores
+      ? "Vamos pedir propostas aos fornecedores parceiros da tua zona."
+      : "Não vamos partilhar os teus dados com fornecedores.";
+    ok.appendChild(t); ok.appendChild(p1); ok.appendChild(p2);
+    box.appendChild(ok);
+    box.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
+  /* ---------- área da equipa: editor de preços ---------- */
+  (function editor() {
+    const tb = $("editorBody");
+    RUBRICAS.forEach(function (r) {
+      const tr = document.createElement("tr");
+      const tdN = document.createElement("td"); tdN.textContent = r.nome;
+      const tdU = document.createElement("td");
+      tdU.innerHTML = '<span class="un">' + (r.un === "convidado" ? "por convidado" : "valor fixo") + "</span>";
+      tr.appendChild(tdN); tr.appendChild(tdU);
+      ["min", "base", "max"].forEach(function (campo) {
+        const td = document.createElement("td"); td.className = "num";
+        const inp = document.createElement("input");
+        inp.type = "number"; inp.min = "0"; inp.step = r.un === "convidado" ? "1" : "50";
+        inp.value = r[campo];
+        inp.setAttribute("aria-label", r.nome + " " + campo);
+        inp.addEventListener("input", function () {
+          r[campo] = parseFloat(inp.value) || 0;
+          render();
+        });
+        td.appendChild(inp); tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+
+    const mb = $("multBody");
+    [["regiao", "Região"], ["epoca", "Época"], ["estilo", "Estilo"]].forEach(function (dim) {
+      Object.keys(MULT[dim[0]]).forEach(function (k) {
+        const tr = document.createElement("tr");
+        const td1 = document.createElement("td");
+        td1.textContent = dim[1] + ": " + MULT[dim[0]][k].nome;
+        const td2 = document.createElement("td"); td2.className = "num";
+        const inp = document.createElement("input");
+        inp.type = "number"; inp.step = "0.01"; inp.min = "0.1"; inp.value = MULT[dim[0]][k].m;
+        inp.setAttribute("aria-label", "Multiplicador " + dim[1] + " " + MULT[dim[0]][k].nome);
+        inp.addEventListener("input", function () {
+          MULT[dim[0]][k].m = parseFloat(inp.value) || 1;
+          render();
+        });
+        td2.appendChild(inp);
+        tr.appendChild(td1); tr.appendChild(td2);
+        mb.appendChild(tr);
+      });
+    });
+  })();
+
+  function tabelaJSON() {
+    return {
+      atualizado: new Date().toISOString().slice(0, 10),
+      rubricas: RUBRICAS.map(function (r) {
+        return { id: r.id, nome: r.nome, un: r.un, min: r.min, base: r.base, max: r.max };
+      }),
+      mult: {
+        regiao: mapM("regiao"), epoca: mapM("epoca"), estilo: mapM("estilo")
+      }
+    };
+    function mapM(dim) {
+      const o = {};
+      Object.keys(MULT[dim]).forEach(function (k) { o[k] = MULT[dim][k].m; });
+      return o;
+    }
+  }
+
+  $("btnGuardar").addEventListener("click", function () {
+    const ok = gravar(LS_PRECOS, tabelaJSON());
+    const m = $("savedMsg");
+    m.hidden = false;
+    m.textContent = ok ? "Guardado neste navegador." : "Não foi possível guardar neste navegador.";
+    m.style.color = ok ? "var(--good)" : "var(--crit)";
+    setTimeout(function () { m.hidden = true; }, 3500);
+  });
+
+  $("btnRepor").addEventListener("click", function () {
+    RUBRICAS_BASE.forEach(function (b) {
+      const r = RUBRICAS.find(function (x) { return x.id === b.id; });
+      r.min = b.min; r.base = b.base; r.max = b.max;
+    });
+    ["regiao", "epoca", "estilo"].forEach(function (dim) {
+      Object.keys(MULT_BASE[dim]).forEach(function (k) { MULT[dim][k].m = MULT_BASE[dim][k].m; });
+    });
+    try { localStorage.removeItem(LS_PRECOS); } catch (e) {}
+    // repor os campos visíveis
+    const inputs = document.querySelectorAll("#editorBody tr");
+    inputs.forEach(function (tr, i) {
+      const b = RUBRICAS_BASE[i];
+      const cells = tr.querySelectorAll("input");
+      cells[0].value = b.min; cells[1].value = b.base; cells[2].value = b.max;
+    });
+    const mults = document.querySelectorAll("#multBody input");
+    let idx = 0;
+    ["regiao", "epoca", "estilo"].forEach(function (dim) {
+      Object.keys(MULT_BASE[dim]).forEach(function (k) { mults[idx].value = MULT_BASE[dim][k].m; idx++; });
+    });
+    render();
+  });
+
+  $("btnCopiar").addEventListener("click", function () {
+    const ta = $("jsonOut");
+    ta.hidden = false;
+    ta.value = JSON.stringify(tabelaJSON(), null, 2);
+    ta.focus(); ta.select();
+    try { navigator.clipboard.writeText(ta.value); } catch (e) {}
+  });
+
+  function renderLeads() {
+    const tb = $("leadsBody");
+    tb.textContent = "";
+    const leads = ler(LS_LEADS, []);
+    if (!leads.length) {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.className = "hint"; td.textContent = "Ainda não há leads de teste neste navegador.";
+      tr.appendChild(td); tb.appendChild(tr); return;
+    }
+    leads.forEach(function (l) {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.innerHTML = "<b>" + esc(l.nome) + "</b> · " + esc(l.email) + " · " + esc(l.telefone) +
+        '<br><span class="un">' + esc(l.data) + " · " + l.convidados + " convidados · " + esc(l.regiao) +
+        " · estimativa " + eur(l.estimativa) + (l.partilhaFornecedores ? " · autoriza fornecedores" : " · sem partilha") + "</span>";
+      tr.appendChild(td); tb.appendChild(tr);
+    });
+  }
+  function esc(s) { return String(s).replace(/[<>&"]/g, function (c) { return ({ "<":"&lt;", ">":"&gt;", "&":"&amp;", '"':"&quot;" })[c]; }); }
+
+
+  /* ---------- formulário de fornecedores ---------- */
+  const LS_FORN = "sim_casamento_fornecedores_v1";
+  $("supForm").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    const err = $("supErr");
+    const empresa = $("se").value.trim();
+    const distrito = $("sd").value.trim();
+    const nome = $("sn").value.trim();
+    const email = $("sm").value.trim();
+    const faltas = [];
+    if (empresa.length < 2) faltas.push("o nome da empresa");
+    if (distrito.length < 2) faltas.push("o distrito");
+    if (nome.length < 2) faltas.push("o nome do responsável");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) faltas.push("um email válido");
+    if (!$("sc1").checked) faltas.push("a autorização de contacto");
+    if (faltas.length) {
+      err.hidden = false;
+      err.textContent = "Falta " + faltas.join(", ").replace(/, ([^,]*)$/, " e $1") + ".";
+      return;
+    }
+    err.hidden = true;
+    const lista = ler(LS_FORN, []);
+    lista.unshift({
+      quando: new Date().toISOString(), empresa: empresa, categoria: $("sc").value,
+      distrito: distrito, nome: nome, email: email, telefone: $("st").value.trim()
+    });
+    gravar(LS_FORN, lista.slice(0, 50));
+    const box = $("supBox");
+    box.textContent = "";
+    const ok = document.createElement("div");
+    ok.className = "ok-panel";
+    const t = document.createElement("div");
+    t.className = "tick"; t.textContent = "Recebido.";
+    const p1 = document.createElement("p");
+    p1.style.margin = "0"; p1.style.fontSize = "15px";
+    p1.textContent = "Entramos em contacto com " + empresa + " através de " + email +
+      " com as condições de parceria antes do lançamento.";
+    ok.appendChild(t); ok.appendChild(p1);
+    box.appendChild(ok);
+  });
+
+  /* ---------- arranque ---------- */
+  renderLeads();
+  render();
+})();
+</script>
+
+</body>
+</html>
