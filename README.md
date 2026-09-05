@@ -35,6 +35,13 @@ python3 -m http.server 8000   # depois abrir http://localhost:8000
 - O casal pode ligar e desligar rubricas e definir um orçamento-alvo, com
   comparação face à estimativa.
 
+O **distrito** e a **data do casamento** afinam sozinhos a zona de preços e a
+época, mas ambas continuam a poder ser mudadas à mão — quem casa num espaço
+fora da zona onde vive corrige, e quem ainda não tem data escolhe a época
+diretamente. O mapa distrito → zona está em `DISTRITOS`, no `index.html`;
+Setúbal está em "Lisboa e arredores" por causa dos preços da margem sul, e
+muda-se numa linha se não for esse o caso.
+
 ## Área da equipa
 
 O painel de gestão (tabela de preços, multiplicadores e leads recebidas) está

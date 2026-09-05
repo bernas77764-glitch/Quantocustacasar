@@ -724,12 +724,25 @@
 
           <div class="row2">
             <div class="field">
-              <label class="lab" for="regiao">Onde</label>
-              <div class="selwrap"><select id="regiao"></select></div>
+              <label class="lab" for="distrito">Distrito</label>
+              <div class="selwrap"><select id="distrito"></select></div>
             </div>
             <div class="field">
-              <label class="lab" for="epoca">Quando</label>
+              <label class="lab" for="dataCasamento">Data do casamento</label>
+              <input type="date" id="dataCasamento">
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label class="lab" for="regiao">Zona de preços</label>
+              <div class="selwrap"><select id="regiao"></select></div>
+              <p class="hint" id="regiaoHint"></p>
+            </div>
+            <div class="field">
+              <label class="lab" for="epoca">Época</label>
               <div class="selwrap"><select id="epoca"></select></div>
+              <p class="hint" id="epocaHint"></p>
             </div>
           </div>
 
@@ -810,8 +823,8 @@
                 <input type="tel" id="lt" name="telefone" autocomplete="tel" required>
               </div>
               <div class="field">
-                <label class="lab" for="ld">Data prevista</label>
-                <input type="month" id="ld" name="data">
+                <label class="lab" for="ld">Data do casamento</label>
+                <input type="date" id="ld" name="data">
               </div>
             </div>
             <div style="display:grid; gap:11px; margin-top:16px;">
@@ -1077,6 +1090,53 @@
     }
   };
 
+  /* Distritos e a zona de preços a que pertencem. A zona continua a ser o
+     que mexe na estimativa; o distrito serve para a afinar sozinha e para a
+     equipa saber onde é o casamento. Setúbal está em "Lisboa e arredores"
+     por causa dos preços da margem sul — muda aqui se não for esse o caso. */
+  const DISTRITOS = [
+    { id:"aveiro",      nome:"Aveiro",            regiao:"centro"   },
+    { id:"beja",        nome:"Beja",              regiao:"alentejo" },
+    { id:"braga",       nome:"Braga",             regiao:"norte"    },
+    { id:"braganca",    nome:"Bragança",          regiao:"norte"    },
+    { id:"castelob",    nome:"Castelo Branco",    regiao:"centro"   },
+    { id:"coimbra",     nome:"Coimbra",           regiao:"centro"   },
+    { id:"evora",       nome:"Évora",             regiao:"alentejo" },
+    { id:"faro",        nome:"Faro",              regiao:"algarve"  },
+    { id:"guarda",      nome:"Guarda",            regiao:"centro"   },
+    { id:"leiria",      nome:"Leiria",            regiao:"centro"   },
+    { id:"lisboa",      nome:"Lisboa",            regiao:"lisboa"   },
+    { id:"portalegre",  nome:"Portalegre",        regiao:"alentejo" },
+    { id:"porto",       nome:"Porto",             regiao:"porto"    },
+    { id:"santarem",    nome:"Santarém",          regiao:"centro"   },
+    { id:"setubal",     nome:"Setúbal",           regiao:"lisboa"   },
+    { id:"viana",       nome:"Viana do Castelo",  regiao:"norte"    },
+    { id:"vilareal",    nome:"Vila Real",         regiao:"norte"    },
+    { id:"viseu",       nome:"Viseu",             regiao:"centro"   },
+    { id:"madeira",     nome:"Madeira",           regiao:"madeira"  },
+    { id:"acores",      nome:"Açores",            regiao:"acores"   }
+  ];
+
+  const MESES = ["janeiro","fevereiro","março","abril","maio","junho",
+                 "julho","agosto","setembro","outubro","novembro","dezembro"];
+
+  /* Maio a setembro é época alta, abril e outubro são de transição. */
+  function epocaDaData(iso) {
+    const m = parseInt((iso || "").split("-")[1], 10);
+    if (!m) return null;
+    if (m >= 5 && m <= 9) return "alta";
+    if (m === 4 || m === 10) return "media";
+    return "baixa";
+  }
+
+  function dataExtenso(iso) {
+    const p = (iso || "").split("-");
+    if (p.length !== 3) return "";
+    const mes = MESES[parseInt(p[1], 10) - 1];
+    if (!mes) return iso;
+    return parseInt(p[2], 10) + " de " + mes + " de " + p[0];
+  }
+
   const LS_PRECOS = "sim_casamento_precos_v1";
   const LS_LEADS  = "sim_casamento_leads_v1";
 
@@ -1120,7 +1180,8 @@
   /* ---------- estado ---------- */
   let RUBRICAS = clone(RUBRICAS_BASE);
   let MULT = clone(MULT_BASE);
-  const estado = { convidados: 100, regiao: "lisboa", epoca: "alta", estilo: "classico", orcamento: 0, ligadas: {} };
+  const estado = { convidados: 100, regiao: "lisboa", epoca: "alta", estilo: "classico",
+                   orcamento: 0, distrito: "", data: "", ligadas: {} };
   RUBRICAS.forEach(function (r) { estado.ligadas[r.id] = r.on; });
 
   /* ---------- utilidades ---------- */
@@ -1188,8 +1249,53 @@
       o.value = k; o.textContent = MULT.epoca[k].nome; se.appendChild(o);
     });
     sr.value = estado.regiao; se.value = estado.epoca;
-    sr.addEventListener("change", function () { estado.regiao = sr.value; render(); });
-    se.addEventListener("change", function () { estado.epoca = se.value; render(); });
+    sr.addEventListener("change", function () {
+      estado.regiao = sr.value; $("regiaoHint").textContent = ""; render();
+    });
+    se.addEventListener("change", function () {
+      estado.epoca = se.value; $("epocaHint").textContent = ""; render();
+    });
+
+    /* Distrito: afina a zona de preços, que continua a poder ser mudada à mão
+       para quem casa num espaço fora da zona onde vive. */
+    const sd = $("distrito");
+    const vazio = document.createElement("option");
+    vazio.value = ""; vazio.textContent = "Ainda não sei";
+    sd.appendChild(vazio);
+    DISTRITOS.forEach(function (d) {
+      const o = document.createElement("option");
+      o.value = d.id; o.textContent = d.nome; sd.appendChild(o);
+    });
+    sd.addEventListener("change", function () {
+      estado.distrito = sd.value;
+      const d = DISTRITOS.filter(function (x) { return x.id === sd.value; })[0];
+      if (d) {
+        estado.regiao = d.regiao;
+        sr.value = d.regiao;
+        $("regiaoHint").textContent = "Ajustada ao distrito de " + d.nome + ". Podes mudar se o espaço for noutra zona.";
+      } else {
+        $("regiaoHint").textContent = "";
+      }
+      render();
+    });
+
+    /* Data: afina a época e segue para o formulário, para não a pedir duas vezes. */
+    const sdata = $("dataCasamento");
+    sdata.min = new Date().toISOString().slice(0, 10);
+    sdata.addEventListener("change", function () {
+      estado.data = sdata.value;
+      const ld = $("ld");
+      if (ld) ld.value = sdata.value;
+      const ep = epocaDaData(sdata.value);
+      if (ep) {
+        estado.epoca = ep;
+        se.value = ep;
+        $("epocaHint").textContent = "Definida a partir da data. Podes mudar.";
+      } else {
+        $("epocaHint").textContent = "";
+      }
+      render();
+    });
   })();
 
   (function segmentos() {
@@ -1418,6 +1524,8 @@
       quando: new Date().toISOString(),
       nome: nome, email: email, telefone: tel, data: data || "—",
       convidados: estado.convidados,
+      distrito: (DISTRITOS.filter(function (x) { return x.id === estado.distrito; })[0] || {}).nome || "—",
+      dataTexto: dataExtenso(data),
       regiao: MULT.regiao[estado.regiao].nome,
       epoca: MULT.epoca[estado.epoca].nome,
       estilo: MULT.estilo[estado.estilo].nome,
@@ -1448,7 +1556,7 @@
           "navegador e ainda não chegou a ninguém."
         : "Enviámos a estimativa de " + eur(arred(res.base, 50)) + " para " + email +
           ". A equipa entra em contacto em 24 horas com propostas para " + estado.convidados + " convidados " +
-          (data ? "em " + data + "." : "na tua data.");
+          (data ? "em " + dataExtenso(data) + "." : "na tua data.");
       const p2 = document.createElement("p");
       p2.className = "legal"; p2.style.marginBottom = "0";
       p2.textContent = lead.partilhaFornecedores
@@ -1581,7 +1689,8 @@
       const tr = document.createElement("tr");
       const td = document.createElement("td");
       td.innerHTML = "<b>" + esc(l.nome) + "</b> · " + esc(l.email) + " · " + esc(l.telefone) +
-        '<br><span class="un">' + esc(l.data) + " · " + l.convidados + " convidados · " + esc(l.regiao) +
+        '<br><span class="un">' + esc(l.dataTexto || "sem data") + " · " + l.convidados +
+        " convidados · " + esc(l.distrito || "—") + " · " + esc(l.regiao) +
         " · estimativa " + eur(l.estimativa) + (l.partilhaFornecedores ? " · autoriza fornecedores" : " · sem partilha") + "</span>";
       tr.appendChild(td); tb.appendChild(tr);
     });
