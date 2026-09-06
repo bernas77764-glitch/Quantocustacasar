@@ -243,8 +243,8 @@ R = [
  # barra viva e navegação
  (u'$("vivoEti").textContent = "Por agora";\n      $("vivoVal").textContent = "—";\n      $("vivoObs").textContent = "Escolham pelo menos uma rubrica.";',
   u'$("vivoEti").textContent = "So far";\n      $("vivoVal").textContent = "—";\n      $("vivoObs").textContent = "Pick at least one item.";'),
- (u'$("vivoEti").textContent = "Por agora";\n      $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));\n      $("vivoObs").innerHTML = "estimativa provisória<br>" + (restantes === 1 ? "falta 1 resposta" : "faltam " + restantes + " respostas");',
-  u'$("vivoEti").textContent = "So far";\n      $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));\n      $("vivoObs").innerHTML = "provisional estimate<br>" + (restantes === 1 ? "1 answer to go" : restantes + " answers to go");'),
+ (u'$("vivoEti").textContent = "Por agora";\n      $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));\n      /* Conta as perguntas por responder, incluindo a que está no ecrã. */\n      const restantes = PERGUNTAS - Math.max(0, passo - 2);\n      $("vivoObs").innerHTML = "estimativa provisória<br>" + (restantes === 1 ? "falta 1 resposta" : "faltam " + restantes + " respostas");',
+  u'$("vivoEti").textContent = "So far";\n      $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));\n      /* Counts the questions still to answer, including the one on screen. */\n      const restantes = PERGUNTAS - Math.max(0, passo - 2);\n      $("vivoObs").innerHTML = "provisional estimate<br>" + (restantes === 1 ? "1 answer to go" : restantes + " answers to go");'),
  (u'$("vivoEti").textContent = "Estimativa";\n      $("vivoVal").textContent = eur(arred(res.base, 50));\n      $("vivoObs").innerHTML = "entre " + eur(arred(res.min, 500)) + "<br>e " + eur(arred(res.max, 500));',
   u'$("vivoEti").textContent = "Estimate";\n      $("vivoVal").textContent = eur(arred(res.base, 50));\n      $("vivoObs").innerHTML = "between " + eur(arred(res.min, 500)) + "<br>and " + eur(arred(res.max, 500));'),
  (u'$("btnContinuar").textContent = passo === PASSOS ? "Ver a estimativa" : "Continuar";', u'$("btnContinuar").textContent = passo === PASSOS ? "See the estimate" : "Continue";'),
@@ -306,12 +306,11 @@ R = [
 ]
 for a, b in R: sub(a, b, 0)
 
+if falhas:
+    print("FALHAS (%d) — en/index.html NÃO foi escrito:" % len(falhas))
+    for c, t in falhas: print("  x%d  %s" % (c, t))
+    sys.exit(1)
 import os
 os.makedirs("en", exist_ok=True)
 io.open("en/index.html", "w", encoding="utf-8").write(s)
-print("en/index.html escrito |", len(s), "caracteres")
-if falhas:
-    print("FALHAS (%d):" % len(falhas))
-    for c, t in falhas: print("  x%d  %s" % (c, t))
-    sys.exit(1)
-print("todas as substituições aplicadas")
+print("en/index.html escrito |", len(s), "caracteres | todas as substituições aplicadas")

@@ -1063,11 +1063,11 @@
       $("vivoObs").textContent = "Pick at least one item.";
     } else if (faltam > 0) {
       const iv = intervaloCorrente();
-      $("vivoEti").textContent = "Por agora";
+      $("vivoEti").textContent = "So far";
       $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));
-      /* Conta as perguntas por responder, incluindo a que está no ecrã. */
+      /* Counts the questions still to answer, including the one on screen. */
       const restantes = PERGUNTAS - Math.max(0, passo - 2);
-      $("vivoObs").innerHTML = "estimativa provisória<br>" + (restantes === 1 ? "falta 1 resposta" : "faltam " + restantes + " respostas");
+      $("vivoObs").innerHTML = "provisional estimate<br>" + (restantes === 1 ? "1 answer to go" : restantes + " answers to go");
     } else {
       $("vivoEti").textContent = "Estimate";
       $("vivoVal").textContent = eur(arred(res.base, 50));
