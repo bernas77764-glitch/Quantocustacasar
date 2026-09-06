@@ -19,6 +19,9 @@ python3 -m http.server 8000   # depois abrir http://localhost:8000
   de preços. As fontes (Fraunces e Karla) vêm do Google Fonts; tudo o resto é
   local.
 - `robots.txt` — bloqueia a indexação enquanto o site for protótipo.
+- `en/index.html` — a versão inglesa, com o mesmo código e o texto traduzido.
+  Ligadas uma à outra pelo «EN» / «PT» do cabeçalho e por `hreflang`.
+- `marca/` — logótipo, ícones e publicações para as redes.
 
 ## Como funciona a estimativa
 

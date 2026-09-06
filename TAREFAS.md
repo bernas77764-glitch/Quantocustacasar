@@ -21,9 +21,18 @@ Por ordem: do que desbloqueia mais para o que pode esperar.
    (usar só como ambiente, sem as apresentar como casamentos reais).
 7. **Redes sociais.** Criar perfis com o anel, a bio e as 13 publicações;
    começar a publicar quando o domínio estiver no ar.
-8. **Antes do lançamento.** Mudar `CHAVE_EQUIPA`, tirar o `noindex`, abrir o
-   `robots.txt`, e confirmar política de privacidade e consentimentos (RGPD)
-   com alguém de proteção de dados.
+8. **Antes do lançamento.** Mudar `CHAVE_EQUIPA`, tirar o `noindex` (nas duas
+   línguas), abrir o `robots.txt`, trocar o número do `WHATSAPP` pelo do negócio
+   (de preferência WhatsApp Business), restringir o Formspree ao domínio, e
+   confirmar política de privacidade e consentimentos (RGPD) com alguém de
+   proteção de dados.
 9. **Forma jurídica.** Abrir atividade como independente com o primeiro
    fornecedor pagante; empresa só se houver sócio, receita recorrente ou
    volume de dados que justifique. Confirmar com contabilista certificado.
+
+
+## Notas
+
+- Há uma versão inglesa em `en/` (`quantocustacasar.pt/en/`), gerada a partir da
+  portuguesa. Qualquer alteração de texto no site tem de ser feita nas duas.
+- O botão do WhatsApp está a apontar para o 351 912263717 até haver número do negócio.

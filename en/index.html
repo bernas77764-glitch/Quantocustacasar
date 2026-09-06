@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="pt-PT">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Quanto custa casar em Portugal? Simulador gratuito com 24 rubricas, ajustado ao distrito, à data e ao número de convidados. Uma pergunta de cada vez, estimativa no fim.">
-<link rel="canonical" href="https://quantocustacasar.pt/">
+<meta name="description" content="How much does a wedding in Portugal cost? Free simulator with 24 cost items, adjusted to the district, the date and the number of guests. One question at a time, estimate at the end.">
+<link rel="canonical" href="https://quantocustacasar.pt/en/">
 <link rel="alternate" hreflang="pt-PT" href="https://quantocustacasar.pt/">
 <link rel="alternate" hreflang="en" href="https://quantocustacasar.pt/en/">
 <!-- Enquanto for protótipo o site não deve ser indexado.
@@ -13,82 +13,37 @@
 <meta name="theme-color" content="#A8552B">
 
 <meta property="og:type" content="website">
-<meta property="og:locale" content="pt_PT">
+<meta property="og:locale" content="en_GB">
 <meta property="og:site_name" content="Quanto Custa Casar">
-<meta property="og:url" content="https://quantocustacasar.pt/">
-<meta property="og:title" content="Quanto custa casar em Portugal? — Simulador gratuito">
-<meta property="og:description" content="Cinco perguntas, uma de cada vez. No fim ficas a saber quanto custa o teu casamento, rubrica a rubrica.">
+<meta property="og:url" content="https://quantocustacasar.pt/en/">
+<meta property="og:title" content="How much does a wedding in Portugal cost? — Free simulator">
+<meta property="og:description" content="Five questions, one at a time. At the end you know what your wedding costs, item by item.">
 <meta property="og:image" content="https://quantocustacasar.pt/marca/logotipo-1600.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22 width=%22100%22 height=%22100%22%3E%3Cg transform=%22translate%280.00 0.00%29 scale%281.0000%29%22%3E%3Ccircle cx=%2248%22 cy=%2254%22 r=%2229%22 fill=%22none%22 stroke=%22%23A8552B%22 stroke-width=%2212%22/%3E%3Cpath d=%22M60 68 L84 92%22 fill=%22none%22 stroke=%22%23A8552B%22 stroke-width=%2211%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M48 8 L60 20 L48 32 L36 20 Z%22 fill=%22%231A1613%22/%3E%3C/g%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="marca/apple-touch-icon-180.png">
+<link rel="apple-touch-icon" href="../marca/apple-touch-icon-180.png">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://quantocustacasar.pt/#site",
-      "url": "https://quantocustacasar.pt/",
-      "name": "Quanto Custa Casar",
-      "inLanguage": "pt-PT"
-    },
-    {
-      "@type": "WebApplication",
-      "name": "Simulador de custos de casamento",
-      "url": "https://quantocustacasar.pt/#simulador",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "Web",
-      "inLanguage": "pt-PT",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Quanto custa casar em Portugal?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Depende sobretudo da região, do mês e do número de convidados. Para 100 convidados na zona de Lisboa, em época alta e num formato clássico com tudo incluído, a estimativa ronda os 35.000 euros, cerca de 355 euros por convidado. Os mesmos 100 convidados no Centro do país, fora de época e num formato intimista, ficam à volta dos 19.500 euros."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "O simulador de casamento é gratuito?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "É gratuito e não é preciso registo para simular. Os dados de contacto só são pedidos a quem quiser receber o orçamento detalhado por email e propostas de fornecedores."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "De onde vêm os preços usados na estimativa?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "De intervalos de mercado praticados em Portugal, organizados por rubrica e revistos por profissionais de organização de casamentos. São valores indicativos: o preço final depende dos fornecedores escolhidos e da data."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Os meus dados são partilhados com fornecedores?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Apenas com autorização expressa. São duas autorizações separadas: uma para contacto pela equipa e outra para partilha do pedido com fornecedores parceiros da região do casal. Qualquer uma pode ser retirada a qualquer momento."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Com quanto tempo de antecedência devo planear o casamento?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "As quintas mais procuradas fecham sábados de época alta com 12 a 18 meses de antecedência. Simular cedo serve sobretudo para não reservar o espaço antes de saber quanto sobra para as restantes rubricas."
-          }
-        }
-      ]
-    }
+    { "@type": "WebSite", "@id": "https://quantocustacasar.pt/#site", "url": "https://quantocustacasar.pt/en/", "name": "Quanto Custa Casar", "inLanguage": "en" },
+    { "@type": "WebApplication", "name": "Wedding cost simulator", "url": "https://quantocustacasar.pt/en/#simulador",
+      "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "inLanguage": "en",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" } },
+    { "@type": "FAQPage", "mainEntity": [
+      { "@type": "Question", "name": "How much does a wedding in Portugal cost?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends mostly on the region, the month and the number of guests. For 100 guests in the Lisbon area, in high season and in a classic all-inclusive format, the estimate is around 35,000 euros, about 355 euros per guest. The same 100 guests in central Portugal, off season and in an intimate format, come to around 19,500 euros." } },
+      { "@type": "Question", "name": "Is the wedding simulator free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is free and no sign-up is needed to simulate. Contact details are only asked from those who want the detailed budget by email and proposals from suppliers." } },
+      { "@type": "Question", "name": "Where do the prices in the estimate come from?",
+        "acceptedAnswer": { "@type": "Answer", "text": "From market ranges practised in Portugal, organised by cost item and reviewed by wedding planning professionals. They are indicative: the final price depends on the suppliers chosen and on the date." } },
+      { "@type": "Question", "name": "Is my data shared with suppliers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Only with express permission. There are two separate permissions: one for contact by the team and another for sharing the request with partner suppliers in the couple's region. Either can be withdrawn at any time." } },
+      { "@type": "Question", "name": "How far in advance should I plan the wedding?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The most sought-after venues book high-season Saturdays 12 to 18 months ahead. Simulating early is mostly about not booking the venue before knowing what is left for everything else." } }
+    ] }
   ]
 }
 </script>
@@ -432,7 +387,7 @@
 
 <header class="top">
   <div class="wide top-in">
-    <a class="marca" href="./" aria-label="Quanto Custa Casar — início">
+    <a class="marca" href="./" aria-label="Quanto Custa Casar — home">
       <svg width="24" height="24" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <circle cx="48" cy="54" r="29" stroke="var(--accent)" stroke-width="12"/>
         <path d="M60 68 L84 92" stroke="var(--accent)" stroke-width="11" stroke-linecap="round"/>
@@ -441,38 +396,38 @@
       Quanto Custa Casar
     </a>
     <nav>
-      <a href="#como">Como funciona</a>
-      <a href="#fornecedores">Fornecedores</a>
-      <a href="#faq">Perguntas</a>
-      <a href="en/" lang="en" aria-label="English version">EN</a>
+      <a href="#como">How it works</a>
+      <a href="#fornecedores">Suppliers</a>
+      <a href="#faq">Questions</a>
+      <a href="../" lang="pt" aria-label="Versão em português">PT</a>
     </nav>
   </div>
 </header>
 
 <div class="wrap abre" id="abertura">
-  <span class="eyebrow">Simulador gratuito · Portugal</span>
-  <h1>Quanto custa casar em Portugal?</h1>
-  <p>Cinco perguntas, uma de cada vez. No fim ficam a saber quanto custa o vosso casamento, rubrica a rubrica — sem registo e sem compromisso.</p>
+  <span class="eyebrow">Free simulator · Portugal</span>
+  <h1>How much does a wedding in Portugal cost?</h1>
+  <p>Five questions, one at a time. At the end you know what your wedding costs, item by item — no sign-up, no commitment.</p>
 </div>
 
 <!-- ================= PERCURSO ================= -->
 <main class="wrap flow" id="simulador">
 
-  <div class="barra-passos" id="barraPassos" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-label="Progresso das perguntas"></div>
+  <div class="barra-passos" id="barraPassos" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-label="Question progress"></div>
 
   <div class="passo-topo">
     <button type="button" class="voltar" id="btnVoltar" hidden>
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 L8 12 L15 19"/></svg>
-      Voltar
+      Back
     </button>
     <span></span>
-    <span class="conta-passos" id="contaPassos">Antes de começar</span>
+    <span class="conta-passos" id="contaPassos">Before we start</span>
   </div>
 
   <!-- antes de começar -->
   <section class="passo" id="passo1">
-    <h2>Quem está a fazer as contas?</h2>
-    <p class="sub">Só para sabermos com quem falamos — a estimativa é a mesma.</p>
+    <h2>Who is doing the maths?</h2>
+    <p class="sub">Just so we know who we are talking to — the estimate is the same.</p>
     <div class="cartao">
       <div class="escolhas" id="escolhasQuem"></div>
     </div>
@@ -480,11 +435,11 @@
 
   <!-- passo 2 -->
   <section class="passo" id="passo2">
-    <h2>Quantas pessoas vão estar convosco?</h2>
-    <p class="sub">É o número que mais mexe na conta — o catering e a bebida são cobrados por pessoa.</p>
+    <h2>How many people will be with you?</h2>
+    <p class="sub">It is the number that moves the bill the most — catering and drinks are charged per person.</p>
     <div class="cartao">
-      <div class="numerao"><b id="numConvidados">100</b><span>convidados</span></div>
-      <input type="range" id="convidadosRange" min="20" max="350" step="5" value="100" aria-label="Número de convidados">
+      <div class="numerao"><b id="numConvidados">100</b><span>guests</span></div>
+      <input type="range" id="convidadosRange" min="20" max="350" step="5" value="100" aria-label="Number of guests">
       <div class="chips" id="chipsConvidados"></div>
     </div>
     <div class="nota">
@@ -495,11 +450,11 @@
 
   <!-- passo 3 -->
   <section class="passo" id="passo3" hidden>
-    <h2>Onde vai ser o casamento?</h2>
-    <p class="sub">Os preços mudam muito de zona para zona: entre o Algarve e o Centro do país há mais de 25% de diferença nas mesmas rubricas.</p>
+    <h2>Where will the wedding be?</h2>
+    <p class="sub">Prices vary a lot from area to area: between the Algarve and central Portugal there is over 25% difference on the same items.</p>
     <div class="cartao">
       <div class="campo">
-        <label class="lab" for="distrito">Distrito</label>
+        <label class="lab" for="distrito">District</label>
         <div class="selwrap"><select id="distrito"></select></div>
       </div>
     </div>
@@ -507,15 +462,15 @@
 
   <!-- passo 4 -->
   <section class="passo" id="passo4" hidden>
-    <h2>Já têm data?</h2>
-    <p class="sub">Um sábado de agosto e um sábado de fevereiro não custam o mesmo. Se ainda não souberem, escolham só a altura do ano.</p>
+    <h2>Do you have a date yet?</h2>
+    <p class="sub">A Saturday in August and a Saturday in February do not cost the same. If you do not know yet, just pick the time of year.</p>
     <div class="cartao">
       <div class="campo">
-        <label class="lab" for="dataCasamento">Data do casamento</label>
+        <label class="lab" for="dataCasamento">Wedding date</label>
         <input type="date" id="dataCasamento">
       </div>
       <div class="campo">
-        <span class="lab">Altura do ano</span>
+        <span class="lab">Time of year</span>
         <div class="escolhas" id="escolhasEpoca"></div>
       </div>
     </div>
@@ -523,8 +478,8 @@
 
   <!-- passo 5 -->
   <section class="passo" id="passo5" hidden>
-    <h2>Que casamento têm em mente?</h2>
-    <p class="sub">Não é sobre gosto, é sobre escala: quantos fornecedores entram e de que gama.</p>
+    <h2>What kind of wedding do you have in mind?</h2>
+    <p class="sub">It is not about taste, it is about scale: how many suppliers come in, and of what range.</p>
     <div class="cartao">
       <div class="escolhas" id="escolhasEstilo"></div>
     </div>
@@ -532,12 +487,12 @@
 
   <!-- passo 6 -->
   <section class="passo" id="passo6" hidden>
-    <h2>O que querem ter no dia?</h2>
-    <p class="sub">Já pusemos o que é mais comum. Desliga o que não se aplica — a estimativa acompanha.</p>
+    <h2>What do you want on the day?</h2>
+    <p class="sub">We have ticked what is most common. Untick what does not apply — the estimate follows.</p>
     <div class="cartao" id="rubricas"></div>
     <div class="campo" style="margin-top: 4px;">
-      <label class="lab" for="orcamento">Orçamento que têm em mente (opcional)</label>
-      <input type="number" id="orcamento" min="0" step="500" placeholder="ex.: 25000" inputmode="numeric">
+      <label class="lab" for="orcamento">Budget you have in mind (optional)</label>
+      <input type="number" id="orcamento" min="0" step="500" placeholder="e.g. 25000" inputmode="numeric">
     </div>
   </section>
 </main>
@@ -545,20 +500,20 @@
 <!-- ================= RESULTADO ================= -->
 <main class="wrap" id="resultado" hidden style="padding-bottom: 60px;">
   <div class="abre" style="padding: 34px 0 20px;">
-    <span class="eyebrow">A vossa estimativa</span>
-    <h1 style="font-size: 32px;">É este o valor a ter em conta</h1>
+    <span class="eyebrow">Your estimate</span>
+    <h1 style="font-size: 32px;">This is the figure to plan around</h1>
   </div>
 
   <div class="cartao">
     <div class="res-total">
-      <span class="lab">Custo estimado do casamento</span>
+      <span class="lab">Estimated wedding cost</span>
       <span class="grande" id="total">—</span>
       <span class="res-int" id="range"></span>
     </div>
     <div class="res-meta">
-      <span>Por convidado <b id="porConvidado">—</b></span>
-      <span>Convidados <b id="nConv">—</b></span>
-      <span>Rubricas <b id="nRub">—</b></span>
+      <span>Per guest <b id="porConvidado">—</b></span>
+      <span>Guests <b id="nConv">—</b></span>
+      <span>Items <b id="nRub">—</b></span>
     </div>
     <div class="medidor" id="medidorWrap" hidden>
       <div class="medidor-track"><div class="medidor-fill" id="medidorFill"></div></div>
@@ -567,19 +522,19 @@
   </div>
 
   <div style="display: flex; gap: 10px; margin-top: 14px;">
-    <button type="button" class="btn ghost pequeno" id="btnRever">Rever as respostas</button>
+    <button type="button" class="btn ghost pequeno" id="btnRever">Review the answers</button>
   </div>
 
   <div class="cta" id="ctaBox" style="margin-top: 26px;">
-    <h2>Querem esta estimativa afinada ao vosso caso?</h2>
-    <p>Enviamos o orçamento detalhado e propostas reais de quintas, catering, fotografia e música para a vossa data. Sem custos para vocês.</p>
+    <h2>Want this estimate tailored to your case?</h2>
+    <p>We send you the detailed budget and real proposals from venues, catering, photography and music for your date. At no cost to you.</p>
     <form id="leadForm" novalidate>
       <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
         <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
       </div>
       <div class="form-grid">
         <div class="campo">
-          <label class="lab" for="ln">Nome</label>
+          <label class="lab" for="ln">Name</label>
           <input type="text" id="ln" name="nome" autocomplete="name" required>
         </div>
         <div class="campo">
@@ -587,37 +542,37 @@
           <input type="email" id="le" name="email" autocomplete="email" required>
         </div>
         <div class="campo">
-          <label class="lab" for="lt">Telemóvel</label>
+          <label class="lab" for="lt">Mobile</label>
           <input type="tel" id="lt" name="telefone" autocomplete="tel" required>
         </div>
         <div class="campo">
-          <label class="lab" for="ld">Data do casamento</label>
+          <label class="lab" for="ld">Wedding date</label>
           <input type="date" id="ld" name="data">
         </div>
         <div class="campo" style="grid-column: 1 / -1;">
-          <label class="lab" for="lo">Observações (opcional)</label>
-          <textarea id="lo" name="observacoes" class="obs" rows="3" placeholder="ex.: já temos a quinta reservada · queremos cerimónia religiosa · convidados de fora do país"></textarea>
+          <label class="lab" for="lo">Notes (optional)</label>
+          <textarea id="lo" name="observacoes" class="obs" rows="3" placeholder="e.g. we already have the venue booked · we want a religious ceremony · guests coming from abroad"></textarea>
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 18px;">
-        <label class="consent"><input type="checkbox" id="c1"><span>Queremos receber a estimativa e ser contactados pela equipa para organizar o casamento.</span></label>
-        <label class="consent"><input type="checkbox" id="c2"><span>Autorizamos a partilha dos nossos dados com fornecedores parceiros (quintas, catering, fotografia, música) para receber propostas.</span></label>
+        <label class="consent"><input type="checkbox" id="c1"><span>We want to receive the estimate and be contacted by the team to organise the wedding.</span></label>
+        <label class="consent"><input type="checkbox" id="c2"><span>We allow our details to be shared with partner suppliers (venues, catering, photography, music) so we can receive proposals.</span></label>
         <p class="err" id="leadErr" hidden></p>
-        <button class="btn" type="submit" id="leadBtn">Receber a nossa estimativa</button>
-        <p class="legal">Os vossos dados são usados apenas para enviar a estimativa e as propostas que autorizarem. Podem retirar o consentimento a qualquer momento.</p>
+        <button class="btn" type="submit" id="leadBtn">Get our estimate</button>
+        <p class="legal">Your details are used only to send the estimate and the proposals you allow. You can withdraw consent at any time.</p>
       </div>
     </form>
   </div>
   <div style="margin-top: 34px; display: flex; flex-direction: column; gap: 14px;">
-    <h2 style="font-size: 22px;">Onde vai o dinheiro</h2>
+    <h2 style="font-size: 22px;">Where the money goes</h2>
     <div class="bars" id="bars"></div>
   </div>
 
   <details class="dobra" style="margin-top: 28px;">
-    <summary>Ver as 24 rubricas, uma a uma</summary>
+    <summary>See all 24 items, one by one</summary>
     <div class="corpo tablewrap">
       <table id="detalhe">
-        <thead><tr><th>Rubrica</th><th class="num">Mínimo</th><th class="num">Estimativa</th><th class="num">Máximo</th></tr></thead>
+        <thead><tr><th>Item</th><th class="num">Minimum</th><th class="num">Estimate</th><th class="num">Maximum</th></tr></thead>
         <tbody id="detalheBody"></tbody>
       </table>
     </div>
@@ -626,7 +581,7 @@
 </main>
 
 <!-- ================= WHATSAPP ================= -->
-<a class="whats" id="whats" href="#" target="_blank" rel="noopener" aria-label="Falar connosco no WhatsApp" hidden>
+<a class="whats" id="whats" href="#" target="_blank" rel="noopener" aria-label="Talk to us on WhatsApp" hidden>
   <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
     <path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-1.9c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.8-1.6l-.4-.2-3.8 1.1 1.1-3.6-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 9.9 9.9 5.2 16 5.2s11 4.7 11 10.6-4.9 10.6-11 10.6zm6-7.9c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1.1-1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8 0 1.6 1.2 3.2 1.4 3.4.2.2 2.4 3.6 5.8 5 .8.3 1.4.6 1.9.7.8.3 1.5.2 2.1.1.6-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.2-.6-.4z"/>
   </svg>
@@ -637,12 +592,12 @@
   <div class="wrap rodape-in">
     <div class="vivo-linha">
       <div style="display: flex; flex-direction: column; gap: 2px;">
-        <span class="vivo-eti" id="vivoEti">Por agora</span>
+        <span class="vivo-eti" id="vivoEti">So far</span>
         <span class="vivo-val" id="vivoVal">—</span>
       </div>
       <span class="vivo-obs" id="vivoObs"></span>
     </div>
-    <button type="button" class="btn" id="btnContinuar">Continuar</button>
+    <button type="button" class="btn" id="btnContinuar">Continue</button>
   </div>
 </div>
 
@@ -650,24 +605,24 @@
 <section class="sec creme" id="como">
   <div class="wide">
     <div class="sec-h">
-      <h2>Como chegamos a este número</h2>
-      <p>Não é um valor tirado de um artigo estrangeiro. São intervalos de mercado praticados em Portugal, rubrica a rubrica.</p>
+      <h2>How we get to this number</h2>
+      <p>It is not a figure lifted from a foreign article. These are market ranges practised in Portugal, item by item.</p>
     </div>
     <div class="passos-3">
       <div class="passo-c">
         <span class="n">01</span>
-        <h3>24 rubricas, não uma média</h3>
-        <p>Do espaço às alianças, cada rubrica tem um mínimo, um valor típico e um máximo. Umas são preço fixo, outras são cobradas por convidado.</p>
+        <h3>24 items, not an average</h3>
+        <p>From the venue to the rings, each item has a minimum, a typical value and a maximum. Some are fixed prices, others are charged per guest.</p>
       </div>
       <div class="passo-c">
         <span class="n">02</span>
-        <h3>Ajustado à vossa zona e data</h3>
-        <p>As rubricas que dependem do mercado local sobem ou descem com o distrito e com a altura do ano. As de retalho — vestido, fato, alianças — mantêm preço nacional.</p>
+        <h3>Adjusted to your area and date</h3>
+        <p>Items that depend on the local market go up or down with the district and the time of year. Retail ones — dress, suit, rings — keep a national price.</p>
       </div>
       <div class="passo-c">
         <span class="n">03</span>
-        <h3>Revisto por quem organiza</h3>
-        <p>Os intervalos são revistos por profissionais de organização de casamentos. São indicativos: o preço final depende dos fornecedores escolhidos e da data.</p>
+        <h3>Reviewed by people who organise weddings</h3>
+        <p>The ranges are reviewed by wedding planning professionals. They are indicative: the final price depends on the suppliers chosen and on the date.</p>
       </div>
     </div>
   </div>
@@ -677,8 +632,8 @@
 <section class="sec" id="fornecedores">
   <div class="wrap">
     <div class="sec-h">
-      <h2>É fornecedor de casamentos?</h2>
-      <p>Estamos a montar a rede de parceiros por distrito. Quem entrar agora recebe os pedidos dos casais da sua zona antes do lançamento.</p>
+      <h2>Are you a wedding supplier?</h2>
+      <p>We are building the partner network district by district. Those who join now receive requests from couples in their area before launch.</p>
     </div>
     <div class="cta" id="supBox">
       <form id="supForm" novalidate>
@@ -687,30 +642,30 @@
       </div>
       <div class="form-grid">
           <div class="campo">
-            <label class="lab" for="se">Empresa</label>
+            <label class="lab" for="se">Company</label>
             <input type="text" id="se" autocomplete="organization" required>
           </div>
           <div class="campo">
-            <label class="lab" for="sc">Categoria</label>
+            <label class="lab" for="sc">Category</label>
             <div class="selwrap"><select id="sc">
-              <option>Espaço / quinta</option>
-              <option>Catering e bebidas</option>
-              <option>Fotografia</option>
-              <option>Vídeo</option>
-              <option>Música / DJ / banda</option>
-              <option>Decoração e flores</option>
-              <option>Bolos e doçaria</option>
-              <option>Beleza e cabelo</option>
-              <option>Transporte</option>
-              <option>Outra</option>
+              <option>Venue</option>
+              <option>Catering and drinks</option>
+              <option>Photography</option>
+              <option>Video</option>
+              <option>Music / DJ / band</option>
+              <option>Decoration and flowers</option>
+              <option>Cakes and sweets</option>
+              <option>Beauty and hair</option>
+              <option>Transport</option>
+              <option>Other</option>
             </select></div>
           </div>
           <div class="campo">
-            <label class="lab" for="sd">Distrito</label>
-            <input type="text" id="sd" placeholder="ex.: Braga" required>
+            <label class="lab" for="sd">District</label>
+            <input type="text" id="sd" placeholder="e.g. Braga" required>
           </div>
           <div class="campo">
-            <label class="lab" for="sn">Nome do responsável</label>
+            <label class="lab" for="sn">Contact name</label>
             <input type="text" id="sn" autocomplete="name" required>
           </div>
           <div class="campo">
@@ -718,14 +673,14 @@
             <input type="email" id="sm" autocomplete="email" required>
           </div>
           <div class="campo">
-            <label class="lab" for="st">Telefone</label>
+            <label class="lab" for="st">Phone</label>
             <input type="tel" id="st" autocomplete="tel">
           </div>
         </div>
         <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 18px;">
-          <label class="consent"><input type="checkbox" id="sc1"><span>Autorizo o contacto para apresentação das condições de parceria.</span></label>
+          <label class="consent"><input type="checkbox" id="sc1"><span>I agree to be contacted about the partnership terms.</span></label>
           <p class="err" id="supErr" hidden></p>
-          <button class="btn" type="submit" id="supBtn">Quero receber as condições</button>
+          <button class="btn" type="submit" id="supBtn">Send me the terms</button>
         </div>
       </form>
     </div>
@@ -735,23 +690,23 @@
 <!-- ================= FAQ ================= -->
 <section class="sec creme" id="faq">
   <div class="wrap">
-    <div class="sec-h"><h2>Perguntas que nos fazem sempre</h2></div>
+    <div class="sec-h"><h2>Questions we always get</h2></div>
     <div class="faq">
       <details>
-        <summary>Isto é mesmo grátis?</summary>
-        <div class="a"><p>Simular é grátis e não é preciso registo. Só pedimos contactos a quem quiser receber o orçamento detalhado e propostas de fornecedores. Quem paga somos nós a receber dos parceiros, nunca o casal.</p></div>
+        <summary>Is this really free?</summary>
+        <div class="a"><p>Simulating is free and needs no sign-up. We only ask for contact details from those who want the detailed budget and supplier proposals. Our partners pay us, never the couple.</p></div>
       </details>
       <details>
-        <summary>De onde vêm estes preços?</summary>
-        <div class="a"><p>De intervalos praticados em Portugal, organizados por rubrica e revistos por profissionais de organização de casamentos. São indicativos: o preço final depende sempre dos fornecedores escolhidos e da data.</p></div>
+        <summary>Where do these prices come from?</summary>
+        <div class="a"><p>From ranges practised in Portugal, organised by item and reviewed by wedding planning professionals. They are indicative: the final price always depends on the suppliers chosen and on the date.</p></div>
       </details>
       <details>
-        <summary>Os nossos dados vão parar às mãos de quem?</summary>
-        <div class="a"><p>Só de quem autorizarem. São duas autorizações separadas: uma para a nossa equipa contactar, outra para partilharmos o pedido com fornecedores parceiros da vossa zona. Podem dar só a primeira, e podem retirar qualquer uma a qualquer momento.</p></div>
+        <summary>Who ends up with our details?</summary>
+        <div class="a"><p>Only whoever you allow. There are two separate permissions: one for our team to contact you, another for us to share the request with partner suppliers in your area. You can give only the first, and withdraw either at any time.</p></div>
       </details>
       <details>
-        <summary>Com quanto tempo devemos começar a planear?</summary>
-        <div class="a"><p>As quintas com procura alta fecham sábados de época alta com 12 a 18 meses de antecedência, e a data condiciona quase tudo o resto. Simular cedo serve sobretudo para não reservarem o espaço antes de saberem o que sobra para o resto.</p></div>
+        <summary>How far ahead should we start planning?</summary>
+        <div class="a"><p>In-demand venues book high-season Saturdays 12 to 18 months ahead, and the date shapes almost everything else. Simulating early is mostly about not booking the venue before you know what is left for the rest.</p></div>
       </details>
     </div>
   </div>
@@ -760,31 +715,31 @@
 <div class="wrap">
   <!-- ================= ÁREA DA EQUIPA ================= -->
   <details class="team" id="areaEquipa" hidden>
-    <summary><span>Área da equipa · tabela de preços e leads <span class="badge">Protótipo</span></span></summary>
+    <summary><span>Team area · price table and leads <span class="badge">Prototype</span></span></summary>
     <div class="inner">
-      <p class="hint">Bruna: substitui aqui os valores indicativos pelos reais. <b>Estimativa</b> é o valor típico que o simulador usa; mínimo e máximo definem o intervalo mostrado ao casal. Guardar grava neste navegador; <b>Copiar tabela</b> dá o ficheiro para fixar como base do site.</p>
+      <p class="hint">Replace the indicative values with real ones here. <b>Estimate</b> is the typical value the simulator uses; minimum and maximum define the range shown to the couple. Save stores in this browser; <b>Copy table</b> gives the file to fix as the site base.</p>
       <div class="tablewrap">
         <table id="editor">
-          <thead><tr><th>Rubrica</th><th>Unidade</th><th class="num">Mínimo</th><th class="num">Estimativa</th><th class="num">Máximo</th></tr></thead>
+          <thead><tr><th>Item</th><th>Unit</th><th class="num">Minimum</th><th class="num">Estimate</th><th class="num">Maximum</th></tr></thead>
           <tbody id="editorBody"></tbody>
         </table>
       </div>
-      <h3 style="margin-top: 12px; font-size: 16px;">Multiplicadores</h3>
+      <h3 style="margin-top: 12px; font-size: 16px;">Multipliers</h3>
       <div class="tablewrap">
         <table id="multEditor">
-          <thead><tr><th>Fator</th><th class="num">Multiplicador</th></tr></thead>
+          <thead><tr><th>Factor</th><th class="num">Multiplier</th></tr></thead>
           <tbody id="multBody"></tbody>
         </table>
       </div>
       <div class="btnrow">
-        <button class="btn pequeno" type="button" id="btnGuardar">Guardar preços</button>
-        <button class="btn ghost pequeno" type="button" id="btnRepor">Repor valores indicativos</button>
-        <button class="btn ghost pequeno" type="button" id="btnCopiar">Copiar tabela (JSON)</button>
-        <span class="saved" id="savedMsg" hidden>Guardado.</span>
+        <button class="btn pequeno" type="button" id="btnGuardar">Save prices</button>
+        <button class="btn ghost pequeno" type="button" id="btnRepor">Reset indicative values</button>
+        <button class="btn ghost pequeno" type="button" id="btnCopiar">Copy table (JSON)</button>
+        <span class="saved" id="savedMsg" hidden>Saved.</span>
       </div>
-      <textarea id="jsonOut" hidden readonly aria-label="Tabela de preços em JSON"></textarea>
-      <h3 style="margin-top: 12px; font-size: 16px;">Leads de teste</h3>
-      <p class="hint">No protótipo as leads ficam guardadas apenas neste navegador. Na versão final ligam-se ao email da equipa e ao backoffice.</p>
+      <textarea id="jsonOut" hidden readonly aria-label="Price table as JSON"></textarea>
+      <h3 style="margin-top: 12px; font-size: 16px;">Test leads</h3>
+      <p class="hint">In the prototype, leads are stored only in this browser. In the final version they go to the team email and the back office.</p>
       <div class="tablewrap"><table id="leadsTable"><tbody id="leadsBody"></tbody></table></div>
     </div>
   </details>
@@ -793,7 +748,7 @@
 <footer class="foot">
   <div class="wrap">
     <p style="margin-bottom: 7px;"><b id="marcaRodape">Quanto Custa Casar</b></p>
-    <p>Estimativas indicativas para casamentos em Portugal, construídas a partir de intervalos de mercado e afinadas com a experiência da equipa. O valor final depende sempre dos fornecedores escolhidos e da data. Protótipo em construção — 2026.</p>
+    <p>Indicative estimates for weddings in Portugal, built from market ranges and refined with the team’s experience. The final figure always depends on the suppliers chosen and on the date. Prototype under construction — 2026.</p>
   </div>
 </footer>
 
@@ -808,58 +763,58 @@
               false = preço nacional (retalho: alianças, roupa, lua de mel)
      ========================================================= */
   const RUBRICAS_BASE = [
-    { id:"espaco",     grupo:"O dia",            nome:"Espaço / quinta",                 un:"fixo",      min:1500, base:3000, max:6000, mercado:true,  on:true },
-    { id:"catering",   grupo:"O dia",            nome:"Catering e bebidas",              un:"convidado", min:55,   base:80,   max:130,  mercado:true,  on:true },
-    { id:"openbar",    grupo:"O dia",            nome:"Open bar / bar de noite",         un:"convidado", min:10,   base:18,   max:32,   mercado:true,  on:true },
-    { id:"bolo",       grupo:"O dia",            nome:"Bolo de noiva",                   un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:true },
-    { id:"cerimonia",  grupo:"O dia",            nome:"Cerimónia (taxas e celebrante)",  un:"fixo",      min:150,  base:300,  max:700,  mercado:true,  on:true },
-    { id:"somluz",     grupo:"O dia",            nome:"Som, luz e estruturas",           un:"fixo",      min:400,  base:900,  max:1800, mercado:true,  on:true },
+    { id:"espaco",     grupo:"The day",            nome:"Venue",                 un:"fixo",      min:1500, base:3000, max:6000, mercado:true,  on:true },
+    { id:"catering",   grupo:"The day",            nome:"Catering and drinks",              un:"convidado", min:55,   base:80,   max:130,  mercado:true,  on:true },
+    { id:"openbar",    grupo:"The day",            nome:"Open bar / night bar",         un:"convidado", min:10,   base:18,   max:32,   mercado:true,  on:true },
+    { id:"bolo",       grupo:"The day",            nome:"Wedding cake",                   un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:true },
+    { id:"cerimonia",  grupo:"The day",            nome:"Ceremony (fees and officiant)",  un:"fixo",      min:150,  base:300,  max:700,  mercado:true,  on:true },
+    { id:"somluz",     grupo:"The day",            nome:"Sound, light and structures",           un:"fixo",      min:400,  base:900,  max:1800, mercado:true,  on:true },
 
-    { id:"foto",       grupo:"Imagem",           nome:"Fotografia",                      un:"fixo",      min:900,  base:1600, max:3000, mercado:true,  on:true },
-    { id:"video",      grupo:"Imagem",           nome:"Vídeo",                           un:"fixo",      min:800,  base:1500, max:2800, mercado:true,  on:true },
-    { id:"booth",      grupo:"Imagem",           nome:"Fotobooth / animação extra",      un:"fixo",      min:300,  base:600,  max:1200, mercado:true,  on:false },
+    { id:"foto",       grupo:"Image",           nome:"Photography",                      un:"fixo",      min:900,  base:1600, max:3000, mercado:true,  on:true },
+    { id:"video",      grupo:"Image",           nome:"Video",                           un:"fixo",      min:800,  base:1500, max:2800, mercado:true,  on:true },
+    { id:"booth",      grupo:"Image",           nome:"Photo booth / extra entertainment",      un:"fixo",      min:300,  base:600,  max:1200, mercado:true,  on:false },
 
-    { id:"dj",         grupo:"Música",           nome:"DJ",                              un:"fixo",      min:600,  base:950,  max:1600, mercado:true,  on:true },
-    { id:"banda",      grupo:"Música",           nome:"Banda ao vivo",                   un:"fixo",      min:1200, base:2200, max:4000, mercado:true,  on:false },
-    { id:"musicacer",  grupo:"Música",           nome:"Música da cerimónia",             un:"fixo",      min:250,  base:400,  max:800,  mercado:true,  on:true },
+    { id:"dj",         grupo:"Music",           nome:"DJ",                              un:"fixo",      min:600,  base:950,  max:1600, mercado:true,  on:true },
+    { id:"banda",      grupo:"Music",           nome:"Live band",                   un:"fixo",      min:1200, base:2200, max:4000, mercado:true,  on:false },
+    { id:"musicacer",  grupo:"Music",           nome:"Ceremony music",             un:"fixo",      min:250,  base:400,  max:800,  mercado:true,  on:true },
 
-    { id:"flores",     grupo:"Decoração",        nome:"Decoração e flores",              un:"fixo",      min:800,  base:1800, max:4000, mercado:true,  on:true },
-    { id:"mesas",      grupo:"Decoração",        nome:"Centros de mesa e mise en place",  un:"convidado", min:4,    base:8,    max:15,   mercado:true,  on:true },
-    { id:"papelaria",  grupo:"Decoração",        nome:"Convites e papelaria",            un:"convidado", min:3,    base:6,    max:12,   mercado:true,  on:true },
-    { id:"lembrancas", grupo:"Decoração",        nome:"Lembranças para os convidados",   un:"convidado", min:2,    base:5,    max:10,   mercado:true,  on:false },
+    { id:"flores",     grupo:"Decoration",        nome:"Decoration and flowers",              un:"fixo",      min:800,  base:1800, max:4000, mercado:true,  on:true },
+    { id:"mesas",      grupo:"Decoration",        nome:"Centrepieces and table setting",  un:"convidado", min:4,    base:8,    max:15,   mercado:true,  on:true },
+    { id:"papelaria",  grupo:"Decoration",        nome:"Invitations and stationery",            un:"convidado", min:3,    base:6,    max:12,   mercado:true,  on:true },
+    { id:"lembrancas", grupo:"Decoration",        nome:"Guest favours",   un:"convidado", min:2,    base:5,    max:10,   mercado:true,  on:false },
 
-    { id:"vestido",    grupo:"Os noivos",        nome:"Vestido de noiva e acessórios",   un:"fixo",      min:900,  base:1800, max:3500, mercado:false, on:true },
-    { id:"fato",       grupo:"Os noivos",        nome:"Fato do noivo",                   un:"fixo",      min:350,  base:700,  max:1400, mercado:false, on:true },
-    { id:"aliancas",   grupo:"Os noivos",        nome:"Alianças",                        un:"fixo",      min:500,  base:1100, max:2500, mercado:false, on:true },
-    { id:"beleza",     grupo:"Os noivos",        nome:"Cabelo e maquilhagem",            un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:true },
-    { id:"transporte", grupo:"Os noivos",        nome:"Transporte dos noivos",           un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:false },
+    { id:"vestido",    grupo:"The couple",        nome:"Wedding dress and accessories",   un:"fixo",      min:900,  base:1800, max:3500, mercado:false, on:true },
+    { id:"fato",       grupo:"The couple",        nome:"Groom's suit",                   un:"fixo",      min:350,  base:700,  max:1400, mercado:false, on:true },
+    { id:"aliancas",   grupo:"The couple",        nome:"Rings",                        un:"fixo",      min:500,  base:1100, max:2500, mercado:false, on:true },
+    { id:"beleza",     grupo:"The couple",        nome:"Hair and make-up",            un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:true },
+    { id:"transporte", grupo:"The couple",        nome:"Couple's transport",           un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:false },
 
-    { id:"planner",    grupo:"Apoio",            nome:"Wedding planner e coordenação",   un:"fixo",      min:1200, base:2500, max:5000, mercado:true,  on:true },
-    { id:"criancas",   grupo:"Apoio",            nome:"Espaço e apoio para crianças",    un:"fixo",      min:200,  base:400,  max:700,  mercado:true,  on:false },
+    { id:"planner",    grupo:"Support",            nome:"Wedding planner and coordination",   un:"fixo",      min:1200, base:2500, max:5000, mercado:true,  on:true },
+    { id:"criancas",   grupo:"Support",            nome:"Kids' area and childcare",    un:"fixo",      min:200,  base:400,  max:700,  mercado:true,  on:false },
 
-    { id:"luamel",     grupo:"Depois do dia",    nome:"Lua de mel",                      un:"fixo",      min:2000, base:4000, max:9000, mercado:false, on:false }
+    { id:"luamel",     grupo:"After the day",    nome:"Honeymoon",                      un:"fixo",      min:2000, base:4000, max:9000, mercado:false, on:false }
   ];
 
   const MULT_BASE = {
     regiao: {
-      lisboa:  { nome:"Lisboa e arredores", m:1.15 },
-      porto:   { nome:"Porto e arredores",  m:1.08 },
+      lisboa:  { nome:"Lisbon and surroundings", m:1.15 },
+      porto:   { nome:"Porto and surroundings",  m:1.08 },
       algarve: { nome:"Algarve",            m:1.20 },
-      norte:   { nome:"Norte (restante)",   m:0.95 },
-      centro:  { nome:"Centro",             m:0.92 },
+      norte:   { nome:"North (rest)",   m:0.95 },
+      centro:  { nome:"Centre",             m:0.92 },
       alentejo:{ nome:"Alentejo",           m:0.95 },
       madeira: { nome:"Madeira",            m:1.12 },
-      acores:  { nome:"Açores",             m:1.10 }
+      acores:  { nome:"Azores",             m:1.10 }
     },
     epoca: {
-      alta:  { nome:"Época alta (maio a setembro)", m:1.10 },
-      media: { nome:"Abril ou outubro",              m:1.00 },
-      baixa: { nome:"Novembro a março",              m:0.88 }
+      alta:  { nome:"High season (May to September)", m:1.10 },
+      media: { nome:"April or October",              m:1.00 },
+      baixa: { nome:"November to March",              m:0.88 }
     },
     estilo: {
-      intimista:  { nome:"Intimista", m:0.82, desc:"Menos rubricas, fornecedores locais, decoração simples." },
-      classico:   { nome:"Clássico",  m:1.00, desc:"O casamento português típico: quinta, banquete e festa até de madrugada." },
-      sofisticado:{ nome:"Sofisticado", m:1.35, desc:"Quintas de topo, menu de autor, decoração de assinatura." }
+      intimista:  { nome:"Intimate", m:0.82, desc:"Fewer items, local suppliers, simple decoration." },
+      classico:   { nome:"Classic",  m:1.00, desc:"The typical Portuguese wedding: venue, banquet and party until dawn." },
+      sofisticado:{ nome:"Sophisticated", m:1.35, desc:"Top venues, signature menu, designer decoration." }
     }
   };
 
@@ -887,11 +842,11 @@
     { id:"vilareal",    nome:"Vila Real",         regiao:"norte"    },
     { id:"viseu",       nome:"Viseu",             regiao:"centro"   },
     { id:"madeira",     nome:"Madeira",           regiao:"madeira"  },
-    { id:"acores",      nome:"Açores",            regiao:"acores"   }
+    { id:"acores",      nome:"Azores",            regiao:"acores"   }
   ];
 
-  const MESES = ["janeiro","fevereiro","março","abril","maio","junho",
-                 "julho","agosto","setembro","outubro","novembro","dezembro"];
+  const MESES = ["January","February","March","April","May","June",
+                 "July","August","September","October","November","December"];
 
   /* Maio a setembro é época alta, abril e outubro são de transição. */
   function epocaDaData(iso) {
@@ -907,7 +862,7 @@
     if (p.length !== 3) return "";
     const mes = MESES[parseInt(p[1], 10) - 1];
     if (!mes) return iso;
-    return parseInt(p[2], 10) + " de " + mes + " de " + p[0];
+    return parseInt(p[2], 10) + " " + mes + " " + p[0];
   }
 
   const LS_PRECOS = "sim_casamento_precos_v1";
@@ -940,12 +895,12 @@
     if (form && ehRobo(form)) return Promise.resolve({ local: !ENDPOINT });
     if (!ENDPOINT) return Promise.resolve({ local: true });
     const assunto = tipo === "fornecedor"
-      ? "Quanto Custa Casar — novo fornecedor: " + (dados.empresa || "")
-      : "Quanto Custa Casar — novo casal: " + (dados.nome || "");
+      ? "Quanto Custa Casar — new supplier (EN site): " + (dados.empresa || "")
+      : "Quanto Custa Casar — new couple (EN site): " + (dados.nome || "");
     const corpo = Object.assign(
       /* Sem o endereço da página: um link no corpo do pedido é um dos sinais
          que os filtros de spam mais penalizam. */
-      { tipo: tipo, origem: location.hostname || "ficheiro local" },
+      { tipo: tipo, idioma: "en", origem: location.hostname || "local file" },
       CAMPOS_EXTRA,
       /* Formspree lê "_subject"; Web3Forms lê "subject". Ambos ignoram o outro. */
       { _subject: assunto, subject: assunto, resumo: resumoDe(tipo, dados) },
@@ -966,16 +921,16 @@
     if (tipo === "fornecedor") {
       return [d.empresa, d.categoria, d.distrito, d.email].filter(Boolean).join(" · ");
     }
-    return [d.quemResponde !== "—" ? d.quemResponde : null, d.nome, d.convidados + " convidados", d.distrito !== "—" ? d.distrito : null,
-            d.dataTexto || null, d.estimativa ? eur(d.estimativa) : null, d.nRubricas ? d.nRubricas + " rubricas" : null,
-            d.partilhaFornecedores ? "autoriza fornecedores" : "sem partilha"]
+    return [d.quemResponde !== "—" ? d.quemResponde : null, d.nome, d.convidados + " guests", d.distrito !== "—" ? d.distrito : null,
+            d.dataTexto || null, d.estimativa ? eur(d.estimativa) : null, d.nRubricas ? d.nRubricas + " items" : null,
+            d.partilhaFornecedores ? "allows suppliers" : "no sharing"]
            .filter(Boolean).join(" · ");
   }
 
   function aEnviar(btn, sim) {
     if (sim) {
       btn.dataset.texto = btn.textContent;
-      btn.textContent = "A enviar\u2026";
+      btn.textContent = "Sending\u2026";
       btn.disabled = true;
     } else {
       btn.textContent = btn.dataset.texto || btn.textContent;
@@ -992,7 +947,7 @@
 
   /* ---------- utilidades ---------- */
   function clone(o) { return JSON.parse(JSON.stringify(o)); }
-  const nf = new Intl.NumberFormat("pt-PT", { style:"currency", currency:"EUR", maximumFractionDigits:0 });
+  const nf = new Intl.NumberFormat("en-IE", { style:"currency", currency:"EUR", maximumFractionDigits:0 });
   function eur(n) { return nf.format(Math.round(n)); }
   function arred(n, passo) { passo = passo || 10; return Math.round(n / passo) * passo; }
   function ler(k, fb) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch (e) { return fb; } }
@@ -1048,7 +1003,7 @@
      ========================================================= */
   const PASSOS = 6;      // seis ecrãs: um passo prévio e as cinco perguntas
   const PERGUNTAS = 5;
-  const QUEM = { noiva: "Noiva", noivo: "Noivo", outro: "Outra pessoa" };
+  const QUEM = { noiva: "Bride", noivo: "Groom", outro: "Someone else" };
   let passo = 1;
   let terminou = false;
   /* O que o casal já respondeu. Enquanto uma dimensão está por
@@ -1103,20 +1058,20 @@
     $("rodapeVivo").hidden = false;
 
     if (res.base <= 0) {
-      $("vivoEti").textContent = "Por agora";
+      $("vivoEti").textContent = "So far";
       $("vivoVal").textContent = "—";
-      $("vivoObs").textContent = "Escolham pelo menos uma rubrica.";
+      $("vivoObs").textContent = "Pick at least one item.";
     } else if (faltam > 0) {
       const iv = intervaloCorrente();
-      $("vivoEti").textContent = "Por agora";
+      $("vivoEti").textContent = "So far";
       $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));
-      $("vivoObs").innerHTML = "afina com<br>mais " + faltam + (faltam === 1 ? " resposta" : " respostas");
+      $("vivoObs").innerHTML = "narrows with<br>" + faltam + (faltam === 1 ? " more answer" : " more answers");
     } else {
-      $("vivoEti").textContent = "Estimativa";
+      $("vivoEti").textContent = "Estimate";
       $("vivoVal").textContent = eur(arred(res.base, 50));
-      $("vivoObs").innerHTML = "entre " + eur(arred(res.min, 500)) + "<br>e " + eur(arred(res.max, 500));
+      $("vivoObs").innerHTML = "between " + eur(arred(res.min, 500)) + "<br>and " + eur(arred(res.max, 500));
     }
-    $("btnContinuar").textContent = passo === PASSOS ? "Ver a estimativa" : "Continuar";
+    $("btnContinuar").textContent = passo === PASSOS ? "See the estimate" : "Continue";
   }
 
   /* ---------- navegação ---------- */
@@ -1131,7 +1086,7 @@
       c.classList.toggle("on", i < passo - 1);
     });
     barra.setAttribute("aria-valuenow", String(passo - 1));
-    $("contaPassos").textContent = passo === 1 ? "Antes de começar" : "Pergunta " + (passo - 1) + " de " + PERGUNTAS;
+    $("contaPassos").textContent = passo === 1 ? "Before we start" : "Question " + (passo - 1) + " of " + PERGUNTAS;
     $("btnVoltar").hidden = passo === 1;
     render();
     if (mover) {
@@ -1172,7 +1127,7 @@
   /* ---------- antes de começar: quem responde ---------- */
   (function quemResponde() {
     const box = $("escolhasQuem");
-    const desc = { noiva: "", noivo: "", outro: "Família, amigos, ou quem está a organizar." };
+    const desc = { noiva: "", noivo: "", outro: "Family, friends, or whoever is organising." };
     Object.keys(QUEM).forEach(function (k) {
       const b = document.createElement("button");
       b.type = "button";
@@ -1208,8 +1163,8 @@
         c.setAttribute("aria-pressed", String(parseInt(c.textContent, 10) === estado.convidados));
       });
       const extra = arred(custoPorConvidado() * 10, 10);
-      $("notaConvidados").innerHTML = "Cada 10 convidados a mais custam, em média, mais <b>" +
-        eur(extra) + "</b> " + textoZona() + ".";
+      $("notaConvidados").innerHTML = "Every 10 extra guests cost, on average, <b>" +
+        eur(extra) + "</b> more " + textoZona() + ".";
       render();
     }
     rg.addEventListener("input", function () { definirConvidados(rg.value); });
@@ -1225,14 +1180,14 @@
     return soma;
   }
   function textoZona() {
-    return respondido.regiao ? "em " + MULT.regiao[estado.regiao].nome : "no país";
+    return respondido.regiao ? "in " + MULT.regiao[estado.regiao].nome : "nationwide";
   }
 
   /* ---------- passo 2: distrito e zona ---------- */
   (function local() {
     const sd = $("distrito");
     const vazio = document.createElement("option");
-    vazio.value = ""; vazio.textContent = "Ainda não sabemos";
+    vazio.value = ""; vazio.textContent = "We don't know yet";
     sd.appendChild(vazio);
     DISTRITOS.forEach(function (d) {
       const o = document.createElement("option");
@@ -1327,7 +1282,7 @@
         cb.addEventListener("change", function () { estado.ligadas[r.id] = cb.checked; render(); });
         const lb = document.createElement("label");
         lb.setAttribute("for", cb.id);
-        lb.innerHTML = r.nome + (r.un === "convidado" ? ' <span class="un">por convidado</span>' : "");
+        lb.innerHTML = r.nome + (r.un === "convidado" ? ' <span class="un">per guest</span>' : "");
         const v = document.createElement("span");
         v.className = "v"; v.id = "v-" + r.id;
         row.appendChild(cb); row.appendChild(lb); row.appendChild(v);
@@ -1363,11 +1318,11 @@
   function renderResultado(res) {
     $("total").textContent = eur(arred(res.base, 50));
     $("range").textContent = res.base > 0
-      ? "Provável entre " + eur(arred(res.min, 50)) + " e " + eur(arred(res.max, 50))
-      : "Escolham pelo menos uma rubrica.";
+      ? "Likely between " + eur(arred(res.min, 50)) + " and " + eur(arred(res.max, 50))
+      : "Pick at least one item.";
     $("porConvidado").textContent = res.base > 0 ? eur(arred(res.base / estado.convidados, 5)) : "—";
     $("nConv").textContent = String(estado.convidados);
-    $("nRub").textContent = res.linhas.filter(function (l) { return l.ativa; }).length + " de " + RUBRICAS.length;
+    $("nRub").textContent = res.linhas.filter(function (l) { return l.ativa; }).length + " of " + RUBRICAS.length;
 
     const mw = $("medidorWrap");
     if (estado.orcamento > 0 && res.base > 0) {
@@ -1378,13 +1333,13 @@
       let cor, msg;
       if (cobertura >= 1) {
         cor = "var(--good)";
-        msg = "O orçamento cobre a estimativa, com " + eur(arred(estado.orcamento - res.base, 50)) + " de folga.";
+        msg = "Your budget covers the estimate, with " + eur(arred(estado.orcamento - res.base, 50)) + " to spare.";
       } else if (cobertura >= 0.8) {
         cor = "var(--warn)";
-        msg = "Faltam cerca de " + eur(arred(res.base - estado.orcamento, 50)) + " — dá para fechar cortando uma ou duas rubricas.";
+        msg = "About " + eur(arred(res.base - estado.orcamento, 50)) + " short — you can close the gap by cutting one or two items.";
       } else {
         cor = "var(--crit)";
-        msg = "O orçamento cobre " + Math.round(cobertura * 100) + "% da estimativa. Vale a pena rever convidados, época ou estilo.";
+        msg = "Your budget covers " + Math.round(cobertura * 100) + "% of the estimate. Worth revisiting guests, season or style.";
       }
       $("medidorFill").style.background = cor;
       $("medidorPonto").style.background = cor;
@@ -1404,7 +1359,7 @@
                              .sort(function (a, b) { return b.v.base - a.v.base; });
     if (!ativas.length) {
       const p = document.createElement("p");
-      p.className = "hint"; p.textContent = "Escolham as rubricas para verem a repartição.";
+      p.className = "hint"; p.textContent = "Pick the items to see the breakdown.";
       box.appendChild(p); return;
     }
     const topo = ativas.slice(0, 8);
@@ -1414,7 +1369,7 @@
     });
     if (resto.length) {
       linhas.push({
-        nome: "Outras " + resto.length + " rubricas",
+        nome: "Other " + resto.length + " items",
         base: resto.reduce(function (s, l) { return s + l.v.base; }, 0)
       });
     }
@@ -1488,13 +1443,13 @@
     const tel = $("lt").value.trim();
     const data = $("ld").value;
     const problemas = [];
-    if (nome.length < 2) problemas.push("o vosso nome");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) problemas.push("um email válido");
-    if (tel.replace(/\D/g, "").length < 9) problemas.push("um telemóvel válido");
-    if (!$("c1").checked) problemas.push("a autorização para vos contactarmos");
+    if (nome.length < 2) problemas.push("your name");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) problemas.push("a valid email");
+    if (tel.replace(/\D/g, "").length < 9) problemas.push("a valid phone number");
+    if (!$("c1").checked) problemas.push("permission to contact you");
     if (problemas.length) {
       err.hidden = false;
-      err.textContent = "Falta " + problemas.join(", ").replace(/, ([^,]*)$/, " e $1") + ".";
+      err.textContent = "Missing: " + problemas.join(", ").replace(/, ([^,]*)$/, " and $1") + ".";
       return;
     }
     err.hidden = true;
@@ -1510,7 +1465,7 @@
       epoca: MULT.epoca[estado.epoca].nome,
       estilo: MULT.estilo[estado.estilo].nome,
       estimativa: arred(res.base, 50),
-      intervalo: eur(arred(res.min, 50)) + " a " + eur(arred(res.max, 50)),
+      intervalo: eur(arred(res.min, 50)) + " to " + eur(arred(res.max, 50)),
       orcamento: estado.orcamento || null,
       partilhaFornecedores: $("c2").checked,
       observacoes: $("lo").value.trim() || "—",
@@ -1519,8 +1474,8 @@
       rubricasIncluidas: res.linhas.filter(function (l) { return l.ativa; })
         .map(function (l) { return l.r.nome + " (" + eur(arred(l.v.base)) + ")"; }).join(" · "),
       rubricasExcluidas: res.linhas.filter(function (l) { return !l.ativa; })
-        .map(function (l) { return l.r.nome; }).join(" · ") || "nenhuma",
-      nRubricas: res.linhas.filter(function (l) { return l.ativa; }).length + " de " + RUBRICAS.length
+        .map(function (l) { return l.r.nome; }).join(" · ") || "none",
+      nRubricas: res.linhas.filter(function (l) { return l.ativa; }).length + " of " + RUBRICAS.length
     };
     const btn = $("leadBtn");
     aEnviar(btn, true);
@@ -1536,28 +1491,28 @@
       const ok = document.createElement("div");
       ok.className = "ok-panel";
       const t = document.createElement("div");
-      t.className = "tick"; t.textContent = "Obrigado, " + nome.split(" ")[0] + ".";
+      t.className = "tick"; t.textContent = "Thank you, " + nome.split(" ")[0] + ".";
       const p1 = document.createElement("p");
       p1.style.margin = "0"; p1.style.fontSize = "15px";
       p1.textContent = r.local
-        ? "A vossa estimativa é de " + eur(arred(res.base, 50)) + " para " + estado.convidados +
-          " convidados. Este site ainda está em construção: o pedido ficou guardado apenas neste " +
-          "navegador e ainda não chegou a ninguém."
-        : "Enviámos a estimativa de " + eur(arred(res.base, 50)) + " para " + email +
-          ". A equipa entra em contacto em 24 horas com propostas para " + estado.convidados + " convidados " +
-          (data ? "em " + dataExtenso(data) + "." : "na vossa data.");
+        ? "Your estimate is " + eur(arred(res.base, 50)) + " for " + estado.convidados +
+          " guests. This site is still under construction: the request was stored only in this " +
+          "browser and has not reached anyone yet."
+        : "We have sent the estimate of " + eur(arred(res.base, 50)) + " to " + email +
+          ". The team will be in touch within 24 hours with proposals for " + estado.convidados + " guests " +
+          (data ? "on " + dataExtenso(data) + "." : "on your date.");
       const p2 = document.createElement("p");
       p2.className = "legal"; p2.style.marginBottom = "0";
       p2.textContent = lead.partilhaFornecedores
-        ? "Vamos pedir propostas aos fornecedores parceiros da vossa zona."
-        : "Não vamos partilhar os vossos dados com fornecedores.";
+        ? "We will ask partner suppliers in your area for proposals."
+        : "We will not share your details with suppliers.";
       ok.appendChild(t); ok.appendChild(p1); ok.appendChild(p2);
       box.appendChild(ok);
       box.scrollIntoView({ behavior: "smooth", block: "center" });
     }).catch(function () {
       aEnviar(btn, false);
       err.hidden = false;
-      err.textContent = "Não conseguimos enviar o vosso pedido agora. Verifiquem a ligação e tentem outra vez.";
+      err.textContent = "We could not send your request right now. Check your connection and try again.";
     });
   });
 
@@ -1568,7 +1523,7 @@
       const tr = document.createElement("tr");
       const tdN = document.createElement("td"); tdN.textContent = r.nome;
       const tdU = document.createElement("td");
-      tdU.innerHTML = '<span class="un">' + (r.un === "convidado" ? "por convidado" : "valor fixo") + "</span>";
+      tdU.innerHTML = '<span class="un">' + (r.un === "convidado" ? "per guest" : "fixed price") + "</span>";
       tr.appendChild(tdN); tr.appendChild(tdU);
       ["min", "base", "max"].forEach(function (campo) {
         const td = document.createElement("td"); td.className = "num";
@@ -1586,7 +1541,7 @@
     });
 
     const mb = $("multBody");
-    [["regiao", "Região"], ["epoca", "Época"], ["estilo", "Estilo"]].forEach(function (dim) {
+    [["regiao", "Region"], ["epoca", "Season"], ["estilo", "Style"]].forEach(function (dim) {
       Object.keys(MULT[dim[0]]).forEach(function (k) {
         const tr = document.createElement("tr");
         const td1 = document.createElement("td");
@@ -1627,7 +1582,7 @@
     const ok = gravar(LS_PRECOS, tabelaJSON());
     const m = $("savedMsg");
     m.hidden = false;
-    m.textContent = ok ? "Guardado neste navegador." : "Não foi possível guardar neste navegador.";
+    m.textContent = ok ? "Saved in this browser." : "Could not save in this browser.";
     m.style.color = ok ? "var(--good)" : "var(--crit)";
     setTimeout(function () { m.hidden = true; }, 3500);
   });
@@ -1671,7 +1626,7 @@
     if (!leads.length) {
       const tr = document.createElement("tr");
       const td = document.createElement("td");
-      td.className = "hint"; td.textContent = "Ainda não há leads de teste neste navegador.";
+      td.className = "hint"; td.textContent = "No test leads in this browser yet.";
       tr.appendChild(td); tb.appendChild(tr); return;
     }
     leads.forEach(function (l) {
@@ -1679,10 +1634,10 @@
       const td = document.createElement("td");
       td.innerHTML = "<b>" + esc(l.nome) + "</b>" + (l.quemResponde && l.quemResponde !== "—" ? " (" + esc(l.quemResponde) + ")" : "") +
         " · " + esc(l.email) + " · " + esc(l.telefone) +
-        '<br><span class="un">' + esc(l.dataTexto || "sem data") + " · " + l.convidados +
-        " convidados · " + esc(l.distrito || "—") + " · " + esc(l.regiao) +
-        " · estimativa " + eur(l.estimativa) + (l.partilhaFornecedores ? " · autoriza fornecedores" : " · sem partilha") + "</span>" +
-        (l.observacoes && l.observacoes !== "—" ? '<br><span class="un">Obs.: ' + esc(l.observacoes) + "</span>" : "");
+        '<br><span class="un">' + esc(l.dataTexto || "no date") + " · " + l.convidados +
+        " guests · " + esc(l.distrito || "—") + " · " + esc(l.regiao) +
+        " · estimate " + eur(l.estimativa) + (l.partilhaFornecedores ? " · allows suppliers" : " · no sharing") + "</span>" +
+        (l.observacoes && l.observacoes !== "—" ? '<br><span class="un">Notes: ' + esc(l.observacoes) + "</span>" : "");
       tr.appendChild(td); tb.appendChild(tr);
     });
   }
@@ -1699,14 +1654,14 @@
     const nome = $("sn").value.trim();
     const email = $("sm").value.trim();
     const faltas = [];
-    if (empresa.length < 2) faltas.push("o nome da empresa");
-    if (distrito.length < 2) faltas.push("o distrito");
-    if (nome.length < 2) faltas.push("o nome do responsável");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) faltas.push("um email válido");
-    if (!$("sc1").checked) faltas.push("a autorização de contacto");
+    if (empresa.length < 2) faltas.push("the company name");
+    if (distrito.length < 2) faltas.push("the district");
+    if (nome.length < 2) faltas.push("the contact name");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) faltas.push("a valid email");
+    if (!$("sc1").checked) faltas.push("permission to contact you");
     if (faltas.length) {
       err.hidden = false;
-      err.textContent = "Falta " + faltas.join(", ").replace(/, ([^,]*)$/, " e $1") + ".";
+      err.textContent = "Missing: " + faltas.join(", ").replace(/, ([^,]*)$/, " and $1") + ".";
       return;
     }
     err.hidden = true;
@@ -1726,20 +1681,20 @@
       const ok = document.createElement("div");
       ok.className = "ok-panel";
       const t = document.createElement("div");
-      t.className = "tick"; t.textContent = "Recebido.";
+      t.className = "tick"; t.textContent = "Received.";
       const p1 = document.createElement("p");
       p1.style.margin = "0"; p1.style.fontSize = "15px";
       p1.textContent = r.local
-        ? "O site ainda está em construção: o pedido de " + empresa + " ficou guardado apenas neste " +
-          "navegador e ainda não chegou a ninguém."
-        : "Entramos em contacto com " + empresa + " através de " + email +
-          " com as condições de parceria antes do lançamento.";
+        ? "This site is still under construction: the request from " + empresa + " was stored only in this " +
+          "browser and has not reached anyone yet."
+        : "We will contact " + empresa + " at " + email +
+          " with the partnership terms before launch.";
       ok.appendChild(t); ok.appendChild(p1);
       box.appendChild(ok);
     }).catch(function () {
       aEnviar(btn, false);
       err.hidden = false;
-      err.textContent = "Não conseguimos enviar o pedido agora. Verifica a ligação e tenta outra vez.";
+      err.textContent = "We could not send the request right now. Check your connection and try again.";
     });
   });
 
@@ -1798,10 +1753,10 @@
     if (!WHATSAPP) return;
     a.hidden = false;
     function ligacao() {
-      let msg = "Olá! Estive no Quanto Custa Casar e gostava de falar convosco.";
+      let msg = "Hello! I was on Quanto Custa Casar and would like to talk to you.";
       if (terminou) {
         const res = calcular();
-        msg += " A minha estimativa deu " + eur(arred(res.base, 50)) + " para " + estado.convidados + " convidados.";
+        msg += " My estimate came to " + eur(arred(res.base, 50)) + " for " + estado.convidados + " guests.";
       }
       return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
     }
