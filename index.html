@@ -409,6 +409,7 @@
   .btnrow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
   .saved { font-size: 13.5px; color: var(--good); font-weight: 500; }
   .hint { font-size: 13.5px; color: var(--ink-3); line-height: 1.5; }
+  textarea.obs { width: 100%; min-height: 96px; font-family: var(--f-body); font-size: 16.5px; line-height: 1.5; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 13px 14px; resize: vertical; }
   textarea { width: 100%; min-height: 160px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12.5px; border: 1px solid var(--line); border-radius: var(--r-sm); padding: 12px; background: var(--surface); color: var(--ink); }
 </style>
 </head>
@@ -567,6 +568,10 @@
         <div class="campo">
           <label class="lab" for="ld">Data do casamento</label>
           <input type="date" id="ld" name="data">
+        </div>
+        <div class="campo" style="grid-column: 1 / -1;">
+          <label class="lab" for="lo">Observações (opcional)</label>
+          <textarea id="lo" name="observacoes" class="obs" rows="3" placeholder="ex.: já temos a quinta reservada · queremos cerimónia religiosa · convidados de fora do país"></textarea>
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 18px;">
@@ -1450,6 +1455,7 @@
       intervalo: eur(arred(res.min, 50)) + " a " + eur(arred(res.max, 50)),
       orcamento: estado.orcamento || null,
       partilhaFornecedores: $("c2").checked,
+      observacoes: $("lo").value.trim() || "—",
       /* O que o casal quer ter no dia, com o valor estimado de cada rubrica,
          e o que desligou — é o que a equipa precisa para pedir propostas. */
       rubricasIncluidas: res.linhas.filter(function (l) { return l.ativa; })
@@ -1616,7 +1622,8 @@
       td.innerHTML = "<b>" + esc(l.nome) + "</b> · " + esc(l.email) + " · " + esc(l.telefone) +
         '<br><span class="un">' + esc(l.dataTexto || "sem data") + " · " + l.convidados +
         " convidados · " + esc(l.distrito || "—") + " · " + esc(l.regiao) +
-        " · estimativa " + eur(l.estimativa) + (l.partilhaFornecedores ? " · autoriza fornecedores" : " · sem partilha") + "</span>";
+        " · estimativa " + eur(l.estimativa) + (l.partilhaFornecedores ? " · autoriza fornecedores" : " · sem partilha") + "</span>" +
+        (l.observacoes && l.observacoes !== "—" ? '<br><span class="un">Obs.: ' + esc(l.observacoes) + "</span>" : "");
       tr.appendChild(td); tb.appendChild(tr);
     });
   }
