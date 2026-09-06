@@ -1329,7 +1329,7 @@
         cb.addEventListener("change", function () { estado.ligadas[r.id] = cb.checked; render(); });
         const lb = document.createElement("label");
         lb.setAttribute("for", cb.id);
-        lb.innerHTML = r.nome + (r.un === "convidado" ? ' <span class="un">por convidado</span>' : "");
+        lb.innerHTML = r.nome + (r.un === "convidado" ? ' <span class="un" id="un-' + r.id + '">por convidado</span>' : "");
         const v = document.createElement("span");
         v.className = "v"; v.id = "v-" + r.id;
         row.appendChild(cb); row.appendChild(lb); row.appendChild(v);
@@ -1354,6 +1354,10 @@
     res.linhas.forEach(function (l) {
       const el = $("v-" + l.r.id);
       if (el) el.textContent = eur(arred(l.v.base));
+      /* Nas rubricas por pessoa, a etiqueta mostra o preço unitário; o valor
+         à direita é o total para os convidados escolhidos. */
+      const un = $("un-" + l.r.id);
+      if (un) un.textContent = eur(arred(l.v.base / estado.convidados, 1)) + " por convidado · " + estado.convidados + " convidados";
       const row = $("item-" + l.r.id);
       if (row) row.classList.toggle("off", !l.ativa);
     });

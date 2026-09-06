@@ -253,7 +253,8 @@ R = [
  (u'return respondido.regiao ? "em " + MULT.regiao[estado.regiao].nome : "no país";', u'return respondido.regiao ? "in " + MULT.regiao[estado.regiao].nome : "nationwide";'),
  (u'd.nome, d.convidados + " convidados",', u'd.nome, d.convidados + " guests",'),
  (u'vazio.value = ""; vazio.textContent = "Ainda não sabemos";', u'vazio.value = ""; vazio.textContent = "We don\'t know yet";'),
- (u'lb.innerHTML = r.nome + (r.un === "convidado" ? \' <span class="un">por convidado</span>\' : "");', u'lb.innerHTML = r.nome + (r.un === "convidado" ? \' <span class="un">per guest</span>\' : "");'),
+ (u'lb.innerHTML = r.nome + (r.un === "convidado" ? \' <span class="un" id="un-\' + r.id + \'">por convidado</span>\' : "");', u'lb.innerHTML = r.nome + (r.un === "convidado" ? \' <span class="un" id="un-\' + r.id + \'">per guest</span>\' : "");'),
+ (u'if (un) un.textContent = eur(arred(l.v.base / estado.convidados, 1)) + " por convidado · " + estado.convidados + " convidados";', u'if (un) un.textContent = eur(arred(l.v.base / estado.convidados, 1)) + " per guest · " + estado.convidados + " guests";'),
  # resultado
  (u'? "Provável entre " + eur(arred(res.min, 50)) + " e " + eur(arred(res.max, 50))\n      : "Escolham pelo menos uma rubrica.";', u'? "Likely between " + eur(arred(res.min, 50)) + " and " + eur(arred(res.max, 50))\n      : "Pick at least one item.";'),
  (u'.length + " de " + RUBRICAS.length;', u'.length + " of " + RUBRICAS.length;'),
