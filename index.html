@@ -470,11 +470,6 @@
         <label class="lab" for="distrito">Distrito</label>
         <div class="selwrap"><select id="distrito"></select></div>
       </div>
-      <div class="campo">
-        <label class="lab" for="regiao">Zona de preços</label>
-        <div class="selwrap"><select id="regiao"></select></div>
-        <p class="hint" id="regiaoHint">Escolhe o distrito e a zona ajusta-se sozinha. Podes corrigi-la se o espaço for noutra zona.</p>
-      </div>
     </div>
   </section>
 
@@ -1131,7 +1126,7 @@
 
   /* ---------- passo 2: distrito e zona ---------- */
   (function local() {
-    const sd = $("distrito"), sr = $("regiao");
+    const sd = $("distrito");
     const vazio = document.createElement("option");
     vazio.value = ""; vazio.textContent = "Ainda não sabemos";
     sd.appendChild(vazio);
@@ -1139,30 +1134,15 @@
       const o = document.createElement("option");
       o.value = d.id; o.textContent = d.nome; sd.appendChild(o);
     });
-    Object.keys(MULT.regiao).forEach(function (k) {
-      const o = document.createElement("option");
-      o.value = k; o.textContent = MULT.regiao[k].nome; sr.appendChild(o);
-    });
-    sr.value = estado.regiao;
-
     sd.addEventListener("change", function () {
       estado.distrito = sd.value;
       const d = DISTRITOS.filter(function (x) { return x.id === sd.value; })[0];
       if (d) {
         estado.regiao = d.regiao;
-        sr.value = d.regiao;
         respondido.regiao = true;
-        $("regiaoHint").textContent = "Ajustada ao distrito de " + d.nome + ". Podem corrigi-la se o espaço for noutra zona.";
       } else {
         respondido.regiao = false;
-        $("regiaoHint").textContent = "Escolham o distrito e a zona ajusta-se sozinha.";
       }
-      render();
-    });
-    sr.addEventListener("change", function () {
-      estado.regiao = sr.value;
-      respondido.regiao = true;
-      $("regiaoHint").textContent = "Zona escolhida à mão.";
       render();
     });
   })();
