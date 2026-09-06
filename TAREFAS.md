@@ -2,9 +2,9 @@
 
 Por ordem: do que desbloqueia mais para o que pode esperar.
 
-1. **Conta no Formspree.** Criar conta, «New form», escolher o email de destino e
-   colar o endereço `https://formspree.io/f/xxxxxxxx` em `ENDPOINT`. Sem isto as
-   leads não chegam a lado nenhum.
+1. ~~**Conta no Formspree.**~~ Feito: o site envia para `https://formspree.io/f/mnpqbrql`.
+   Falta o teste real a partir de um browser (abrir o `index.html` e submeter o
+   formulário) e confirmar o email de destino no primeiro envio.
 2. **Domínio.** Quando chegar: GitHub Pages e registos de DNS no registador.
 3. **Registo da marca no INPI.** Registar «Quanto Custa Casar» (nome, e o anel
    como marca figurativa se se justificar) em nome individual, antes do
