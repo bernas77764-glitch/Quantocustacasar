@@ -1,0 +1,1792 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="How much does a wedding in Portugal cost? Free simulator with 24 cost items, adjusted to the district, the date and the number of guests. One question at a time, estimate at the end.">
+<link rel="canonical" href="https://quantocustacasar.pt/en/">
+<link rel="alternate" hreflang="pt-PT" href="https://quantocustacasar.pt/">
+<link rel="alternate" hreflang="en" href="https://quantocustacasar.pt/en/">
+<!-- Enquanto for protótipo o site não deve ser indexado.
+     No lançamento: trocar por  content="index, follow"  e ajustar o robots.txt. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#A8552B">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Quanto Custa Casar">
+<meta property="og:url" content="https://quantocustacasar.pt/en/">
+<meta property="og:title" content="How much does a wedding in Portugal cost? — Free simulator">
+<meta property="og:description" content="Five questions, one at a time. At the end you know what your wedding costs, item by item.">
+<meta property="og:image" content="https://quantocustacasar.pt/marca/logotipo-1600.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22 width=%22100%22 height=%22100%22%3E%3Cg transform=%22translate%280.00 0.00%29 scale%281.0000%29%22%3E%3Ccircle cx=%2248%22 cy=%2254%22 r=%2229%22 fill=%22none%22 stroke=%22%23A8552B%22 stroke-width=%2212%22/%3E%3Cpath d=%22M60 68 L84 92%22 fill=%22none%22 stroke=%22%23A8552B%22 stroke-width=%2211%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M48 8 L60 20 L48 32 L36 20 Z%22 fill=%22%231A1613%22/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="../marca/apple-touch-icon-180.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", "@id": "https://quantocustacasar.pt/#site", "url": "https://quantocustacasar.pt/en/", "name": "Quanto Custa Casar", "inLanguage": "en" },
+    { "@type": "WebApplication", "name": "Wedding cost simulator", "url": "https://quantocustacasar.pt/en/#simulador",
+      "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "inLanguage": "en",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" } },
+    { "@type": "FAQPage", "mainEntity": [
+      { "@type": "Question", "name": "How much does a wedding in Portugal cost?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends mostly on the region, the month and the number of guests. For 100 guests in the Lisbon area, in high season and in a classic all-inclusive format, the estimate is around 35,000 euros, about 355 euros per guest. The same 100 guests in central Portugal, off season and in an intimate format, come to around 19,500 euros." } },
+      { "@type": "Question", "name": "Is the wedding simulator free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is free and no sign-up is needed to simulate. Contact details are only asked from those who want the detailed budget by email and proposals from suppliers." } },
+      { "@type": "Question", "name": "Where do the prices in the estimate come from?",
+        "acceptedAnswer": { "@type": "Answer", "text": "From market ranges practised in Portugal, organised by cost item and reviewed by wedding planning professionals. They are indicative: the final price depends on the suppliers chosen and on the date." } },
+      { "@type": "Question", "name": "Is my data shared with suppliers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Only with express permission. There are two separate permissions: one for contact by the team and another for sharing the request with partner suppliers in the couple's region. Either can be withdrawn at any time." } },
+      { "@type": "Question", "name": "How far in advance should I plan the wedding?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The most sought-after venues book high-season Saturdays 12 to 18 months ahead. Simulating early is mostly about not booking the venue before knowing what is left for everything else." } }
+    ] }
+  ]
+}
+</script>
+<title>Quanto Custa Casar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --paper: #FDF8F2;
+    --surface: #FFFFFF;
+    --surface-2: #F4EDE4;
+    --ink: #1A1613;
+    --ink-2: #5C5249;
+    --ink-3: #9C8F84;
+    --line: #EADFD2;
+    --line-soft: #F2E9DE;
+    --accent: #A8552B;
+    --accent-deep: #7E3E1F;
+    --accent-soft: #F7EDE4;
+    --on-accent: #FFFFFF;
+    --good: #3F6B4A;
+    --warn: #A8752B;
+    --crit: #A33B2A;
+    --shadow: 0 1px 2px rgba(26,22,19,.05), 0 10px 30px -18px rgba(26,22,19,.28);
+    --shadow-up: 0 -6px 24px -14px rgba(26,22,19,.35);
+
+    --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --f-body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+
+    --r-sm: 11px;
+    --r: 14px;
+    --r-lg: 18px;
+    --col: 620px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #16120F;
+      --surface: #1F1A16;
+      --surface-2: #26201A;
+      --ink: #F2EAE1;
+      --ink-2: #B5A899;
+      --ink-3: #877A6D;
+      --line: #322A23;
+      --line-soft: #241E19;
+      --accent: #D98A5A;
+      --accent-deep: #EBA87D;
+      --accent-soft: #2B211B;
+      --on-accent: #16120F;
+      --good: #6FAE81;
+      --warn: #D6A455;
+      --crit: #DE8471;
+      --shadow: 0 1px 2px rgba(0,0,0,.5), 0 12px 32px -20px rgba(0,0,0,.9);
+      --shadow-up: 0 -6px 24px -16px rgba(0,0,0,.9);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #16120F;
+    --surface: #1F1A16;
+    --surface-2: #26201A;
+    --ink: #F2EAE1;
+    --ink-2: #B5A899;
+    --ink-3: #877A6D;
+    --line: #322A23;
+    --line-soft: #241E19;
+    --accent: #D98A5A;
+    --accent-deep: #EBA87D;
+    --accent-soft: #2B211B;
+    --on-accent: #16120F;
+    --good: #6FAE81;
+    --warn: #D6A455;
+    --crit: #DE8471;
+    --shadow: 0 1px 2px rgba(0,0,0,.5), 0 12px 32px -20px rgba(0,0,0,.9);
+    --shadow-up: 0 -6px 24px -16px rgba(0,0,0,.9);
+  }
+
+  * { box-sizing: border-box; }
+  /* Sem isto, qualquer elemento com display próprio ignora o atributo hidden
+     — e os cinco passos apareciam todos ao mesmo tempo. */
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--f-display); font-weight: 600; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  .wrap { max-width: var(--col); margin: 0 auto; padding: 0 20px; }
+  .wide { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- cabeçalho ---------- */
+  .top {
+    position: sticky; top: 0; z-index: 30;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .top-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 58px; }
+  .marca { display: flex; align-items: center; gap: 9px; font-family: var(--f-display); font-weight: 600; font-size: 17px; color: inherit; text-decoration: none; }
+  .marca:hover { color: var(--accent); }
+  .marca svg { flex-shrink: 0; }
+  .top nav { display: flex; gap: 24px; font-size: 14.5px; color: var(--ink-2); }
+  .top nav a { color: inherit; text-decoration: none; }
+  .top nav a:hover { color: var(--accent); }
+  .top nav a[lang] { font-weight: 600; letter-spacing: 0.06em; }
+  @media (max-width: 779px) { .top nav a:not([lang]) { display: none; } }
+
+  /* ---------- abertura ---------- */
+  .abre { padding: 40px 0 26px; display: flex; flex-direction: column; gap: 14px; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .abre h1 { font-size: 38px; line-height: 1.08; font-weight: 800; letter-spacing: -0.035em; }
+  .abre p { font-size: 17px; line-height: 1.6; color: var(--ink-2); }
+  @media (min-width: 700px) { .abre h1 { font-size: 50px; } .abre { padding: 62px 0 30px; } }
+
+  /* ---------- percurso ---------- */
+  .flow { padding-bottom: 150px; }
+  .barra-passos { display: flex; gap: 5px; margin-bottom: 14px; }
+  .barra-passos span { flex-grow: 1; height: 4px; border-radius: 2px; background: var(--line); transition: background .25s; }
+  .barra-passos span.on { background: var(--accent); }
+  .passo-topo { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+  .voltar {
+    display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 12px 0 0;
+    background: none; border: 0; cursor: pointer; color: var(--ink-2); font-size: 14.5px;
+  }
+  .voltar:hover { color: var(--accent); }
+  .conta-passos { font-size: 13.5px; color: var(--ink-3); }
+
+  .passo { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; }
+  .passo h2 { font-size: 30px; line-height: 1.12; font-weight: 600; }
+  @media (min-width: 700px) { .passo h2 { font-size: 36px; } }
+  .passo > p.sub { font-size: 15.5px; line-height: 1.55; color: var(--ink-2); margin-bottom: 8px; }
+
+  .cartao {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+    padding: 24px 20px; display: flex; flex-direction: column; gap: 20px;
+  }
+
+  .numerao { display: flex; align-items: baseline; justify-content: center; gap: 9px; }
+  .numerao b { font-family: var(--f-display); font-size: 62px; font-weight: 800; line-height: 1; letter-spacing: -0.04em; }
+  .numerao span { font-size: 16.5px; color: var(--ink-2); }
+  input[type="range"] { width: 100%; accent-color: var(--accent); height: 32px; }
+
+  .chips { display: flex; gap: 9px; }
+  .chips button {
+    flex-grow: 1; min-height: 46px; border-radius: var(--r-sm); cursor: pointer;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
+    font-size: 15px; font-weight: 500;
+  }
+  .chips button:hover { border-color: var(--accent); color: var(--accent); }
+  .chips button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: 600; }
+
+  .campo { display: flex; flex-direction: column; gap: 8px; }
+  .lab { font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+  select, input[type="date"], input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
+    font-family: var(--f-body); font-size: 16.5px; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-sm); padding: 13px 14px; width: 100%; min-height: 50px;
+  }
+  select { appearance: none; padding-right: 38px; }
+  .selwrap { position: relative; }
+  .selwrap::after {
+    content: ""; position: absolute; right: 16px; top: 50%; width: 8px; height: 8px;
+    border-right: 1.6px solid var(--ink-2); border-bottom: 1.6px solid var(--ink-2);
+    transform: translateY(-70%) rotate(45deg); pointer-events: none;
+  }
+
+  .escolhas { display: flex; flex-direction: column; gap: 10px; }
+  .escolhas button {
+    text-align: left; cursor: pointer; border-radius: var(--r);
+    border: 1px solid var(--line); background: var(--surface); padding: 15px 17px;
+    display: flex; flex-direction: column; gap: 3px; min-height: 44px;
+  }
+  .escolhas button:hover { border-color: var(--accent); }
+  .escolhas button[aria-pressed="true"] { border-color: var(--ink); background: var(--surface-2); }
+  .escolhas b { font-size: 16.5px; font-weight: 600; }
+  .escolhas small { font-size: 13.5px; color: var(--ink-2); line-height: 1.45; }
+
+  .nota {
+    display: flex; align-items: flex-start; gap: 11px; padding: 15px 17px;
+    background: var(--surface-2); border-radius: var(--r); font-size: 13.5px; line-height: 1.5; color: var(--ink-2);
+  }
+  .nota svg { flex-shrink: 0; margin-top: 2px; }
+  .nota b { color: var(--ink); font-weight: 600; }
+
+  /* rubricas no último passo */
+  .grupo { border-top: 1px solid var(--line-soft); padding-top: 14px; margin-top: 14px; }
+  .grupo:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+  .grupo-t { font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 8px; }
+  .item { display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; align-items: center; padding: 9px 0; min-height: 44px; }
+  .item input[type="checkbox"] { width: 21px; height: 21px; accent-color: var(--accent); margin: 0; }
+  .item label { font-size: 15.5px; cursor: pointer; }
+  .item .un { font-size: 12.5px; color: var(--ink-3); }
+  .item .v { font-size: 14.5px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .item.off label, .item.off .v { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--line); }
+
+  /* ---------- barra fixa com a estimativa em curso ---------- */
+  .rodape-vivo {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: var(--surface); border-top: 1px solid var(--line); box-shadow: var(--shadow-up);
+    padding: 14px 0 18px;
+  }
+  .rodape-in { display: flex; flex-direction: column; gap: 13px; }
+  .vivo-linha { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .vivo-eti { font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+  .vivo-val { font-family: var(--f-display); font-size: 25px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+  .vivo-obs { font-size: 12.5px; color: var(--ink-3); text-align: right; line-height: 1.35; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--accent); color: var(--on-accent); border: 1px solid var(--accent);
+    border-radius: var(--r); font-size: 16.5px; font-weight: 600; cursor: pointer;
+    min-height: 54px; padding: 0 24px; width: 100%;
+  }
+  .btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); font-weight: 500; }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); background: transparent; }
+  .btn.pequeno { min-height: 44px; font-size: 15px; width: auto; }
+  .btn[disabled] { opacity: .6; cursor: default; }
+</style>
+<style>
+  /* ---------- botão flutuante do WhatsApp ---------- */
+  .whats {
+    position: fixed; right: 18px; bottom: calc(18px + var(--barra-h, 0px)); z-index: 45;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; color: #FFFFFF; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 18px -6px rgba(0,0,0,.45); transition: bottom .2s, transform .15s;
+  }
+  .whats:hover { transform: scale(1.06); }
+  .whats svg { width: 32px; height: 32px; }
+  @media (min-width: 700px) { .whats { right: 28px; } }
+
+  /* ---------- resultado ---------- */
+  .res-total { display: flex; flex-direction: column; gap: 8px; padding-bottom: 4px; }
+  .res-total .grande { font-family: var(--f-display); font-size: 56px; font-weight: 800; letter-spacing: -0.045em; line-height: 1; }
+  @media (min-width: 700px) { .res-total .grande { font-size: 68px; } }
+  .res-int { font-size: 14.5px; color: var(--ink-2); }
+  .res-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; color: var(--ink-2); padding-top: 14px; border-top: 1px solid var(--line-soft); }
+  .res-meta b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  .medidor { display: flex; flex-direction: column; gap: 9px; padding-top: 16px; border-top: 1px solid var(--line-soft); }
+  .medidor-track { height: 7px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+  .medidor-fill { height: 100%; width: 0; border-radius: 4px; transition: width .3s; }
+  .medidor-msg { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
+  .ponto { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+
+  .bars { display: flex; flex-direction: column; gap: 11px; }
+  .bar-l { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; align-items: baseline; }
+  .bar-n { font-size: 14.5px; }
+  .bar-v { font-size: 14.5px; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+  .bar-t { grid-column: 1 / -1; height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+  .bar-f { height: 100%; background: var(--accent); border-radius: 4px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line-soft); }
+  th { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .tablewrap { overflow-x: auto; }
+
+  details.dobra { border-top: 1px solid var(--line); }
+  details.dobra > summary {
+    cursor: pointer; list-style: none; padding: 16px 0; min-height: 44px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-size: 15.5px; font-weight: 500;
+  }
+  details.dobra > summary::-webkit-details-marker { display: none; }
+  details.dobra > summary::after {
+    content: ""; width: 8px; height: 8px; flex-shrink: 0;
+    border-right: 1.6px solid var(--ink-3); border-bottom: 1.6px solid var(--ink-3);
+    transform: translateY(-3px) rotate(45deg);
+  }
+  details.dobra[open] > summary::after { transform: translateY(2px) rotate(-135deg); }
+  details.dobra .corpo { padding-bottom: 20px; }
+
+  /* ---------- secções gerais ---------- */
+  .sec { padding: 56px 0; border-top: 1px solid var(--line); }
+  .sec.creme { background: var(--surface-2); }
+  .sec-h { display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
+  .sec-h h2 { font-size: 27px; line-height: 1.15; }
+  .sec-h p { font-size: 16px; color: var(--ink-2); line-height: 1.6; }
+  .passos-3 { display: grid; gap: 16px; }
+  @media (min-width: 780px) { .passos-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; } }
+  .passo-c { display: flex; flex-direction: column; gap: 7px; }
+  .passo-c .n { font-family: var(--f-display); font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; }
+  .passo-c h3 { font-size: 18px; }
+  .passo-c p { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; }
+
+  .cta { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px 20px; display: flex; flex-direction: column; gap: 16px; }
+  .cta h2 { font-size: 24px; line-height: 1.15; }
+  .cta > p { font-size: 15.5px; color: var(--ink-2); line-height: 1.6; }
+  .form-grid { display: grid; gap: 14px; }
+  @media (min-width: 620px) { .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .consent { display: flex; gap: 11px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: var(--ink-2); cursor: pointer; }
+  .consent input { width: 19px; height: 19px; margin: 2px 0 0; accent-color: var(--accent); flex-shrink: 0; }
+  .legal { font-size: 12.5px; color: var(--ink-3); line-height: 1.5; }
+  .err { font-size: 14px; color: var(--crit); font-weight: 500; }
+  .ok-panel { display: flex; flex-direction: column; gap: 10px; }
+  .ok-panel .tick { font-family: var(--f-display); font-size: 24px; font-weight: 600; }
+
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary {
+    cursor: pointer; list-style: none; padding: 17px 0; min-height: 44px; font-size: 16px; font-weight: 500;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: ""; width: 8px; height: 8px; flex-shrink: 0;
+    border-right: 1.6px solid var(--ink-3); border-bottom: 1.6px solid var(--ink-3);
+    transform: translateY(-3px) rotate(45deg);
+  }
+  .faq details[open] summary::after { transform: translateY(2px) rotate(-135deg); }
+  .faq .a { padding-bottom: 18px; font-size: 15px; line-height: 1.62; color: var(--ink-2); }
+
+  .foot { padding: 40px 0 56px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--ink-3); line-height: 1.6; }
+  .foot b { font-family: var(--f-display); font-size: 15px; color: var(--ink-2); touch-action: manipulation; -webkit-user-select: none; user-select: none; display: inline-block; padding: 6px 0; }
+
+  /* ---------- área da equipa ---------- */
+  .team { border: 1px dashed var(--line); border-radius: var(--r); margin: 34px 0; }
+  .team > summary { cursor: pointer; list-style: none; padding: 15px 18px; font-size: 14.5px; font-weight: 500; min-height: 44px; display: flex; align-items: center; }
+  .team > summary::-webkit-details-marker { display: none; }
+  .team .badge { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--accent-soft); color: var(--accent); padding: 3px 8px; border-radius: 20px; margin-left: 9px; font-weight: 600; }
+  .team .inner { padding: 0 18px 20px; display: flex; flex-direction: column; gap: 14px; }
+  .team table input[type="number"] { padding: 6px 8px; font-size: 13.5px; min-height: 36px; }
+  .btnrow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .saved { font-size: 13.5px; color: var(--good); font-weight: 500; }
+  .hint { font-size: 13.5px; color: var(--ink-3); line-height: 1.5; }
+  textarea.obs { width: 100%; min-height: 96px; font-family: var(--f-body); font-size: 16.5px; line-height: 1.5; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 13px 14px; resize: vertical; }
+  textarea { width: 100%; min-height: 160px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12.5px; border: 1px solid var(--line); border-radius: var(--r-sm); padding: 12px; background: var(--surface); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wide top-in">
+    <a class="marca" href="./" aria-label="Quanto Custa Casar — home">
+      <svg width="24" height="24" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="48" cy="54" r="29" stroke="var(--accent)" stroke-width="12"/>
+        <path d="M60 68 L84 92" stroke="var(--accent)" stroke-width="11" stroke-linecap="round"/>
+        <path d="M48 8 L60 20 L48 32 L36 20 Z" fill="currentColor"/>
+      </svg>
+      Quanto Custa Casar
+    </a>
+    <nav>
+      <a href="#como">How it works</a>
+      <a href="#fornecedores">Suppliers</a>
+      <a href="#faq">Questions</a>
+      <a href="../" lang="pt" aria-label="Versão em português">PT</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap abre" id="abertura">
+  <span class="eyebrow">Free simulator · Portugal</span>
+  <h1>How much does a wedding in Portugal cost?</h1>
+  <p>Five questions, one at a time. At the end you know what your wedding costs, item by item — no sign-up, no commitment.</p>
+</div>
+
+<!-- ================= PERCURSO ================= -->
+<main class="wrap flow" id="simulador">
+
+  <div class="barra-passos" id="barraPassos" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-label="Question progress"></div>
+
+  <div class="passo-topo">
+    <button type="button" class="voltar" id="btnVoltar" hidden>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 L8 12 L15 19"/></svg>
+      Back
+    </button>
+    <span></span>
+    <span class="conta-passos" id="contaPassos">Before we start</span>
+  </div>
+
+  <!-- antes de começar -->
+  <section class="passo" id="passo1">
+    <h2>Who is doing the maths?</h2>
+    <p class="sub">Just so we know who we are talking to — the estimate is the same.</p>
+    <div class="cartao">
+      <div class="escolhas" id="escolhasQuem"></div>
+    </div>
+  </section>
+
+  <!-- passo 2 -->
+  <section class="passo" id="passo2">
+    <h2>How many people will be with you?</h2>
+    <p class="sub">It is the number that moves the bill the most — catering and drinks are charged per person.</p>
+    <div class="cartao">
+      <div class="numerao"><b id="numConvidados">100</b><span>guests</span></div>
+      <input type="range" id="convidadosRange" min="20" max="350" step="5" value="100" aria-label="Number of guests">
+      <div class="chips" id="chipsConvidados"></div>
+    </div>
+    <div class="nota">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11 L12 16"/><path d="M12 8 L12 8.01"/></svg>
+      <span id="notaConvidados"></span>
+    </div>
+  </section>
+
+  <!-- passo 3 -->
+  <section class="passo" id="passo3" hidden>
+    <h2>Where will the wedding be?</h2>
+    <p class="sub">Prices vary a lot from area to area: between the Algarve and central Portugal there is over 25% difference on the same items.</p>
+    <div class="cartao">
+      <div class="campo">
+        <label class="lab" for="distrito">District</label>
+        <div class="selwrap"><select id="distrito"></select></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- passo 4 -->
+  <section class="passo" id="passo4" hidden>
+    <h2>Do you have a date yet?</h2>
+    <p class="sub">A Saturday in August and a Saturday in February do not cost the same. If you do not know yet, just pick the time of year.</p>
+    <div class="cartao">
+      <div class="campo">
+        <label class="lab" for="dataCasamento">Wedding date</label>
+        <input type="date" id="dataCasamento">
+      </div>
+      <div class="campo">
+        <span class="lab">Time of year</span>
+        <div class="escolhas" id="escolhasEpoca"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- passo 5 -->
+  <section class="passo" id="passo5" hidden>
+    <h2>What kind of wedding do you have in mind?</h2>
+    <p class="sub">It is not about taste, it is about scale: how many suppliers come in, and of what range.</p>
+    <div class="cartao">
+      <div class="escolhas" id="escolhasEstilo"></div>
+    </div>
+  </section>
+
+  <!-- passo 6 -->
+  <section class="passo" id="passo6" hidden>
+    <h2>What do you want on the day?</h2>
+    <p class="sub">We have ticked what is most common. Untick what does not apply — the estimate follows.</p>
+    <div class="cartao" id="rubricas"></div>
+    <div class="campo" style="margin-top: 4px;">
+      <label class="lab" for="orcamento">Budget you have in mind (optional)</label>
+      <input type="number" id="orcamento" min="0" step="500" placeholder="e.g. 25000" inputmode="numeric">
+    </div>
+  </section>
+</main>
+
+<!-- ================= RESULTADO ================= -->
+<main class="wrap" id="resultado" hidden style="padding-bottom: 60px;">
+  <div class="abre" style="padding: 34px 0 20px;">
+    <span class="eyebrow">Your estimate</span>
+    <h1 style="font-size: 32px;">This is the figure to plan around</h1>
+  </div>
+
+  <div class="cartao">
+    <div class="res-total">
+      <span class="lab">Estimated wedding cost</span>
+      <span class="grande" id="total">—</span>
+      <span class="res-int" id="range"></span>
+    </div>
+    <div class="res-meta">
+      <span>Per guest <b id="porConvidado">—</b></span>
+      <span>Guests <b id="nConv">—</b></span>
+      <span>Items <b id="nRub">—</b></span>
+    </div>
+    <div class="medidor" id="medidorWrap" hidden>
+      <div class="medidor-track"><div class="medidor-fill" id="medidorFill"></div></div>
+      <div class="medidor-msg"><span class="ponto" id="medidorPonto"></span><span id="medidorMsg"></span></div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 10px; margin-top: 14px;">
+    <button type="button" class="btn ghost pequeno" id="btnRever">Review the answers</button>
+  </div>
+
+  <div class="cta" id="ctaBox" style="margin-top: 26px;">
+    <h2>Want this estimate tailored to your case?</h2>
+    <p>We send you the detailed budget and real proposals from venues, catering, photography and music for your date. At no cost to you.</p>
+    <form id="leadForm" novalidate>
+      <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+        <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <div class="form-grid">
+        <div class="campo">
+          <label class="lab" for="ln">Name</label>
+          <input type="text" id="ln" name="nome" autocomplete="name" required>
+        </div>
+        <div class="campo">
+          <label class="lab" for="le">Email</label>
+          <input type="email" id="le" name="email" autocomplete="email" required>
+        </div>
+        <div class="campo">
+          <label class="lab" for="lt">Mobile</label>
+          <input type="tel" id="lt" name="telefone" autocomplete="tel" required>
+        </div>
+        <div class="campo">
+          <label class="lab" for="ld">Wedding date</label>
+          <input type="date" id="ld" name="data">
+        </div>
+        <div class="campo" style="grid-column: 1 / -1;">
+          <label class="lab" for="lo">Notes (optional)</label>
+          <textarea id="lo" name="observacoes" class="obs" rows="3" placeholder="e.g. we already have the venue booked · we want a religious ceremony · guests coming from abroad"></textarea>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 18px;">
+        <label class="consent"><input type="checkbox" id="c1"><span>We want to receive the estimate and be contacted by the team to organise the wedding.</span></label>
+        <label class="consent"><input type="checkbox" id="c2"><span>We allow our details to be shared with partner suppliers (venues, catering, photography, music) so we can receive proposals.</span></label>
+        <p class="err" id="leadErr" hidden></p>
+        <button class="btn" type="submit" id="leadBtn">Get our estimate</button>
+        <p class="legal">Your details are used only to send the estimate and the proposals you allow. You can withdraw consent at any time.</p>
+      </div>
+    </form>
+  </div>
+  <div style="margin-top: 34px; display: flex; flex-direction: column; gap: 14px;">
+    <h2 style="font-size: 22px;">Where the money goes</h2>
+    <div class="bars" id="bars"></div>
+  </div>
+
+  <details class="dobra" style="margin-top: 28px;">
+    <summary>See all 24 items, one by one</summary>
+    <div class="corpo tablewrap">
+      <table id="detalhe">
+        <thead><tr><th>Item</th><th class="num">Minimum</th><th class="num">Estimate</th><th class="num">Maximum</th></tr></thead>
+        <tbody id="detalheBody"></tbody>
+      </table>
+    </div>
+  </details>
+
+</main>
+
+<!-- ================= WHATSAPP ================= -->
+<a class="whats" id="whats" href="#" target="_blank" rel="noopener" aria-label="Talk to us on WhatsApp" hidden>
+  <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+    <path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-1.9c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.8-1.6l-.4-.2-3.8 1.1 1.1-3.6-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 9.9 9.9 5.2 16 5.2s11 4.7 11 10.6-4.9 10.6-11 10.6zm6-7.9c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1.1-1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8 0 1.6 1.2 3.2 1.4 3.4.2.2 2.4 3.6 5.8 5 .8.3 1.4.6 1.9.7.8.3 1.5.2 2.1.1.6-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.2-.6-.4z"/>
+  </svg>
+</a>
+
+<!-- ================= BARRA VIVA ================= -->
+<div class="rodape-vivo" id="rodapeVivo">
+  <div class="wrap rodape-in">
+    <div class="vivo-linha">
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <span class="vivo-eti" id="vivoEti">So far</span>
+        <span class="vivo-val" id="vivoVal">—</span>
+      </div>
+      <span class="vivo-obs" id="vivoObs"></span>
+    </div>
+    <button type="button" class="btn" id="btnContinuar">Continue</button>
+  </div>
+</div>
+
+<!-- ================= COMO FUNCIONA ================= -->
+<section class="sec creme" id="como">
+  <div class="wide">
+    <div class="sec-h">
+      <h2>How we get to this number</h2>
+      <p>It is not a figure lifted from a foreign article. These are market ranges practised in Portugal, item by item.</p>
+    </div>
+    <div class="passos-3">
+      <div class="passo-c">
+        <span class="n">01</span>
+        <h3>24 items, not an average</h3>
+        <p>From the venue to the rings, each item has a minimum, a typical value and a maximum. Some are fixed prices, others are charged per guest.</p>
+      </div>
+      <div class="passo-c">
+        <span class="n">02</span>
+        <h3>Adjusted to your area and date</h3>
+        <p>Items that depend on the local market go up or down with the district and the time of year. Retail ones — dress, suit, rings — keep a national price.</p>
+      </div>
+      <div class="passo-c">
+        <span class="n">03</span>
+        <h3>Reviewed by people who organise weddings</h3>
+        <p>The ranges are reviewed by wedding planning professionals. They are indicative: the final price depends on the suppliers chosen and on the date.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORNECEDORES ================= -->
+<section class="sec" id="fornecedores">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>Are you a wedding supplier?</h2>
+      <p>We are building the partner network district by district. Those who join now receive requests from couples in their area before launch.</p>
+    </div>
+    <div class="cta" id="supBox">
+      <form id="supForm" novalidate>
+        <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+        <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <div class="form-grid">
+          <div class="campo">
+            <label class="lab" for="se">Company</label>
+            <input type="text" id="se" autocomplete="organization" required>
+          </div>
+          <div class="campo">
+            <label class="lab" for="sc">Category</label>
+            <div class="selwrap"><select id="sc">
+              <option>Venue</option>
+              <option>Catering and drinks</option>
+              <option>Photography</option>
+              <option>Video</option>
+              <option>Music / DJ / band</option>
+              <option>Decoration and flowers</option>
+              <option>Cakes and sweets</option>
+              <option>Beauty and hair</option>
+              <option>Transport</option>
+              <option>Other</option>
+            </select></div>
+          </div>
+          <div class="campo">
+            <label class="lab" for="sd">District</label>
+            <input type="text" id="sd" placeholder="e.g. Braga" required>
+          </div>
+          <div class="campo">
+            <label class="lab" for="sn">Contact name</label>
+            <input type="text" id="sn" autocomplete="name" required>
+          </div>
+          <div class="campo">
+            <label class="lab" for="sm">Email</label>
+            <input type="email" id="sm" autocomplete="email" required>
+          </div>
+          <div class="campo">
+            <label class="lab" for="st">Phone</label>
+            <input type="tel" id="st" autocomplete="tel">
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 18px;">
+          <label class="consent"><input type="checkbox" id="sc1"><span>I agree to be contacted about the partnership terms.</span></label>
+          <p class="err" id="supErr" hidden></p>
+          <button class="btn" type="submit" id="supBtn">Send me the terms</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec creme" id="faq">
+  <div class="wrap">
+    <div class="sec-h"><h2>Questions we always get</h2></div>
+    <div class="faq">
+      <details>
+        <summary>Is this really free?</summary>
+        <div class="a"><p>Simulating is free and needs no sign-up. We only ask for contact details from those who want the detailed budget and supplier proposals. Our partners pay us, never the couple.</p></div>
+      </details>
+      <details>
+        <summary>Where do these prices come from?</summary>
+        <div class="a"><p>From ranges practised in Portugal, organised by item and reviewed by wedding planning professionals. They are indicative: the final price always depends on the suppliers chosen and on the date.</p></div>
+      </details>
+      <details>
+        <summary>Who ends up with our details?</summary>
+        <div class="a"><p>Only whoever you allow. There are two separate permissions: one for our team to contact you, another for us to share the request with partner suppliers in your area. You can give only the first, and withdraw either at any time.</p></div>
+      </details>
+      <details>
+        <summary>How far ahead should we start planning?</summary>
+        <div class="a"><p>In-demand venues book high-season Saturdays 12 to 18 months ahead, and the date shapes almost everything else. Simulating early is mostly about not booking the venue before you know what is left for the rest.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <!-- ================= ÁREA DA EQUIPA ================= -->
+  <details class="team" id="areaEquipa" hidden>
+    <summary><span>Team area · price table and leads <span class="badge">Prototype</span></span></summary>
+    <div class="inner">
+      <p class="hint">Replace the indicative values with real ones here. <b>Estimate</b> is the typical value the simulator uses; minimum and maximum define the range shown to the couple. Save stores in this browser; <b>Copy table</b> gives the file to fix as the site base.</p>
+      <div class="tablewrap">
+        <table id="editor">
+          <thead><tr><th>Item</th><th>Unit</th><th class="num">Minimum</th><th class="num">Estimate</th><th class="num">Maximum</th></tr></thead>
+          <tbody id="editorBody"></tbody>
+        </table>
+      </div>
+      <h3 style="margin-top: 12px; font-size: 16px;">Multipliers</h3>
+      <div class="tablewrap">
+        <table id="multEditor">
+          <thead><tr><th>Factor</th><th class="num">Multiplier</th></tr></thead>
+          <tbody id="multBody"></tbody>
+        </table>
+      </div>
+      <div class="btnrow">
+        <button class="btn pequeno" type="button" id="btnGuardar">Save prices</button>
+        <button class="btn ghost pequeno" type="button" id="btnRepor">Reset indicative values</button>
+        <button class="btn ghost pequeno" type="button" id="btnCopiar">Copy table (JSON)</button>
+        <span class="saved" id="savedMsg" hidden>Saved.</span>
+      </div>
+      <textarea id="jsonOut" hidden readonly aria-label="Price table as JSON"></textarea>
+      <h3 style="margin-top: 12px; font-size: 16px;">Test leads</h3>
+      <p class="hint">In the prototype, leads are stored only in this browser. In the final version they go to the team email and the back office.</p>
+      <div class="tablewrap"><table id="leadsTable"><tbody id="leadsBody"></tbody></table></div>
+    </div>
+  </details>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p style="margin-bottom: 7px;"><b id="marcaRodape">Quanto Custa Casar</b></p>
+    <p>Indicative estimates for weddings in Portugal, built from market ranges and refined with the team’s experience. The final figure always depends on the suppliers chosen and on the date. Prototype under construction — 2026.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     MODELO — valores indicativos (a validar pela Bruna)
+     unidade: "fixo" = preço único | "convidado" = por pessoa
+     mercado: true  = varia com região e época
+              false = preço nacional (retalho: alianças, roupa, lua de mel)
+     ========================================================= */
+  const RUBRICAS_BASE = [
+    { id:"espaco",     grupo:"The day",            nome:"Venue",                 un:"fixo",      min:1500, base:3000, max:6000, mercado:true,  on:true },
+    { id:"catering",   grupo:"The day",            nome:"Catering and drinks",              un:"convidado", min:55,   base:80,   max:130,  mercado:true,  on:true },
+    { id:"openbar",    grupo:"The day",            nome:"Open bar / night bar",         un:"convidado", min:10,   base:18,   max:32,   mercado:true,  on:true },
+    { id:"bolo",       grupo:"The day",            nome:"Wedding cake",                   un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:true },
+    { id:"cerimonia",  grupo:"The day",            nome:"Ceremony (fees and officiant)",  un:"fixo",      min:150,  base:300,  max:700,  mercado:true,  on:true },
+    { id:"somluz",     grupo:"The day",            nome:"Sound, light and structures",           un:"fixo",      min:400,  base:900,  max:1800, mercado:true,  on:true },
+
+    { id:"foto",       grupo:"Image",           nome:"Photography",                      un:"fixo",      min:900,  base:1600, max:3000, mercado:true,  on:true },
+    { id:"video",      grupo:"Image",           nome:"Video",                           un:"fixo",      min:800,  base:1500, max:2800, mercado:true,  on:true },
+    { id:"booth",      grupo:"Image",           nome:"Photo booth / extra entertainment",      un:"fixo",      min:300,  base:600,  max:1200, mercado:true,  on:false },
+
+    { id:"dj",         grupo:"Music",           nome:"DJ",                              un:"fixo",      min:600,  base:950,  max:1600, mercado:true,  on:true },
+    { id:"banda",      grupo:"Music",           nome:"Live band",                   un:"fixo",      min:1200, base:2200, max:4000, mercado:true,  on:false },
+    { id:"musicacer",  grupo:"Music",           nome:"Ceremony music",             un:"fixo",      min:250,  base:400,  max:800,  mercado:true,  on:true },
+
+    { id:"flores",     grupo:"Decoration",        nome:"Decoration and flowers",              un:"fixo",      min:800,  base:1800, max:4000, mercado:true,  on:true },
+    { id:"mesas",      grupo:"Decoration",        nome:"Centrepieces and table setting",  un:"convidado", min:4,    base:8,    max:15,   mercado:true,  on:true },
+    { id:"papelaria",  grupo:"Decoration",        nome:"Invitations and stationery",            un:"convidado", min:3,    base:6,    max:12,   mercado:true,  on:true },
+    { id:"lembrancas", grupo:"Decoration",        nome:"Guest favours",   un:"convidado", min:2,    base:5,    max:10,   mercado:true,  on:false },
+
+    { id:"vestido",    grupo:"The couple",        nome:"Wedding dress and accessories",   un:"fixo",      min:900,  base:1800, max:3500, mercado:false, on:true },
+    { id:"fato",       grupo:"The couple",        nome:"Groom's suit",                   un:"fixo",      min:350,  base:700,  max:1400, mercado:false, on:true },
+    { id:"aliancas",   grupo:"The couple",        nome:"Rings",                        un:"fixo",      min:500,  base:1100, max:2500, mercado:false, on:true },
+    { id:"beleza",     grupo:"The couple",        nome:"Hair and make-up",            un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:true },
+    { id:"transporte", grupo:"The couple",        nome:"Couple's transport",           un:"fixo",      min:250,  base:450,  max:900,  mercado:true,  on:false },
+
+    { id:"planner",    grupo:"Support",            nome:"Wedding planner and coordination",   un:"fixo",      min:1200, base:2500, max:5000, mercado:true,  on:true },
+    { id:"criancas",   grupo:"Support",            nome:"Kids' area and childcare",    un:"fixo",      min:200,  base:400,  max:700,  mercado:true,  on:false },
+
+    { id:"luamel",     grupo:"After the day",    nome:"Honeymoon",                      un:"fixo",      min:2000, base:4000, max:9000, mercado:false, on:false }
+  ];
+
+  const MULT_BASE = {
+    regiao: {
+      lisboa:  { nome:"Lisbon and surroundings", m:1.15 },
+      porto:   { nome:"Porto and surroundings",  m:1.08 },
+      algarve: { nome:"Algarve",            m:1.20 },
+      norte:   { nome:"North (rest)",   m:0.95 },
+      centro:  { nome:"Centre",             m:0.92 },
+      alentejo:{ nome:"Alentejo",           m:0.95 },
+      madeira: { nome:"Madeira",            m:1.12 },
+      acores:  { nome:"Azores",             m:1.10 }
+    },
+    epoca: {
+      alta:  { nome:"High season (May to September)", m:1.10 },
+      media: { nome:"April or October",              m:1.00 },
+      baixa: { nome:"November to March",              m:0.88 }
+    },
+    estilo: {
+      intimista:  { nome:"Intimate", m:0.82, desc:"Fewer items, local suppliers, simple decoration." },
+      classico:   { nome:"Classic",  m:1.00, desc:"The typical Portuguese wedding: venue, banquet and party until dawn." },
+      sofisticado:{ nome:"Sophisticated", m:1.35, desc:"Top venues, signature menu, designer decoration." }
+    }
+  };
+
+  /* Distritos e a zona de preços a que pertencem. A zona continua a ser o
+     que mexe na estimativa; o distrito serve para a afinar sozinha e para a
+     equipa saber onde é o casamento. Setúbal está em "Lisboa e arredores"
+     por causa dos preços da margem sul — muda aqui se não for esse o caso. */
+  const DISTRITOS = [
+    { id:"aveiro",      nome:"Aveiro",            regiao:"centro"   },
+    { id:"beja",        nome:"Beja",              regiao:"alentejo" },
+    { id:"braga",       nome:"Braga",             regiao:"norte"    },
+    { id:"braganca",    nome:"Bragança",          regiao:"norte"    },
+    { id:"castelob",    nome:"Castelo Branco",    regiao:"centro"   },
+    { id:"coimbra",     nome:"Coimbra",           regiao:"centro"   },
+    { id:"evora",       nome:"Évora",             regiao:"alentejo" },
+    { id:"faro",        nome:"Faro",              regiao:"algarve"  },
+    { id:"guarda",      nome:"Guarda",            regiao:"centro"   },
+    { id:"leiria",      nome:"Leiria",            regiao:"centro"   },
+    { id:"lisboa",      nome:"Lisboa",            regiao:"lisboa"   },
+    { id:"portalegre",  nome:"Portalegre",        regiao:"alentejo" },
+    { id:"porto",       nome:"Porto",             regiao:"porto"    },
+    { id:"santarem",    nome:"Santarém",          regiao:"centro"   },
+    { id:"setubal",     nome:"Setúbal",           regiao:"lisboa"   },
+    { id:"viana",       nome:"Viana do Castelo",  regiao:"norte"    },
+    { id:"vilareal",    nome:"Vila Real",         regiao:"norte"    },
+    { id:"viseu",       nome:"Viseu",             regiao:"centro"   },
+    { id:"madeira",     nome:"Madeira",           regiao:"madeira"  },
+    { id:"acores",      nome:"Azores",            regiao:"acores"   }
+  ];
+
+  const MESES = ["January","February","March","April","May","June",
+                 "July","August","September","October","November","December"];
+
+  /* Maio a setembro é época alta, abril e outubro são de transição. */
+  function epocaDaData(iso) {
+    const m = parseInt((iso || "").split("-")[1], 10);
+    if (!m) return null;
+    if (m >= 5 && m <= 9) return "alta";
+    if (m === 4 || m === 10) return "media";
+    return "baixa";
+  }
+
+  function dataExtenso(iso) {
+    const p = (iso || "").split("-");
+    if (p.length !== 3) return "";
+    const mes = MESES[parseInt(p[1], 10) - 1];
+    if (!mes) return iso;
+    return parseInt(p[2], 10) + " " + mes + " " + p[0];
+  }
+
+  const LS_PRECOS = "sim_casamento_precos_v1";
+  const LS_LEADS  = "sim_casamento_leads_v1";
+
+  /* =========================================================
+     ENVIO DOS FORMULÁRIOS
+     ENDPOINT é o URL do serviço que recebe os pedidos dos casais e dos
+     fornecedores (Formspree, Web3Forms, uma função própria — qualquer um
+     que aceite um POST em JSON e permita pedidos a partir do browser).
+     Enquanto estiver vazio, o site funciona em modo protótipo: os dados
+     ficam guardados só neste navegador e o site diz isso a quem preenche.
+     CAMPOS_EXTRA junta campos fixos ao corpo do pedido, para os serviços
+     que precisam de uma chave — por exemplo { access_key: "..." }.
+     ========================================================= */
+  const ENDPOINT = "https://formspree.io/f/mnpqbrql";
+  /* Número que atende o WhatsApp, em formato internacional e só dígitos,
+     por exemplo "351912345678". Vazio = o botão não aparece. */
+  const WHATSAPP = "351912263717";
+  const CAMPOS_EXTRA = {};
+
+  /* O campo "website" é invisível para pessoas; só os robôs o preenchem.
+     Se vier preenchido, fingimos que enviámos e deitamos fora. */
+  function ehRobo(form) {
+    const isco = form.querySelector('input[name="website"]');
+    return !!(isco && isco.value);
+  }
+
+  function enviar(tipo, dados, form) {
+    if (form && ehRobo(form)) return Promise.resolve({ local: !ENDPOINT });
+    if (!ENDPOINT) return Promise.resolve({ local: true });
+    const assunto = tipo === "fornecedor"
+      ? "Quanto Custa Casar — new supplier (EN site): " + (dados.empresa || "")
+      : "Quanto Custa Casar — new couple (EN site): " + (dados.nome || "");
+    const corpo = Object.assign(
+      /* Sem o endereço da página: um link no corpo do pedido é um dos sinais
+         que os filtros de spam mais penalizam. */
+      { tipo: tipo, idioma: "en", origem: location.hostname || "local file" },
+      CAMPOS_EXTRA,
+      /* Formspree lê "_subject"; Web3Forms lê "subject". Ambos ignoram o outro. */
+      { _subject: assunto, subject: assunto, resumo: resumoDe(tipo, dados) },
+      dados
+    );
+    return fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(corpo)
+    }).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return { local: false };
+    });
+  }
+
+  /* Uma linha que se lê na notificação do telemóvel sem abrir o email. */
+  function resumoDe(tipo, d) {
+    if (tipo === "fornecedor") {
+      return [d.empresa, d.categoria, d.distrito, d.email].filter(Boolean).join(" · ");
+    }
+    return [d.quemResponde !== "—" ? d.quemResponde : null, d.nome, d.convidados + " guests", d.distrito !== "—" ? d.distrito : null,
+            d.dataTexto || null, d.estimativa ? eur(d.estimativa) : null, d.nRubricas ? d.nRubricas + " items" : null,
+            d.partilhaFornecedores ? "allows suppliers" : "no sharing"]
+           .filter(Boolean).join(" · ");
+  }
+
+  function aEnviar(btn, sim) {
+    if (sim) {
+      btn.dataset.texto = btn.textContent;
+      btn.textContent = "Sending\u2026";
+      btn.disabled = true;
+    } else {
+      btn.textContent = btn.dataset.texto || btn.textContent;
+      btn.disabled = false;
+    }
+  }
+
+  /* ---------- estado ---------- */
+  let RUBRICAS = clone(RUBRICAS_BASE);
+  let MULT = clone(MULT_BASE);
+  const estado = { convidados: 100, regiao: "lisboa", epoca: "alta", estilo: "classico",
+                   orcamento: 0, distrito: "", data: "", quem: "", ligadas: {} };
+  RUBRICAS.forEach(function (r) { estado.ligadas[r.id] = r.on; });
+
+  /* ---------- utilidades ---------- */
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  const nf = new Intl.NumberFormat("en-IE", { style:"currency", currency:"EUR", maximumFractionDigits:0 });
+  function eur(n) { return nf.format(Math.round(n)); }
+  function arred(n, passo) { passo = passo || 10; return Math.round(n / passo) * passo; }
+  function ler(k, fb) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch (e) { return fb; } }
+  function gravar(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
+
+  /* ---------- carregar preços guardados ---------- */
+  (function carregar() {
+    const g = ler(LS_PRECOS, null);
+    if (!g) return;
+    if (Array.isArray(g.rubricas)) {
+      g.rubricas.forEach(function (s) {
+        const r = RUBRICAS.find(function (x) { return x.id === s.id; });
+        if (r) { r.min = s.min; r.base = s.base; r.max = s.max; }
+      });
+    }
+    if (g.mult) {
+      ["regiao","epoca","estilo"].forEach(function (dim) {
+        if (!g.mult[dim]) return;
+        Object.keys(g.mult[dim]).forEach(function (k) {
+          if (MULT[dim][k]) MULT[dim][k].m = g.mult[dim][k];
+        });
+      });
+    }
+  })();
+
+  /* ---------- cálculo ---------- */
+  function fator(r) {
+    let f = MULT.estilo[estado.estilo].m;
+    if (r.mercado) f *= MULT.regiao[estado.regiao].m * MULT.epoca[estado.epoca].m;
+    return f;
+  }
+  function valores(r) {
+    const f = fator(r);
+    const q = r.un === "convidado" ? estado.convidados : 1;
+    return { min: r.min * q * f, base: r.base * q * f, max: r.max * q * f };
+  }
+  function calcular() {
+    const linhas = [];
+    let tMin = 0, tBase = 0, tMax = 0;
+    RUBRICAS.forEach(function (r) {
+      const v = valores(r);
+      const ativa = !!estado.ligadas[r.id];
+      linhas.push({ r: r, v: v, ativa: ativa });
+      if (ativa) { tMin += v.min; tBase += v.base; tMax += v.max; }
+    });
+    return { linhas: linhas, min: tMin, base: tBase, max: tMax };
+  }
+
+  const $ = function (id) { return document.getElementById(id); };
+
+  /* =========================================================
+     PERCURSO — cinco perguntas, uma de cada vez
+     ========================================================= */
+  const PASSOS = 6;      // seis ecrãs: um passo prévio e as cinco perguntas
+  const PERGUNTAS = 5;
+  const QUEM = { noiva: "Bride", noivo: "Groom", outro: "Someone else" };
+  let passo = 1;
+  let terminou = false;
+  /* O que o casal já respondeu. Enquanto uma dimensão está por
+     responder, a estimativa mostra o intervalo possível em vez de
+     um número — é o que faz a conta apertar à medida que se avança. */
+  const respondido = { regiao: false, epoca: false, estilo: false };
+
+  function extremos(dim) {
+    const ms = Object.keys(MULT[dim]).map(function (k) { return MULT[dim][k].m; });
+    return { min: Math.min.apply(null, ms), max: Math.max.apply(null, ms) };
+  }
+
+  /* Total com multiplicadores substituídos, para calcular os limites
+     do intervalo sem duplicar a fórmula do cálculo. */
+  function totalCom(subs, campo) {
+    const guarda = { regiao: estado.regiao, epoca: estado.epoca, estilo: estado.estilo };
+    const chavesSub = {};
+    ["regiao", "epoca", "estilo"].forEach(function (dim) {
+      if (subs[dim] === undefined) return;
+      const alvo = subs[dim];
+      const chave = Object.keys(MULT[dim]).filter(function (k) { return MULT[dim][k].m === alvo; })[0];
+      if (chave) { estado[dim] = chave; chavesSub[dim] = true; }
+    });
+    const res = calcular();
+    ["regiao", "epoca", "estilo"].forEach(function (dim) { estado[dim] = guarda[dim]; });
+    return res[campo];
+  }
+
+  function intervaloCorrente() {
+    const baixo = {}, alto = {};
+    ["regiao", "epoca", "estilo"].forEach(function (dim) {
+      if (respondido[dim]) return;
+      const e = extremos(dim);
+      baixo[dim] = e.min; alto[dim] = e.max;
+    });
+    return { min: totalCom(baixo, "min"), max: totalCom(alto, "max") };
+  }
+
+  function tudoRespondido() {
+    return respondido.regiao && respondido.epoca && respondido.estilo;
+  }
+
+  /* ---------- barra viva ---------- */
+  function renderVivo() {
+    const res = calcular();
+    const faltam = ["regiao", "epoca", "estilo"].filter(function (d) { return !respondido[d]; }).length;
+
+    if (terminou) {
+      $("rodapeVivo").hidden = true;
+      return;
+    }
+    $("rodapeVivo").hidden = false;
+
+    if (res.base <= 0) {
+      $("vivoEti").textContent = "So far";
+      $("vivoVal").textContent = "—";
+      $("vivoObs").textContent = "Pick at least one item.";
+    } else if (faltam > 0) {
+      const iv = intervaloCorrente();
+      $("vivoEti").textContent = "So far";
+      $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));
+      /* Counts the questions still to answer, including the one on screen. */
+      const restantes = PERGUNTAS - Math.max(0, passo - 2);
+      $("vivoObs").innerHTML = "provisional estimate<br>" + (restantes === 1 ? "1 answer to go" : restantes + " answers to go");
+    } else {
+      $("vivoEti").textContent = "Estimate";
+      $("vivoVal").textContent = eur(arred(res.base, 50));
+      $("vivoObs").innerHTML = "between " + eur(arred(res.min, 500)) + "<br>and " + eur(arred(res.max, 500));
+    }
+    $("btnContinuar").textContent = passo === PASSOS ? "See the estimate" : "Continue";
+  }
+
+  /* ---------- navegação ---------- */
+  function mostrarPasso(n, mover) {
+    passo = Math.max(1, Math.min(PASSOS, n));
+    for (let i = 1; i <= PASSOS; i++) {
+      const s = $("passo" + i);
+      if (s) s.hidden = (i !== passo);
+    }
+    const barra = $("barraPassos");
+    Array.prototype.forEach.call(barra.children, function (c, i) {
+      c.classList.toggle("on", i < passo - 1);
+    });
+    barra.setAttribute("aria-valuenow", String(passo - 1));
+    $("contaPassos").textContent = passo === 1 ? "Before we start" : "Question " + (passo - 1) + " of " + PERGUNTAS;
+    $("btnVoltar").hidden = passo === 1;
+    render();
+    if (mover) {
+      const topo = $("simulador").getBoundingClientRect().top + window.pageYOffset - 70;
+      window.scrollTo({ top: Math.max(0, topo), behavior: "smooth" });
+    }
+  }
+
+  function mostrarResultado() {
+    terminou = true;
+    $("simulador").hidden = true;
+    $("abertura").hidden = true;
+    $("resultado").hidden = false;
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function voltarAoPercurso() {
+    terminou = false;
+    $("resultado").hidden = true;
+    $("abertura").hidden = false;
+    $("simulador").hidden = false;
+    mostrarPasso(1, true);
+  }
+
+  (function construirBarra() {
+    const barra = $("barraPassos");
+    for (let i = 0; i < PERGUNTAS; i++) barra.appendChild(document.createElement("span"));
+  })();
+
+  $("btnVoltar").addEventListener("click", function () { mostrarPasso(passo - 1, true); });
+  $("btnContinuar").addEventListener("click", function () {
+    if (passo === PASSOS) mostrarResultado();
+    else mostrarPasso(passo + 1, true);
+  });
+  $("btnRever").addEventListener("click", voltarAoPercurso);
+
+  /* ---------- antes de começar: quem responde ---------- */
+  (function quemResponde() {
+    const box = $("escolhasQuem");
+    const desc = { noiva: "", noivo: "", outro: "Family, friends, or whoever is organising." };
+    Object.keys(QUEM).forEach(function (k) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-pressed", "false");
+      const n = document.createElement("b"); n.textContent = QUEM[k];
+      b.appendChild(n);
+      if (desc[k]) { const d = document.createElement("small"); d.textContent = desc[k]; b.appendChild(d); }
+      b.addEventListener("click", function () {
+        estado.quem = k;
+        Array.prototype.forEach.call(box.children, function (c) { c.setAttribute("aria-pressed", "false"); });
+        b.setAttribute("aria-pressed", "true");
+      });
+      box.appendChild(b);
+    });
+  })();
+
+  /* ---------- passo 1: convidados ---------- */
+  (function convidados() {
+    const rg = $("convidadosRange");
+    const chips = $("chipsConvidados");
+    [50, 100, 150, 200].forEach(function (n) {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = String(n);
+      b.setAttribute("aria-pressed", String(n === estado.convidados));
+      b.addEventListener("click", function () { definirConvidados(n); });
+      chips.appendChild(b);
+    });
+    function definirConvidados(v) {
+      estado.convidados = Math.max(10, Math.min(600, parseInt(v, 10) || 100));
+      rg.value = Math.max(20, Math.min(350, estado.convidados));
+      $("numConvidados").textContent = String(estado.convidados);
+      Array.prototype.forEach.call(chips.children, function (c) {
+        c.setAttribute("aria-pressed", String(parseInt(c.textContent, 10) === estado.convidados));
+      });
+      const extra = arred(custoPorConvidado() * 10, 10);
+      $("notaConvidados").innerHTML = "Every 10 extra guests cost, on average, <b>" +
+        eur(extra) + "</b> more " + textoZona() + ".";
+      render();
+    }
+    rg.addEventListener("input", function () { definirConvidados(rg.value); });
+    window.__definirConvidados = definirConvidados;
+  })();
+
+  function custoPorConvidado() {
+    let soma = 0;
+    RUBRICAS.forEach(function (r) {
+      if (r.un !== "convidado" || !estado.ligadas[r.id]) return;
+      soma += valores(r).base / estado.convidados;
+    });
+    return soma;
+  }
+  function textoZona() {
+    return respondido.regiao ? "in " + MULT.regiao[estado.regiao].nome : "nationwide";
+  }
+
+  /* ---------- passo 2: distrito e zona ---------- */
+  (function local() {
+    const sd = $("distrito");
+    const vazio = document.createElement("option");
+    vazio.value = ""; vazio.textContent = "We don't know yet";
+    sd.appendChild(vazio);
+    DISTRITOS.forEach(function (d) {
+      const o = document.createElement("option");
+      o.value = d.id; o.textContent = d.nome; sd.appendChild(o);
+    });
+    sd.addEventListener("change", function () {
+      estado.distrito = sd.value;
+      const d = DISTRITOS.filter(function (x) { return x.id === sd.value; })[0];
+      if (d) {
+        estado.regiao = d.regiao;
+        respondido.regiao = true;
+      } else {
+        respondido.regiao = false;
+      }
+      render();
+    });
+  })();
+
+  /* ---------- passo 3: data e época ---------- */
+  (function quando() {
+    const sdata = $("dataCasamento");
+    sdata.min = new Date().toISOString().slice(0, 10);
+    const box = $("escolhasEpoca");
+    Object.keys(MULT.epoca).forEach(function (k) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-pressed", "false");
+      const n = document.createElement("b"); n.textContent = MULT.epoca[k].nome;
+      b.appendChild(n);
+      b.addEventListener("click", function () {
+        estado.epoca = k;
+        respondido.epoca = true;
+        marcar();
+        render();
+      });
+      box.appendChild(b);
+    });
+    function marcar() {
+      Array.prototype.forEach.call(box.children, function (c, i) {
+        c.setAttribute("aria-pressed", String(Object.keys(MULT.epoca)[i] === estado.epoca && respondido.epoca));
+      });
+    }
+    sdata.addEventListener("change", function () {
+      estado.data = sdata.value;
+      const ld = $("ld");
+      if (ld) ld.value = sdata.value;
+      const ep = epocaDaData(sdata.value);
+      if (ep) { estado.epoca = ep; respondido.epoca = true; }
+      marcar();
+      render();
+    });
+    window.__marcarEpoca = marcar;
+  })();
+
+  /* ---------- passo 4: estilo ---------- */
+  (function estilos() {
+    const box = $("escolhasEstilo");
+    Object.keys(MULT.estilo).forEach(function (k) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-pressed", "false");
+      const n = document.createElement("b"); n.textContent = MULT.estilo[k].nome;
+      const d = document.createElement("small"); d.textContent = MULT.estilo[k].desc;
+      b.appendChild(n); b.appendChild(d);
+      b.addEventListener("click", function () {
+        estado.estilo = k;
+        respondido.estilo = true;
+        Array.prototype.forEach.call(box.children, function (c) { c.setAttribute("aria-pressed", "false"); });
+        b.setAttribute("aria-pressed", "true");
+        render();
+      });
+      box.appendChild(b);
+    });
+  })();
+
+  /* ---------- passo 5: rubricas ---------- */
+  (function listaRubricas() {
+    const box = $("rubricas");
+    const grupos = [];
+    RUBRICAS.forEach(function (r) { if (grupos.indexOf(r.grupo) === -1) grupos.push(r.grupo); });
+    grupos.forEach(function (g) {
+      const d = document.createElement("div");
+      d.className = "grupo";
+      const t = document.createElement("div");
+      t.className = "grupo-t"; t.textContent = g;
+      d.appendChild(t);
+      RUBRICAS.filter(function (r) { return r.grupo === g; }).forEach(function (r) {
+        const row = document.createElement("div");
+        row.className = "item"; row.id = "item-" + r.id;
+        const cb = document.createElement("input");
+        cb.type = "checkbox"; cb.id = "cb-" + r.id; cb.checked = !!estado.ligadas[r.id];
+        cb.addEventListener("change", function () { estado.ligadas[r.id] = cb.checked; render(); });
+        const lb = document.createElement("label");
+        lb.setAttribute("for", cb.id);
+        lb.textContent = r.nome;
+        const v = document.createElement("span");
+        v.className = "v"; v.id = "v-" + r.id;
+        row.appendChild(cb); row.appendChild(lb); row.appendChild(v);
+        d.appendChild(row);
+      });
+      box.appendChild(d);
+    });
+  })();
+
+  $("orcamento").addEventListener("input", function () {
+    estado.orcamento = parseInt(this.value, 10) || 0;
+    render();
+  });
+
+  /* =========================================================
+     RENDER
+     ========================================================= */
+  function render() {
+    const res = calcular();
+
+    // valores por rubrica, no passo 5
+    res.linhas.forEach(function (l) {
+      const el = $("v-" + l.r.id);
+      /* Nas rubricas por pessoa mostra-se o preço por convidado; o total
+         entra na estimativa, na repartição e no detalhe. */
+      if (el) el.textContent = l.r.un === "convidado"
+        ? eur(arred(l.v.base / estado.convidados, 1)) + " per guest"
+        : eur(arred(l.v.base));
+      const row = $("item-" + l.r.id);
+      if (row) row.classList.toggle("off", !l.ativa);
+    });
+
+    renderVivo();
+    if (terminou) renderResultado(res);
+  }
+
+  function renderResultado(res) {
+    $("total").textContent = eur(arred(res.base, 50));
+    $("range").textContent = res.base > 0
+      ? "Likely between " + eur(arred(res.min, 50)) + " and " + eur(arred(res.max, 50))
+      : "Pick at least one item.";
+    $("porConvidado").textContent = res.base > 0 ? eur(arred(res.base / estado.convidados, 5)) : "—";
+    $("nConv").textContent = String(estado.convidados);
+    $("nRub").textContent = res.linhas.filter(function (l) { return l.ativa; }).length + " of " + RUBRICAS.length;
+
+    const mw = $("medidorWrap");
+    if (estado.orcamento > 0 && res.base > 0) {
+      mw.hidden = false;
+      const cobertura = estado.orcamento / res.base;
+      const pct = Math.max(0, Math.min(1, cobertura));
+      $("medidorFill").style.width = (pct * 100).toFixed(1) + "%";
+      let cor, msg;
+      if (cobertura >= 1) {
+        cor = "var(--good)";
+        msg = "Your budget covers the estimate, with " + eur(arred(estado.orcamento - res.base, 50)) + " to spare.";
+      } else if (cobertura >= 0.8) {
+        cor = "var(--warn)";
+        msg = "About " + eur(arred(res.base - estado.orcamento, 50)) + " short — you can close the gap by cutting one or two items.";
+      } else {
+        cor = "var(--crit)";
+        msg = "Your budget covers " + Math.round(cobertura * 100) + "% of the estimate. Worth revisiting guests, season or style.";
+      }
+      $("medidorFill").style.background = cor;
+      $("medidorPonto").style.background = cor;
+      $("medidorMsg").textContent = msg;
+    } else {
+      mw.hidden = true;
+    }
+
+    renderBarras(res);
+    renderDetalhe(res);
+  }
+
+  function renderBarras(res) {
+    const box = $("bars");
+    box.textContent = "";
+    const ativas = res.linhas.filter(function (l) { return l.ativa && l.v.base > 0; })
+                             .sort(function (a, b) { return b.v.base - a.v.base; });
+    if (!ativas.length) {
+      const p = document.createElement("p");
+      p.className = "hint"; p.textContent = "Pick the items to see the breakdown.";
+      box.appendChild(p); return;
+    }
+    const topo = ativas.slice(0, 8);
+    const resto = ativas.slice(8);
+    const linhas = topo.map(function (l) {
+      return { nome: l.r.nome, base: l.v.base };
+    });
+    if (resto.length) {
+      linhas.push({
+        nome: "Other " + resto.length + " items",
+        base: resto.reduce(function (s, l) { return s + l.v.base; }, 0)
+      });
+    }
+    const maxv = Math.max.apply(null, linhas.map(function (l) { return l.base; }));
+    linhas.forEach(function (l) {
+      const pctTotal = res.base > 0 ? Math.round((l.base / res.base) * 100) : 0;
+      const row = document.createElement("div");
+      row.className = "bar-l";
+      row.setAttribute("aria-label", l.nome + ": " + eur(arred(l.base)) + ", " + pctTotal + "% do total");
+
+      const n = document.createElement("span");
+      n.className = "bar-n"; n.textContent = l.nome;
+      const v = document.createElement("span");
+      v.className = "bar-v"; v.textContent = eur(arred(l.base)) + " · " + pctTotal + "%";
+      const t = document.createElement("div");
+      t.className = "bar-t";
+      const f = document.createElement("div");
+      f.className = "bar-f";
+      f.style.width = Math.max(1.5, (l.base / maxv) * 100) + "%";
+      t.appendChild(f);
+
+      row.appendChild(n); row.appendChild(v); row.appendChild(t);
+      box.appendChild(row);
+    });
+  }
+
+  function renderDetalhe(res) {
+    const tb = $("detalheBody");
+    tb.textContent = "";
+    const grupos = [];
+    RUBRICAS.forEach(function (r) { if (grupos.indexOf(r.grupo) === -1) grupos.push(r.grupo); });
+    grupos.forEach(function (g) {
+      const linhas = res.linhas.filter(function (l) { return l.r.grupo === g && l.ativa; });
+      if (!linhas.length) return;
+      const gr = document.createElement("tr");
+      const gtd = document.createElement("td");
+      gtd.colSpan = 4; gtd.textContent = g;
+      gtd.style.fontSize = "11.5px"; gtd.style.letterSpacing = "0.08em";
+      gtd.style.textTransform = "uppercase"; gtd.style.color = "var(--ink-3)";
+      gtd.style.fontWeight = "600"; gtd.style.paddingTop = "18px";
+      gr.appendChild(gtd); tb.appendChild(gr);
+      linhas.forEach(function (l) {
+        const tr = document.createElement("tr");
+        [l.r.nome, eur(arred(l.v.min)), eur(arred(l.v.base)), eur(arred(l.v.max))].forEach(function (txt, i) {
+          const td = document.createElement("td");
+          td.textContent = txt;
+          if (i > 0) td.className = "num";
+          if (i === 2) td.style.fontWeight = "600";
+          tr.appendChild(td);
+        });
+        tb.appendChild(tr);
+      });
+    });
+    const tot = document.createElement("tr");
+    [["Total", ""], [eur(arred(res.min, 50)), "num"], [eur(arred(res.base, 50)), "num"], [eur(arred(res.max, 50)), "num"]]
+      .forEach(function (c) {
+        const td = document.createElement("td");
+        td.textContent = c[0]; if (c[1]) td.className = c[1];
+        td.style.fontWeight = "700"; td.style.borderBottom = "0"; td.style.paddingTop = "14px";
+        tot.appendChild(td);
+      });
+    tb.appendChild(tot);
+  }
+
+  /* ---------- formulário de lead ---------- */
+  $("leadForm").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    const err = $("leadErr");
+    const nome = $("ln").value.trim();
+    const email = $("le").value.trim();
+    const tel = $("lt").value.trim();
+    const data = $("ld").value;
+    const problemas = [];
+    if (nome.length < 2) problemas.push("your name");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) problemas.push("a valid email");
+    if (tel.replace(/\D/g, "").length < 9) problemas.push("a valid phone number");
+    if (!$("c1").checked) problemas.push("permission to contact you");
+    if (problemas.length) {
+      err.hidden = false;
+      err.textContent = "Missing: " + problemas.join(", ").replace(/, ([^,]*)$/, " and $1") + ".";
+      return;
+    }
+    err.hidden = true;
+    const res = calcular();
+    const lead = {
+      quando: new Date().toISOString(),
+      quemResponde: QUEM[estado.quem] || "—",
+      nome: nome, email: email, telefone: tel, data: data || "—",
+      convidados: estado.convidados,
+      distrito: (DISTRITOS.filter(function (x) { return x.id === estado.distrito; })[0] || {}).nome || "—",
+      dataTexto: dataExtenso(data),
+      regiao: MULT.regiao[estado.regiao].nome,
+      epoca: MULT.epoca[estado.epoca].nome,
+      estilo: MULT.estilo[estado.estilo].nome,
+      estimativa: arred(res.base, 50),
+      intervalo: eur(arred(res.min, 50)) + " to " + eur(arred(res.max, 50)),
+      orcamento: estado.orcamento || null,
+      partilhaFornecedores: $("c2").checked,
+      observacoes: $("lo").value.trim() || "—",
+      /* O que o casal quer ter no dia, com o valor estimado de cada rubrica,
+         e o que desligou — é o que a equipa precisa para pedir propostas. */
+      rubricasIncluidas: res.linhas.filter(function (l) { return l.ativa; })
+        .map(function (l) { return l.r.nome + " (" + eur(arred(l.v.base)) + ")"; }).join(" · "),
+      rubricasExcluidas: res.linhas.filter(function (l) { return !l.ativa; })
+        .map(function (l) { return l.r.nome; }).join(" · ") || "none",
+      nRubricas: res.linhas.filter(function (l) { return l.ativa; }).length + " of " + RUBRICAS.length
+    };
+    const btn = $("leadBtn");
+    aEnviar(btn, true);
+
+    enviar("casal", lead, this).then(function (r) {
+      const leads = ler(LS_LEADS, []);
+      leads.unshift(lead);
+      gravar(LS_LEADS, leads.slice(0, 50));
+      renderLeads();
+
+      const box = $("ctaBox");
+      box.textContent = "";
+      const ok = document.createElement("div");
+      ok.className = "ok-panel";
+      const t = document.createElement("div");
+      t.className = "tick"; t.textContent = "Thank you, " + nome.split(" ")[0] + ".";
+      const p1 = document.createElement("p");
+      p1.style.margin = "0"; p1.style.fontSize = "15px";
+      p1.textContent = r.local
+        ? "Your estimate is " + eur(arred(res.base, 50)) + " for " + estado.convidados +
+          " guests. This site is still under construction: the request was stored only in this " +
+          "browser and has not reached anyone yet."
+        : "We have sent the estimate of " + eur(arred(res.base, 50)) + " to " + email +
+          ". The team will be in touch within 24 hours with proposals for " + estado.convidados + " guests " +
+          (data ? "on " + dataExtenso(data) + "." : "on your date.");
+      const p2 = document.createElement("p");
+      p2.className = "legal"; p2.style.marginBottom = "0";
+      p2.textContent = lead.partilhaFornecedores
+        ? "We will ask partner suppliers in your area for proposals."
+        : "We will not share your details with suppliers.";
+      ok.appendChild(t); ok.appendChild(p1); ok.appendChild(p2);
+      box.appendChild(ok);
+      box.scrollIntoView({ behavior: "smooth", block: "center" });
+    }).catch(function () {
+      aEnviar(btn, false);
+      err.hidden = false;
+      err.textContent = "We could not send your request right now. Check your connection and try again.";
+    });
+  });
+
+  /* ---------- área da equipa: editor de preços ---------- */
+  (function editor() {
+    const tb = $("editorBody");
+    RUBRICAS.forEach(function (r) {
+      const tr = document.createElement("tr");
+      const tdN = document.createElement("td"); tdN.textContent = r.nome;
+      const tdU = document.createElement("td");
+      tdU.innerHTML = '<span class="un">' + (r.un === "convidado" ? "per guest" : "fixed price") + "</span>";
+      tr.appendChild(tdN); tr.appendChild(tdU);
+      ["min", "base", "max"].forEach(function (campo) {
+        const td = document.createElement("td"); td.className = "num";
+        const inp = document.createElement("input");
+        inp.type = "number"; inp.min = "0"; inp.step = r.un === "convidado" ? "1" : "50";
+        inp.value = r[campo];
+        inp.setAttribute("aria-label", r.nome + " " + campo);
+        inp.addEventListener("input", function () {
+          r[campo] = parseFloat(inp.value) || 0;
+          render();
+        });
+        td.appendChild(inp); tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+
+    const mb = $("multBody");
+    [["regiao", "Region"], ["epoca", "Season"], ["estilo", "Style"]].forEach(function (dim) {
+      Object.keys(MULT[dim[0]]).forEach(function (k) {
+        const tr = document.createElement("tr");
+        const td1 = document.createElement("td");
+        td1.textContent = dim[1] + ": " + MULT[dim[0]][k].nome;
+        const td2 = document.createElement("td"); td2.className = "num";
+        const inp = document.createElement("input");
+        inp.type = "number"; inp.step = "0.01"; inp.min = "0.1"; inp.value = MULT[dim[0]][k].m;
+        inp.setAttribute("aria-label", "Multiplicador " + dim[1] + " " + MULT[dim[0]][k].nome);
+        inp.addEventListener("input", function () {
+          MULT[dim[0]][k].m = parseFloat(inp.value) || 1;
+          render();
+        });
+        td2.appendChild(inp);
+        tr.appendChild(td1); tr.appendChild(td2);
+        mb.appendChild(tr);
+      });
+    });
+  })();
+
+  function tabelaJSON() {
+    return {
+      atualizado: new Date().toISOString().slice(0, 10),
+      rubricas: RUBRICAS.map(function (r) {
+        return { id: r.id, nome: r.nome, un: r.un, min: r.min, base: r.base, max: r.max };
+      }),
+      mult: {
+        regiao: mapM("regiao"), epoca: mapM("epoca"), estilo: mapM("estilo")
+      }
+    };
+    function mapM(dim) {
+      const o = {};
+      Object.keys(MULT[dim]).forEach(function (k) { o[k] = MULT[dim][k].m; });
+      return o;
+    }
+  }
+
+  $("btnGuardar").addEventListener("click", function () {
+    const ok = gravar(LS_PRECOS, tabelaJSON());
+    const m = $("savedMsg");
+    m.hidden = false;
+    m.textContent = ok ? "Saved in this browser." : "Could not save in this browser.";
+    m.style.color = ok ? "var(--good)" : "var(--crit)";
+    setTimeout(function () { m.hidden = true; }, 3500);
+  });
+
+  $("btnRepor").addEventListener("click", function () {
+    RUBRICAS_BASE.forEach(function (b) {
+      const r = RUBRICAS.find(function (x) { return x.id === b.id; });
+      r.min = b.min; r.base = b.base; r.max = b.max;
+    });
+    ["regiao", "epoca", "estilo"].forEach(function (dim) {
+      Object.keys(MULT_BASE[dim]).forEach(function (k) { MULT[dim][k].m = MULT_BASE[dim][k].m; });
+    });
+    try { localStorage.removeItem(LS_PRECOS); } catch (e) {}
+    // repor os campos visíveis
+    const inputs = document.querySelectorAll("#editorBody tr");
+    inputs.forEach(function (tr, i) {
+      const b = RUBRICAS_BASE[i];
+      const cells = tr.querySelectorAll("input");
+      cells[0].value = b.min; cells[1].value = b.base; cells[2].value = b.max;
+    });
+    const mults = document.querySelectorAll("#multBody input");
+    let idx = 0;
+    ["regiao", "epoca", "estilo"].forEach(function (dim) {
+      Object.keys(MULT_BASE[dim]).forEach(function (k) { mults[idx].value = MULT_BASE[dim][k].m; idx++; });
+    });
+    render();
+  });
+
+  $("btnCopiar").addEventListener("click", function () {
+    const ta = $("jsonOut");
+    ta.hidden = false;
+    ta.value = JSON.stringify(tabelaJSON(), null, 2);
+    ta.focus(); ta.select();
+    try { navigator.clipboard.writeText(ta.value); } catch (e) {}
+  });
+
+  function renderLeads() {
+    const tb = $("leadsBody");
+    tb.textContent = "";
+    const leads = ler(LS_LEADS, []);
+    if (!leads.length) {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.className = "hint"; td.textContent = "No test leads in this browser yet.";
+      tr.appendChild(td); tb.appendChild(tr); return;
+    }
+    leads.forEach(function (l) {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.innerHTML = "<b>" + esc(l.nome) + "</b>" + (l.quemResponde && l.quemResponde !== "—" ? " (" + esc(l.quemResponde) + ")" : "") +
+        " · " + esc(l.email) + " · " + esc(l.telefone) +
+        '<br><span class="un">' + esc(l.dataTexto || "no date") + " · " + l.convidados +
+        " guests · " + esc(l.distrito || "—") + " · " + esc(l.regiao) +
+        " · estimate " + eur(l.estimativa) + (l.partilhaFornecedores ? " · allows suppliers" : " · no sharing") + "</span>" +
+        (l.observacoes && l.observacoes !== "—" ? '<br><span class="un">Notes: ' + esc(l.observacoes) + "</span>" : "");
+      tr.appendChild(td); tb.appendChild(tr);
+    });
+  }
+  function esc(s) { return String(s).replace(/[<>&"]/g, function (c) { return ({ "<":"&lt;", ">":"&gt;", "&":"&amp;", '"':"&quot;" })[c]; }); }
+
+
+  /* ---------- formulário de fornecedores ---------- */
+  const LS_FORN = "sim_casamento_fornecedores_v1";
+  $("supForm").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    const err = $("supErr");
+    const empresa = $("se").value.trim();
+    const distrito = $("sd").value.trim();
+    const nome = $("sn").value.trim();
+    const email = $("sm").value.trim();
+    const faltas = [];
+    if (empresa.length < 2) faltas.push("the company name");
+    if (distrito.length < 2) faltas.push("the district");
+    if (nome.length < 2) faltas.push("the contact name");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) faltas.push("a valid email");
+    if (!$("sc1").checked) faltas.push("permission to contact you");
+    if (faltas.length) {
+      err.hidden = false;
+      err.textContent = "Missing: " + faltas.join(", ").replace(/, ([^,]*)$/, " and $1") + ".";
+      return;
+    }
+    err.hidden = true;
+    const fornecedor = {
+      quando: new Date().toISOString(), empresa: empresa, categoria: $("sc").value,
+      distrito: distrito, nome: nome, email: email, telefone: $("st").value.trim()
+    };
+    const btn = $("supBtn");
+    aEnviar(btn, true);
+
+    enviar("fornecedor", fornecedor, this).then(function (r) {
+      const lista = ler(LS_FORN, []);
+      lista.unshift(fornecedor);
+      gravar(LS_FORN, lista.slice(0, 50));
+      const box = $("supBox");
+      box.textContent = "";
+      const ok = document.createElement("div");
+      ok.className = "ok-panel";
+      const t = document.createElement("div");
+      t.className = "tick"; t.textContent = "Received.";
+      const p1 = document.createElement("p");
+      p1.style.margin = "0"; p1.style.fontSize = "15px";
+      p1.textContent = r.local
+        ? "This site is still under construction: the request from " + empresa + " was stored only in this " +
+          "browser and has not reached anyone yet."
+        : "We will contact " + empresa + " at " + email +
+          " with the partnership terms before launch.";
+      ok.appendChild(t); ok.appendChild(p1);
+      box.appendChild(ok);
+    }).catch(function () {
+      aEnviar(btn, false);
+      err.hidden = false;
+      err.textContent = "We could not send the request right now. Check your connection and try again.";
+    });
+  });
+
+  /* ---------- área da equipa: só aparece com a chave no URL ---------- */
+  /* Abre em  .../#equipa  (ou  .../?equipa ). Muda CHAVE_EQUIPA para o
+     endereço deixar de ser adivinhável. Isto esconde o painel dos
+     visitantes, não o protege: quem ler o código-fonte encontra a chave.
+     A proteção a sério passa por mover a gestão para o backoffice. */
+  const CHAVE_EQUIPA = "equipa";
+  (function areaEquipa() {
+    const bloco = $("areaEquipa");
+    const naQuery = new RegExp("(^|&)" + CHAVE_EQUIPA + "(=|&|$)");
+    let aberta = false;
+    function atualizar() {
+      const visivel = aberta ||
+                      location.hash.replace(/^#/, "") === CHAVE_EQUIPA ||
+                      naQuery.test(location.search.replace(/^\?/, ""));
+      bloco.hidden = !visivel;
+      if (visivel) bloco.open = true;
+    }
+    atualizar();
+    window.addEventListener("hashchange", atualizar);
+
+    /* Em pré-visualizações onde não se consegue editar o endereço (o site
+       dentro de uma moldura, por exemplo), escrever a chave no teclado,
+       fora dos campos do formulário, abre o painel na mesma. */
+    function abrir() {
+      aberta = true;
+      atualizar();
+      bloco.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    /* No telemóvel não há teclado físico nem endereço editável dentro
+       de uma moldura: cinco toques seguidos no nome do rodapé abrem o painel. */
+    let toques = 0, ultimoToque = 0;
+    $("marcaRodape").addEventListener("pointerup", function (ev) {
+      if (ev.pointerType === "mouse" && ev.button !== 0) return;
+      const agora = Date.now();
+      toques = (agora - ultimoToque < 2000) ? toques + 1 : 1;
+      ultimoToque = agora;
+      if (toques >= 5 && bloco.hidden) { toques = 0; abrir(); }
+    });
+
+    let teclado = "";
+    window.addEventListener("keydown", function (ev) {
+      if (ev.key.length !== 1 || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+      const campo = (ev.target.tagName || "").toUpperCase();
+      if (campo === "INPUT" || campo === "TEXTAREA" || campo === "SELECT") return;
+      teclado = (teclado + ev.key.toLowerCase()).slice(-CHAVE_EQUIPA.length);
+      if (teclado === CHAVE_EQUIPA.toLowerCase() && bloco.hidden) abrir();
+    });
+  })();
+
+  /* ---------- botão do WhatsApp ---------- */
+  (function whatsapp() {
+    const a = $("whats");
+    if (!WHATSAPP) return;
+    a.hidden = false;
+    function ligacao() {
+      let msg = "Hello! I was on Quanto Custa Casar and would like to talk to you.";
+      if (terminou) {
+        const res = calcular();
+        msg += " My estimate came to " + eur(arred(res.base, 50)) + " for " + estado.convidados + " guests.";
+      }
+      return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
+    }
+    a.addEventListener("click", function () { a.href = ligacao(); });
+    a.href = ligacao();
+    /* Fica acima da barra da estimativa enquanto ela está visível. */
+    function ajustar() {
+      const barra = $("rodapeVivo");
+      const h = barra.hidden ? 0 : barra.offsetHeight;
+      document.documentElement.style.setProperty("--barra-h", h + "px");
+    }
+    ajustar();
+    window.addEventListener("resize", ajustar);
+    new MutationObserver(ajustar).observe($("rodapeVivo"), { attributes: true, attributeFilter: ["hidden"] });
+  })();
+
+  /* ---------- arranque ---------- */
+  renderLeads();
+  window.__definirConvidados(estado.convidados);
+  window.__marcarEpoca();
+  mostrarPasso(1, false);
+})();
+</script>
+
+</body>
+</html>
