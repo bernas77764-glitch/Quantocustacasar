@@ -903,7 +903,9 @@
       ? "Quanto Custa Casar — novo fornecedor: " + (dados.empresa || "")
       : "Quanto Custa Casar — novo casal: " + (dados.nome || "");
     const corpo = Object.assign(
-      { tipo: tipo, origem: location.href },
+      /* Sem o endereço da página: um link no corpo do pedido é um dos sinais
+         que os filtros de spam mais penalizam. */
+      { tipo: tipo, origem: location.hostname || "ficheiro local" },
       CAMPOS_EXTRA,
       /* Formspree lê "_subject"; Web3Forms lê "subject". Ambos ignoram o outro. */
       { _subject: assunto, subject: assunto, resumo: resumoDe(tipo, dados) },
