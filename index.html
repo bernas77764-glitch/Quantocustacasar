@@ -3,24 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Quanto custa casar em Portugal? Simulador gratuito com 24 rubricas, ajustado à região, à época do ano e ao número de convidados. Estimativa imediata e sem registo.">
+<meta name="description" content="Quanto custa casar em Portugal? Simulador gratuito com 24 rubricas, ajustado ao distrito, à data e ao número de convidados. Uma pergunta de cada vez, estimativa no fim.">
 <link rel="canonical" href="https://quantocustacasar.pt/">
 <!-- Enquanto for protótipo o site não deve ser indexado.
      No lançamento: trocar por  content="index, follow"  e ajustar o robots.txt. -->
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#245C86">
+<meta name="theme-color" content="#A8552B">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_PT">
 <meta property="og:site_name" content="Quanto Custa Casar">
 <meta property="og:url" content="https://quantocustacasar.pt/">
 <meta property="og:title" content="Quanto custa casar em Portugal? — Simulador gratuito">
-<meta property="og:description" content="Estimativa realista do teu casamento em segundos: 24 rubricas, ajustadas à tua região, à tua época e ao teu estilo.">
+<meta property="og:description" content="Cinco perguntas, uma de cada vez. No fim ficas a saber quanto custa o teu casamento, rubrica a rubrica.">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 1 L18 10 L27 14 L18 18 L14 27 L10 18 L1 14 L10 10 Z' fill='%23245C86'/%3E%3C/svg%3E">
-
-<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 1 L18 10 L27 14 L18 18 L14 27 L10 18 L1 14 L10 10 Z' fill='%23A8552B'/%3E%3C/svg%3E">
 
 <script type="application/ld+json">
 {
@@ -93,80 +91,81 @@
 <title>Quanto Custa Casar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap">
 <style>
   :root {
-    --paper: #FCFBF9;
+    --paper: #FDF8F2;
     --surface: #FFFFFF;
-    --surface-2: #F4F2EC;
-    --ink: #141C26;
-    --ink-2: #5A6875;
-    --ink-3: #8A96A2;
-    --line: #E4DFD5;
-    --line-soft: #EFEBE3;
-    --accent: #245C86;
-    --accent-deep: #17405F;
-    --accent-soft: #E5EDF4;
+    --surface-2: #F4EDE4;
+    --ink: #1A1613;
+    --ink-2: #5C5249;
+    --ink-3: #9C8F84;
+    --line: #EADFD2;
+    --line-soft: #F2E9DE;
+    --accent: #A8552B;
+    --accent-deep: #7E3E1F;
+    --accent-soft: #F7EDE4;
     --on-accent: #FFFFFF;
-    --ochre: #A8712A;
-    --clay: #B0603C;
-    --clay-soft: #F7EAE2;
-    --good: #2E6B4F;
-    --crit: #9B3B2E;
-    --shadow: 0 1px 2px rgba(20,28,38,.06), 0 8px 24px -16px rgba(20,28,38,.22);
+    --good: #3F6B4A;
+    --warn: #A8752B;
+    --crit: #A33B2A;
+    --shadow: 0 1px 2px rgba(26,22,19,.05), 0 10px 30px -18px rgba(26,22,19,.28);
+    --shadow-up: 0 -6px 24px -14px rgba(26,22,19,.35);
 
-    --f-display: "Fraunces", Georgia, "Times New Roman", serif;
-    --f-body: "Karla", "Helvetica Neue", Arial, sans-serif;
+    --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --f-body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
 
-    --sp: 8px;
-    --radius: 10px;
+    --r-sm: 11px;
+    --r: 14px;
+    --r-lg: 18px;
+    --col: 620px;
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --paper: #0F151C;
-      --surface: #161E27;
-      --surface-2: #1D2732;
-      --ink: #E9EEF3;
-      --ink-2: #9BA9B7;
-      --ink-3: #6D7C8B;
-      --line: #27323E;
-      --line-soft: #1F2A35;
-      --accent: #74AEDB;
-      --accent-deep: #A5CBE8;
-      --accent-soft: #1B2C3A;
-      --on-accent: #0F151C;
-      --ochre: #D9A253;
-      --clay: #DC9068;
-      --clay-soft: #2B211C;
-      --good: #63B48C;
-      --crit: #E08573;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -20px rgba(0,0,0,.8);
+      --paper: #16120F;
+      --surface: #1F1A16;
+      --surface-2: #26201A;
+      --ink: #F2EAE1;
+      --ink-2: #B5A899;
+      --ink-3: #877A6D;
+      --line: #322A23;
+      --line-soft: #241E19;
+      --accent: #D98A5A;
+      --accent-deep: #EBA87D;
+      --accent-soft: #2B211B;
+      --on-accent: #16120F;
+      --good: #6FAE81;
+      --warn: #D6A455;
+      --crit: #DE8471;
+      --shadow: 0 1px 2px rgba(0,0,0,.5), 0 12px 32px -20px rgba(0,0,0,.9);
+      --shadow-up: 0 -6px 24px -16px rgba(0,0,0,.9);
     }
   }
   :root[data-theme="dark"] {
-    --on-accent: #0F151C;
-    --paper: #0F151C;
-    --surface: #161E27;
-    --surface-2: #1D2732;
-    --ink: #E9EEF3;
-    --ink-2: #9BA9B7;
-    --ink-3: #6D7C8B;
-    --line: #27323E;
-    --line-soft: #1F2A35;
-    --accent: #74AEDB;
-    --accent-deep: #A5CBE8;
-    --accent-soft: #1B2C3A;
-    --ochre: #D9A253;
-    --clay: #DC9068;
-    --clay-soft: #2B211C;
-    --good: #63B48C;
-    --crit: #E08573;
-    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -20px rgba(0,0,0,.8);
+    --paper: #16120F;
+    --surface: #1F1A16;
+    --surface-2: #26201A;
+    --ink: #F2EAE1;
+    --ink-2: #B5A899;
+    --ink-3: #877A6D;
+    --line: #322A23;
+    --line-soft: #241E19;
+    --accent: #D98A5A;
+    --accent-deep: #EBA87D;
+    --accent-soft: #2B211B;
+    --on-accent: #16120F;
+    --good: #6FAE81;
+    --warn: #D6A455;
+    --crit: #DE8471;
+    --shadow: 0 1px 2px rgba(0,0,0,.5), 0 12px 32px -20px rgba(0,0,0,.9);
+    --shadow-up: 0 -6px 24px -16px rgba(0,0,0,.9);
   }
 
   * { box-sizing: border-box; }
-
+  /* Sem isto, qualquer elemento com display próprio ignora o atributo hidden
+     — e os cinco passos apareciam todos ao mesmo tempo. */
+  [hidden] { display: none !important; }
   body {
     margin: 0;
     background: var(--paper);
@@ -176,853 +175,583 @@
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
   }
+  h1, h2, h3 { font-family: var(--f-display); font-weight: 600; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
 
-  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px 80px; }
+  .wrap { max-width: var(--col); margin: 0 auto; padding: 0 20px; }
+  .wide { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
   /* ---------- cabeçalho ---------- */
-  header.top {
+  .top {
+    position: sticky; top: 0; z-index: 30;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
-    background: var(--surface);
   }
-  .top-inner {
-    max-width: 1160px; margin: 0 auto; padding: 34px 20px 30px;
-    display: grid; gap: 14px;
-  }
-  .eyebrow {
-    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--accent); font-weight: 600;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .eyebrow::after { content: ""; height: 1px; flex: 1; background: var(--line); }
-  h1 {
-    font-family: var(--f-display);
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-size: clamp(30px, 5vw, 50px);
-    line-height: 1.05;
-    letter-spacing: -.015em;
-    margin: 0;
-    text-wrap: balance;
-  }
-  .sub { margin: 0; max-width: 62ch; color: var(--ink-2); font-size: 17px; }
+  .top-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 58px; }
+  .marca { display: flex; align-items: center; gap: 9px; font-family: var(--f-display); font-weight: 600; font-size: 17px; }
+  .marca svg { flex-shrink: 0; }
+  .top nav { display: none; gap: 24px; font-size: 14.5px; color: var(--ink-2); }
+  .top nav a { color: inherit; text-decoration: none; }
+  .top nav a:hover { color: var(--accent); }
+  @media (min-width: 780px) { .top nav { display: flex; } }
 
-  /* ---------- layout ---------- */
-  .grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 40px;
-    align-items: start;
-    padding-top: 34px;
+  /* ---------- abertura ---------- */
+  .abre { padding: 40px 0 26px; display: flex; flex-direction: column; gap: 14px; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .abre h1 { font-size: 38px; line-height: 1.08; font-weight: 800; letter-spacing: -0.035em; }
+  .abre p { font-size: 17px; line-height: 1.6; color: var(--ink-2); }
+  @media (min-width: 700px) { .abre h1 { font-size: 50px; } .abre { padding: 62px 0 30px; } }
+
+  /* ---------- percurso ---------- */
+  .flow { padding-bottom: 150px; }
+  .barra-passos { display: flex; gap: 5px; margin-bottom: 14px; }
+  .barra-passos span { flex-grow: 1; height: 4px; border-radius: 2px; background: var(--line); transition: background .25s; }
+  .barra-passos span.on { background: var(--accent); }
+  .passo-topo { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+  .voltar {
+    display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 12px 0 0;
+    background: none; border: 0; cursor: pointer; color: var(--ink-2); font-size: 14.5px;
   }
-  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 28px; padding-top: 24px; } }
+  .voltar:hover { color: var(--accent); }
+  .conta-passos { font-size: 13.5px; color: var(--ink-3); }
 
-  .col-out { position: sticky; top: 20px; }
-  @media (max-width: 900px) { .col-out { position: static; } }
+  .passo { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; }
+  .passo h2 { font-size: 30px; line-height: 1.12; font-weight: 600; }
+  @media (min-width: 700px) { .passo h2 { font-size: 36px; } }
+  .passo > p.sub { font-size: 15.5px; line-height: 1.55; color: var(--ink-2); margin-bottom: 8px; }
 
-  /* ---------- blocos ---------- */
-  .block { display: grid; gap: 14px; }
-  .block + .block { margin-top: 30px; }
-  h2 {
-    font-family: var(--f-display); font-weight: 600;
-    font-size: 21px; margin: 0; letter-spacing: -.01em;
-  }
-  .hint { color: var(--ink-2); font-size: 14px; margin: -4px 0 0; }
-
-  .panel {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 20px;
+  .cartao {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+    padding: 24px 20px; display: flex; flex-direction: column; gap: 20px;
   }
 
-  /* ---------- controlos ---------- */
-  .field { display: grid; gap: 7px; }
-  label.lab, .lab {
-    font-size: 12px; letter-spacing: .09em; text-transform: uppercase;
-    font-weight: 600; color: var(--ink-2);
-  }
-  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
+  .numerao { display: flex; align-items: baseline; justify-content: center; gap: 9px; }
+  .numerao b { font-family: var(--f-display); font-size: 62px; font-weight: 800; line-height: 1; letter-spacing: -0.04em; }
+  .numerao span { font-size: 16.5px; color: var(--ink-2); }
+  input[type="range"] { width: 100%; accent-color: var(--accent); height: 32px; }
 
-  select, input[type="number"], input[type="text"], input[type="email"], input[type="tel"], input[type="month"] {
-    font-family: var(--f-body); font-size: 15px; color: var(--ink);
+  .chips { display: flex; gap: 9px; }
+  .chips button {
+    flex-grow: 1; min-height: 46px; border-radius: var(--r-sm); cursor: pointer;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
+    font-size: 15px; font-weight: 500;
+  }
+  .chips button:hover { border-color: var(--accent); color: var(--accent); }
+  .chips button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: 600; }
+
+  .campo { display: flex; flex-direction: column; gap: 8px; }
+  .lab { font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+  select, input[type="date"], input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
+    font-family: var(--f-body); font-size: 16.5px; color: var(--ink);
     background: var(--surface); border: 1px solid var(--line);
-    border-radius: 8px; padding: 9px 11px; width: 100%;
-    font-variant-numeric: tabular-nums;
+    border-radius: var(--r-sm); padding: 13px 14px; width: 100%; min-height: 50px;
   }
-  select { appearance: none; background-image: none; padding-right: 30px; }
+  select { appearance: none; padding-right: 38px; }
   .selwrap { position: relative; }
   .selwrap::after {
-    content: ""; position: absolute; right: 12px; top: 50%; width: 7px; height: 7px;
-    border-right: 1.5px solid var(--ink-2); border-bottom: 1.5px solid var(--ink-2);
+    content: ""; position: absolute; right: 16px; top: 50%; width: 8px; height: 8px;
+    border-right: 1.6px solid var(--ink-2); border-bottom: 1.6px solid var(--ink-2);
     transform: translateY(-70%) rotate(45deg); pointer-events: none;
   }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-  .guests { display: grid; grid-template-columns: 1fr 96px; gap: 14px; align-items: center; }
-  input[type="range"] { width: 100%; accent-color: var(--accent); }
-
-  .seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-  .seg button {
-    flex: 1; font-family: var(--f-body); font-size: 14px; font-weight: 500;
-    background: var(--surface); color: var(--ink-2); border: 0; padding: 9px 6px;
-    cursor: pointer; border-right: 1px solid var(--line);
+  .escolhas { display: flex; flex-direction: column; gap: 10px; }
+  .escolhas button {
+    text-align: left; cursor: pointer; border-radius: var(--r);
+    border: 1px solid var(--line); background: var(--surface); padding: 15px 17px;
+    display: flex; flex-direction: column; gap: 3px; min-height: 44px;
   }
-  .seg button:last-child { border-right: 0; }
-  .seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); font-weight: 600; }
+  .escolhas button:hover { border-color: var(--accent); }
+  .escolhas button[aria-pressed="true"] { border-color: var(--ink); background: var(--surface-2); }
+  .escolhas b { font-size: 16.5px; font-weight: 600; }
+  .escolhas small { font-size: 13.5px; color: var(--ink-2); line-height: 1.45; }
 
-  /* ---------- rubricas ---------- */
-  .grupo { border-top: 1px solid var(--line-soft); padding-top: 12px; margin-top: 4px; }
-  .grupo:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
-  .grupo-t {
-    font-size: 12px; letter-spacing: .09em; text-transform: uppercase;
-    color: var(--ink-3); font-weight: 700; margin-bottom: 6px;
+  .nota {
+    display: flex; align-items: flex-start; gap: 11px; padding: 15px 17px;
+    background: var(--surface-2); border-radius: var(--r); font-size: 13.5px; line-height: 1.5; color: var(--ink-2);
   }
-  .item {
-    display: grid; grid-template-columns: 20px 1fr auto; gap: 10px;
-    align-items: baseline; padding: 5px 0;
-  }
-  .item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); margin: 0; align-self: center; }
-  .item label { cursor: pointer; font-size: 15px; }
-  .item .un { color: var(--ink-3); font-size: 12.5px; }
-  .item .v { font-variant-numeric: tabular-nums; font-size: 14px; color: var(--ink-2); font-weight: 500; }
-  .item.off label, .item.off .v { color: var(--ink-3); text-decoration-color: var(--line); }
+  .nota svg { flex-shrink: 0; margin-top: 2px; }
+  .nota b { color: var(--ink); font-weight: 600; }
 
+  /* rubricas no último passo */
+  .grupo { border-top: 1px solid var(--line-soft); padding-top: 14px; margin-top: 14px; }
+  .grupo:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+  .grupo-t { font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 8px; }
+  .item { display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; align-items: center; padding: 9px 0; min-height: 44px; }
+  .item input[type="checkbox"] { width: 21px; height: 21px; accent-color: var(--accent); margin: 0; }
+  .item label { font-size: 15.5px; cursor: pointer; }
+  .item .un { font-size: 12.5px; color: var(--ink-3); }
+  .item .v { font-size: 14.5px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .item.off label, .item.off .v { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--line); }
+
+  /* ---------- barra fixa com a estimativa em curso ---------- */
+  .rodape-vivo {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: var(--surface); border-top: 1px solid var(--line); box-shadow: var(--shadow-up);
+    padding: 14px 0 18px;
+  }
+  .rodape-in { display: flex; flex-direction: column; gap: 13px; }
+  .vivo-linha { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .vivo-eti { font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+  .vivo-val { font-family: var(--f-display); font-size: 25px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+  .vivo-obs { font-size: 12.5px; color: var(--ink-3); text-align: right; line-height: 1.35; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--accent); color: var(--on-accent); border: 1px solid var(--accent);
+    border-radius: var(--r); font-size: 16.5px; font-weight: 600; cursor: pointer;
+    min-height: 54px; padding: 0 24px; width: 100%;
+  }
+  .btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); font-weight: 500; }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); background: transparent; }
+  .btn.pequeno { min-height: 44px; font-size: 15px; width: auto; }
+  .btn[disabled] { opacity: .6; cursor: default; }
+</style>
+<style>
   /* ---------- resultado ---------- */
-  .total-card {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow);
-    display: grid; gap: 6px;
-  }
-  .total-num {
-    font-family: var(--f-display); font-weight: 600;
-    font-size: clamp(38px, 7vw, 58px); line-height: 1;
-    letter-spacing: -.02em; font-variant-numeric: tabular-nums;
-  }
-  .total-range { color: var(--ink-2); font-size: 15px; font-variant-numeric: tabular-nums; }
-  .total-meta {
-    display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 10px;
-    padding-top: 14px; border-top: 1px solid var(--line-soft);
-    font-size: 14px; color: var(--ink-2);
-  }
-  .total-meta b { color: var(--ink); font-variant-numeric: tabular-nums; font-weight: 600; }
+  .res-total { display: flex; flex-direction: column; gap: 8px; padding-bottom: 4px; }
+  .res-total .grande { font-family: var(--f-display); font-size: 56px; font-weight: 800; letter-spacing: -0.045em; line-height: 1; }
+  @media (min-width: 700px) { .res-total .grande { font-size: 68px; } }
+  .res-int { font-size: 14.5px; color: var(--ink-2); }
+  .res-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; color: var(--ink-2); padding-top: 14px; border-top: 1px solid var(--line-soft); }
+  .res-meta b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
 
-  /* meter orçamento */
-  .meter { display: grid; gap: 8px; margin-top: 16px; }
-  .meter-track {
-    height: 10px; background: var(--surface-2); border-radius: 999px; overflow: hidden;
-    border: 1px solid var(--line-soft);
-  }
-  .meter-fill { height: 100%; border-radius: 999px; background: var(--accent); transition: width .25s ease; }
-  .meter-msg { font-size: 14.5px; display: flex; gap: 8px; align-items: baseline; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; transform: translateY(-1px); }
+  .medidor { display: flex; flex-direction: column; gap: 9px; padding-top: 16px; border-top: 1px solid var(--line-soft); }
+  .medidor-track { height: 7px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+  .medidor-fill { height: 100%; width: 0; border-radius: 4px; transition: width .3s; }
+  .medidor-msg { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
+  .ponto { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
 
-  /* barras */
-  .bars { display: grid; gap: 9px; }
-  .bar-row { display: grid; grid-template-columns: minmax(96px, 38%) 1fr auto; gap: 12px; align-items: center; }
-  .bar-lab { font-size: 14px; line-height: 1.25; color: var(--ink); }
-  .bar-track { height: 14px; background: var(--surface-2); border-radius: 4px; position: relative; }
-  .bar-fill {
-    height: 100%; background: var(--accent); border-radius: 0 4px 4px 0;
-    transition: width .3s ease; min-width: 2px;
-  }
-  .bar-val { font-size: 13.5px; font-variant-numeric: tabular-nums; color: var(--ink-2); font-weight: 600; min-width: 70px; text-align: right; }
-  .bar-row .bar-rng {
-    grid-column: 2 / 4; font-size: 12.5px; color: var(--ink-3);
-    font-variant-numeric: tabular-nums; opacity: 0; height: 0; transition: opacity .15s ease;
-  }
-  .bar-row:hover .bar-rng, .bar-row:focus-within .bar-rng { opacity: 1; height: auto; }
+  .bars { display: flex; flex-direction: column; gap: 11px; }
+  .bar-l { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; align-items: baseline; }
+  .bar-n { font-size: 14.5px; }
+  .bar-v { font-size: 14.5px; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+  .bar-t { grid-column: 1 / -1; height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+  .bar-f { height: 100%; background: var(--accent); border-radius: 4px; }
 
-  /* tabela */
   table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
-  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line-soft); }
-  th { font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line-soft); }
+  th { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
   td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
-  tr.grp td { background: var(--surface-2); font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); }
-  tr.tot td { border-bottom: 0; border-top: 2px solid var(--line); font-weight: 700; font-size: 15.5px; }
   .tablewrap { overflow-x: auto; }
 
-  details.more { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-  details.more > summary {
-    cursor: pointer; padding: 13px 18px; font-weight: 600; font-size: 14.5px;
-    list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  details.dobra { border-top: 1px solid var(--line); }
+  details.dobra > summary {
+    cursor: pointer; list-style: none; padding: 16px 0; min-height: 44px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-size: 15.5px; font-weight: 500;
   }
-  details.more > summary::-webkit-details-marker { display: none; }
-  details.more > summary::after { content: "+"; color: var(--ink-3); font-size: 18px; }
-  details.more[open] > summary::after { content: "–"; }
-  details.more > .inner { padding: 0 18px 18px; }
-
-  /* ---------- CTA / lead ---------- */
-  .cta {
-    background: var(--accent-soft); border: 1px solid var(--line);
-    border-radius: var(--radius); padding: 24px; display: grid; gap: 14px;
+  details.dobra > summary::-webkit-details-marker { display: none; }
+  details.dobra > summary::after {
+    content: ""; width: 8px; height: 8px; flex-shrink: 0;
+    border-right: 1.6px solid var(--ink-3); border-bottom: 1.6px solid var(--ink-3);
+    transform: translateY(-3px) rotate(45deg);
   }
-  .cta h2 { font-size: 23px; }
-  .cta p { margin: 0; font-size: 15px; color: var(--ink-2); max-width: 56ch; }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
-  .consent { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: start; font-size: 14px; color: var(--ink-2); }
-  .consent input { width: 16px; height: 16px; margin: 3px 0 0; accent-color: var(--accent); }
-  .btn {
-    font-family: var(--f-body); font-size: 15.5px; font-weight: 700;
-    background: var(--accent); color: var(--on-accent); border: 0; border-radius: 8px;
-    padding: 12px 22px; cursor: pointer; justify-self: start;
-    text-decoration: none; display: inline-block; line-height: 1.2;
-  }
-  .btn:hover { background: var(--accent-deep); }
-  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); font-weight: 600; }
-  .btn.ghost:hover { background: var(--surface-2); }
-  .err { color: var(--crit); font-size: 13.5px; }
-  .ok-panel { display: grid; gap: 10px; }
-  .ok-panel .tick { font-family: var(--f-display); font-size: 22px; font-weight: 600; }
+  details.dobra[open] > summary::after { transform: translateY(2px) rotate(-135deg); }
+  details.dobra .corpo { padding-bottom: 20px; }
 
-  .legal { font-size: 12.5px; color: var(--ink-3); max-width: 70ch; }
+  /* ---------- secções gerais ---------- */
+  .sec { padding: 56px 0; border-top: 1px solid var(--line); }
+  .sec.creme { background: var(--surface-2); }
+  .sec-h { display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
+  .sec-h h2 { font-size: 27px; line-height: 1.15; }
+  .sec-h p { font-size: 16px; color: var(--ink-2); line-height: 1.6; }
+  .passos-3 { display: grid; gap: 16px; }
+  @media (min-width: 780px) { .passos-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; } }
+  .passo-c { display: flex; flex-direction: column; gap: 7px; }
+  .passo-c .n { font-family: var(--f-display); font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; }
+  .passo-c h3 { font-size: 18px; }
+  .passo-c p { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; }
 
-  footer.foot { border-top: 1px solid var(--line); margin-top: 50px; padding-top: 22px; color: var(--ink-3); font-size: 13px; }
+  .cta { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px 20px; display: flex; flex-direction: column; gap: 16px; }
+  .cta h2 { font-size: 24px; line-height: 1.15; }
+  .cta > p { font-size: 15.5px; color: var(--ink-2); line-height: 1.6; }
+  .form-grid { display: grid; gap: 14px; }
+  @media (min-width: 620px) { .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .consent { display: flex; gap: 11px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: var(--ink-2); cursor: pointer; }
+  .consent input { width: 19px; height: 19px; margin: 2px 0 0; accent-color: var(--accent); flex-shrink: 0; }
+  .legal { font-size: 12.5px; color: var(--ink-3); line-height: 1.5; }
+  .err { font-size: 14px; color: var(--crit); font-weight: 500; }
+  .ok-panel { display: flex; flex-direction: column; gap: 10px; }
+  .ok-panel .tick { font-family: var(--f-display); font-size: 24px; font-weight: 600; }
 
-  /* ---------- área da equipa ---------- */
-  .team table input[type="number"] { padding: 5px 7px; font-size: 13.5px; }
-  .team td { padding: 5px 6px; }
-  .btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-  .saved { font-size: 13.5px; color: var(--good); }
-  textarea {
-    width: 100%; min-height: 120px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 12.5px; border: 1px solid var(--line); border-radius: 8px; padding: 10px;
-    background: var(--surface-2); color: var(--ink);
-  }
-  .badge {
-    display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .06em;
-    text-transform: uppercase; color: var(--ochre); border: 1px solid currentColor;
-    border-radius: 4px; padding: 1px 6px;
-  }
-
-
-  /* ---------- navegação e marca ---------- */
-  .nav {
-    max-width: 1160px; margin: 0 auto; padding: 16px 20px;
-    display: flex; align-items: center; justify-content: space-between; gap: 20px;
-  }
-  .brand { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--ink); }
-  .brand-mark {
-    font-family: var(--f-display); font-weight: 700; font-size: 19px; letter-spacing: -.02em;
-  }
-  .brand-tld { font-size: 13px; color: var(--ink-3); font-weight: 600; }
-  .navlinks { display: flex; gap: 22px; align-items: center; }
-  .navlinks a { color: var(--ink-2); text-decoration: none; font-size: 14.5px; font-weight: 500; }
-  .navlinks a:hover { color: var(--accent); }
-  @media (max-width: 700px) { .navlinks a.hide-s { display: none; } }
-
-  /* ---------- chips do hero ---------- */
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-  .chip {
-    font-size: 13px; font-weight: 600; color: var(--ink-2);
-    background: var(--surface-2); border: 1px solid var(--line);
-    border-radius: 999px; padding: 4px 12px;
-  }
-
-  /* ---------- secções ---------- */
-  .sec { border-top: 1px solid var(--line); padding: 58px 0 10px; }
-  .sec-head { max-width: 64ch; display: grid; gap: 10px; margin-bottom: 28px; }
-  .sec h2.big { font-size: clamp(24px, 3.4vw, 32px); letter-spacing: -.015em; text-wrap: balance; }
-  .sec-head p { margin: 0; color: var(--ink-2); font-size: 16px; }
-
-  /* passos */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
-  @media (max-width: 800px) { .steps { grid-template-columns: 1fr; gap: 20px; } }
-  .step { display: grid; gap: 8px; align-content: start; }
-  .step-n {
-    font-family: var(--f-display); font-size: 15px; font-weight: 700; color: var(--accent);
-    border-top: 2px solid var(--accent); padding-top: 10px; width: 100%;
-  }
-  .step h3 { margin: 0; font-size: 17px; font-family: var(--f-display); font-weight: 600; }
-  .step p { margin: 0; color: var(--ink-2); font-size: 15px; }
-
-  /* porque é gratuito */
-  .why {
-    background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 28px 30px; display: grid; gap: 12px 34px;
-    grid-template-columns: 250px minmax(0, 1fr); align-items: start;
-  }
-  @media (max-width: 760px) { .why { grid-template-columns: 1fr; padding: 24px; } }
-  .why p { max-width: 62ch; }
-  .why h3 { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 19px; }
-  .why p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
-
-  /* fornecedores */
-  .sup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-  @media (max-width: 860px) { .sup-grid { grid-template-columns: 1fr; gap: 28px; } }
-  .sup-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
-  .sup-list li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; font-size: 15.5px; color: var(--ink-2); }
-  .sup-list b { color: var(--ink); font-weight: 600; }
-  .tick-i { color: var(--accent); font-weight: 700; }
-
-  /* faq */
-  .faq { display: grid; gap: 0; max-width: 74ch; }
   .faq details { border-bottom: 1px solid var(--line); }
   .faq summary {
-    cursor: pointer; padding: 16px 0; font-size: 16.5px; font-weight: 600;
-    list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: baseline;
+    cursor: pointer; list-style: none; padding: 17px 0; min-height: 44px; font-size: 16px; font-weight: 500;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
   }
   .faq summary::-webkit-details-marker { display: none; }
-  .faq summary::after { content: "+"; color: var(--ink-3); font-size: 19px; }
-  .faq details[open] summary::after { content: "\2013"; }
-  .faq .a { padding: 0 0 18px; color: var(--ink-2); font-size: 15.5px; max-width: 66ch; }
-  .faq .a p { margin: 0 0 10px; }
-  .faq .a p:last-child { margin-bottom: 0; }
-
-
-  /* ---------- azulejo e hero ---------- */
-  .az-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
-  .hero {
-    display: grid; grid-template-columns: 1.1fr .9fr; gap: 46px; align-items: center;
+  .faq summary::after {
+    content: ""; width: 8px; height: 8px; flex-shrink: 0;
+    border-right: 1.6px solid var(--ink-3); border-bottom: 1.6px solid var(--ink-3);
+    transform: translateY(-3px) rotate(45deg);
   }
-  @media (max-width: 880px) { .hero { grid-template-columns: 1fr; gap: 30px; } }
-  .hero-copy { display: grid; gap: 14px; }
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 6px; }
-  .hero-cta .quiet { font-size: 14px; color: var(--ink-3); }
+  .faq details[open] summary::after { transform: translateY(2px) rotate(-135deg); }
+  .faq .a { padding-bottom: 18px; font-size: 15px; line-height: 1.62; color: var(--ink-2); }
 
-  .tile-panel {
-    position: relative; border-radius: var(--radius); overflow: hidden;
-    border: 1px solid var(--line); background: var(--accent-soft);
-    min-height: 268px; display: grid; place-items: center; padding: 26px;
-  }
-  .tile-panel svg.az {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    color: var(--accent); opacity: .8;
-  }
-  @media (max-width: 880px) { .tile-panel { min-height: 220px; } }
+  .foot { padding: 40px 0 56px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--ink-3); line-height: 1.6; }
+  .foot b { font-family: var(--f-display); font-size: 15px; color: var(--ink-2); }
 
-  .ex-card {
-    position: relative; background: var(--surface); border: 1px solid var(--line);
-    border-radius: 8px; padding: 20px 22px; box-shadow: var(--shadow);
-    display: grid; gap: 3px; min-width: min(300px, 100%);
-  }
-  .ex-card .lab { color: var(--ochre); }
-  .ex-card .cond { font-size: 13.5px; color: var(--ink-2); margin-bottom: 6px; }
-  .ex-card .big {
-    font-family: var(--f-display); font-weight: 600; font-size: 36px; line-height: 1;
-    letter-spacing: -.02em; font-variant-numeric: tabular-nums;
-  }
-  .ex-card .per { font-size: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
-
-  /* banda de fundo full-bleed */
-  .band {
-    background: var(--surface-2);
-    box-shadow: 0 0 0 100vmax var(--surface-2);
-    clip-path: inset(0 -100vmax);
-    border-top: 1px solid var(--line);
-  }
-  .band.sec { padding-bottom: 58px; }
-
-  /* faixa de azulejo no rodapé */
-  .az-strip { height: 34px; margin-top: 46px; color: var(--accent); opacity: .5; }
-  .az-strip svg { width: 100%; height: 100%; display: block; }
-
-  /* marca com losango */
-  .brand-tile { width: 13px; height: 13px; color: var(--accent); flex: none; }
-
-
-  /* ---------- hero ilustrado ---------- */
-  .top-inner { padding: 40px 20px 38px; }
-  .hero { grid-template-columns: 1fr 1.06fr; gap: 52px; }
-  @media (max-width: 940px) { .hero { grid-template-columns: 1fr; gap: 26px; } }
-  .scene {
-    border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
-    box-shadow: var(--shadow); background: #EAF0F4; line-height: 0;
-  }
-  .scene svg { width: 100%; height: auto; display: block; }
-  .scene-cap {
-    background: var(--surface); border-top: 1px solid var(--line);
-    padding: 12px 16px; display: flex; justify-content: space-between;
-    align-items: baseline; gap: 12px; line-height: 1.4;
-  }
-  .scene-cap .l { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--clay); font-weight: 700; }
-  .scene-cap .r { font-size: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
-  .scene-cap .r b { color: var(--ink); font-family: var(--f-display); font-size: 17px; font-weight: 600; }
-
-  /* vinhetas dos passos */
-  .step-art {
-    border-radius: 8px; overflow: hidden; background: var(--surface);
-    border: 1px solid var(--line); margin-bottom: 4px; line-height: 0;
-  }
-  .step-art svg { width: 100%; height: auto; display: block; }
-
-  /* ícones de categorias */
-  .cats { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 22px; }
-  .cat {
-    display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600;
-    color: var(--ink-2); background: var(--surface); border: 1px solid var(--line);
-    border-radius: 999px; padding: 6px 14px 6px 10px;
-  }
-  .cat svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; animation: none !important; }
-  }
+  /* ---------- área da equipa ---------- */
+  .team { border: 1px dashed var(--line); border-radius: var(--r); margin: 34px 0; }
+  .team > summary { cursor: pointer; list-style: none; padding: 15px 18px; font-size: 14.5px; font-weight: 500; min-height: 44px; display: flex; align-items: center; }
+  .team > summary::-webkit-details-marker { display: none; }
+  .team .badge { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--accent-soft); color: var(--accent); padding: 3px 8px; border-radius: 20px; margin-left: 9px; font-weight: 600; }
+  .team .inner { padding: 0 18px 20px; display: flex; flex-direction: column; gap: 14px; }
+  .team table input[type="number"] { padding: 6px 8px; font-size: 13.5px; min-height: 36px; }
+  .btnrow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .saved { font-size: 13.5px; color: var(--good); font-weight: 500; }
+  .hint { font-size: 13.5px; color: var(--ink-3); line-height: 1.5; }
+  textarea { width: 100%; min-height: 160px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12.5px; border: 1px solid var(--line); border-radius: var(--r-sm); padding: 12px; background: var(--surface); color: var(--ink); }
 </style>
-
-<nav class="nav">
-  <a class="brand" href="#topo">
-    <svg class="brand-tile" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><path d="M14 1 L18 10 L27 14 L18 18 L14 27 L10 18 L1 14 L10 10 Z" fill="currentColor"/></svg>
-    <span class="brand-mark">Quanto Custa Casar</span><span class="brand-tld">.pt</span>
-  </a>
-  <div class="navlinks">
-    <a href="#como" class="hide-s">Como funciona</a>
-    <a href="#fornecedores" class="hide-s">Fornecedores</a>
-    <a href="#simulador">Simular</a>
-  </div>
-</nav>
-
 </head>
 <body>
-<svg class="az-defs" aria-hidden="true" focusable="false">
-  <defs>
-    <pattern id="azulejo" width="56" height="56" patternUnits="userSpaceOnUse">
-      <rect width="56" height="56" fill="none"/>
-      <rect x="0.5" y="0.5" width="55" height="55" fill="none" stroke="currentColor" stroke-width="1" opacity=".22"/>
-      <path d="M28 7 L35 21 L49 28 L35 35 L28 49 L21 35 L7 28 L21 21 Z" fill="currentColor" opacity=".14" stroke="currentColor" stroke-width="1.1" stroke-opacity=".45"/>
-      <path d="M28 14 L31.5 24.5 L42 28 L31.5 31.5 L28 42 L24.5 31.5 L14 28 L24.5 24.5 Z" fill="currentColor" opacity=".2"/>
-      <circle cx="28" cy="28" r="3.2" fill="currentColor" opacity=".4"/>
-      <circle cx="0" cy="0" r="2.4" fill="currentColor" opacity=".3"/>
-      <circle cx="56" cy="0" r="2.4" fill="currentColor" opacity=".3"/>
-      <circle cx="0" cy="56" r="2.4" fill="currentColor" opacity=".3"/>
-      <circle cx="56" cy="56" r="2.4" fill="currentColor" opacity=".3"/>
-    </pattern>
-  </defs>
-</svg>
 
-<header class="top" id="topo">
-  <div class="top-inner">
-    <div class="hero">
-      <div class="hero-copy">
-        <div class="eyebrow">Simulador de custos &middot; Portugal 2026</div>
-        <h1>Quanto custa casar em Portugal?</h1>
-        <p class="sub">A maior parte dos casais só descobre o custo real do casamento depois de já ter reservado a quinta. Aqui descobres antes: 24 rubricas, ajustadas à tua região, à tua época e ao teu estilo.</p>
-        <div class="chips">
-          <span class="chip">24 rubricas</span>
-          <span class="chip">8 regiões do país</span>
-          <span class="chip">3 épocas do ano</span>
-        </div>
-        <div class="hero-cta">
-          <a class="btn" href="#simulador">Simular o meu casamento</a>
-          <span class="quiet">Grátis &middot; sem registo</span>
-        </div>
-      </div>
-
-      <figure class="scene" style="margin:0">
-        <svg viewBox="0 0 840 520" role="img" aria-label="Ilustração de uma quinta portuguesa ao fim da tarde, com mesa comprida posta e grinaldas de luzes">
-          <defs>
-            <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#BFD3E0"/>
-              <stop offset="52%" stop-color="#E8DCD2"/>
-              <stop offset="100%" stop-color="#F6E7D9"/>
-            </linearGradient>
-            <linearGradient id="chao" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#C9BFA8"/>
-              <stop offset="100%" stop-color="#B7AC92"/>
-            </linearGradient>
-            <radialGradient id="sol" cx="18%" cy="62%" r="42%">
-              <stop offset="0%" stop-color="#F7D9AE" stop-opacity=".95"/>
-              <stop offset="100%" stop-color="#F7D9AE" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-
-          <rect width="840" height="520" fill="url(#ceu)"/>
-          <rect width="840" height="520" fill="url(#sol)"/>
-          <circle cx="150" cy="322" r="34" fill="#F9E2BC" opacity=".85"/>
-
-          <path d="M0 330 Q150 288 300 320 T600 312 T840 330 L840 400 L0 400 Z" fill="#9FA98F" opacity=".55"/>
-          <path d="M0 352 Q200 322 420 348 T840 342 L840 400 L0 400 Z" fill="#87957A" opacity=".55"/>
-
-          <g fill="#4E6B52">
-            <path d="M92 372 q-13 -74 13 -122 q26 48 13 122 z"/>
-            <path d="M141 376 q-10 -58 10 -96 q20 38 10 96 z"/>
-            <path d="M742 374 q-12 -68 12 -112 q24 44 12 112 z"/>
-            <path d="M788 378 q-9 -52 9 -86 q18 34 9 86 z"/>
-          </g>
-
-          <g>
-            <path d="M255 214 L420 158 L585 214 Z" fill="#B0603C"/>
-            <path d="M255 214 L420 158 L585 214 Z" fill="none" stroke="#8F4B2E" stroke-width="3"/>
-            <rect x="272" y="212" width="296" height="150" fill="#F5F1E9"/>
-            <rect x="272" y="212" width="296" height="150" fill="none" stroke="#D9D2C4" stroke-width="2"/>
-            <path d="M300 362 v-62 a26 26 0 0 1 52 0 v62 z" fill="#C6D3DC"/>
-            <path d="M394 362 v-62 a26 26 0 0 1 52 0 v62 z" fill="#B7C7D2"/>
-            <path d="M488 362 v-62 a26 26 0 0 1 52 0 v62 z" fill="#C6D3DC"/>
-            <path d="M300 362 v-62 a26 26 0 0 1 52 0 v62 M394 362 v-62 a26 26 0 0 1 52 0 v62 M488 362 v-62 a26 26 0 0 1 52 0 v62" fill="none" stroke="#8FA3B2" stroke-width="2.5"/>
-            <rect x="404" y="228" width="32" height="32" fill="#245C86" opacity=".22"/>
-            <path d="M420 230 L428 244 L420 258 L412 244 Z" fill="#245C86" opacity=".55"/>
-          </g>
-
-          <g stroke="#C99A55" stroke-width="2.5" fill="none">
-            <path d="M40 176 Q210 246 380 172"/>
-            <path d="M380 172 Q560 244 800 168"/>
-          </g>
-          <g fill="#F2C879">
-            <circle cx="98" cy="207" r="6"/><circle cx="160" cy="226" r="6"/><circle cx="222" cy="234" r="6"/>
-            <circle cx="284" cy="228" r="6"/><circle cx="340" cy="206" r="6"/>
-            <circle cx="440" cy="205" r="6"/><circle cx="510" cy="227" r="6"/><circle cx="580" cy="232" r="6"/>
-            <circle cx="650" cy="222" r="6"/><circle cx="716" cy="198" r="6"/>
-          </g>
-          <g fill="#F7DEA6" opacity=".5">
-            <circle cx="98" cy="207" r="13"/><circle cx="222" cy="234" r="13"/><circle cx="340" cy="206" r="13"/>
-            <circle cx="510" cy="227" r="13"/><circle cx="650" cy="222" r="13"/>
-          </g>
-
-          <rect y="374" width="840" height="146" fill="url(#chao)"/>
-
-          <g>
-            <rect x="150" y="404" width="540" height="20" rx="4" fill="#FBF8F2"/>
-            <path d="M150 424 h540 l-26 44 h-488 z" fill="#EFE9DC"/>
-            <g fill="#DED6C4">
-              <rect x="196" y="428" width="6" height="40"/><rect x="330" y="428" width="6" height="40"/>
-              <rect x="500" y="428" width="6" height="40"/><rect x="634" y="428" width="6" height="40"/>
-            </g>
-            <g fill="#5C7A5E">
-              <path d="M262 404 q-4 -22 6 -34 q10 12 6 34 z"/>
-              <path d="M420 402 q-5 -26 7 -40 q12 14 7 40 z"/>
-              <path d="M578 404 q-4 -22 6 -34 q10 12 6 34 z"/>
-            </g>
-            <g fill="#D98BA0">
-              <circle cx="268" cy="368" r="7"/><circle cx="427" cy="360" r="8"/><circle cx="584" cy="368" r="7"/>
-            </g>
-            <g fill="#C9C0AC">
-              <rect x="216" y="396" width="20" height="9" rx="2"/><rect x="360" y="396" width="20" height="9" rx="2"/>
-              <rect x="470" y="396" width="20" height="9" rx="2"/><rect x="606" y="396" width="20" height="9" rx="2"/>
-            </g>
-          </g>
-
-          <g fill="#A99E86">
-            <rect x="118" y="418" width="14" height="52" rx="4"/>
-            <rect x="708" y="418" width="14" height="52" rx="4"/>
-          </g>
-        </svg>
-        <figcaption class="scene-cap">
-          <span class="l">Exemplo</span>
-          <span class="r">100 convidados &middot; Lisboa &middot; época alta &nbsp; <b>35 300 €</b></span>
-        </figcaption>
-      </figure>
-    </div>
+<header class="top">
+  <div class="wide top-in">
+    <span class="marca">
+      <svg width="18" height="18" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 1 L18 10 L27 14 L18 18 L14 27 L10 18 L1 14 L10 10 Z" fill="currentColor"/></svg>
+      Quanto Custa Casar
+    </span>
+    <nav>
+      <a href="#como">Como funciona</a>
+      <a href="#fornecedores">Fornecedores</a>
+      <a href="#faq">Perguntas</a>
+    </nav>
   </div>
 </header>
 
-<div class="wrap">
-  <div class="grid" id="simulador">
+<div class="wrap abre" id="abertura">
+  <span class="eyebrow">Simulador gratuito · Portugal</span>
+  <h1>Quanto custa casar em Portugal?</h1>
+  <p>Cinco perguntas, uma de cada vez. No fim ficam a saber quanto custa o vosso casamento, rubrica a rubrica — sem registo e sem compromisso.</p>
+</div>
 
-    <!-- ================= COLUNA ESQUERDA: CONTROLOS ================= -->
-    <div class="col-in">
-      <div class="block">
-        <h2>O teu casamento</h2>
-        <div class="panel" style="display:grid; gap:18px;">
-          <div class="field">
-            <label class="lab" for="convidados">Número de convidados</label>
-            <div class="guests">
-              <input type="range" id="convidadosRange" min="20" max="350" step="5" value="100" aria-label="Número de convidados">
-              <input type="number" id="convidados" min="10" max="600" step="1" value="100">
-            </div>
-          </div>
+<!-- ================= PERCURSO ================= -->
+<main class="wrap flow" id="simulador">
 
-          <div class="row2">
-            <div class="field">
-              <label class="lab" for="distrito">Distrito</label>
-              <div class="selwrap"><select id="distrito"></select></div>
-            </div>
-            <div class="field">
-              <label class="lab" for="dataCasamento">Data do casamento</label>
-              <input type="date" id="dataCasamento">
-            </div>
-          </div>
+  <div class="barra-passos" id="barraPassos" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-label="Progresso das perguntas"></div>
 
-          <div class="row2">
-            <div class="field">
-              <label class="lab" for="regiao">Zona de preços</label>
-              <div class="selwrap"><select id="regiao"></select></div>
-              <p class="hint" id="regiaoHint"></p>
-            </div>
-            <div class="field">
-              <label class="lab" for="epoca">Época</label>
-              <div class="selwrap"><select id="epoca"></select></div>
-              <p class="hint" id="epocaHint"></p>
-            </div>
-          </div>
+  <div class="passo-topo">
+    <button type="button" class="voltar" id="btnVoltar" hidden>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 L8 12 L15 19"/></svg>
+      Voltar
+    </button>
+    <span></span>
+    <span class="conta-passos" id="contaPassos">Pergunta 1 de 5</span>
+  </div>
 
-          <div class="field">
-            <span class="lab">Estilo do casamento</span>
-            <div class="seg" id="estilo" role="group" aria-label="Estilo do casamento"></div>
-            <p class="hint" id="estiloHint"></p>
-          </div>
+  <!-- passo 1 -->
+  <section class="passo" id="passo1">
+    <h2>Quantas pessoas vão estar convosco?</h2>
+    <p class="sub">É o número que mais mexe na conta — o catering e a bebida são cobrados por pessoa.</p>
+    <div class="cartao">
+      <div class="numerao"><b id="numConvidados">100</b><span>convidados</span></div>
+      <input type="range" id="convidadosRange" min="20" max="350" step="5" value="100" aria-label="Número de convidados">
+      <div class="chips" id="chipsConvidados"></div>
+    </div>
+    <div class="nota">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11 L12 16"/><path d="M12 8 L12 8.01"/></svg>
+      <span id="notaConvidados"></span>
+    </div>
+  </section>
 
-          <div class="field">
-            <label class="lab" for="orcamento">Orçamento que tens em mente (opcional)</label>
-            <input type="number" id="orcamento" min="0" step="500" placeholder="ex.: 20000" inputmode="numeric">
-          </div>
-        </div>
+  <!-- passo 2 -->
+  <section class="passo" id="passo2" hidden>
+    <h2>Onde vai ser o casamento?</h2>
+    <p class="sub">Os preços mudam muito de zona para zona: entre o Algarve e o Centro do país há mais de 25% de diferença nas mesmas rubricas.</p>
+    <div class="cartao">
+      <div class="campo">
+        <label class="lab" for="distrito">Distrito</label>
+        <div class="selwrap"><select id="distrito"></select></div>
       </div>
-
-      <div class="block">
-        <h2>O que queres ter</h2>
-        <p class="hint">Desliga o que não se aplica. Os valores ao lado já contam com o número de convidados, a região e a época.</p>
-        <div class="panel" id="rubricas"></div>
+      <div class="campo">
+        <label class="lab" for="regiao">Zona de preços</label>
+        <div class="selwrap"><select id="regiao"></select></div>
+        <p class="hint" id="regiaoHint">Escolhe o distrito e a zona ajusta-se sozinha. Podes corrigi-la se o espaço for noutra zona.</p>
       </div>
     </div>
+  </section>
 
-    <!-- ================= COLUNA DIREITA: RESULTADO ================= -->
-    <div class="col-out">
-      <div class="block">
-        <div class="total-card">
-          <span class="lab">Estimativa para o teu casamento</span>
-          <div class="total-num" id="total">—</div>
-          <div class="total-range" id="range"></div>
-          <div class="total-meta">
-            <span>Por convidado <b id="porConvidado">—</b></span>
-            <span>Convidados <b id="nConv">—</b></span>
-            <span>Rubricas incluídas <b id="nRub">—</b></span>
-          </div>
-          <div class="meter" id="meterWrap" hidden>
-            <div class="meter-track"><div class="meter-fill" id="meterFill" style="width:0%"></div></div>
-            <div class="meter-msg"><span class="dot" id="meterDot"></span><span id="meterMsg"></span></div>
-          </div>
-        </div>
+  <!-- passo 3 -->
+  <section class="passo" id="passo3" hidden>
+    <h2>Já têm data?</h2>
+    <p class="sub">Um sábado de agosto e um sábado de fevereiro não custam o mesmo. Se ainda não souberem, escolham só a altura do ano.</p>
+    <div class="cartao">
+      <div class="campo">
+        <label class="lab" for="dataCasamento">Data do casamento</label>
+        <input type="date" id="dataCasamento">
       </div>
+      <div class="campo">
+        <span class="lab">Altura do ano</span>
+        <div class="escolhas" id="escolhasEpoca"></div>
+      </div>
+    </div>
+  </section>
 
-      <div class="block">
-        <h2>Onde vai o dinheiro</h2>
-        <p class="hint">As maiores rubricas da tua estimativa. Passa o rato por cima para ver o intervalo de preços.</p>
-        <div class="panel"><div class="bars" id="bars"></div></div>
-      </div>
+  <!-- passo 4 -->
+  <section class="passo" id="passo4" hidden>
+    <h2>Que casamento têm em mente?</h2>
+    <p class="sub">Não é sobre gosto, é sobre escala: quantos fornecedores entram e de que gama.</p>
+    <div class="cartao">
+      <div class="escolhas" id="escolhasEstilo"></div>
+    </div>
+  </section>
 
-      <div class="block">
-        <details class="more">
-          <summary>Ver o detalhe rubrica a rubrica</summary>
-          <div class="inner tablewrap">
-            <table id="detalhe">
-              <thead><tr><th>Rubrica</th><th class="num">Mínimo</th><th class="num">Estimativa</th><th class="num">Máximo</th></tr></thead>
-              <tbody id="detalheBody"></tbody>
-            </table>
-          </div>
-        </details>
-      </div>
+  <!-- passo 5 -->
+  <section class="passo" id="passo5" hidden>
+    <h2>O que querem ter no dia?</h2>
+    <p class="sub">Já pusemos o que é mais comum. Desliga o que não se aplica — a estimativa acompanha.</p>
+    <div class="cartao" id="rubricas"></div>
+    <div class="campo" style="margin-top: 4px;">
+      <label class="lab" for="orcamento">Orçamento que têm em mente (opcional)</label>
+      <input type="number" id="orcamento" min="0" step="500" placeholder="ex.: 25000" inputmode="numeric">
+    </div>
+  </section>
+</main>
 
-      <!-- ================= LEAD ================= -->
-      <div class="block">
-        <div class="cta" id="ctaBox">
-          <h2>Queres esta estimativa afinada ao teu caso?</h2>
-          <p>Enviamos-te o orçamento detalhado e propostas reais de quintas, catering, fotografia e música para a tua data. Sem custos para ti.</p>
-          <form id="leadForm" novalidate>
-            <div class="form-grid">
-              <div class="field">
-                <label class="lab" for="ln">Nome</label>
-                <input type="text" id="ln" name="nome" autocomplete="name" required>
-              </div>
-              <div class="field">
-                <label class="lab" for="le">Email</label>
-                <input type="email" id="le" name="email" autocomplete="email" required>
-              </div>
-              <div class="field">
-                <label class="lab" for="lt">Telemóvel</label>
-                <input type="tel" id="lt" name="telefone" autocomplete="tel" required>
-              </div>
-              <div class="field">
-                <label class="lab" for="ld">Data do casamento</label>
-                <input type="date" id="ld" name="data">
-              </div>
-            </div>
-            <div style="display:grid; gap:11px; margin-top:16px;">
-              <label class="consent"><input type="checkbox" id="c1"><span>Quero receber a minha estimativa e ser contactado(a) pela equipa para organizar o casamento.</span></label>
-              <label class="consent"><input type="checkbox" id="c2"><span>Autorizo a partilha dos meus dados com fornecedores parceiros (quintas, catering, fotografia, música) para receber propostas.</span></label>
-              <p class="err" id="leadErr" hidden></p>
-              <button class="btn" type="submit" id="leadBtn">Receber a minha estimativa</button>
-              <p class="legal">Os teus dados são usados apenas para te enviar a estimativa e as propostas que autorizares. Podes retirar o consentimento a qualquer momento.</p>
-            </div>
-          </form>
-        </div>
-      </div>
+<!-- ================= RESULTADO ================= -->
+<main class="wrap" id="resultado" hidden style="padding-bottom: 60px;">
+  <div class="abre" style="padding: 34px 0 20px;">
+    <span class="eyebrow">A vossa estimativa</span>
+    <h1 style="font-size: 32px;">É este o valor a ter em conta</h1>
+  </div>
+
+  <div class="cartao">
+    <div class="res-total">
+      <span class="lab">Custo estimado do casamento</span>
+      <span class="grande" id="total">—</span>
+      <span class="res-int" id="range"></span>
+    </div>
+    <div class="res-meta">
+      <span>Por convidado <b id="porConvidado">—</b></span>
+      <span>Convidados <b id="nConv">—</b></span>
+      <span>Rubricas <b id="nRub">—</b></span>
+    </div>
+    <div class="medidor" id="medidorWrap" hidden>
+      <div class="medidor-track"><div class="medidor-fill" id="medidorFill"></div></div>
+      <div class="medidor-msg"><span class="ponto" id="medidorPonto"></span><span id="medidorMsg"></span></div>
     </div>
   </div>
 
-  <!-- ================= COMO FUNCIONA ================= -->
-  <section class="sec band" id="como">
-    <div class="sec-head">
-      <h2 class="big">Da estimativa às propostas reais</h2>
-      <p>O simulador dá-te o número. O que vem a seguir é o trabalho que ninguém tem paciência para fazer: pedir orçamentos, comparar e perceber o que está mesmo incluído em cada proposta.</p>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-art"><svg viewBox="0 0 300 150" role="img" aria-label="Ilustração de um painel com cursor e valor"><rect width="300" height="150" fill="#EEF3F7"/><rect x="34" y="26" width="232" height="98" rx="7" fill="#FFFFFF" stroke="#D5DFE7" stroke-width="2"/><rect x="52" y="46" width="64" height="7" rx="3.5" fill="#B9C7D3"/><rect x="52" y="68" width="150" height="6" rx="3" fill="#DFE7ED"/><rect x="52" y="68" width="88" height="6" rx="3" fill="#245C86"/><circle cx="140" cy="71" r="10" fill="#FFFFFF" stroke="#245C86" stroke-width="3"/><rect x="52" y="94" width="46" height="14" rx="3" fill="#EDF1F5"/><rect x="106" y="94" width="46" height="14" rx="3" fill="#245C86" opacity=".85"/><rect x="160" y="94" width="46" height="14" rx="3" fill="#EDF1F5"/><rect x="196" y="40" width="56" height="26" rx="4" fill="#B0603C" opacity=".14"/><text x="224" y="58" font-family="Georgia,serif" font-size="17" font-weight="bold" fill="#B0603C" text-anchor="middle">€</text></svg></div>
-        <div class="step-n">01</div>
-        <h3>Simulas em dois minutos</h3>
-        <p>Escolhes convidados, região, época e o que queres ter no dia. O valor muda à medida que decides — vês logo o que é que cada escolha custa.</p>
-      </div>
-      <div class="step">
-        <div class="step-art"><svg viewBox="0 0 300 150" role="img" aria-label="Ilustração de um orçamento detalhado com barras"><rect width="300" height="150" fill="#EEF3F7"/><rect x="52" y="18" width="196" height="118" rx="7" fill="#FFFFFF" stroke="#D5DFE7" stroke-width="2"/><rect x="70" y="36" width="72" height="8" rx="4" fill="#1C3D57"/><g><rect x="70" y="60" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="120" y="59" width="108" height="8" rx="4" fill="#245C86"/></g><g><rect x="70" y="78" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="120" y="77" width="74" height="8" rx="4" fill="#245C86" opacity=".8"/></g><g><rect x="70" y="96" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="120" y="95" width="52" height="8" rx="4" fill="#245C86" opacity=".62"/></g><g><rect x="70" y="114" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="120" y="113" width="32" height="8" rx="4" fill="#245C86" opacity=".45"/></g></svg></div>
-        <div class="step-n">02</div>
-        <h3>Recebes o orçamento detalhado</h3>
-        <p>Rubrica a rubrica, com o intervalo de preços de cada uma e o custo por convidado. Fica teu, para levares para as reuniões com fornecedores.</p>
-      </div>
-      <div class="step">
-        <div class="step-art"><svg viewBox="0 0 300 150" role="img" aria-label="Ilustração de três propostas de fornecedores"><rect width="300" height="150" fill="#EEF3F7"/><g transform="rotate(-7 96 82)"><rect x="46" y="42" width="94" height="76" rx="6" fill="#FFFFFF" stroke="#D5DFE7" stroke-width="2"/><rect x="60" y="58" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="60" y="74" width="60" height="5" rx="2.5" fill="#E2E9EF"/><rect x="60" y="86" width="48" height="5" rx="2.5" fill="#E2E9EF"/></g><g><rect x="102" y="34" width="96" height="82" rx="6" fill="#FFFFFF" stroke="#245C86" stroke-width="2.5"/><rect x="118" y="52" width="46" height="7" rx="3.5" fill="#245C86"/><rect x="118" y="70" width="64" height="5" rx="2.5" fill="#DBE4EB"/><rect x="118" y="82" width="52" height="5" rx="2.5" fill="#DBE4EB"/><rect x="118" y="96" width="34" height="10" rx="3" fill="#B0603C" opacity=".2"/></g><g transform="rotate(7 214 82)"><rect x="168" y="42" width="94" height="76" rx="6" fill="#FFFFFF" stroke="#D5DFE7" stroke-width="2"/><rect x="182" y="58" width="42" height="6" rx="3" fill="#C3CFDA"/><rect x="182" y="74" width="60" height="5" rx="2.5" fill="#E2E9EF"/><rect x="182" y="86" width="48" height="5" rx="2.5" fill="#E2E9EF"/></g></svg></div>
-        <div class="step-n">03</div>
-        <h3>Pedimos as propostas por ti</h3>
-        <p>Falamos com quintas, catering, fotografia e música da tua zona, para a tua data e para o teu número de convidados. Comparas e decides.</p>
-      </div>
-    </div>
+  <div style="display: flex; gap: 10px; margin-top: 14px;">
+    <button type="button" class="btn ghost pequeno" id="btnRever">Rever as respostas</button>
+  </div>
 
-    <div class="why" style="margin-top:38px; background:var(--surface);">
-      <h3>Porque é que é gratuito para ti</h3>
-      <p>Não pagas nada, em nenhuma fase. Quem paga são os fornecedores, porque um casal que já sabe a data, a região e o orçamento vale-lhes mais do que publicidade genérica. É por isso que só partilhamos os teus dados se autorizares, e apenas com fornecedores da tua zona.</p>
-    </div>
-  </section>
+  <div style="margin-top: 34px; display: flex; flex-direction: column; gap: 14px;">
+    <h2 style="font-size: 22px;">Onde vai o dinheiro</h2>
+    <div class="bars" id="bars"></div>
+  </div>
 
-  <!-- ================= FORNECEDORES ================= -->
-  <section class="sec" id="fornecedores">
-    <div class="sup-grid">
-      <div>
-        <div class="sec-head" style="margin-bottom:22px;">
-          <h2 class="big">É quinta, catering, fotógrafo ou DJ?</h2>
-          <p>Estamos a construir a rede de fornecedores parceiros para arrancar em 2026. Deixa os teus dados e entramos em contacto com as condições antes do lançamento.</p>
+  <details class="dobra" style="margin-top: 28px;">
+    <summary>Ver as 24 rubricas, uma a uma</summary>
+    <div class="corpo tablewrap">
+      <table id="detalhe">
+        <thead><tr><th>Rubrica</th><th class="num">Mínimo</th><th class="num">Estimativa</th><th class="num">Máximo</th></tr></thead>
+        <tbody id="detalheBody"></tbody>
+      </table>
+    </div>
+  </details>
+
+  <div class="cta" id="ctaBox" style="margin-top: 30px;">
+    <h2>Querem esta estimativa afinada ao vosso caso?</h2>
+    <p>Enviamos o orçamento detalhado e propostas reais de quintas, catering, fotografia e música para a vossa data. Sem custos para vocês.</p>
+    <form id="leadForm" novalidate>
+      <div class="form-grid">
+        <div class="campo">
+          <label class="lab" for="ln">Nome</label>
+          <input type="text" id="ln" name="nome" autocomplete="name" required>
         </div>
-        <div class="cats">
-          <span class="cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l9-7 9 7v11"/><path d="M9 21v-6a3 3 0 0 1 6 0v6"/></svg>Quintas</span>
-          <span class="cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="6"/><path d="M4 4v5M7 4v5M5.5 9v11M19 4c-1.5 2-1.5 5 0 7v9"/></svg>Catering</span>
-          <span class="cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.4"/></svg>Fotografia</span>
-          <span class="cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.8"/><circle cx="17.5" cy="16" r="2.8"/></svg>Música</span>
-          <span class="cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="2.6"/><path d="M12 6.4c0-2 1.4-3.4 3-3.4 0 2-1.2 3.4-3 3.4zM14.6 9c1.8-.9 3.6-.3 4.4 1.1-1.8.9-3.6.4-4.4-1.1zM12 11.6c0 2-1.4 3.4-3 3.4 0-2 1.2-3.4 3-3.4zM9.4 9c-1.8.9-3.6.3-4.4-1.1C6.8 7 8.6 7.5 9.4 9zM12 12v9"/></svg>Decoração</span>
+        <div class="campo">
+          <label class="lab" for="le">Email</label>
+          <input type="email" id="le" name="email" autocomplete="email" required>
         </div>
-        <ul class="sup-list">
-          <li><span class="tick-i">&check;</span><span><b>Casais com trabalho de casa feito.</b> Chegam com data, número de convidados, região e orçamento já definidos.</span></li>
-          <li><span class="tick-i">&check;</span><span><b>Só da tua zona e da tua categoria.</b> Não enviamos pedidos de casamentos no Algarve a uma quinta do Minho.</span></li>
-          <li><span class="tick-i">&check;</span><span><b>Com consentimento explícito.</b> O casal autoriza a partilha antes de te chegar o contacto — sem risco de RGPD do teu lado.</span></li>
-          <li><span class="tick-i">&check;</span><span><b>Sabemos o que é converter leads.</b> É o que fazemos todos os dias noutro setor, com plataforma própria.</span></li>
-        </ul>
+        <div class="campo">
+          <label class="lab" for="lt">Telemóvel</label>
+          <input type="tel" id="lt" name="telefone" autocomplete="tel" required>
+        </div>
+        <div class="campo">
+          <label class="lab" for="ld">Data do casamento</label>
+          <input type="date" id="ld" name="data">
+        </div>
       </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 18px;">
+        <label class="consent"><input type="checkbox" id="c1"><span>Queremos receber a estimativa e ser contactados pela equipa para organizar o casamento.</span></label>
+        <label class="consent"><input type="checkbox" id="c2"><span>Autorizamos a partilha dos nossos dados com fornecedores parceiros (quintas, catering, fotografia, música) para receber propostas.</span></label>
+        <p class="err" id="leadErr" hidden></p>
+        <button class="btn" type="submit" id="leadBtn">Receber a nossa estimativa</button>
+        <p class="legal">Os vossos dados são usados apenas para enviar a estimativa e as propostas que autorizarem. Podem retirar o consentimento a qualquer momento.</p>
+      </div>
+    </form>
+  </div>
+</main>
 
-      <div class="cta" id="supBox">
-        <h2>Quero ser fornecedor parceiro</h2>
-        <form id="supForm" novalidate>
-          <div class="form-grid">
-            <div class="field">
-              <label class="lab" for="se">Empresa</label>
-              <input type="text" id="se" autocomplete="organization" required>
-            </div>
-            <div class="field">
-              <label class="lab" for="sc">Categoria</label>
-              <div class="selwrap"><select id="sc">
-                <option>Espaço / quinta</option>
-                <option>Catering e bebidas</option>
-                <option>Fotografia</option>
-                <option>Vídeo</option>
-                <option>Música / DJ / banda</option>
-                <option>Decoração e flores</option>
-                <option>Bolos e doçaria</option>
-                <option>Beleza e cabelo</option>
-                <option>Transporte</option>
-                <option>Outra</option>
-              </select></div>
-            </div>
-            <div class="field">
-              <label class="lab" for="sd">Distrito</label>
-              <input type="text" id="sd" placeholder="ex.: Braga" required>
-            </div>
-            <div class="field">
-              <label class="lab" for="sn">Nome do responsável</label>
-              <input type="text" id="sn" autocomplete="name" required>
-            </div>
-            <div class="field">
-              <label class="lab" for="sm">Email</label>
-              <input type="email" id="sm" autocomplete="email" required>
-            </div>
-            <div class="field">
-              <label class="lab" for="st">Telefone</label>
-              <input type="tel" id="st" autocomplete="tel">
-            </div>
-          </div>
-          <div style="display:grid; gap:11px; margin-top:16px;">
-            <label class="consent"><input type="checkbox" id="sc1"><span>Autorizo o contacto para apresentação das condições de parceria.</span></label>
-            <p class="err" id="supErr" hidden></p>
-            <button class="btn" type="submit" id="supBtn">Quero receber as condições</button>
-          </div>
-        </form>
+<!-- ================= BARRA VIVA ================= -->
+<div class="rodape-vivo" id="rodapeVivo">
+  <div class="wrap rodape-in">
+    <div class="vivo-linha">
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <span class="vivo-eti" id="vivoEti">Por agora</span>
+        <span class="vivo-val" id="vivoVal">—</span>
+      </div>
+      <span class="vivo-obs" id="vivoObs"></span>
+    </div>
+    <button type="button" class="btn" id="btnContinuar">Continuar</button>
+  </div>
+</div>
+
+<!-- ================= COMO FUNCIONA ================= -->
+<section class="sec creme" id="como">
+  <div class="wide">
+    <div class="sec-h">
+      <h2>Como chegamos a este número</h2>
+      <p>Não é um valor tirado de um artigo estrangeiro. São intervalos de mercado praticados em Portugal, rubrica a rubrica.</p>
+    </div>
+    <div class="passos-3">
+      <div class="passo-c">
+        <span class="n">01</span>
+        <h3>24 rubricas, não uma média</h3>
+        <p>Do espaço às alianças, cada rubrica tem um mínimo, um valor típico e um máximo. Umas são preço fixo, outras são cobradas por convidado.</p>
+      </div>
+      <div class="passo-c">
+        <span class="n">02</span>
+        <h3>Ajustado à vossa zona e data</h3>
+        <p>As rubricas que dependem do mercado local sobem ou descem com o distrito e com a altura do ano. As de retalho — vestido, fato, alianças — mantêm preço nacional.</p>
+      </div>
+      <div class="passo-c">
+        <span class="n">03</span>
+        <h3>Revisto por quem organiza</h3>
+        <p>Os intervalos são revistos por profissionais de organização de casamentos. São indicativos: o preço final depende dos fornecedores escolhidos e da data.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ================= FAQ ================= -->
-  <section class="sec" id="faq">
-    <div class="sec-head">
-      <h2 class="big">Perguntas que toda a gente faz</h2>
+<!-- ================= FORNECEDORES ================= -->
+<section class="sec" id="fornecedores">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>É fornecedor de casamentos?</h2>
+      <p>Estamos a montar a rede de parceiros por distrito. Quem entrar agora recebe os pedidos dos casais da sua zona antes do lançamento.</p>
     </div>
+    <div class="cta" id="supBox">
+      <form id="supForm" novalidate>
+        <div class="form-grid">
+          <div class="campo">
+            <label class="lab" for="se">Empresa</label>
+            <input type="text" id="se" autocomplete="organization" required>
+          </div>
+          <div class="campo">
+            <label class="lab" for="sc">Categoria</label>
+            <div class="selwrap"><select id="sc">
+              <option>Espaço / quinta</option>
+              <option>Catering e bebidas</option>
+              <option>Fotografia</option>
+              <option>Vídeo</option>
+              <option>Música / DJ / banda</option>
+              <option>Decoração e flores</option>
+              <option>Bolos e doçaria</option>
+              <option>Beleza e cabelo</option>
+              <option>Transporte</option>
+              <option>Outra</option>
+            </select></div>
+          </div>
+          <div class="campo">
+            <label class="lab" for="sd">Distrito</label>
+            <input type="text" id="sd" placeholder="ex.: Braga" required>
+          </div>
+          <div class="campo">
+            <label class="lab" for="sn">Nome do responsável</label>
+            <input type="text" id="sn" autocomplete="name" required>
+          </div>
+          <div class="campo">
+            <label class="lab" for="sm">Email</label>
+            <input type="email" id="sm" autocomplete="email" required>
+          </div>
+          <div class="campo">
+            <label class="lab" for="st">Telefone</label>
+            <input type="tel" id="st" autocomplete="tel">
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 18px;">
+          <label class="consent"><input type="checkbox" id="sc1"><span>Autorizo o contacto para apresentação das condições de parceria.</span></label>
+          <p class="err" id="supErr" hidden></p>
+          <button class="btn" type="submit" id="supBtn">Quero receber as condições</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec creme" id="faq">
+  <div class="wrap">
+    <div class="sec-h"><h2>Perguntas que nos fazem sempre</h2></div>
     <div class="faq">
-      <details open>
-        <summary>Afinal, quanto custa casar em Portugal?</summary>
-        <div class="a">
-          <p>Não há um número só — há um intervalo enorme, e é por isso que a pergunta é tão difícil de responder. Para dar uma referência: 100 convidados na zona de Lisboa, em época alta e num formato clássico com tudo incluído, dá uma estimativa à volta dos 35.000 €, ou seja cerca de 355 € por convidado.</p>
-          <p>Os mesmos 100 convidados, no Centro do país, fora de época e num formato intimista, ficam à volta dos 19.500 € — pouco mais de metade. A região, o mês e o número de convidados pesam mais do que qualquer outra escolha que faças — e é exactamente isso que o simulador te mostra.</p>
-        </div>
-      </details>
       <details>
-        <summary>O simulador é mesmo gratuito?</summary>
-        <div class="a"><p>É, e não precisas de deixar dados nenhuns para simular. Só pedimos o contacto se quiseres receber o orçamento detalhado por email e propostas de fornecedores.</p></div>
+        <summary>Isto é mesmo grátis?</summary>
+        <div class="a"><p>Simular é grátis e não é preciso registo. Só pedimos contactos a quem quiser receber o orçamento detalhado e propostas de fornecedores. Quem paga somos nós a receber dos parceiros, nunca o casal.</p></div>
       </details>
       <details>
         <summary>De onde vêm estes preços?</summary>
-        <div class="a"><p>De intervalos de mercado praticados em Portugal, organizados por rubrica e revistos por quem organiza casamentos há anos. São valores indicativos: o preço final depende sempre dos fornecedores que escolheres e da data. À medida que fecharmos orçamentos reais, os intervalos vão sendo afinados.</p></div>
+        <div class="a"><p>De intervalos praticados em Portugal, organizados por rubrica e revistos por profissionais de organização de casamentos. São indicativos: o preço final depende sempre dos fornecedores escolhidos e da data.</p></div>
       </details>
       <details>
-        <summary>Os meus dados vão parar às mãos de quem?</summary>
-        <div class="a"><p>Só de quem tu autorizares. São duas autorizações separadas: uma para a nossa equipa te contactar, outra para partilharmos o teu pedido com fornecedores parceiros da tua zona. Podes dar só a primeira, e podes retirar qualquer uma a qualquer momento.</p></div>
+        <summary>Os nossos dados vão parar às mãos de quem?</summary>
+        <div class="a"><p>Só de quem autorizarem. São duas autorizações separadas: uma para a nossa equipa contactar, outra para partilharmos o pedido com fornecedores parceiros da vossa zona. Podem dar só a primeira, e podem retirar qualquer uma a qualquer momento.</p></div>
       </details>
       <details>
-        <summary>Com quanto tempo devo começar a planear?</summary>
-        <div class="a"><p>As quintas com procura alta fecham sábados de época alta com 12 a 18 meses de antecedência, e a data condiciona quase tudo o resto. Simular cedo serve sobretudo para não reservares o espaço antes de saberes o que sobra para o resto.</p></div>
+        <summary>Com quanto tempo devemos começar a planear?</summary>
+        <div class="a"><p>As quintas com procura alta fecham sábados de época alta com 12 a 18 meses de antecedência, e a data condiciona quase tudo o resto. Simular cedo serve sobretudo para não reservarem o espaço antes de saberem o que sobra para o resto.</p></div>
       </details>
     </div>
-  </section>
+  </div>
+</section>
 
+<div class="wrap">
   <!-- ================= ÁREA DA EQUIPA ================= -->
-  <div class="block" style="margin-top:44px;" id="areaEquipa" hidden>
-    <details class="more team">
-      <summary><span>Área da equipa &middot; tabela de preços e leads <span class="badge">Protótipo</span></span></summary>
-      <div class="inner">
-        <p class="hint" style="margin-top:0">Bruna: substitui aqui os valores indicativos pelos reais. <b>Estimativa</b> é o valor típico que o simulador usa; mínimo e máximo definem o intervalo mostrado ao casal. Guardar grava neste navegador; <b>Copiar tabela</b> dá-te o ficheiro para me enviares e eu fixar como base do site.</p>
-        <div class="tablewrap">
-          <table id="editor">
-            <thead><tr><th>Rubrica</th><th>Unidade</th><th class="num">Mínimo</th><th class="num">Estimativa</th><th class="num">Máximo</th></tr></thead>
-            <tbody id="editorBody"></tbody>
-          </table>
-        </div>
-
-        <h2 style="margin-top:26px; font-size:17px;">Multiplicadores</h2>
-        <div class="tablewrap">
-          <table id="multEditor">
-            <thead><tr><th>Fator</th><th class="num">Multiplicador</th></tr></thead>
-            <tbody id="multBody"></tbody>
-          </table>
-        </div>
-
-        <div class="btnrow">
-          <button class="btn" type="button" id="btnGuardar">Guardar preços</button>
-          <button class="btn ghost" type="button" id="btnRepor">Repor valores indicativos</button>
-          <button class="btn ghost" type="button" id="btnCopiar">Copiar tabela (JSON)</button>
-          <span class="saved" id="savedMsg" hidden>Guardado.</span>
-        </div>
-        <textarea id="jsonOut" hidden readonly aria-label="Tabela de preços em JSON"></textarea>
-
-        <h2 style="margin-top:30px; font-size:17px;">Leads de teste</h2>
-        <p class="hint" style="margin-top:0">No protótipo as leads ficam guardadas apenas neste navegador, para poderes testar o percurso completo. Na versão final ligam-se ao email da equipa e ao backoffice.</p>
-        <div class="tablewrap"><table id="leadsTable"><tbody id="leadsBody"></tbody></table></div>
+  <details class="team" id="areaEquipa" hidden>
+    <summary><span>Área da equipa · tabela de preços e leads <span class="badge">Protótipo</span></span></summary>
+    <div class="inner">
+      <p class="hint">Bruna: substitui aqui os valores indicativos pelos reais. <b>Estimativa</b> é o valor típico que o simulador usa; mínimo e máximo definem o intervalo mostrado ao casal. Guardar grava neste navegador; <b>Copiar tabela</b> dá o ficheiro para fixar como base do site.</p>
+      <div class="tablewrap">
+        <table id="editor">
+          <thead><tr><th>Rubrica</th><th>Unidade</th><th class="num">Mínimo</th><th class="num">Estimativa</th><th class="num">Máximo</th></tr></thead>
+          <tbody id="editorBody"></tbody>
+        </table>
       </div>
-    </details>
-  </div>
-
-  <div class="az-strip" aria-hidden="true">
-    <svg preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#azulejo)"/></svg>
-  </div>
-
-  <footer class="foot" style="border-top:0; margin-top:18px;">
-    <p style="margin:0 0 6px"><b style="font-family:var(--f-display); font-size:15px; color:var(--ink-2)">Quanto Custa Casar</b></p>
-    <p style="margin:0">Estimativas indicativas para casamentos em Portugal, construídas a partir de intervalos de mercado e afinadas com a experiência da equipa. O valor final depende sempre dos fornecedores escolhidos e da data. Protótipo em construção &mdash; 2026.</p>
-  </footer>
+      <h3 style="margin-top: 12px; font-size: 16px;">Multiplicadores</h3>
+      <div class="tablewrap">
+        <table id="multEditor">
+          <thead><tr><th>Fator</th><th class="num">Multiplicador</th></tr></thead>
+          <tbody id="multBody"></tbody>
+        </table>
+      </div>
+      <div class="btnrow">
+        <button class="btn pequeno" type="button" id="btnGuardar">Guardar preços</button>
+        <button class="btn ghost pequeno" type="button" id="btnRepor">Repor valores indicativos</button>
+        <button class="btn ghost pequeno" type="button" id="btnCopiar">Copiar tabela (JSON)</button>
+        <span class="saved" id="savedMsg" hidden>Guardado.</span>
+      </div>
+      <textarea id="jsonOut" hidden readonly aria-label="Tabela de preços em JSON"></textarea>
+      <h3 style="margin-top: 12px; font-size: 16px;">Leads de teste</h3>
+      <p class="hint">No protótipo as leads ficam guardadas apenas neste navegador. Na versão final ligam-se ao email da equipa e ao backoffice.</p>
+      <div class="tablewrap"><table id="leadsTable"><tbody id="leadsBody"></tbody></table></div>
+    </div>
+  </details>
 </div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p style="margin-bottom: 7px;"><b>Quanto Custa Casar</b></p>
+    <p>Estimativas indicativas para casamentos em Portugal, construídas a partir de intervalos de mercado e afinadas com a experiência da equipa. O valor final depende sempre dos fornecedores escolhidos e da data. Protótipo em construção — 2026.</p>
+  </div>
+</footer>
 
 <script>
 (function () {
@@ -1235,77 +964,258 @@
     return { linhas: linhas, min: tMin, base: tBase, max: tMax };
   }
 
-  /* ---------- construir controlos ---------- */
   const $ = function (id) { return document.getElementById(id); };
 
-  (function selects() {
-    const sr = $("regiao"), se = $("epoca");
-    Object.keys(MULT.regiao).forEach(function (k) {
-      const o = document.createElement("option");
-      o.value = k; o.textContent = MULT.regiao[k].nome; sr.appendChild(o);
-    });
-    Object.keys(MULT.epoca).forEach(function (k) {
-      const o = document.createElement("option");
-      o.value = k; o.textContent = MULT.epoca[k].nome; se.appendChild(o);
-    });
-    sr.value = estado.regiao; se.value = estado.epoca;
-    sr.addEventListener("change", function () {
-      estado.regiao = sr.value; $("regiaoHint").textContent = ""; render();
-    });
-    se.addEventListener("change", function () {
-      estado.epoca = se.value; $("epocaHint").textContent = ""; render();
-    });
+  /* =========================================================
+     PERCURSO — cinco perguntas, uma de cada vez
+     ========================================================= */
+  const PASSOS = 5;
+  let passo = 1;
+  let terminou = false;
+  /* O que o casal já respondeu. Enquanto uma dimensão está por
+     responder, a estimativa mostra o intervalo possível em vez de
+     um número — é o que faz a conta apertar à medida que se avança. */
+  const respondido = { regiao: false, epoca: false, estilo: false };
 
-    /* Distrito: afina a zona de preços, que continua a poder ser mudada à mão
-       para quem casa num espaço fora da zona onde vive. */
-    const sd = $("distrito");
+  function extremos(dim) {
+    const ms = Object.keys(MULT[dim]).map(function (k) { return MULT[dim][k].m; });
+    return { min: Math.min.apply(null, ms), max: Math.max.apply(null, ms) };
+  }
+
+  /* Total com multiplicadores substituídos, para calcular os limites
+     do intervalo sem duplicar a fórmula do cálculo. */
+  function totalCom(subs, campo) {
+    const guarda = { regiao: estado.regiao, epoca: estado.epoca, estilo: estado.estilo };
+    const chavesSub = {};
+    ["regiao", "epoca", "estilo"].forEach(function (dim) {
+      if (subs[dim] === undefined) return;
+      const alvo = subs[dim];
+      const chave = Object.keys(MULT[dim]).filter(function (k) { return MULT[dim][k].m === alvo; })[0];
+      if (chave) { estado[dim] = chave; chavesSub[dim] = true; }
+    });
+    const res = calcular();
+    ["regiao", "epoca", "estilo"].forEach(function (dim) { estado[dim] = guarda[dim]; });
+    return res[campo];
+  }
+
+  function intervaloCorrente() {
+    const baixo = {}, alto = {};
+    ["regiao", "epoca", "estilo"].forEach(function (dim) {
+      if (respondido[dim]) return;
+      const e = extremos(dim);
+      baixo[dim] = e.min; alto[dim] = e.max;
+    });
+    return { min: totalCom(baixo, "min"), max: totalCom(alto, "max") };
+  }
+
+  function tudoRespondido() {
+    return respondido.regiao && respondido.epoca && respondido.estilo;
+  }
+
+  /* ---------- barra viva ---------- */
+  function renderVivo() {
+    const res = calcular();
+    const faltam = ["regiao", "epoca", "estilo"].filter(function (d) { return !respondido[d]; }).length;
+
+    if (terminou) {
+      $("rodapeVivo").hidden = true;
+      return;
+    }
+    $("rodapeVivo").hidden = false;
+
+    if (res.base <= 0) {
+      $("vivoEti").textContent = "Por agora";
+      $("vivoVal").textContent = "—";
+      $("vivoObs").textContent = "Escolham pelo menos uma rubrica.";
+    } else if (faltam > 0) {
+      const iv = intervaloCorrente();
+      $("vivoEti").textContent = "Por agora";
+      $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));
+      $("vivoObs").innerHTML = "afina com<br>mais " + faltam + (faltam === 1 ? " resposta" : " respostas");
+    } else {
+      $("vivoEti").textContent = "Estimativa";
+      $("vivoVal").textContent = eur(arred(res.base, 50));
+      $("vivoObs").innerHTML = "entre " + eur(arred(res.min, 500)) + "<br>e " + eur(arred(res.max, 500));
+    }
+    $("btnContinuar").textContent = passo === PASSOS ? "Ver a estimativa" : "Continuar";
+  }
+
+  /* ---------- navegação ---------- */
+  function mostrarPasso(n, mover) {
+    passo = Math.max(1, Math.min(PASSOS, n));
+    for (let i = 1; i <= PASSOS; i++) {
+      const s = $("passo" + i);
+      if (s) s.hidden = (i !== passo);
+    }
+    const barra = $("barraPassos");
+    Array.prototype.forEach.call(barra.children, function (c, i) {
+      c.classList.toggle("on", i < passo);
+    });
+    barra.setAttribute("aria-valuenow", String(passo));
+    $("contaPassos").textContent = "Pergunta " + passo + " de " + PASSOS;
+    $("btnVoltar").hidden = passo === 1;
+    render();
+    if (mover) {
+      const topo = $("simulador").getBoundingClientRect().top + window.pageYOffset - 70;
+      window.scrollTo({ top: Math.max(0, topo), behavior: "smooth" });
+    }
+  }
+
+  function mostrarResultado() {
+    terminou = true;
+    $("simulador").hidden = true;
+    $("abertura").hidden = true;
+    $("resultado").hidden = false;
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function voltarAoPercurso() {
+    terminou = false;
+    $("resultado").hidden = true;
+    $("abertura").hidden = false;
+    $("simulador").hidden = false;
+    mostrarPasso(1, true);
+  }
+
+  (function construirBarra() {
+    const barra = $("barraPassos");
+    for (let i = 0; i < PASSOS; i++) barra.appendChild(document.createElement("span"));
+  })();
+
+  $("btnVoltar").addEventListener("click", function () { mostrarPasso(passo - 1, true); });
+  $("btnContinuar").addEventListener("click", function () {
+    if (passo === PASSOS) mostrarResultado();
+    else mostrarPasso(passo + 1, true);
+  });
+  $("btnRever").addEventListener("click", voltarAoPercurso);
+
+  /* ---------- passo 1: convidados ---------- */
+  (function convidados() {
+    const rg = $("convidadosRange");
+    const chips = $("chipsConvidados");
+    [50, 100, 150, 200].forEach(function (n) {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = String(n);
+      b.setAttribute("aria-pressed", String(n === estado.convidados));
+      b.addEventListener("click", function () { definirConvidados(n); });
+      chips.appendChild(b);
+    });
+    function definirConvidados(v) {
+      estado.convidados = Math.max(10, Math.min(600, parseInt(v, 10) || 100));
+      rg.value = Math.max(20, Math.min(350, estado.convidados));
+      $("numConvidados").textContent = String(estado.convidados);
+      Array.prototype.forEach.call(chips.children, function (c) {
+        c.setAttribute("aria-pressed", String(parseInt(c.textContent, 10) === estado.convidados));
+      });
+      const extra = arred(custoPorConvidado() * 10, 10);
+      $("notaConvidados").innerHTML = "Cada 10 convidados a mais custam, em média, mais <b>" +
+        eur(extra) + "</b> " + textoZona() + ".";
+      render();
+    }
+    rg.addEventListener("input", function () { definirConvidados(rg.value); });
+    window.__definirConvidados = definirConvidados;
+  })();
+
+  function custoPorConvidado() {
+    let soma = 0;
+    RUBRICAS.forEach(function (r) {
+      if (r.un !== "convidado" || !estado.ligadas[r.id]) return;
+      soma += valores(r).base / estado.convidados;
+    });
+    return soma;
+  }
+  function textoZona() {
+    return respondido.regiao ? "em " + MULT.regiao[estado.regiao].nome : "em média no país";
+  }
+
+  /* ---------- passo 2: distrito e zona ---------- */
+  (function local() {
+    const sd = $("distrito"), sr = $("regiao");
     const vazio = document.createElement("option");
-    vazio.value = ""; vazio.textContent = "Ainda não sei";
+    vazio.value = ""; vazio.textContent = "Ainda não sabemos";
     sd.appendChild(vazio);
     DISTRITOS.forEach(function (d) {
       const o = document.createElement("option");
       o.value = d.id; o.textContent = d.nome; sd.appendChild(o);
     });
+    Object.keys(MULT.regiao).forEach(function (k) {
+      const o = document.createElement("option");
+      o.value = k; o.textContent = MULT.regiao[k].nome; sr.appendChild(o);
+    });
+    sr.value = estado.regiao;
+
     sd.addEventListener("change", function () {
       estado.distrito = sd.value;
       const d = DISTRITOS.filter(function (x) { return x.id === sd.value; })[0];
       if (d) {
         estado.regiao = d.regiao;
         sr.value = d.regiao;
-        $("regiaoHint").textContent = "Ajustada ao distrito de " + d.nome + ". Podes mudar se o espaço for noutra zona.";
+        respondido.regiao = true;
+        $("regiaoHint").textContent = "Ajustada ao distrito de " + d.nome + ". Podem corrigi-la se o espaço for noutra zona.";
       } else {
-        $("regiaoHint").textContent = "";
+        respondido.regiao = false;
+        $("regiaoHint").textContent = "Escolham o distrito e a zona ajusta-se sozinha.";
       }
       render();
     });
+    sr.addEventListener("change", function () {
+      estado.regiao = sr.value;
+      respondido.regiao = true;
+      $("regiaoHint").textContent = "Zona escolhida à mão.";
+      render();
+    });
+  })();
 
-    /* Data: afina a época e segue para o formulário, para não a pedir duas vezes. */
+  /* ---------- passo 3: data e época ---------- */
+  (function quando() {
     const sdata = $("dataCasamento");
     sdata.min = new Date().toISOString().slice(0, 10);
+    const box = $("escolhasEpoca");
+    Object.keys(MULT.epoca).forEach(function (k) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-pressed", "false");
+      const n = document.createElement("b"); n.textContent = MULT.epoca[k].nome;
+      b.appendChild(n);
+      b.addEventListener("click", function () {
+        estado.epoca = k;
+        respondido.epoca = true;
+        marcar();
+        render();
+      });
+      box.appendChild(b);
+    });
+    function marcar() {
+      Array.prototype.forEach.call(box.children, function (c, i) {
+        c.setAttribute("aria-pressed", String(Object.keys(MULT.epoca)[i] === estado.epoca && respondido.epoca));
+      });
+    }
     sdata.addEventListener("change", function () {
       estado.data = sdata.value;
       const ld = $("ld");
       if (ld) ld.value = sdata.value;
       const ep = epocaDaData(sdata.value);
-      if (ep) {
-        estado.epoca = ep;
-        se.value = ep;
-        $("epocaHint").textContent = "Definida a partir da data. Podes mudar.";
-      } else {
-        $("epocaHint").textContent = "";
-      }
+      if (ep) { estado.epoca = ep; respondido.epoca = true; }
+      marcar();
       render();
     });
+    window.__marcarEpoca = marcar;
   })();
 
-  (function segmentos() {
-    const box = $("estilo");
+  /* ---------- passo 4: estilo ---------- */
+  (function estilos() {
+    const box = $("escolhasEstilo");
     Object.keys(MULT.estilo).forEach(function (k) {
       const b = document.createElement("button");
-      b.type = "button"; b.textContent = MULT.estilo[k].nome;
-      b.setAttribute("aria-pressed", String(k === estado.estilo));
+      b.type = "button";
+      b.setAttribute("aria-pressed", "false");
+      const n = document.createElement("b"); n.textContent = MULT.estilo[k].nome;
+      const d = document.createElement("small"); d.textContent = MULT.estilo[k].desc;
+      b.appendChild(n); b.appendChild(d);
       b.addEventListener("click", function () {
         estado.estilo = k;
+        respondido.estilo = true;
         Array.prototype.forEach.call(box.children, function (c) { c.setAttribute("aria-pressed", "false"); });
         b.setAttribute("aria-pressed", "true");
         render();
@@ -1314,25 +1224,7 @@
     });
   })();
 
-  (function convidados() {
-    const rg = $("convidadosRange"), nb = $("convidados");
-    function set(v, from) {
-      v = Math.max(10, Math.min(600, parseInt(v, 10) || 100));
-      estado.convidados = v;
-      if (from !== "range") rg.value = Math.max(20, Math.min(350, v));
-      if (from !== "num") nb.value = v;
-      render();
-    }
-    rg.addEventListener("input", function () { set(rg.value, "range"); });
-    nb.addEventListener("input", function () { set(nb.value, "num"); });
-  })();
-
-  $("orcamento").addEventListener("input", function () {
-    estado.orcamento = parseInt(this.value, 10) || 0;
-    render();
-  });
-
-  /* ---------- lista de rubricas ---------- */
+  /* ---------- passo 5: rubricas ---------- */
   (function listaRubricas() {
     const box = $("rubricas");
     const grupos = [];
@@ -1361,12 +1253,18 @@
     });
   })();
 
-  /* ---------- render ---------- */
+  $("orcamento").addEventListener("input", function () {
+    estado.orcamento = parseInt(this.value, 10) || 0;
+    render();
+  });
+
+  /* =========================================================
+     RENDER
+     ========================================================= */
   function render() {
     const res = calcular();
-    $("estiloHint").textContent = MULT.estilo[estado.estilo].desc;
 
-    // valores por rubrica na lista
+    // valores por rubrica, no passo 5
     res.linhas.forEach(function (l) {
       const el = $("v-" + l.r.id);
       if (el) el.textContent = eur(arred(l.v.base));
@@ -1374,36 +1272,39 @@
       if (row) row.classList.toggle("off", !l.ativa);
     });
 
-    // total
+    renderVivo();
+    if (terminou) renderResultado(res);
+  }
+
+  function renderResultado(res) {
     $("total").textContent = eur(arred(res.base, 50));
     $("range").textContent = res.base > 0
-      ? "Intervalo provável: " + eur(arred(res.min, 50)) + " a " + eur(arred(res.max, 50))
-      : "Escolhe pelo menos uma rubrica.";
+      ? "Provável entre " + eur(arred(res.min, 50)) + " e " + eur(arred(res.max, 50))
+      : "Escolham pelo menos uma rubrica.";
     $("porConvidado").textContent = res.base > 0 ? eur(arred(res.base / estado.convidados, 5)) : "—";
     $("nConv").textContent = String(estado.convidados);
-    $("nRub").textContent = String(res.linhas.filter(function (l) { return l.ativa; }).length);
+    $("nRub").textContent = res.linhas.filter(function (l) { return l.ativa; }).length + " de " + RUBRICAS.length;
 
-    // orçamento do casal
-    const mw = $("meterWrap");
+    const mw = $("medidorWrap");
     if (estado.orcamento > 0 && res.base > 0) {
       mw.hidden = false;
       const cobertura = estado.orcamento / res.base;
       const pct = Math.max(0, Math.min(1, cobertura));
-      $("meterFill").style.width = (pct * 100).toFixed(1) + "%";
+      $("medidorFill").style.width = (pct * 100).toFixed(1) + "%";
       let cor, msg;
       if (cobertura >= 1) {
         cor = "var(--good)";
-        msg = "O teu orçamento cobre a estimativa, com " + eur(arred(estado.orcamento - res.base, 50)) + " de folga.";
+        msg = "O orçamento cobre a estimativa, com " + eur(arred(estado.orcamento - res.base, 50)) + " de folga.";
       } else if (cobertura >= 0.8) {
-        cor = "var(--ochre)";
+        cor = "var(--warn)";
         msg = "Faltam cerca de " + eur(arred(res.base - estado.orcamento, 50)) + " — dá para fechar cortando uma ou duas rubricas.";
       } else {
         cor = "var(--crit)";
-        msg = "O teu orçamento cobre " + Math.round(cobertura * 100) + "% da estimativa. Vale a pena rever convidados, época ou estilo.";
+        msg = "O orçamento cobre " + Math.round(cobertura * 100) + "% da estimativa. Vale a pena rever convidados, época ou estilo.";
       }
-      $("meterFill").style.background = cor;
-      $("meterDot").style.background = cor;
-      $("meterMsg").textContent = msg;
+      $("medidorFill").style.background = cor;
+      $("medidorPonto").style.background = cor;
+      $("medidorMsg").textContent = msg;
     } else {
       mw.hidden = true;
     }
@@ -1419,47 +1320,39 @@
                              .sort(function (a, b) { return b.v.base - a.v.base; });
     if (!ativas.length) {
       const p = document.createElement("p");
-      p.className = "hint"; p.textContent = "Escolhe as rubricas para veres a repartição.";
+      p.className = "hint"; p.textContent = "Escolham as rubricas para verem a repartição.";
       box.appendChild(p); return;
     }
     const topo = ativas.slice(0, 8);
     const resto = ativas.slice(8);
     const linhas = topo.map(function (l) {
-      return { nome: l.r.nome, base: l.v.base, min: l.v.min, max: l.v.max };
+      return { nome: l.r.nome, base: l.v.base };
     });
     if (resto.length) {
       linhas.push({
         nome: "Outras " + resto.length + " rubricas",
-        base: resto.reduce(function (s, l) { return s + l.v.base; }, 0),
-        min:  resto.reduce(function (s, l) { return s + l.v.min; }, 0),
-        max:  resto.reduce(function (s, l) { return s + l.v.max; }, 0)
+        base: resto.reduce(function (s, l) { return s + l.v.base; }, 0)
       });
     }
     const maxv = Math.max.apply(null, linhas.map(function (l) { return l.base; }));
     linhas.forEach(function (l) {
-      const row = document.createElement("div");
-      row.className = "bar-row"; row.tabIndex = 0;
       const pctTotal = res.base > 0 ? Math.round((l.base / res.base) * 100) : 0;
+      const row = document.createElement("div");
+      row.className = "bar-l";
       row.setAttribute("aria-label", l.nome + ": " + eur(arred(l.base)) + ", " + pctTotal + "% do total");
 
-      const lab = document.createElement("div");
-      lab.className = "bar-lab"; lab.textContent = l.nome; lab.title = l.nome;
+      const n = document.createElement("span");
+      n.className = "bar-n"; n.textContent = l.nome;
+      const v = document.createElement("span");
+      v.className = "bar-v"; v.textContent = eur(arred(l.base)) + " · " + pctTotal + "%";
+      const t = document.createElement("div");
+      t.className = "bar-t";
+      const f = document.createElement("div");
+      f.className = "bar-f";
+      f.style.width = Math.max(1.5, (l.base / maxv) * 100) + "%";
+      t.appendChild(f);
 
-      const track = document.createElement("div");
-      track.className = "bar-track";
-      const fill = document.createElement("div");
-      fill.className = "bar-fill";
-      fill.style.width = Math.max(1.5, (l.base / maxv) * 100) + "%";
-      track.appendChild(fill);
-
-      const val = document.createElement("div");
-      val.className = "bar-val"; val.textContent = eur(arred(l.base));
-
-      const rng = document.createElement("div");
-      rng.className = "bar-rng";
-      rng.textContent = pctTotal + "% do total · entre " + eur(arred(l.min)) + " e " + eur(arred(l.max));
-
-      row.appendChild(lab); row.appendChild(track); row.appendChild(val); row.appendChild(rng);
+      row.appendChild(n); row.appendChild(v); row.appendChild(t);
       box.appendChild(row);
     });
   }
@@ -1473,9 +1366,11 @@
       const linhas = res.linhas.filter(function (l) { return l.r.grupo === g && l.ativa; });
       if (!linhas.length) return;
       const gr = document.createElement("tr");
-      gr.className = "grp";
       const gtd = document.createElement("td");
       gtd.colSpan = 4; gtd.textContent = g;
+      gtd.style.fontSize = "11.5px"; gtd.style.letterSpacing = "0.08em";
+      gtd.style.textTransform = "uppercase"; gtd.style.color = "var(--ink-3)";
+      gtd.style.fontWeight = "600"; gtd.style.paddingTop = "18px";
       gr.appendChild(gtd); tb.appendChild(gr);
       linhas.forEach(function (l) {
         const tr = document.createElement("tr");
@@ -1483,22 +1378,22 @@
           const td = document.createElement("td");
           td.textContent = txt;
           if (i > 0) td.className = "num";
+          if (i === 2) td.style.fontWeight = "600";
           tr.appendChild(td);
         });
         tb.appendChild(tr);
       });
     });
     const tot = document.createElement("tr");
-    tot.className = "tot";
     [["Total", ""], [eur(arred(res.min, 50)), "num"], [eur(arred(res.base, 50)), "num"], [eur(arred(res.max, 50)), "num"]]
       .forEach(function (c) {
         const td = document.createElement("td");
         td.textContent = c[0]; if (c[1]) td.className = c[1];
+        td.style.fontWeight = "700"; td.style.borderBottom = "0"; td.style.paddingTop = "14px";
         tot.appendChild(td);
       });
     tb.appendChild(tot);
   }
-
 
   /* ---------- formulário de lead ---------- */
   $("leadForm").addEventListener("submit", function (ev) {
@@ -1509,10 +1404,10 @@
     const tel = $("lt").value.trim();
     const data = $("ld").value;
     const problemas = [];
-    if (nome.length < 2) problemas.push("o teu nome");
+    if (nome.length < 2) problemas.push("o vosso nome");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) problemas.push("um email válido");
     if (tel.replace(/\D/g, "").length < 9) problemas.push("um telemóvel válido");
-    if (!$("c1").checked) problemas.push("a autorização para te contactarmos");
+    if (!$("c1").checked) problemas.push("a autorização para vos contactarmos");
     if (problemas.length) {
       err.hidden = false;
       err.textContent = "Falta " + problemas.join(", ").replace(/, ([^,]*)$/, " e $1") + ".";
@@ -1551,24 +1446,24 @@
       const p1 = document.createElement("p");
       p1.style.margin = "0"; p1.style.fontSize = "15px";
       p1.textContent = r.local
-        ? "A tua estimativa é de " + eur(arred(res.base, 50)) + " para " + estado.convidados +
+        ? "A vossa estimativa é de " + eur(arred(res.base, 50)) + " para " + estado.convidados +
           " convidados. Este site ainda está em construção: o pedido ficou guardado apenas neste " +
           "navegador e ainda não chegou a ninguém."
         : "Enviámos a estimativa de " + eur(arred(res.base, 50)) + " para " + email +
           ". A equipa entra em contacto em 24 horas com propostas para " + estado.convidados + " convidados " +
-          (data ? "em " + dataExtenso(data) + "." : "na tua data.");
+          (data ? "em " + dataExtenso(data) + "." : "na vossa data.");
       const p2 = document.createElement("p");
       p2.className = "legal"; p2.style.marginBottom = "0";
       p2.textContent = lead.partilhaFornecedores
-        ? "Vamos pedir propostas aos fornecedores parceiros da tua zona."
-        : "Não vamos partilhar os teus dados com fornecedores.";
+        ? "Vamos pedir propostas aos fornecedores parceiros da vossa zona."
+        : "Não vamos partilhar os vossos dados com fornecedores.";
       ok.appendChild(t); ok.appendChild(p1); ok.appendChild(p2);
       box.appendChild(ok);
       box.scrollIntoView({ behavior: "smooth", block: "center" });
     }).catch(function () {
       aEnviar(btn, false);
       err.hidden = false;
-      err.textContent = "Não conseguimos enviar o teu pedido agora. Verifica a ligação e tenta outra vez.";
+      err.textContent = "Não conseguimos enviar o vosso pedido agora. Verifiquem a ligação e tentem outra vez.";
     });
   });
 
@@ -1767,10 +1662,7 @@
                       location.hash.replace(/^#/, "") === CHAVE_EQUIPA ||
                       naQuery.test(location.search.replace(/^\?/, ""));
       bloco.hidden = !visivel;
-      if (visivel) {
-        const det = bloco.querySelector("details");
-        if (det) det.open = true;
-      }
+      if (visivel) bloco.open = true;
     }
     atualizar();
     window.addEventListener("hashchange", atualizar);
@@ -1794,7 +1686,9 @@
 
   /* ---------- arranque ---------- */
   renderLeads();
-  render();
+  window.__definirConvidados(estado.convidados);
+  window.__marcarEpoca();
+  mostrarPasso(1, false);
 })();
 </script>
 

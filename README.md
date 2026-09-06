@@ -22,6 +22,12 @@ python3 -m http.server 8000   # depois abrir http://localhost:8000
 
 ## Como funciona a estimativa
 
+O simulador é um percurso de cinco perguntas, uma de cada vez: convidados,
+distrito, data, estilo e o que o casal quer ter no dia. A estimativa aparece
+desde a primeira pergunta como um intervalo largo e vai apertando à medida que
+as respostas entram — as dimensões ainda por responder entram na conta pelos
+seus valores extremos. No fim, o resultado abre num ecrã próprio.
+
 - **24 rubricas** agrupadas em O dia, Imagem, Música, Decoração, Os noivos,
   Apoio e Depois do dia. Cada rubrica tem um valor mínimo, uma estimativa e um
   máximo, e é cobrada como preço fixo ou por convidado.
@@ -35,12 +41,20 @@ python3 -m http.server 8000   # depois abrir http://localhost:8000
 - O casal pode ligar e desligar rubricas e definir um orçamento-alvo, com
   comparação face à estimativa.
 
-O **distrito** e a **data do casamento** afinam sozinhos a zona de preços e a
-época, mas ambas continuam a poder ser mudadas à mão — quem casa num espaço
-fora da zona onde vive corrige, e quem ainda não tem data escolhe a época
-diretamente. O mapa distrito → zona está em `DISTRITOS`, no `index.html`;
-Setúbal está em "Lisboa e arredores" por causa dos preços da margem sul, e
-muda-se numa linha se não for esse o caso.
+O **distrito** e a **data** afinam sozinhos a zona de preços e a época, mas
+ambas continuam a poder ser mudadas à mão — quem casa num espaço fora da zona
+onde vive corrige, e quem ainda não tem data escolhe a época diretamente. O
+mapa distrito → zona está em `DISTRITOS`, no `index.html`; Setúbal está em
+"Lisboa e arredores" por causa dos preços da margem sul, e muda-se numa linha se
+não for esse o caso.
+
+## Desenho
+
+Pensado primeiro para telemóvel: uma coluna centrada, alvos de toque de 44 px ou
+mais, e a estimativa fixa no fundo do ecrã durante o percurso. Tipos Bricolage
+Grotesque (títulos) e Public Sans (texto), do Google Fonts, ambos com pilha de
+recurso. A paleta é definida em variáveis CSS no topo da folha de estilos, com
+tema claro e escuro conforme a preferência de quem visita.
 
 ## Área da equipa
 
