@@ -2,10 +2,14 @@
 
 Por ordem: do que desbloqueia mais para o que pode esperar.
 
-1. ~~**Conta no Formspree.**~~ Feito: o site envia para `https://formspree.io/f/mnpqbrql`.
-   Falta o teste real a partir de um browser (abrir o `index.html` e submeter o
-   formulário) e confirmar o email de destino no primeiro envio.
-2. **Domínio.** Quando chegar: GitHub Pages e registos de DNS no registador.
+1. ~~**Conta no Formspree.**~~ Feito e testado: as leads chegam a
+   `https://formspree.io/f/mnpqbrql`. Falta, quando o domínio estiver no ar,
+   restringir o formulário no painel do Formspree ao `quantocustacasar.pt`.
+2. **Domínio.** O site já está no ar em
+   `https://bernas77764-glitch.github.io/Quantocustacasar/` (GitHub Pages, a
+   servir da branch `claude/wedding-cost-simulator-kvt9t1`; o repositório
+   passou a público para isso). Quando o domínio chegar: registos de DNS no
+   registador e domínio personalizado nas definições do Pages.
 3. **Registo da marca no INPI.** Registar «Quanto Custa Casar» (nome, e o anel
    como marca figurativa se se justificar) em nome individual, antes do
    lançamento. É barato e evita que alguém o faça primeiro.
