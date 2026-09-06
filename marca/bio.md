@@ -11,7 +11,7 @@ Ligação: quantocustacasar.pt
 
 ## Facebook — intro (limite 101 caracteres)
 
-Simulador gratuito do custo de um casamento em Portugal. Cinco perguntas, estimativa imediata, sem registo.
+Simulador gratuito do custo de um casamento em Portugal. Cinco perguntas, sem registo.
 
 ## Facebook — «Sobre» da página
 
