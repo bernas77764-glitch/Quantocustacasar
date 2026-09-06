@@ -925,7 +925,7 @@
       return [d.empresa, d.categoria, d.distrito, d.email].filter(Boolean).join(" · ");
     }
     return [d.nome, d.convidados + " convidados", d.distrito !== "—" ? d.distrito : null,
-            d.dataTexto || null, d.estimativa ? eur(d.estimativa) : null,
+            d.dataTexto || null, d.estimativa ? eur(d.estimativa) : null, d.nRubricas ? d.nRubricas + " rubricas" : null,
             d.partilhaFornecedores ? "autoriza fornecedores" : "sem partilha"]
            .filter(Boolean).join(" · ");
   }
@@ -1445,8 +1445,16 @@
       epoca: MULT.epoca[estado.epoca].nome,
       estilo: MULT.estilo[estado.estilo].nome,
       estimativa: arred(res.base, 50),
+      intervalo: eur(arred(res.min, 50)) + " a " + eur(arred(res.max, 50)),
       orcamento: estado.orcamento || null,
-      partilhaFornecedores: $("c2").checked
+      partilhaFornecedores: $("c2").checked,
+      /* O que o casal quer ter no dia, com o valor estimado de cada rubrica,
+         e o que desligou — é o que a equipa precisa para pedir propostas. */
+      rubricasIncluidas: res.linhas.filter(function (l) { return l.ativa; })
+        .map(function (l) { return l.r.nome + " (" + eur(arred(l.v.base)) + ")"; }).join(" · "),
+      rubricasExcluidas: res.linhas.filter(function (l) { return !l.ativa; })
+        .map(function (l) { return l.r.nome; }).join(" · ") || "nenhuma",
+      nRubricas: res.linhas.filter(function (l) { return l.ativa; }).length + " de " + RUBRICAS.length
     };
     const btn = $("leadBtn");
     aEnviar(btn, true);
