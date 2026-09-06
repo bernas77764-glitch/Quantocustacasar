@@ -152,3 +152,19 @@ para a pessoa tentar de novo.
 
 Protótipo. Os preços são valores indicativos de mercado, por validar com a
 equipa. O site não está indexado enquanto essa validação não estiver feita.
+
+## Marca
+
+Os ficheiros do logótipo estão em `marca/`. O símbolo é o Q de «Quanto»
+desenhado como aliança, em terracota, com o diamante em tinta. A palavra está em
+Bricolage Grotesque SemiBold convertida em contornos, por isso os SVG não
+dependem de ter a fonte instalada.
+
+- `anel.svg` — símbolo; `anel-mono.svg` — símbolo numa só cor (usa `currentColor`)
+- `logotipo.svg` — símbolo e nome para fundo claro; `-fundo-escuro`, `-fundo-terracota`
+  e `-mono` para os outros fundos
+- PNG: `anel-512`, `anel-1024`, `favicon-32`, `apple-touch-icon-180`,
+  `logotipo-1600` e `logotipo-fundo-escuro-1600`
+
+Espaço livre à volta do logótipo: a altura do diamante, no mínimo. O símbolo
+nunca leva sombra, contorno ou rotação.
