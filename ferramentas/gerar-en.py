@@ -243,8 +243,8 @@ R = [
  # barra viva e navegação
  (u'$("vivoEti").textContent = "Por agora";\n      $("vivoVal").textContent = "—";\n      $("vivoObs").textContent = "Escolham pelo menos uma rubrica.";',
   u'$("vivoEti").textContent = "So far";\n      $("vivoVal").textContent = "—";\n      $("vivoObs").textContent = "Pick at least one item.";'),
- (u'$("vivoEti").textContent = "Por agora";\n      $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));\n      $("vivoObs").innerHTML = "afina com<br>mais " + faltam + (faltam === 1 ? " resposta" : " respostas");',
-  u'$("vivoEti").textContent = "So far";\n      $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));\n      $("vivoObs").innerHTML = "narrows with<br>" + faltam + (faltam === 1 ? " more answer" : " more answers");'),
+ (u'$("vivoEti").textContent = "Por agora";\n      $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));\n      $("vivoObs").innerHTML = "estimativa provisória<br>" + (faltam === 1 ? "falta 1 resposta" : "faltam " + faltam + " respostas");',
+  u'$("vivoEti").textContent = "So far";\n      $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));\n      $("vivoObs").innerHTML = "provisional estimate<br>" + (faltam === 1 ? "1 answer to go" : faltam + " answers to go");'),
  (u'$("vivoEti").textContent = "Estimativa";\n      $("vivoVal").textContent = eur(arred(res.base, 50));\n      $("vivoObs").innerHTML = "entre " + eur(arred(res.min, 500)) + "<br>e " + eur(arred(res.max, 500));',
   u'$("vivoEti").textContent = "Estimate";\n      $("vivoVal").textContent = eur(arred(res.base, 50));\n      $("vivoObs").innerHTML = "between " + eur(arred(res.min, 500)) + "<br>and " + eur(arred(res.max, 500));'),
  (u'$("btnContinuar").textContent = passo === PASSOS ? "Ver a estimativa" : "Continuar";', u'$("btnContinuar").textContent = passo === PASSOS ? "See the estimate" : "Continue";'),

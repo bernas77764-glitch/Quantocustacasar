@@ -1110,7 +1110,7 @@
       const iv = intervaloCorrente();
       $("vivoEti").textContent = "Por agora";
       $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));
-      $("vivoObs").innerHTML = "afina com<br>mais " + faltam + (faltam === 1 ? " resposta" : " respostas");
+      $("vivoObs").innerHTML = "estimativa provisória<br>" + (faltam === 1 ? "falta 1 resposta" : "faltam " + faltam + " respostas");
     } else {
       $("vivoEti").textContent = "Estimativa";
       $("vivoVal").textContent = eur(arred(res.base, 50));

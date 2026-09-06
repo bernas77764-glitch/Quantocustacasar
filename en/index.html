@@ -1065,7 +1065,7 @@
       const iv = intervaloCorrente();
       $("vivoEti").textContent = "So far";
       $("vivoVal").textContent = eur(arred(iv.min, 500)) + " – " + eur(arred(iv.max, 500));
-      $("vivoObs").innerHTML = "narrows with<br>" + faltam + (faltam === 1 ? " more answer" : " more answers");
+      $("vivoObs").innerHTML = "provisional estimate<br>" + (faltam === 1 ? "1 answer to go" : faltam + " answers to go");
     } else {
       $("vivoEti").textContent = "Estimate";
       $("vivoVal").textContent = eur(arred(res.base, 50));
