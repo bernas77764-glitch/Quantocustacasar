@@ -34,5 +34,6 @@ Por ordem: do que desbloqueia mais para o que pode esperar.
 ## Notas
 
 - Há uma versão inglesa em `en/` (`quantocustacasar.pt/en/`), gerada a partir da
-  portuguesa. Qualquer alteração de texto no site tem de ser feita nas duas.
+  portuguesa com `python3 ferramentas/gerar-en.py`. Depois de mudar texto no
+  `index.html`, correr o script; se um texto deixou de existir, ele diz qual.
 - O botão do WhatsApp está a apontar para o 351 912263717 até haver número do negócio.
