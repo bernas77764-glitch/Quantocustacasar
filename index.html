@@ -743,7 +743,7 @@
 
 <footer class="foot">
   <div class="wrap">
-    <p style="margin-bottom: 7px;"><b>Quanto Custa Casar</b></p>
+    <p style="margin-bottom: 7px;"><b id="marcaRodape">Quanto Custa Casar</b></p>
     <p>Estimativas indicativas para casamentos em Portugal, construídas a partir de intervalos de mercado e afinadas com a experiência da equipa. O valor final depende sempre dos fornecedores escolhidos e da data. Protótipo em construção — 2026.</p>
   </div>
 </footer>
@@ -1650,17 +1650,29 @@
     /* Em pré-visualizações onde não se consegue editar o endereço (o site
        dentro de uma moldura, por exemplo), escrever a chave no teclado,
        fora dos campos do formulário, abre o painel na mesma. */
+    function abrir() {
+      aberta = true;
+      atualizar();
+      bloco.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    /* No telemóvel não há teclado físico nem endereço editável dentro
+       de uma moldura: cinco toques seguidos no nome do rodapé abrem o painel. */
+    let toques = 0, ultimoToque = 0;
+    $("marcaRodape").addEventListener("click", function () {
+      const agora = Date.now();
+      toques = (agora - ultimoToque < 1500) ? toques + 1 : 1;
+      ultimoToque = agora;
+      if (toques >= 5 && bloco.hidden) { toques = 0; abrir(); }
+    });
+
     let teclado = "";
     window.addEventListener("keydown", function (ev) {
       if (ev.key.length !== 1 || ev.ctrlKey || ev.metaKey || ev.altKey) return;
       const campo = (ev.target.tagName || "").toUpperCase();
       if (campo === "INPUT" || campo === "TEXTAREA" || campo === "SELECT") return;
       teclado = (teclado + ev.key.toLowerCase()).slice(-CHAVE_EQUIPA.length);
-      if (teclado === CHAVE_EQUIPA.toLowerCase() && bloco.hidden) {
-        aberta = true;
-        atualizar();
-        bloco.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      if (teclado === CHAVE_EQUIPA.toLowerCase() && bloco.hidden) abrir();
     });
   })();
 

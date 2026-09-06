@@ -70,7 +70,8 @@ menos óbvio antes de publicar.
 
 Onde não se consegue editar o endereço — o site dentro de uma moldura, numa
 pré-visualização — basta escrever a chave no teclado, fora dos campos do
-formulário, para o painel abrir.
+formulário, para o painel abrir. No telemóvel, onde não há teclado físico,
+cinco toques seguidos no nome «Quanto Custa Casar» do rodapé fazem o mesmo.
 
 Isto esconde o painel de quem visita o site, mas **não é uma proteção real**:
 quem abrir o código-fonte da página encontra a chave. Enquanto for um protótipo
