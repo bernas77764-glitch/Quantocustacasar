@@ -92,20 +92,43 @@ const ENDPOINT = "";        // ex.: "https://formspree.io/f/xxxxxxxx"
 const CAMPOS_EXTRA = {};    // ex.: { access_key: "..." } para o Web3Forms
 ```
 
-Serve qualquer serviço que aceite um POST em JSON e permita pedidos a partir do
-browser (Formspree, Web3Forms, uma função própria). O corpo enviado é:
+### Com o Formspree (recomendado)
+
+1. Criar conta em formspree.io e carregar em **New form**.
+2. Copiar o endereço do formulário, no formato `https://formspree.io/f/xxxxxxxx`.
+3. Colar esse endereço em `ENDPOINT`. `CAMPOS_EXTRA` fica `{}`.
+4. Fazer um envio de teste no site: na primeira submissão o Formspree pede para
+   confirmar o email de destino — é só carregar no link que chega.
+
+A partir daí cada pedido chega por email, com o assunto «Quanto Custa Casar —
+novo casal: Nome» ou «— novo fornecedor: Empresa», e fica também listado no
+painel do Formspree, que serve de backoffice para as leads.
+
+### Com o Web3Forms
+
+`ENDPOINT` é `https://api.web3forms.com/submit` e `CAMPOS_EXTRA` leva a chave:
+`{ access_key: "a-chave-que-o-web3forms-dá" }`.
+
+### O que é enviado
 
 ```json
 {
   "tipo": "casal",
+  "_subject": "Quanto Custa Casar — novo casal: Ana Silva",
+  "resumo": "Ana Silva · 100 convidados · Braga · 12 de junho de 2027 · 29 800 € · autoriza fornecedores",
   "origem": "https://quantocustacasar.pt/",
-  "nome": "...", "email": "...", "telefone": "...", "data": "2026-06",
-  "convidados": 100, "regiao": "...", "epoca": "...", "estilo": "...",
-  "estimativa": 35300, "orcamento": null, "partilhaFornecedores": true
+  "nome": "...", "email": "...", "telefone": "...",
+  "data": "2027-06-12", "dataTexto": "12 de junho de 2027",
+  "convidados": 100, "distrito": "Braga", "regiao": "...", "epoca": "...", "estilo": "...",
+  "estimativa": 29800, "orcamento": null, "partilhaFornecedores": true
 }
 ```
 
-Os pedidos de fornecedores usam a mesma rota com `"tipo": "fornecedor"`.
+Os pedidos de fornecedores usam a mesma rota com `"tipo": "fornecedor"`. O
+campo `resumo` é uma linha pensada para se ler na notificação do telemóvel.
+
+Cada formulário tem um campo invisível chamado `website`, que só os robôs de
+spam preenchem: quando vem preenchido, o site finge que enviou e deita fora.
 
 **Enquanto `ENDPOINT` estiver vazio**, o site funciona em modo protótipo: os
 dados ficam guardados apenas no navegador de quem preenche, e a mensagem de

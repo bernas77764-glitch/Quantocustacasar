@@ -542,6 +542,9 @@
     <h2>Querem esta estimativa afinada ao vosso caso?</h2>
     <p>Enviamos o orçamento detalhado e propostas reais de quintas, catering, fotografia e música para a vossa data. Sem custos para vocês.</p>
     <form id="leadForm" novalidate>
+      <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+        <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
       <div class="form-grid">
         <div class="campo">
           <label class="lab" for="ln">Nome</label>
@@ -636,7 +639,10 @@
     </div>
     <div class="cta" id="supBox">
       <form id="supForm" novalidate>
-        <div class="form-grid">
+        <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+        <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <div class="form-grid">
           <div class="campo">
             <label class="lab" for="se">Empresa</label>
             <input type="text" id="se" autocomplete="organization" required>
@@ -877,9 +883,26 @@
   const ENDPOINT = "";
   const CAMPOS_EXTRA = {};
 
-  function enviar(tipo, dados) {
+  /* O campo "website" é invisível para pessoas; só os robôs o preenchem.
+     Se vier preenchido, fingimos que enviámos e deitamos fora. */
+  function ehRobo(form) {
+    const isco = form.querySelector('input[name="website"]');
+    return !!(isco && isco.value);
+  }
+
+  function enviar(tipo, dados, form) {
+    if (form && ehRobo(form)) return Promise.resolve({ local: !ENDPOINT });
     if (!ENDPOINT) return Promise.resolve({ local: true });
-    const corpo = Object.assign({ tipo: tipo, origem: location.href }, CAMPOS_EXTRA, dados);
+    const assunto = tipo === "fornecedor"
+      ? "Quanto Custa Casar — novo fornecedor: " + (dados.empresa || "")
+      : "Quanto Custa Casar — novo casal: " + (dados.nome || "");
+    const corpo = Object.assign(
+      { tipo: tipo, origem: location.href },
+      CAMPOS_EXTRA,
+      /* Formspree lê "_subject"; Web3Forms lê "subject". Ambos ignoram o outro. */
+      { _subject: assunto, subject: assunto, resumo: resumoDe(tipo, dados) },
+      dados
+    );
     return fetch(ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
@@ -888,6 +911,17 @@
       if (!r.ok) throw new Error("HTTP " + r.status);
       return { local: false };
     });
+  }
+
+  /* Uma linha que se lê na notificação do telemóvel sem abrir o email. */
+  function resumoDe(tipo, d) {
+    if (tipo === "fornecedor") {
+      return [d.empresa, d.categoria, d.distrito, d.email].filter(Boolean).join(" · ");
+    }
+    return [d.nome, d.convidados + " convidados", d.distrito !== "—" ? d.distrito : null,
+            d.dataTexto || null, d.estimativa ? eur(d.estimativa) : null,
+            d.partilhaFornecedores ? "autoriza fornecedores" : "sem partilha"]
+           .filter(Boolean).join(" · ");
   }
 
   function aEnviar(btn, sim) {
@@ -1411,7 +1445,7 @@
     const btn = $("leadBtn");
     aEnviar(btn, true);
 
-    enviar("casal", lead).then(function (r) {
+    enviar("casal", lead, this).then(function (r) {
       const leads = ler(LS_LEADS, []);
       leads.unshift(lead);
       gravar(LS_LEADS, leads.slice(0, 50));
@@ -1601,7 +1635,7 @@
     const btn = $("supBtn");
     aEnviar(btn, true);
 
-    enviar("fornecedor", fornecedor).then(function (r) {
+    enviar("fornecedor", fornecedor, this).then(function (r) {
       const lista = ler(LS_FORN, []);
       lista.unshift(fornecedor);
       gravar(LS_FORN, lista.slice(0, 50));
