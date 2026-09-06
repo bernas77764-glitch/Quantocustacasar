@@ -196,7 +196,8 @@
     border-bottom: 1px solid var(--line);
   }
   .top-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 58px; }
-  .marca { display: flex; align-items: center; gap: 9px; font-family: var(--f-display); font-weight: 600; font-size: 17px; }
+  .marca { display: flex; align-items: center; gap: 9px; font-family: var(--f-display); font-weight: 600; font-size: 17px; color: inherit; text-decoration: none; }
+  .marca:hover { color: var(--accent); }
   .marca svg { flex-shrink: 0; }
   .top nav { display: none; gap: 24px; font-size: 14.5px; color: var(--ink-2); }
   .top nav a { color: inherit; text-decoration: none; }
@@ -417,14 +418,14 @@
 
 <header class="top">
   <div class="wide top-in">
-    <span class="marca">
+    <a class="marca" href="./" aria-label="Quanto Custa Casar — início">
       <svg width="24" height="24" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <circle cx="48" cy="54" r="29" stroke="var(--accent)" stroke-width="12"/>
         <path d="M60 68 L84 92" stroke="var(--accent)" stroke-width="11" stroke-linecap="round"/>
         <path d="M48 8 L60 20 L48 32 L36 20 Z" fill="currentColor"/>
       </svg>
       Quanto Custa Casar
-    </span>
+    </a>
     <nav>
       <a href="#como">Como funciona</a>
       <a href="#fornecedores">Fornecedores</a>
@@ -442,7 +443,7 @@
 <!-- ================= PERCURSO ================= -->
 <main class="wrap flow" id="simulador">
 
-  <div class="barra-passos" id="barraPassos" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-label="Progresso das perguntas"></div>
+  <div class="barra-passos" id="barraPassos" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-label="Progresso das perguntas"></div>
 
   <div class="passo-topo">
     <button type="button" class="voltar" id="btnVoltar" hidden>
@@ -450,11 +451,20 @@
       Voltar
     </button>
     <span></span>
-    <span class="conta-passos" id="contaPassos">Pergunta 1 de 5</span>
+    <span class="conta-passos" id="contaPassos">Antes de começar</span>
   </div>
 
-  <!-- passo 1 -->
+  <!-- antes de começar -->
   <section class="passo" id="passo1">
+    <h2>Quem está a fazer as contas?</h2>
+    <p class="sub">Só para sabermos com quem falamos — a estimativa é a mesma.</p>
+    <div class="cartao">
+      <div class="escolhas" id="escolhasQuem"></div>
+    </div>
+  </section>
+
+  <!-- passo 2 -->
+  <section class="passo" id="passo2">
     <h2>Quantas pessoas vão estar convosco?</h2>
     <p class="sub">É o número que mais mexe na conta — o catering e a bebida são cobrados por pessoa.</p>
     <div class="cartao">
@@ -468,8 +478,8 @@
     </div>
   </section>
 
-  <!-- passo 2 -->
-  <section class="passo" id="passo2" hidden>
+  <!-- passo 3 -->
+  <section class="passo" id="passo3" hidden>
     <h2>Onde vai ser o casamento?</h2>
     <p class="sub">Os preços mudam muito de zona para zona: entre o Algarve e o Centro do país há mais de 25% de diferença nas mesmas rubricas.</p>
     <div class="cartao">
@@ -480,8 +490,8 @@
     </div>
   </section>
 
-  <!-- passo 3 -->
-  <section class="passo" id="passo3" hidden>
+  <!-- passo 4 -->
+  <section class="passo" id="passo4" hidden>
     <h2>Já têm data?</h2>
     <p class="sub">Um sábado de agosto e um sábado de fevereiro não custam o mesmo. Se ainda não souberem, escolham só a altura do ano.</p>
     <div class="cartao">
@@ -496,8 +506,8 @@
     </div>
   </section>
 
-  <!-- passo 4 -->
-  <section class="passo" id="passo4" hidden>
+  <!-- passo 5 -->
+  <section class="passo" id="passo5" hidden>
     <h2>Que casamento têm em mente?</h2>
     <p class="sub">Não é sobre gosto, é sobre escala: quantos fornecedores entram e de que gama.</p>
     <div class="cartao">
@@ -505,8 +515,8 @@
     </div>
   </section>
 
-  <!-- passo 5 -->
-  <section class="passo" id="passo5" hidden>
+  <!-- passo 6 -->
+  <section class="passo" id="passo6" hidden>
     <h2>O que querem ter no dia?</h2>
     <p class="sub">Já pusemos o que é mais comum. Desliga o que não se aplica — a estimativa acompanha.</p>
     <div class="cartao" id="rubricas"></div>
@@ -931,7 +941,7 @@
     if (tipo === "fornecedor") {
       return [d.empresa, d.categoria, d.distrito, d.email].filter(Boolean).join(" · ");
     }
-    return [d.nome, d.convidados + " convidados", d.distrito !== "—" ? d.distrito : null,
+    return [d.quemResponde !== "—" ? d.quemResponde : null, d.nome, d.convidados + " convidados", d.distrito !== "—" ? d.distrito : null,
             d.dataTexto || null, d.estimativa ? eur(d.estimativa) : null, d.nRubricas ? d.nRubricas + " rubricas" : null,
             d.partilhaFornecedores ? "autoriza fornecedores" : "sem partilha"]
            .filter(Boolean).join(" · ");
@@ -952,7 +962,7 @@
   let RUBRICAS = clone(RUBRICAS_BASE);
   let MULT = clone(MULT_BASE);
   const estado = { convidados: 100, regiao: "lisboa", epoca: "alta", estilo: "classico",
-                   orcamento: 0, distrito: "", data: "", ligadas: {} };
+                   orcamento: 0, distrito: "", data: "", quem: "", ligadas: {} };
   RUBRICAS.forEach(function (r) { estado.ligadas[r.id] = r.on; });
 
   /* ---------- utilidades ---------- */
@@ -1011,7 +1021,9 @@
   /* =========================================================
      PERCURSO — cinco perguntas, uma de cada vez
      ========================================================= */
-  const PASSOS = 5;
+  const PASSOS = 6;      // seis ecrãs: um passo prévio e as cinco perguntas
+  const PERGUNTAS = 5;
+  const QUEM = { noiva: "Noiva", noivo: "Noivo", outro: "Outra pessoa" };
   let passo = 1;
   let terminou = false;
   /* O que o casal já respondeu. Enquanto uma dimensão está por
@@ -1091,10 +1103,10 @@
     }
     const barra = $("barraPassos");
     Array.prototype.forEach.call(barra.children, function (c, i) {
-      c.classList.toggle("on", i < passo);
+      c.classList.toggle("on", i < passo - 1);
     });
-    barra.setAttribute("aria-valuenow", String(passo));
-    $("contaPassos").textContent = "Pergunta " + passo + " de " + PASSOS;
+    barra.setAttribute("aria-valuenow", String(passo - 1));
+    $("contaPassos").textContent = passo === 1 ? "Antes de começar" : "Pergunta " + (passo - 1) + " de " + PERGUNTAS;
     $("btnVoltar").hidden = passo === 1;
     render();
     if (mover) {
@@ -1122,7 +1134,7 @@
 
   (function construirBarra() {
     const barra = $("barraPassos");
-    for (let i = 0; i < PASSOS; i++) barra.appendChild(document.createElement("span"));
+    for (let i = 0; i < PERGUNTAS; i++) barra.appendChild(document.createElement("span"));
   })();
 
   $("btnVoltar").addEventListener("click", function () { mostrarPasso(passo - 1, true); });
@@ -1131,6 +1143,26 @@
     else mostrarPasso(passo + 1, true);
   });
   $("btnRever").addEventListener("click", voltarAoPercurso);
+
+  /* ---------- antes de começar: quem responde ---------- */
+  (function quemResponde() {
+    const box = $("escolhasQuem");
+    const desc = { noiva: "", noivo: "", outro: "Família, amigos, ou quem está a organizar." };
+    Object.keys(QUEM).forEach(function (k) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-pressed", "false");
+      const n = document.createElement("b"); n.textContent = QUEM[k];
+      b.appendChild(n);
+      if (desc[k]) { const d = document.createElement("small"); d.textContent = desc[k]; b.appendChild(d); }
+      b.addEventListener("click", function () {
+        estado.quem = k;
+        Array.prototype.forEach.call(box.children, function (c) { c.setAttribute("aria-pressed", "false"); });
+        b.setAttribute("aria-pressed", "true");
+      });
+      box.appendChild(b);
+    });
+  })();
 
   /* ---------- passo 1: convidados ---------- */
   (function convidados() {
@@ -1444,6 +1476,7 @@
     const res = calcular();
     const lead = {
       quando: new Date().toISOString(),
+      quemResponde: QUEM[estado.quem] || "—",
       nome: nome, email: email, telefone: tel, data: data || "—",
       convidados: estado.convidados,
       distrito: (DISTRITOS.filter(function (x) { return x.id === estado.distrito; })[0] || {}).nome || "—",
@@ -1619,7 +1652,8 @@
     leads.forEach(function (l) {
       const tr = document.createElement("tr");
       const td = document.createElement("td");
-      td.innerHTML = "<b>" + esc(l.nome) + "</b> · " + esc(l.email) + " · " + esc(l.telefone) +
+      td.innerHTML = "<b>" + esc(l.nome) + "</b>" + (l.quemResponde && l.quemResponde !== "—" ? " (" + esc(l.quemResponde) + ")" : "") +
+        " · " + esc(l.email) + " · " + esc(l.telefone) +
         '<br><span class="un">' + esc(l.dataTexto || "sem data") + " · " + l.convidados +
         " convidados · " + esc(l.distrito || "—") + " · " + esc(l.regiao) +
         " · estimativa " + eur(l.estimativa) + (l.partilhaFornecedores ? " · autoriza fornecedores" : " · sem partilha") + "</span>" +
