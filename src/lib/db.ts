@@ -85,6 +85,24 @@ CREATE TABLE IF NOT EXISTS atividades (
   criado_em  TEXT    NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS utilizadores (
+  id             INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome           TEXT    NOT NULL,
+  email          TEXT    NOT NULL UNIQUE COLLATE NOCASE,
+  palavra_passe  TEXT    NOT NULL,
+  ativo          INTEGER NOT NULL DEFAULT 1,
+  criado_em      TEXT    NOT NULL,
+  atualizado_em  TEXT    NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS sessoes (
+  token         TEXT    PRIMARY KEY,
+  utilizador_id INTEGER NOT NULL REFERENCES utilizadores(id) ON DELETE CASCADE,
+  expira_em     TEXT    NOT NULL,
+  criado_em     TEXT    NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_sessoes_utilizador ON sessoes(utilizador_id);
 CREATE INDEX IF NOT EXISTS idx_clientes_estado       ON clientes(estado);
 CREATE INDEX IF NOT EXISTS idx_fornecedores_categoria ON fornecedores(categoria);
 CREATE INDEX IF NOT EXISTS idx_contratacoes_cliente  ON contratacoes(cliente_id);

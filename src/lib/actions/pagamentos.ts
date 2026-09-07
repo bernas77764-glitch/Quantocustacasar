@@ -1,5 +1,7 @@
 "use server";
 
+import { exigirSessao } from "@/lib/auth";
+
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import {
@@ -42,6 +44,7 @@ function dadosDoFormulario(fd: FormData): DadosPagamento {
 }
 
 export async function guardarPagamento(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id")) || 0;
   const dados = dadosDoFormulario(fd);
 
@@ -58,6 +61,7 @@ export async function guardarPagamento(fd: FormData) {
 }
 
 export async function alternarPagamento(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id"));
   if (!id) return;
   const atual = obterPagamento(id);
@@ -68,6 +72,7 @@ export async function alternarPagamento(fd: FormData) {
 }
 
 export async function apagarPagamento(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id"));
   if (!id) return;
   const p = obterPagamento(id);

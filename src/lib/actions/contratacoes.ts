@@ -1,5 +1,7 @@
 "use server";
 
+import { exigirSessao } from "@/lib/auth";
+
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import {
@@ -50,6 +52,7 @@ function revalidar(id: number, clienteId?: number, fornecedorId?: number) {
 }
 
 export async function guardarContratacao(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id")) || 0;
   const dados = dadosDoFormulario(fd);
 
@@ -66,6 +69,7 @@ export async function guardarContratacao(fd: FormData) {
 }
 
 export async function alterarEstadoContratacao(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id"));
   const estado = String(fd.get("estado")) as EstadoContratacao;
   if (!id || !ESTADOS_CONTRATACAO.includes(estado)) return;
@@ -75,6 +79,7 @@ export async function alterarEstadoContratacao(fd: FormData) {
 }
 
 export async function criarPlanoPagamentos(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id"));
   const percentagem = Number(fd.get("sinal_pct")) || 30;
   if (!id) return;
@@ -84,6 +89,7 @@ export async function criarPlanoPagamentos(fd: FormData) {
 }
 
 export async function apagarContratacao(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id"));
   if (!id) return;
   const c = obterContratacao(id);
