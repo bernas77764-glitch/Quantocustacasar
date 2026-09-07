@@ -1,0 +1,274 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { obterContratacao } from "@/lib/queries/contratacoes";
+import { listarPagamentos } from "@/lib/queries/pagamentos";
+import {
+  alterarEstadoContratacao,
+  apagarContratacao,
+  criarPlanoPagamentos,
+} from "@/lib/actions/contratacoes";
+import {
+  alternarPagamento,
+  apagarPagamento,
+  guardarPagamento,
+} from "@/lib/actions/pagamentos";
+import {
+  ESTADOS_CONTRATACAO,
+  METODOS_PAGAMENTO,
+  ROTULO_ESTADO_CONTRATACAO,
+} from "@/lib/constants";
+import { euros, eurosCompacto, data, percentagem } from "@/lib/format";
+import {
+  BarraProgresso,
+  CabecalhoPagina,
+  Detalhe,
+  EstadoPagamentoBadge,
+  Indicador,
+  Seccao,
+} from "@/components/ui";
+import { BotaoConfirmar, FormularioAuto } from "@/components/formulario-auto";
+
+export const dynamic = "force-dynamic";
+
+export default async function DetalheContratacao({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: idTexto } = await params;
+  const id = Number(idTexto);
+  const c = obterContratacao(id);
+  if (!c) notFound();
+
+  const pagamentos = listarPagamentos({ contratacao_id: id });
+  const comissao = Math.round((c.valor_cents * c.comissao_pct) / 100);
+  const voltarPara = `/contratacoes/${id}`;
+
+  return (
+    <>
+      <CabecalhoPagina
+        titulo={`${c.cliente_nome} · ${c.fornecedor_nome}`}
+        descricao={`${c.categoria}${c.descricao ? ` — ${c.descricao}` : ""}`}
+        acoes={
+          <>
+            <FormularioAuto action={alterarEstadoContratacao}>
+              <input type="hidden" name="id" value={c.id} />
+              <select
+                name="estado"
+                defaultValue={c.estado}
+                aria-label="Estado da contratação"
+                className="campo w-auto"
+              >
+                {ESTADOS_CONTRATACAO.map((e) => (
+                  <option key={e} value={e}>
+                    {ROTULO_ESTADO_CONTRATACAO[e]}
+                  </option>
+                ))}
+              </select>
+            </FormularioAuto>
+            <Link href={`/contratacoes/${c.id}/editar`} className="btn">
+              Editar
+            </Link>
+            <form action={apagarContratacao}>
+              <input type="hidden" name="id" value={c.id} />
+              <BotaoConfirmar mensagem="Eliminar esta contratação e os seus pagamentos?">
+                Eliminar
+              </BotaoConfirmar>
+            </form>
+          </>
+        }
+      />
+
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <Indicador
+          rotulo="Valor acordado"
+          valor={eurosCompacto(c.valor_cents)}
+          detalhe={`Comissão ${eurosCompacto(comissao)} (${percentagem(c.comissao_pct)})`}
+        />
+        <Indicador rotulo="Pago" valor={eurosCompacto(c.pago_cents)} tom="ok" />
+        <Indicador
+          rotulo="Agendado por pagar"
+          valor={eurosCompacto(c.pendente_cents)}
+          tom={c.pendente_cents > 0 ? "warn" : undefined}
+          detalhe={
+            c.por_agendar_cents > 0
+              ? `${eurosCompacto(c.por_agendar_cents)} ainda por agendar`
+              : "Plano completo"
+          }
+        />
+        <Indicador
+          rotulo="Em atraso"
+          valor={eurosCompacto(c.atrasado_cents)}
+          tom={c.atrasado_cents > 0 ? "bad" : undefined}
+        />
+      </div>
+
+      <div className="mt-4">
+        <BarraProgresso pago={c.pago_cents} total={c.valor_cents} />
+      </div>
+
+      <div className="mt-6 grid gap-6 lg:grid-cols-3">
+        <div className="space-y-6 lg:col-span-2">
+          <Seccao
+            titulo="Plano de pagamentos"
+            acoes={
+              pagamentos.length === 0 ? (
+                <form action={criarPlanoPagamentos} className="flex items-center gap-2">
+                  <input type="hidden" name="id" value={c.id} />
+                  <input
+                    type="number"
+                    name="sinal_pct"
+                    defaultValue={30}
+                    min={0}
+                    max={100}
+                    aria-label="Percentagem do sinal"
+                    className="campo w-20 px-2 py-1 text-xs"
+                  />
+                  <button type="submit" className="btn px-2 py-1 text-xs">
+                    Gerar plano (% sinal)
+                  </button>
+                </form>
+              ) : null
+            }
+          >
+            <div className="overflow-x-auto">
+              <table className="tabela">
+                <thead>
+                  <tr>
+                    <th>Descrição</th>
+                    <th>Vencimento</th>
+                    <th>Pago em</th>
+                    <th>Método</th>
+                    <th>Estado</th>
+                    <th className="text-right">Valor</th>
+                    <th />
+                  </tr>
+                </thead>
+                <tbody>
+                  {pagamentos.map((p) => (
+                    <tr key={p.id}>
+                      <td>{p.descricao ?? "—"}</td>
+                      <td className={p.atrasado ? "text-[color:var(--bad)]" : ""}>
+                        {data(p.data_prevista)}
+                      </td>
+                      <td>{data(p.data_pagamento)}</td>
+                      <td className="text-muted">{p.metodo ?? "—"}</td>
+                      <td>
+                        <EstadoPagamentoBadge estado={p.estado} atrasado={p.atrasado} />
+                      </td>
+                      <td className="text-right font-medium tabular-nums">
+                        {euros(p.valor_cents)}
+                      </td>
+                      <td>
+                        <div className="flex items-center justify-end gap-1">
+                          <form action={alternarPagamento}>
+                            <input type="hidden" name="id" value={p.id} />
+                            <button type="submit" className="btn px-2 py-1 text-xs">
+                              {p.estado === "pago" ? "Reabrir" : "Marcar pago"}
+                            </button>
+                          </form>
+                          <form action={apagarPagamento}>
+                            <input type="hidden" name="id" value={p.id} />
+                            <BotaoConfirmar
+                              mensagem="Eliminar este pagamento?"
+                              className="btn-perigo rounded-lg px-2 py-1 text-xs"
+                            >
+                              ✕
+                            </BotaoConfirmar>
+                          </form>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                  <tr className="bg-surface-2">
+                    <td colSpan={5} className="text-xs font-medium text-muted uppercase">
+                      Total agendado
+                    </td>
+                    <td className="text-right font-semibold tabular-nums">
+                      {euros(c.pago_cents + c.pendente_cents)}
+                    </td>
+                    <td />
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <form
+              action={guardarPagamento}
+              className="grid gap-3 border-t border-line p-4 sm:grid-cols-2 lg:grid-cols-5"
+            >
+              <input type="hidden" name="contratacao_id" value={c.id} />
+              <input type="hidden" name="voltar_para" value={voltarPara} />
+              <label className="lg:col-span-2">
+                <span className="rotulo">Descrição</span>
+                <input
+                  name="descricao"
+                  placeholder="2.ª prestação"
+                  className="campo"
+                />
+              </label>
+              <label>
+                <span className="rotulo">Valor (€)</span>
+                <input
+                  name="valor"
+                  required
+                  inputMode="decimal"
+                  defaultValue={
+                    c.por_agendar_cents > 0 ? (c.por_agendar_cents / 100).toFixed(2) : ""
+                  }
+                  className="campo"
+                />
+              </label>
+              <label>
+                <span className="rotulo">Vencimento</span>
+                <input type="date" name="data_prevista" className="campo" />
+              </label>
+              <label>
+                <span className="rotulo">Método</span>
+                <select name="metodo" defaultValue="" className="campo">
+                  <option value="">—</option>
+                  {METODOS_PAGAMENTO.map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <div className="sm:col-span-2 lg:col-span-5">
+                <button type="submit" className="btn btn-principal">
+                  Adicionar pagamento
+                </button>
+              </div>
+            </form>
+          </Seccao>
+        </div>
+
+        <Seccao titulo="Detalhes">
+          <dl className="grid grid-cols-2 gap-4 p-4">
+            <Detalhe rotulo="Cliente">
+              <Link href={`/clientes/${c.cliente_id}`} className="hover:text-brand">
+                {c.cliente_nome}
+              </Link>
+            </Detalhe>
+            <Detalhe rotulo="Fornecedor">
+              <Link href={`/fornecedores/${c.fornecedor_id}`} className="hover:text-brand">
+                {c.fornecedor_nome}
+              </Link>
+            </Detalhe>
+            <Detalhe rotulo="Categoria">{c.categoria}</Detalhe>
+            <Detalhe rotulo="Data do serviço">{data(c.data_servico)}</Detalhe>
+            <Detalhe rotulo="Comissão">{percentagem(c.comissao_pct)}</Detalhe>
+            <Detalhe rotulo="Criada em">{data(c.criado_em)}</Detalhe>
+            {c.notas && (
+              <div className="col-span-2">
+                <Detalhe rotulo="Notas">
+                  <p className="whitespace-pre-wrap">{c.notas}</p>
+                </Detalhe>
+              </div>
+            )}
+          </dl>
+        </Seccao>
+      </div>
+    </>
+  );
+}
