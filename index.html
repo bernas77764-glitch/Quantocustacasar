@@ -931,6 +931,9 @@
      casal — se falhar, o email já foi e fica um aviso na consola.
      Vazio = o site não fala com o CRM. */
   const CRM_ENDPOINT = "https://quantocustacasar-production.up.railway.app/api/public/leads";
+  /* O mesmo para os pedidos de parceria: entram no catálogo de fornecedores
+     do CRM como inativos, até a equipa rever as condições. */
+  const CRM_ENDPOINT_FORNECEDORES = "https://quantocustacasar-production.up.railway.app/api/public/fornecedores";
   /* Número que atende o WhatsApp, em formato internacional e só dígitos,
      por exemplo "351912345678". Vazio = o botão não aparece. */
   const WHATSAPP = "351912263717";
@@ -973,22 +976,37 @@
     };
   }
 
-  function enviarAoCrm(dados) {
-    if (!CRM_ENDPOINT) return;
-    fetch(CRM_ENDPOINT, {
+  /* O que o CRM guarda de cada pedido de parceria. A categoria e o distrito
+     vão como o fornecedor os escreveu; é o CRM que os converte para a sua
+     lista, guardando o texto original nas notas quando não bate certo. */
+  function paraCrmFornecedor(d) {
+    return {
+      empresa: d.empresa,
+      categoria: d.categoria,
+      distrito: d.distrito,
+      responsavel: d.nome,
+      email: d.email,
+      telefone: d.telefone || null
+    };
+  }
+
+  function enviarAoCrm(url, corpo) {
+    if (!url) return;
+    fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(paraCrm(dados))
+      body: JSON.stringify(corpo)
     }).then(function (r) {
       if (!r.ok) throw new Error("HTTP " + r.status);
     }).catch(function (e) {
-      console.warn("A lead não chegou ao CRM:", e);
+      console.warn("O pedido não chegou ao CRM:", e);
     });
   }
 
   function enviar(tipo, dados, form) {
     if (form && ehRobo(form)) return Promise.resolve({ local: !ENDPOINT });
-    if (tipo === "casal") enviarAoCrm(dados);
+    if (tipo === "casal") enviarAoCrm(CRM_ENDPOINT, paraCrm(dados));
+    if (tipo === "fornecedor") enviarAoCrm(CRM_ENDPOINT_FORNECEDORES, paraCrmFornecedor(dados));
     if (!ENDPOINT) return Promise.resolve({ local: true });
     const assunto = tipo === "fornecedor"
       ? "Quanto Custa Casar — novo fornecedor: " + (dados.empresa || "")
