@@ -109,7 +109,8 @@ o servidor a correr.
 | Variável | Para que serve |
 | --- | --- |
 | `CRM_DB_PATH` | Caminho do ficheiro SQLite (por omissão `data/crm.db`; `/data/crm.db` na imagem) |
-| `CRM_API_TOKEN` | Se definida, a API pública de leads passa a exigir `Authorization: Bearer …` |
+| `CRM_ORIGENS_PERMITIDAS` | Origens (separadas por vírgulas) autorizadas a enviar leads a partir do browser; por omissão, as do próprio site |
+| `CRM_API_TOKEN` | Se definida, os pedidos de leads servidor-a-servidor (sem `Origin`) passam a exigir `Authorization: Bearer …` |
 | `CRM_PALAVRA_PASSE` | Só para o script `criar-utilizador`, em automatismos |
 | `PORT` | Porta do servidor (por omissão 3000) |
 
@@ -168,9 +169,20 @@ curl -X POST http://localhost:3000/api/public/leads \
       }'
 ```
 
-Só `nome` é obrigatório. O lead entra no estado `novo`. Se definir a variável de
-ambiente `CRM_API_TOKEN`, os pedidos passam a exigir o cabeçalho
-`Authorization: Bearer <token>`.
+Só `nome` é obrigatório. O lead entra no estado `novo`.
+
+**A partir do site (browser).** O simulador é uma página estática noutro
+domínio, por isso o pedido é cross-origin. A rota responde ao preflight e só
+aceita as origens de `CRM_ORIGENS_PERMITIDAS` (por omissão, o GitHub Pages do
+projeto e `quantocustacasar.pt`); um browser noutra origem recebe 403. Como o
+código do site é público, não há token nesse caminho — a proteção é a lista de
+origens, o campo-isco do formulário do site e um limite de 10 pedidos por
+endereço a cada 10 minutos (429). No site, o endereço da rota vai na constante
+`CRM_ENDPOINT` do `index.html`; o simulador envia cada pedido de casal para o
+Formspree (email à equipa) e para o CRM em paralelo.
+
+**Servidor-a-servidor.** Pedidos sem `Origin` não passam pela lista. Se definir
+`CRM_API_TOKEN`, passam a exigir `Authorization: Bearer <token>`.
 
 A tesouraria também exporta CSV (separador `;`, UTF-8 com BOM, pronto para
 Excel) em `/api/pagamentos/csv`, respeitando os filtros ativos.
