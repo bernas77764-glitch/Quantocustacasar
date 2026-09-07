@@ -61,7 +61,7 @@ export default function Painel() {
         <Indicador
           rotulo="Valor contratado"
           valor={eurosCompacto(r.contratado_cents)}
-          detalhe={`${r.contratacoes_ativas} contratações · comissão ${eurosCompacto(r.comissao_cents)}`}
+          detalhe={`${r.contratacoes_ativas} contratações confirmadas`}
           href="/contratacoes"
         />
         <Indicador
@@ -79,6 +79,31 @@ export default function Painel() {
           detalhe={`Por receber: ${eurosCompacto(emDivida)}`}
           tom={r.atrasado_cents > 0 ? "bad" : undefined}
           href="/pagamentos?estado=atrasado"
+        />
+      </div>
+
+      {/* As comissões são a receita do negócio: merecem a sua própria linha,
+          separada do dinheiro que os casais pagam aos fornecedores. */}
+      <div className="mt-3 grid gap-3 sm:grid-cols-3">
+        <Indicador
+          rotulo="Comissões a receber dos fornecedores"
+          valor={eurosCompacto(r.comissao_a_receber_cents)}
+          detalhe="Casais já pagaram; fornecedores ainda não"
+          tom={r.comissao_a_receber_cents > 0 ? "warn" : undefined}
+          href="/comissoes?estado=a_receber"
+        />
+        <Indicador
+          rotulo="Comissões recebidas este mês"
+          valor={eurosCompacto(r.comissao_recebida_mes_cents)}
+          detalhe={`${eurosCompacto(r.comissao_recebida_cents)} no total`}
+          tom="ok"
+          href="/comissoes?estado=recebida"
+        />
+        <Indicador
+          rotulo="Comissões previstas"
+          valor={eurosCompacto(r.comissao_cents)}
+          detalhe="Sobre as contratações confirmadas"
+          href="/comissoes"
         />
       </div>
 

@@ -8,10 +8,12 @@ import {
   criarPlanoPagamentos,
 } from "@/lib/actions/contratacoes";
 import {
+  alternarComissao,
   alternarPagamento,
   apagarPagamento,
   guardarPagamento,
 } from "@/lib/actions/pagamentos";
+import { ComissaoBadge } from "@/components/comissao";
 import {
   ESTADOS_CONTRATACAO,
   METODOS_PAGAMENTO,
@@ -42,6 +44,12 @@ export default async function DetalheContratacao({
 
   const pagamentos = listarPagamentos({ contratacao_id: id });
   const comissao = Math.round((c.valor_cents * c.comissao_pct) / 100);
+  const comissaoAReceber = pagamentos
+    .filter((p) => p.comissao_a_receber)
+    .reduce((s, p) => s + p.comissao_cents, 0);
+  const comissaoRecebida = pagamentos
+    .filter((p) => p.estado === "pago" && p.comissao_recebida_em)
+    .reduce((s, p) => s + p.comissao_cents, 0);
   const voltarPara = `/contratacoes/${id}`;
 
   return (
@@ -83,23 +91,27 @@ export default async function DetalheContratacao({
         <Indicador
           rotulo="Valor acordado"
           valor={eurosCompacto(c.valor_cents)}
-          detalhe={`Comissão ${eurosCompacto(comissao)} (${percentagem(c.comissao_pct)})`}
+          detalhe={`Comissão prevista ${eurosCompacto(comissao)} (${percentagem(c.comissao_pct)})`}
         />
-        <Indicador rotulo="Pago" valor={eurosCompacto(c.pago_cents)} tom="ok" />
+        <Indicador rotulo="Pago pelo casal" valor={eurosCompacto(c.pago_cents)} tom="ok" />
         <Indicador
           rotulo="Agendado por pagar"
           valor={eurosCompacto(c.pendente_cents)}
           tom={c.pendente_cents > 0 ? "warn" : undefined}
           detalhe={
             c.por_agendar_cents > 0
-              ? `${eurosCompacto(c.por_agendar_cents)} ainda por agendar`
-              : "Plano completo"
+              ? `${eurosCompacto(c.por_agendar_cents)} ainda por agendar${c.atrasado_cents > 0 ? ` · ${eurosCompacto(c.atrasado_cents)} em atraso` : ""}`
+              : c.atrasado_cents > 0
+                ? `${eurosCompacto(c.atrasado_cents)} em atraso`
+                : "Plano completo"
           }
         />
         <Indicador
-          rotulo="Em atraso"
-          valor={eurosCompacto(c.atrasado_cents)}
-          tom={c.atrasado_cents > 0 ? "bad" : undefined}
+          rotulo="Comissão a receber do fornecedor"
+          valor={eurosCompacto(comissaoAReceber)}
+          tom={comissaoAReceber > 0 ? "warn" : undefined}
+          detalhe={`${eurosCompacto(comissaoRecebida)} já recebida`}
+          href={`/comissoes?estado=todas&fornecedor_id=${c.fornecedor_id}`}
         />
       </div>
 
@@ -141,12 +153,13 @@ export default async function DetalheContratacao({
                     <th>Método</th>
                     <th>Estado</th>
                     <th className="text-right">Valor</th>
+                    <th>Comissão</th>
                     <th />
                   </tr>
                 </thead>
                 <tbody>
                   {pagamentos.map((p) => (
-                    <tr key={p.id}>
+                    <tr key={p.id} className={p.comissao_a_receber ? "bg-[color:var(--warn)]/5" : ""}>
                       <td>{p.descricao ?? "—"}</td>
                       <td className={p.atrasado ? "text-[color:var(--bad)]" : ""}>
                         {data(p.data_prevista)}
@@ -160,6 +173,9 @@ export default async function DetalheContratacao({
                         {euros(p.valor_cents)}
                       </td>
                       <td>
+                        <ComissaoBadge p={p} />
+                      </td>
+                      <td>
                         <div className="flex items-center justify-end gap-1">
                           <form action={alternarPagamento}>
                             <input type="hidden" name="id" value={p.id} />
@@ -167,6 +183,17 @@ export default async function DetalheContratacao({
                               {p.estado === "pago" ? "Reabrir" : "Marcar pago"}
                             </button>
                           </form>
+                          {p.estado === "pago" && p.comissao_cents > 0 && (
+                            <form action={alternarComissao}>
+                              <input type="hidden" name="id" value={p.id} />
+                              <button
+                                type="submit"
+                                className={`px-2 py-1 text-xs whitespace-nowrap ${p.comissao_a_receber ? "btn btn-principal" : "btn"}`}
+                              >
+                                {p.comissao_a_receber ? "Recebi a comissão" : "Comissão por receber"}
+                              </button>
+                            </form>
+                          )}
                           <form action={apagarPagamento}>
                             <input type="hidden" name="id" value={p.id} />
                             <BotaoConfirmar
@@ -187,7 +214,13 @@ export default async function DetalheContratacao({
                     <td className="text-right font-semibold tabular-nums">
                       {euros(c.pago_cents + c.pendente_cents)}
                     </td>
-                    <td />
+                    <td colSpan={2} className="text-xs text-muted">
+                      {comissaoAReceber > 0
+                        ? `Comissão a receber: ${euros(comissaoAReceber)}`
+                        : comissaoRecebida > 0
+                          ? "Comissões em dia"
+                          : ""}
+                    </td>
                   </tr>
                 </tbody>
               </table>

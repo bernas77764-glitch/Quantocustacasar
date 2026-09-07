@@ -33,6 +33,9 @@ export async function GET(pedido: Request) {
     "Estado",
     "Referência",
     "Valor (EUR)",
+    "Comissão (EUR)",
+    "Comissão",
+    "Comissão recebida em",
   ];
 
   const linhas = pagamentos.map((p) =>
@@ -47,6 +50,9 @@ export async function GET(pedido: Request) {
       p.atrasado ? "em atraso" : p.estado,
       p.referencia,
       (p.valor_cents / 100).toFixed(2).replace(".", ","),
+      p.estado === "pago" ? (p.comissao_cents / 100).toFixed(2).replace(".", ",") : "",
+      p.estado !== "pago" || p.comissao_cents === 0 ? "" : p.comissao_a_receber ? "a receber" : "recebida",
+      p.comissao_recebida_em,
     ].map(celula).join(";"),
   );
 

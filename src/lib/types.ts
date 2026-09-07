@@ -67,6 +67,10 @@ export type Pagamento = {
   estado: EstadoPagamento;
   referencia: string | null;
   notas: string | null;
+  /** Comissão que o fornecedor fica a dever quando este pagamento é pago. */
+  comissao_cents: number;
+  /** Data em que o fornecedor pagou a comissão; `null` = a receber. */
+  comissao_recebida_em: string | null;
   criado_em: string;
   atualizado_em: string;
 };
@@ -99,8 +103,22 @@ export type ContratacaoDetalhada = Contratacao &
 export type PagamentoDetalhado = Pagamento & {
   cliente_id: number;
   cliente_nome: string;
+  fornecedor_id: number;
   fornecedor_nome: string;
   categoria: string;
+  /** Percentagem de comissão da contratação, para referência. */
+  comissao_pct: number;
   /** `pendente` cuja data prevista já passou. */
   atrasado: boolean;
+  /** O casal já pagou, o fornecedor ainda não pagou a comissão. */
+  comissao_a_receber: boolean;
+};
+
+/** Comissões agregadas por fornecedor. */
+export type ComissoesDoFornecedor = {
+  fornecedor_id: number;
+  fornecedor_nome: string;
+  a_receber_cents: number;
+  recebida_cents: number;
+  num_a_receber: number;
 };
