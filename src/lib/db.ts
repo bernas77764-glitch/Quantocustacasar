@@ -91,6 +91,7 @@ CREATE TABLE IF NOT EXISTS utilizadores (
   email          TEXT    NOT NULL UNIQUE COLLATE NOCASE,
   palavra_passe  TEXT    NOT NULL,
   ativo          INTEGER NOT NULL DEFAULT 1,
+  administrador  INTEGER NOT NULL DEFAULT 0,
   criado_em      TEXT    NOT NULL,
   atualizado_em  TEXT    NOT NULL
 );
@@ -161,11 +162,31 @@ function dbPath(): string {
   );
 }
 
+/**
+ * Alterações a tabelas que já existem. O `CREATE TABLE IF NOT EXISTS` do
+ * esquema não toca numa base já criada, por isso cada coluna acrescentada
+ * depois da primeira versão entra aqui, de forma idempotente.
+ */
+function migrar(db: DatabaseSync): void {
+  const colunas = (db.prepare("PRAGMA table_info(utilizadores)").all() as { name: string }[])
+    .map((c) => c.name);
+
+  if (!colunas.includes("administrador")) {
+    db.exec(
+      "ALTER TABLE utilizadores ADD COLUMN administrador INTEGER NOT NULL DEFAULT 0",
+    );
+    // As contas anteriores aos perfis são de quem montou o CRM: ficam
+    // administradoras, senão ninguém poderia gerir contas.
+    db.exec("UPDATE utilizadores SET administrador = 1");
+  }
+}
+
 function open(): BaseDados {
   const file = dbPath();
   fs.mkdirSync(path.dirname(file), { recursive: true });
   const db = new DatabaseSync(file);
   db.exec(SCHEMA);
+  migrar(db);
   return envolver(db);
 }
 

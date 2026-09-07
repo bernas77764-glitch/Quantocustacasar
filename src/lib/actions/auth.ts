@@ -62,9 +62,9 @@ export async function entrar(
 }
 
 /**
- * Criação da conta inicial. Só funciona enquanto não existir nenhum
- * utilizador ativo — depois disso, as contas criam-se com
- * `npm run criar-utilizador`.
+ * Criação da conta inicial, que fica administradora. Só funciona enquanto não
+ * existir nenhum utilizador ativo — depois disso, as contas criam-se na
+ * página Utilizadores (ou com `npm run criar-utilizador`).
  */
 export async function criarPrimeiraConta(
   _anterior: EstadoAutenticacao,
@@ -97,7 +97,7 @@ export async function criarPrimeiraConta(
     return { erro: "A confirmação não coincide com a palavra-passe.", valores };
   }
 
-  const id = criarUtilizador(nome, email, palavraPasse);
+  const id = criarUtilizador(nome, email, palavraPasse, 1);
   await iniciarSessao(id);
   redirect("/");
 }

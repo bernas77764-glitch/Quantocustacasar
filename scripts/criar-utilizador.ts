@@ -135,10 +135,11 @@ const existente = db
   .prepare("SELECT id FROM utilizadores WHERE email = ?")
   .get(normalizado) as { id: number } | undefined;
 
+// Quem corre este script tem acesso ao servidor, logo a conta fica administradora.
 if (existente) {
   db.prepare(
     `UPDATE utilizadores
-     SET nome = ?, palavra_passe = ?, ativo = 1, atualizado_em = ?
+     SET nome = ?, palavra_passe = ?, ativo = 1, administrador = 1, atualizado_em = ?
      WHERE id = ?`,
   ).run(nome, criarHash(palavraPasse), ts, existente.id);
   // As sessões abertas deixam de servir depois de trocar a palavra-passe.
@@ -146,8 +147,9 @@ if (existente) {
   console.log(`Palavra-passe de ${normalizado} atualizada. Sessões terminadas.`);
 } else {
   db.prepare(
-    `INSERT INTO utilizadores (nome, email, palavra_passe, criado_em, atualizado_em)
-     VALUES (?, ?, ?, ?, ?)`,
+    `INSERT INTO utilizadores
+       (nome, email, palavra_passe, administrador, criado_em, atualizado_em)
+     VALUES (?, ?, ?, 1, ?, ?)`,
   ).run(nome, normalizado, criarHash(palavraPasse), ts, ts);
-  console.log(`Conta criada para ${normalizado}.`);
+  console.log(`Conta de administrador criada para ${normalizado}.`);
 }

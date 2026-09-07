@@ -48,8 +48,20 @@ O CRM exige autenticação: todas as páginas, Server Actions e a exportação C
 verificam a sessão. A única exceção é a API pública de captação de leads, que
 tem o seu próprio token.
 
-Na primeira utilização, o `/login` propõe criar a conta de administração —
-depois disso essa opção desaparece e as contas passam a criar-se no servidor:
+Na primeira utilização, o `/login` propõe criar a conta inicial, que fica
+**administradora**. Depois disso essa opção desaparece.
+
+Há dois perfis: **administrador** (vê a página **Utilizadores**, onde cria
+contas, dá ou retira o perfil de administrador, desativa e reativa contas e
+redefine palavras-passe) e **utilizador** (tudo o resto). Qualquer pessoa muda
+a própria palavra-passe em **A minha conta**, na barra lateral. Desativar uma
+conta ou redefinir-lhe a palavra-passe termina as sessões dessa pessoa; o CRM
+recusa desativar a própria conta e recusa deixar o sistema sem nenhum
+administrador ativo.
+
+Contas também podem ser criadas no servidor, o que é útil se todos os
+administradores perderem o acesso (a conta criada pelo script é sempre
+administradora):
 
 ```bash
 npm run criar-utilizador -- "Bernardo Soares" bernardo@exemplo.pt
