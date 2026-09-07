@@ -211,6 +211,24 @@ existente ganha uma nota com o novo pedido (resposta 200 com `repetido: true`).
 
 A lógica comum às duas rotas públicas está em `src/lib/api-publica.ts`.
 
+### Tabela de preços do simulador
+
+`GET /api/public/precos` devolve a tabela de preços que o site usa para
+estimar — no formato exato do botão «Copiar tabela (JSON)» da área da equipa
+do site (`atualizado`, `rubricas[{id, nome, un, min, base, max}]`,
+`mult{regiao, epoca, estilo}`). É informação pública, por isso o CORS é
+aberto e a resposta é `no-store`: uma alteração vê-se no carregamento
+seguinte da página.
+
+A tabela edita-se na página **Tabela de preços** do CRM (qualquer utilizador
+autenticado): mínimo, estimativa e máximo por rubrica, e os multiplicadores de
+região, época e estilo. Também se pode colar o JSON copiado do site
+("Importar do site"). Enquanto nada for guardado, a rota serve os valores com
+que o site nasceu, definidos em `src/lib/precos.ts` — os `id` das rubricas e
+as chaves dos multiplicadores têm de coincidir com os do `index.html` do site,
+porque o site só aplica o que reconhece. Ao contrário do resto do CRM, estes
+valores são em euros, não em cêntimos: é o formato do site.
+
 A tesouraria também exporta CSV (separador `;`, UTF-8 com BOM, pronto para
 Excel) em `/api/pagamentos/csv`, respeitando os filtros ativos.
 

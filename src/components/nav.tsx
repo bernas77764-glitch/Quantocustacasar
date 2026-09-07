@@ -9,6 +9,7 @@ const LIGACOES = [
   { href: "/fornecedores", rotulo: "Fornecedores", icone: "◈" },
   { href: "/contratacoes", rotulo: "Contratações", icone: "◇" },
   { href: "/pagamentos", rotulo: "Pagamentos", icone: "€" },
+  { href: "/precos", rotulo: "Tabela de preços", icone: "≡" },
 ];
 
 const SO_ADMINISTRADOR = { href: "/utilizadores", rotulo: "Utilizadores", icone: "◎" };

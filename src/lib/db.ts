@@ -103,6 +103,12 @@ CREATE TABLE IF NOT EXISTS sessoes (
   criado_em     TEXT    NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS definicoes (
+  chave         TEXT PRIMARY KEY,
+  valor         TEXT NOT NULL,
+  atualizado_em TEXT NOT NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_sessoes_utilizador ON sessoes(utilizador_id);
 CREATE INDEX IF NOT EXISTS idx_clientes_estado       ON clientes(estado);
 CREATE INDEX IF NOT EXISTS idx_fornecedores_categoria ON fornecedores(categoria);
