@@ -184,6 +184,21 @@ Formspree (email à equipa) e para o CRM em paralelo.
 **Servidor-a-servidor.** Pedidos sem `Origin` não passam pela lista. Se definir
 `CRM_API_TOKEN`, passam a exigir `Authorization: Bearer <token>`.
 
+### Fornecedores (formulário "Seja nosso parceiro")
+
+`POST /api/public/fornecedores`, com as mesmas regras de origem, token e
+limite. Campos: `empresa` (obrigatório), `categoria`, `distrito`, `responsavel`,
+`email`, `telefone`, `website`, `notas`.
+
+O fornecedor entra **inativo** — não aparece em novas contratações até a equipa
+rever as condições e o ativar na ficha (Fornecedores → filtro "Inativos"). A
+categoria e o distrito podem vir escritos à maneira do site: o CRM converte-os
+para a sua lista e, quando a conversão não é exata, guarda o texto original nas
+notas. Se o email já existir no catálogo, não se cria um duplicado — a ficha
+existente ganha uma nota com o novo pedido (resposta 200 com `repetido: true`).
+
+A lógica comum às duas rotas públicas está em `src/lib/api-publica.ts`.
+
 A tesouraria também exporta CSV (separador `;`, UTF-8 com BOM, pronto para
 Excel) em `/api/pagamentos/csv`, respeitando os filtros ativos.
 
