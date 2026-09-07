@@ -718,6 +718,7 @@
     <summary><span>Team area · price table and leads <span class="badge">Prototype</span></span></summary>
     <div class="inner">
       <p class="hint">Replace the indicative values with real ones here. <b>Estimate</b> is the typical value the simulator uses; minimum and maximum define the range shown to the couple. Save stores in this browser; <b>Copy table</b> gives the file to fix as the site base.</p>
+      <p class="hint" id="origemPrecos" hidden></p>
       <div class="tablewrap">
         <table id="editor">
           <thead><tr><th>Item</th><th>Unit</th><th class="num">Minimum</th><th class="num">Estimate</th><th class="num">Maximum</th></tr></thead>
@@ -878,7 +879,16 @@
      CAMPOS_EXTRA junta campos fixos ao corpo do pedido, para os serviços
      que precisam de uma chave — por exemplo { access_key: "..." }.
      ========================================================= */
-  const ENDPOINT = "https://formspree.io/f/mnpqbrql";
+  const ENDPOINT = "https://formspree.io/f/mnpqbrql";   /* email, via Formspree */
+  /* CRM: recebe o mesmo pedido em JSON, ao mesmo tempo que o email. Vazio =
+     só o email. CAMPOS_CRM junta campos fixos ao pedido para o CRM — por
+     exemplo uma chave pública; nunca um segredo, porque a página é visível. */
+  const ENDPOINT_CRM = "";
+  const CAMPOS_CRM = {};
+  /* Tabela de preços gerida no CRM: endereço público que devolve o JSON no
+     formato de «Copiar tabela (JSON)». Vazio = usam-se os valores deste
+     ficheiro. Se o CRM estiver em baixo, o site continua com estes valores. */
+  const PRECOS_URL = "";
   /* Número que atende o WhatsApp, em formato internacional e só dígitos,
      por exemplo "351912345678". Vazio = o botão não aparece. */
   const WHATSAPP = "351912263717";
@@ -892,26 +902,40 @@
   }
 
   function enviar(tipo, dados, form) {
-    if (form && ehRobo(form)) return Promise.resolve({ local: !ENDPOINT });
-    if (!ENDPOINT) return Promise.resolve({ local: true });
+    const destinos = [];
+    if (ENDPOINT) destinos.push({ url: ENDPOINT, extra: CAMPOS_EXTRA });
+    if (ENDPOINT_CRM) destinos.push({ url: ENDPOINT_CRM, extra: CAMPOS_CRM });
+    if (form && ehRobo(form)) return Promise.resolve({ local: !destinos.length });
+    if (!destinos.length) return Promise.resolve({ local: true });
     const assunto = tipo === "fornecedor"
       ? "Quanto Custa Casar — new supplier (EN site): " + (dados.empresa || "")
       : "Quanto Custa Casar — new couple (EN site): " + (dados.nome || "");
-    const corpo = Object.assign(
-      /* Sem o endereço da página: um link no corpo do pedido é um dos sinais
-         que os filtros de spam mais penalizam. */
-      { tipo: tipo, idioma: "en", origem: location.hostname || "local file" },
-      CAMPOS_EXTRA,
-      /* Formspree lê "_subject"; Web3Forms lê "subject". Ambos ignoram o outro. */
-      { _subject: assunto, subject: assunto, resumo: resumoDe(tipo, dados) },
-      dados
-    );
-    return fetch(ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(corpo)
-    }).then(function (r) {
-      if (!r.ok) throw new Error("HTTP " + r.status);
+    /* Envia a todos os destinos. Basta um chegar para o pedido não se perder;
+       só falha se falharem todos. */
+    const envios = destinos.map(function (d) {
+      const corpo = Object.assign(
+        /* Sem o endereço da página: um link no corpo do pedido é um dos sinais
+           que os filtros de spam mais penalizam. */
+        { tipo: tipo, idioma: "en", origem: location.hostname || "local file" },
+        d.extra,
+        /* Formspree lê "_subject"; Web3Forms lê "subject". Ambos ignoram o outro. */
+        { _subject: assunto, subject: assunto, resumo: resumoDe(tipo, dados) },
+        dados
+      );
+      return fetch(d.url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(corpo)
+      }).then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return true;
+      }).catch(function (e) {
+        console.warn("Envio falhou para " + d.url + ": " + e.message);
+        return false;
+      });
+    });
+    return Promise.all(envios).then(function (res) {
+      if (!res.some(Boolean)) throw new Error("nenhum destino aceitou o pedido");
       return { local: false };
     });
   }
@@ -953,10 +977,9 @@
   function ler(k, fb) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch (e) { return fb; } }
   function gravar(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
 
-  /* ---------- carregar preços guardados ---------- */
-  (function carregar() {
-    const g = ler(LS_PRECOS, null);
-    if (!g) return;
+  /* ---------- aplicar uma tabela de preços (deste navegador ou do CRM) ---------- */
+  function aplicarTabela(g) {
+    if (!g) return false;
     if (Array.isArray(g.rubricas)) {
       g.rubricas.forEach(function (s) {
         const r = RUBRICAS.find(function (x) { return x.id === s.id; });
@@ -971,7 +994,9 @@
         });
       });
     }
-  })();
+    return true;
+  }
+  aplicarTabela(ler(LS_PRECOS, null));
 
   /* ---------- cálculo ---------- */
   function fator(r) {
@@ -1593,6 +1618,34 @@
     setTimeout(function () { m.hidden = true; }, 3500);
   });
 
+  /* Põe os campos do editor de acordo com os valores em uso. */
+  function refrescarEditor() {
+    document.querySelectorAll("#editorBody tr").forEach(function (tr, i) {
+      const r = RUBRICAS[i]; const c = tr.querySelectorAll("input");
+      if (r && c.length === 3) { c[0].value = r.min; c[1].value = r.base; c[2].value = r.max; }
+    });
+    const mults = document.querySelectorAll("#multBody input"); let idx = 0;
+    ["regiao", "epoca", "estilo"].forEach(function (dim) {
+      Object.keys(MULT[dim]).forEach(function (k) { if (mults[idx]) mults[idx].value = MULT[dim][k].m; idx++; });
+    });
+  }
+
+  /* Tabela de preços do CRM: chega depois de a página abrir; até lá usam-se
+     os valores do ficheiro, e se não chegar ficam esses. */
+  function carregarPrecosDoCRM() {
+    if (!PRECOS_URL) return;
+    fetch(PRECOS_URL, { cache: "no-store", headers: { "Accept": "application/json" } })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function (g) {
+        if (!aplicarTabela(g)) throw new Error("formato inesperado");
+        refrescarEditor();
+        const o = $("origemPrecos");
+        if (o) { o.hidden = false; o.textContent = "Prices loaded from the CRM" + (g.atualizado ? " (updated " + g.atualizado + ")" : "") + ". Changes made here apply only in this browser; for everyone, change them in the CRM."; }
+        render();
+      })
+      .catch(function (e) { console.warn("Tabela de preços do CRM indisponível; a usar os valores do site. " + e.message); });
+  }
+
   $("btnRepor").addEventListener("click", function () {
     RUBRICAS_BASE.forEach(function (b) {
       const r = RUBRICAS.find(function (x) { return x.id === b.id; });
@@ -1782,6 +1835,7 @@
 
   /* ---------- arranque ---------- */
   renderLeads();
+  carregarPrecosDoCRM();
   window.__definirConvidados(estado.convidados);
   window.__marcarEpoca();
   mostrarPasso(1, false);

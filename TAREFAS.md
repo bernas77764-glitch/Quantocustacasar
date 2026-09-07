@@ -26,7 +26,12 @@ Por ordem: do que desbloqueia mais para o que pode esperar.
    (de preferência WhatsApp Business), restringir o Formspree ao domínio, e
    confirmar política de privacidade e consentimentos (RGPD) com alguém de
    proteção de dados.
-9. **Forma jurídica.** Abrir atividade como independente com o primeiro
+9. **Ligar o CRM.** O site já envia cada pedido para o email e para o CRM ao
+   mesmo tempo, e já sabe ir buscar a tabela de preços ao CRM. Faltam dois
+   endereços do CRM: um que receba os pedidos (POST em JSON) e um que devolva a
+   tabela de preços (GET em JSON, no formato de «Copiar tabela»). Contrato no
+   README, secções «Ligar os formulários» e «Tabela de preços gerida no CRM».
+10. **Forma jurídica.** Abrir atividade como independente com o primeiro
    fornecedor pagante; empresa só se houver sócio, receita recorrente ou
    volume de dados que justifique. Confirmar com contabilista certificado.
 

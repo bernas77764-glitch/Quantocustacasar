@@ -283,6 +283,8 @@ R = [
  # editor da equipa
  (u'(r.un === "convidado" ? "por convidado" : "valor fixo")', u'(r.un === "convidado" ? "per guest" : "fixed price")'),
  (u'[["regiao", "Região"], ["epoca", "Época"], ["estilo", "Estilo"]]', u'[["regiao", "Region"], ["epoca", "Season"], ["estilo", "Style"]]'),
+ (u'o.textContent = "Preços carregados do CRM" + (g.atualizado ? " (atualizados em " + g.atualizado + ")" : "") + ". As alterações feitas aqui só valem neste navegador; para toda a gente, alteram-se no CRM.";',
+  u'o.textContent = "Prices loaded from the CRM" + (g.atualizado ? " (updated " + g.atualizado + ")" : "") + ". Changes made here apply only in this browser; for everyone, change them in the CRM.";'),
  (u'"Guardado neste navegador."', u'"Saved in this browser."'), (u'"Não foi possível guardar neste navegador."', u'"Could not save in this browser."'),
  (u'td.className = "hint"; td.textContent = "Ainda não há leads de teste neste navegador.";', u'td.className = "hint"; td.textContent = "No test leads in this browser yet.";'),
  (u'" convidados · " + esc(l.distrito || "—") + " · " + esc(l.regiao) +\n        " · estimativa " + eur(l.estimativa) + (l.partilhaFornecedores ? " · autoriza fornecedores" : " · sem partilha") + "</span>" +\n        (l.observacoes && l.observacoes !== "—" ? \'<br><span class="un">Obs.: \' + esc(l.observacoes) + "</span>" : "");',

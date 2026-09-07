@@ -87,13 +87,58 @@ atualiza os valores de `RUBRICAS_BASE` e `MULT_BASE` no `index.html`.
 
 ## Ligar os formulários
 
-Os formulários (casal e fornecedor) enviam um POST em JSON para o URL definido
-na constante `ENDPOINT`, no topo do script do `index.html`:
+Os formulários (casal e fornecedor) enviam um POST em JSON, ao mesmo tempo,
+para até dois destinos definidos no topo do script do `index.html`:
 
 ```js
-const ENDPOINT = "";        // ex.: "https://formspree.io/f/xxxxxxxx"
-const CAMPOS_EXTRA = {};    // ex.: { access_key: "..." } para o Web3Forms
+const ENDPOINT = "https://formspree.io/f/mnpqbrql";  // email, via Formspree
+const ENDPOINT_CRM = "";                             // o CRM; vazio = só o email
+const CAMPOS_CRM = {};                               // ex.: { chave: "..." } se o CRM exigir
 ```
+
+Basta um destino aceitar o pedido para o casal ver a confirmação; só aparece
+erro se falharem todos. Uma falha num deles fica registada na consola do
+browser.
+
+### O que o CRM tem de aceitar
+
+Um `POST` com `Content-Type: application/json`, vindo do browser — por isso
+com CORS aberto para o domínio do site — e a responder com um código 2xx. O
+corpo é o mesmo que o Formspree recebe (ver «O que é enviado» abaixo), com
+`tipo` igual a `casal` ou `fornecedor`. Se o CRM exigir uma chave, tem de ser
+uma chave pública: tudo o que está na página é visível a quem a abrir.
+
+## Tabela de preços gerida no CRM
+
+Se `PRECOS_URL` estiver definido, o site vai buscar a tabela de preços ao
+abrir e substitui os valores do ficheiro:
+
+```js
+const PRECOS_URL = "";   // ex.: "https://crm.exemplo.pt/api/precos"
+```
+
+O CRM tem de responder a um `GET` com JSON (CORS aberto) **exatamente no
+formato que o botão «Copiar tabela (JSON)» da área da equipa produz**:
+
+```json
+{
+  "atualizado": "2026-09-07",
+  "rubricas": [
+    { "id": "espaco", "min": 1500, "base": 3000, "max": 6000 },
+    { "id": "catering", "min": 55, "base": 80, "max": 130 }
+  ],
+  "mult": {
+    "regiao": { "lisboa": 1.15, "porto": 1.08 },
+    "epoca":  { "alta": 1.10, "media": 1.00, "baixa": 0.88 },
+    "estilo": { "intimista": 0.82, "classico": 1.00, "sofisticado": 1.35 }
+  }
+}
+```
+
+Só é preciso enviar o que muda: rubricas ou multiplicadores ausentes mantêm o
+valor do ficheiro. Os `id` das rubricas e as chaves dos multiplicadores são os
+do `index.html`. Se o CRM não responder, o site continua com os valores do
+ficheiro — nunca fica sem preços.
 
 ### Com o Formspree (recomendado)
 
