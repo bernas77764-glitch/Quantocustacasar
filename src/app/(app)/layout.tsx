@@ -24,16 +24,21 @@ export default async function LayoutAplicacao({
           <span className="block text-xs text-muted">CRM de casamentos</span>
         </Link>
 
-        <Navegacao />
+        <Navegacao administrador={utilizador.administrador === 1} />
 
         <div className="mt-4 border-t border-line pt-3 md:mt-auto md:border-t md:pt-4">
           <p className="px-3 text-sm font-medium">{utilizador.nome}</p>
           <p className="px-3 text-xs break-words text-muted">{utilizador.email}</p>
-          <form action={sair} className="mt-2 px-3">
-            <button type="submit" className="text-xs text-muted hover:text-brand">
-              Terminar sessão
-            </button>
-          </form>
+          <div className="mt-2 flex items-center gap-3 px-3">
+            <Link href="/conta" className="text-xs text-muted hover:text-brand">
+              A minha conta
+            </Link>
+            <form action={sair}>
+              <button type="submit" className="text-xs text-muted hover:text-brand">
+                Terminar sessão
+              </button>
+            </form>
+          </div>
         </div>
       </aside>
       <main className="min-w-0 flex-1 px-4 py-6 md:px-8 md:py-8">{children}</main>

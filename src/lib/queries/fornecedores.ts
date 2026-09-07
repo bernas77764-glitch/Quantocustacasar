@@ -261,3 +261,25 @@ export function sugestoesParaCliente(clienteId: number): SugestaoCategoria[] {
     }))
     .filter((s) => s.fornecedores.length > 0);
 }
+
+/** Procura por email, sem distinguir maiúsculas — usado para evitar duplicados vindos do site. */
+export function procurarFornecedorPorEmail(
+  email: string,
+): { id: number; ativo: number } | null {
+  const linha = getDb()
+    .prepare("SELECT id, ativo FROM fornecedores WHERE email = ? COLLATE NOCASE")
+    .get(email.trim()) as { id: number; ativo: number } | undefined;
+  return linha ?? null;
+}
+
+/** Acrescenta uma linha às notas da ficha, preservando o que lá estava. */
+export function anexarNotaFornecedor(id: number, nota: string): void {
+  getDb()
+    .prepare(
+      `UPDATE fornecedores
+       SET notas = CASE WHEN notas IS NULL OR notas = '' THEN ? ELSE notas || char(10) || ? END,
+           atualizado_em = ?
+       WHERE id = ?`,
+    )
+    .run(nota, nota, agora(), id);
+}

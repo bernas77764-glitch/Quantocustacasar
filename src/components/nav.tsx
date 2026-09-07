@@ -11,15 +11,18 @@ const LIGACOES = [
   { href: "/pagamentos", rotulo: "Pagamentos", icone: "€" },
 ];
 
+const SO_ADMINISTRADOR = { href: "/utilizadores", rotulo: "Utilizadores", icone: "◎" };
+
 function ativo(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
 }
 
-export function Navegacao() {
+export function Navegacao({ administrador = false }: { administrador?: boolean }) {
   const pathname = usePathname();
+  const ligacoes = administrador ? [...LIGACOES, SO_ADMINISTRADOR] : LIGACOES;
   return (
     <nav className="flex gap-1 overflow-x-auto md:flex-col md:overflow-visible">
-      {LIGACOES.map((l) => {
+      {ligacoes.map((l) => {
         const selecionado = ativo(pathname, l.href);
         return (
           <Link
