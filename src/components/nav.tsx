@@ -12,7 +12,10 @@ const LIGACOES = [
   { href: "/precos", rotulo: "Tabela de preços", icone: "≡" },
 ];
 
-const SO_ADMINISTRADOR = { href: "/utilizadores", rotulo: "Utilizadores", icone: "◎" };
+const SO_ADMINISTRADOR = [
+  { href: "/utilizadores", rotulo: "Utilizadores", icone: "◎" },
+  { href: "/demonstracao", rotulo: "Demonstração", icone: "✎" },
+];
 
 function ativo(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -20,7 +23,7 @@ function ativo(pathname: string, href: string) {
 
 export function Navegacao({ administrador = false }: { administrador?: boolean }) {
   const pathname = usePathname();
-  const ligacoes = administrador ? [...LIGACOES, SO_ADMINISTRADOR] : LIGACOES;
+  const ligacoes = administrador ? [...LIGACOES, ...SO_ADMINISTRADOR] : LIGACOES;
   return (
     <nav className="flex gap-1 overflow-x-auto md:flex-col md:overflow-visible">
       {ligacoes.map((l) => {
