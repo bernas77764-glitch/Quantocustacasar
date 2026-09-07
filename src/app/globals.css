@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --font-sans: var(--font-stack);
+}
+
+:root {
+  --font-stack: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  --canvas: #f6f6f7;
+  --surface: #ffffff;
+  --surface-2: #fafafa;
+  --line: #e4e4e7;
+  --ink: #18181b;
+  --muted: #6b7280;
+  --brand: #9f1239;
+  --brand-ink: #ffffff;
+  --brand-soft: #fdf2f5;
+  --ok: #047857;
+  --warn: #b45309;
+  --bad: #b91c1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas: #0b0b0e;
+    --surface: #151519;
+    --surface-2: #1c1c21;
+    --line: #2a2a31;
+    --ink: #ededf0;
+    --muted: #9ca3af;
+    --brand: #f43f5e;
+    --brand-ink: #1a0208;
+    --brand-soft: #2a1119;
+    --ok: #34d399;
+    --warn: #fbbf24;
+    --bad: #f87171;
+  }
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-stack);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Controlos de formulário partilhados — evita repetir a mesma lista de
+   utilitários em dezenas de inputs. */
+@layer components {
+  .campo {
+    @apply w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm
+           text-ink outline-none transition
+           placeholder:text-muted/70
+           focus:border-brand focus:ring-2 focus:ring-brand/20;
+  }
+
+  .rotulo {
+    @apply mb-1.5 block text-xs font-medium tracking-wide text-muted uppercase;
+  }
+
+  .btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2
+           rounded-lg border border-line bg-surface px-3.5 py-2 text-sm
+           font-medium text-ink transition hover:bg-surface-2
+           disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-principal {
+    @apply border-transparent bg-brand text-brand-ink hover:opacity-90;
+  }
+
+  .btn-perigo {
+    @apply border-transparent bg-transparent text-[color:var(--bad)]
+           hover:bg-[color:var(--bad)]/10;
+  }
+
+  .cartao {
+    @apply rounded-xl border border-line bg-surface;
+  }
+
+  .tabela {
+    @apply w-full border-collapse text-sm;
+  }
+
+  .tabela thead th {
+    @apply border-b border-line px-4 py-3 text-left text-xs font-semibold
+           tracking-wide text-muted uppercase whitespace-nowrap;
+  }
+
+  .tabela tbody td {
+    @apply border-b border-line/70 px-4 py-3 align-middle;
+  }
+
+  .tabela tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .tabela tbody tr:hover {
+    background: var(--surface-2);
+  }
+}
