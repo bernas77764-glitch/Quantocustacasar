@@ -176,11 +176,13 @@ const inserirContratacao = db.prepare(
       estado, data_servico, criado_em, atualizado_em)
    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 );
+// Um pagamento já pago fica a dever a comissão à percentagem da contratação
+// (é o que o CRM faz ao marcar como pago); os pendentes não devem nada.
 const inserirPagamento = db.prepare(
   `INSERT INTO pagamentos
      (contratacao_id, descricao, valor_cents, data_prevista, data_pagamento,
-      metodo, estado, criado_em, atualizado_em)
-   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      metodo, estado, comissao_cents, criado_em, atualizado_em)
+   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 );
 const comissaoDe = new Map(
   fornecedores.map(([nome, , , , , , , , com]) => [nome, com]),
@@ -216,17 +218,20 @@ for (const c of contratacoes) {
     return indice === parcelas ? "Liquidação" : `${indice}.ª prestação`;
   };
 
+  const comissaoPct = comissaoDe.get(c.fornecedor)!;
   for (const pct of c.pagos) {
+    const valor = Math.round((valorCents * pct) / 100);
     inserirPagamento.run(
-      contratacaoId, nome(), Math.round((valorCents * pct) / 100),
-      emDias(-45), emDias(-44), "Transferência", "pago", agora, agora,
+      contratacaoId, nome(), valor,
+      emDias(-45), emDias(-44), "Transferência", "pago",
+      Math.round((valor * comissaoPct) / 100), agora, agora,
     );
     numPagamentos += 1;
   }
   for (const [pct, dias] of c.pendentes) {
     inserirPagamento.run(
       contratacaoId, nome(), Math.round((valorCents * pct) / 100),
-      emDias(dias), null, null, "pendente", agora, agora,
+      emDias(dias), null, null, "pendente", 0, agora, agora,
     );
     numPagamentos += 1;
   }

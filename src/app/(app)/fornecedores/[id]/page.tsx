@@ -2,7 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { obterFornecedor } from "@/lib/queries/fornecedores";
 import { listarContratacoes } from "@/lib/queries/contratacoes";
+import { listarComissoes } from "@/lib/queries/pagamentos";
 import { apagarFornecedor } from "@/lib/actions/fornecedores";
+import { receberComissoesDoFornecedor } from "@/lib/actions/pagamentos";
 import { euros, eurosCompacto, data, percentagem } from "@/lib/format";
 import type { EstadoContratacao } from "@/lib/constants";
 import {
@@ -29,6 +31,13 @@ export default async function DetalheFornecedor({
   if (!f) notFound();
 
   const contratacoes = listarContratacoes({ fornecedor_id: id });
+  const comissoes = listarComissoes({ fornecedor_id: id });
+  const comissaoAReceber = comissoes
+    .filter((p) => p.comissao_a_receber)
+    .reduce((s, p) => s + p.comissao_cents, 0);
+  const comissaoRecebida = comissoes
+    .filter((p) => p.comissao_recebida_em)
+    .reduce((s, p) => s + p.comissao_cents, 0);
   const faixa =
     f.preco_min_cents || f.preco_max_cents
       ? `${f.preco_min_cents ? euros(f.preco_min_cents) : "—"} a ${
@@ -89,11 +98,30 @@ export default async function DetalheFornecedor({
           tom={f.em_divida_cents > 0 ? "warn" : undefined}
         />
         <Indicador
-          rotulo="Comissão"
-          valor={eurosCompacto(f.comissao_cents)}
-          detalhe={percentagem(f.comissao_pct)}
+          rotulo="Comissão a receber"
+          valor={eurosCompacto(comissaoAReceber)}
+          tom={comissaoAReceber > 0 ? "warn" : undefined}
+          detalhe={`${eurosCompacto(comissaoRecebida)} recebida · ${eurosCompacto(f.comissao_cents)} prevista (${percentagem(f.comissao_pct)})`}
+          href={`/comissoes?estado=todas&fornecedor_id=${f.id}`}
         />
       </div>
+
+      {comissaoAReceber > 0 && (
+        <form action={receberComissoesDoFornecedor} className="mt-3 flex items-center gap-3 rounded-lg bg-[color:var(--warn)]/10 px-4 py-3 text-sm">
+          <input type="hidden" name="fornecedor_id" value={f.id} />
+          <input type="hidden" name="voltar_para" value={`/fornecedores/${f.id}`} />
+          <span className="flex-1">
+            Este fornecedor deve <strong>{eurosCompacto(comissaoAReceber)}</strong> de comissões sobre
+            pagamentos que os casais já fizeram.
+          </span>
+          <BotaoConfirmar
+            mensagem={`Marcar todas as comissões de ${f.nome} (${eurosCompacto(comissaoAReceber)}) como recebidas hoje?`}
+            className="btn btn-principal px-2 py-1 text-xs whitespace-nowrap"
+          >
+            Recebi tudo
+          </BotaoConfirmar>
+        </form>
+      )}
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">

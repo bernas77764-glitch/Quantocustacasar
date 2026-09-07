@@ -21,6 +21,12 @@ atraso.
 - **Pagamentos** — plano de prestações por contratação (gerado automaticamente
   ou criado à mão), marcação de pago/reabertura, e uma vista de tesouraria
   global com filtros e exportação para CSV.
+- **Comissões** — a receita do negócio, separada do dinheiro que os casais
+  pagam aos fornecedores. Quando um pagamento do casal é marcado como pago, a
+  comissão sobre ele (à percentagem da contratação nesse momento) fica **a
+  receber do fornecedor**, em destaque no painel, na contratação e na ficha
+  do fornecedor, até ser marcada como recebida — por pagamento ou de uma vez
+  por fornecedor. A página Comissões lista tudo por estado e por fornecedor.
 
 ## Como correr
 

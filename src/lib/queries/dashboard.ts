@@ -14,7 +14,12 @@ export type Resumo = {
   pendente_cents: number;
   atrasado_cents: number;
   a_vencer_30d_cents: number;
+  /** Comissão prevista nas contratações confirmadas e concluídas. */
   comissao_cents: number;
+  /** O casal já pagou; o fornecedor ainda não pagou a comissão. */
+  comissao_a_receber_cents: number;
+  comissao_recebida_cents: number;
+  comissao_recebida_mes_cents: number;
   taxa_conversao: number;
   casamentos_90d: number;
 };
@@ -71,16 +76,25 @@ export function resumo(): Resumo {
                            THEN p.valor_cents END), 0) AS atrasado_cents,
          COALESCE(SUM(CASE WHEN p.estado = 'pendente'
                             AND p.data_prevista BETWEEN ? AND ?
-                           THEN p.valor_cents END), 0) AS a_vencer_30d_cents
+                           THEN p.valor_cents END), 0) AS a_vencer_30d_cents,
+         COALESCE(SUM(CASE WHEN p.estado = 'pago' AND p.comissao_recebida_em IS NULL
+                           THEN p.comissao_cents END), 0) AS comissao_a_receber_cents,
+         COALESCE(SUM(CASE WHEN p.estado = 'pago' AND p.comissao_recebida_em IS NOT NULL
+                           THEN p.comissao_cents END), 0) AS comissao_recebida_cents,
+         COALESCE(SUM(CASE WHEN p.estado = 'pago' AND p.comissao_recebida_em >= ?
+                           THEN p.comissao_cents END), 0) AS comissao_recebida_mes_cents
        FROM pagamentos p
        JOIN contratacoes c ON c.id = p.contratacao_id
        WHERE c.estado IN ('confirmada', 'concluida')`,
     )
-    .get(hoje(), hoje(), daqui30) as unknown as {
+    .get(hoje(), hoje(), daqui30, `${hoje().slice(0, 7)}-01`) as unknown as {
     pago_cents: number;
     pendente_cents: number;
     atrasado_cents: number;
     a_vencer_30d_cents: number;
+    comissao_a_receber_cents: number;
+    comissao_recebida_cents: number;
+    comissao_recebida_mes_cents: number;
   };
 
   const fechados = clientes.ganhos + clientes.perdidos;
@@ -97,6 +111,9 @@ export function resumo(): Resumo {
     pendente_cents: pagamentos.pendente_cents,
     atrasado_cents: pagamentos.atrasado_cents,
     a_vencer_30d_cents: pagamentos.a_vencer_30d_cents,
+    comissao_a_receber_cents: pagamentos.comissao_a_receber_cents,
+    comissao_recebida_cents: pagamentos.comissao_recebida_cents,
+    comissao_recebida_mes_cents: pagamentos.comissao_recebida_mes_cents,
     taxa_conversao: fechados > 0 ? (clientes.ganhos / fechados) * 100 : 0,
     casamentos_90d: clientes.casamentos_90d,
   };

@@ -73,6 +73,11 @@ CREATE TABLE IF NOT EXISTS pagamentos (
   estado         TEXT    NOT NULL DEFAULT 'pendente',
   referencia     TEXT,
   notas          TEXT,
+  -- A comissão que o fornecedor fica a dever quando este pagamento do casal
+  -- é marcado como pago: fotografia da percentagem nesse momento.
+  comissao_cents       INTEGER NOT NULL DEFAULT 0,
+  -- Data em que o fornecedor pagou essa comissão; NULL = a receber.
+  comissao_recebida_em TEXT,
   criado_em      TEXT    NOT NULL,
   atualizado_em  TEXT    NOT NULL
 );
@@ -184,6 +189,24 @@ function migrar(db: DatabaseSync): void {
     // As contas anteriores aos perfis são de quem montou o CRM: ficam
     // administradoras, senão ninguém poderia gerir contas.
     db.exec("UPDATE utilizadores SET administrador = 1");
+  }
+
+  const colunasPagamentos = (db.prepare("PRAGMA table_info(pagamentos)").all() as { name: string }[])
+    .map((c) => c.name);
+
+  if (!colunasPagamentos.includes("comissao_cents")) {
+    db.exec("ALTER TABLE pagamentos ADD COLUMN comissao_cents INTEGER NOT NULL DEFAULT 0");
+    db.exec("ALTER TABLE pagamentos ADD COLUMN comissao_recebida_em TEXT");
+    // Pagamentos já marcados como pagos antes de existir o controlo de
+    // comissões: fica a dever-se a comissão à percentagem atual da
+    // contratação, por receber — a equipa marca as que já recebeu.
+    db.exec(
+      `UPDATE pagamentos
+       SET comissao_cents = CAST(ROUND(valor_cents *
+             (SELECT comissao_pct FROM contratacoes c WHERE c.id = pagamentos.contratacao_id) / 100.0)
+           AS INTEGER)
+       WHERE estado = 'pago'`,
+    );
   }
 }
 

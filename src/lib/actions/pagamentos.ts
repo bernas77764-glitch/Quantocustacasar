@@ -8,9 +8,12 @@ import {
   atualizarPagamento,
   criarPagamento,
   eliminarPagamento,
+  marcarComissaoPorReceber,
+  marcarComissaoRecebida,
   marcarPago,
   marcarPendente,
   obterPagamento,
+  receberComissoesDoFornecedor as receberTodasDoFornecedor,
   type DadosPagamento,
 } from "@/lib/queries/pagamentos";
 import { ESTADOS_PAGAMENTO, type EstadoPagamento } from "@/lib/constants";
@@ -18,12 +21,44 @@ import { cents, inteiroObrigatorio, texto } from "./util";
 
 function revalidar(pagamentoId?: number) {
   revalidatePath("/pagamentos");
+  revalidatePath("/comissoes");
   revalidatePath("/");
   if (!pagamentoId) return;
   const p = obterPagamento(pagamentoId);
   if (!p) return;
   revalidatePath(`/contratacoes/${p.contratacao_id}`);
   revalidatePath(`/clientes/${p.cliente_id}`);
+  revalidatePath(`/fornecedores/${p.fornecedor_id}`);
+}
+
+/* --------------------------------------------------------------- comissões */
+
+/** Alterna a comissão de um pagamento pago entre "a receber" e "recebida". */
+export async function alternarComissao(fd: FormData) {
+  await exigirSessao();
+  const id = Number(fd.get("id"));
+  if (!id) return;
+  const p = obterPagamento(id);
+  if (!p || p.estado !== "pago" || p.comissao_cents === 0) return;
+  if (p.comissao_recebida_em) marcarComissaoPorReceber(id);
+  else marcarComissaoRecebida(id, texto(fd, "data") ?? undefined);
+  revalidar(id);
+  const voltarPara = texto(fd, "voltar_para");
+  if (voltarPara) redirect(voltarPara);
+}
+
+/** Dá todas as comissões a receber de um fornecedor como recebidas hoje. */
+export async function receberComissoesDoFornecedor(fd: FormData) {
+  await exigirSessao();
+  const fornecedorId = Number(fd.get("fornecedor_id"));
+  if (!fornecedorId) return;
+  receberTodasDoFornecedor(fornecedorId, texto(fd, "data") ?? undefined);
+  revalidatePath("/comissoes");
+  revalidatePath("/pagamentos");
+  revalidatePath("/");
+  revalidatePath(`/fornecedores/${fornecedorId}`);
+  const voltarPara = texto(fd, "voltar_para");
+  if (voltarPara) redirect(voltarPara);
 }
 
 function dadosDoFormulario(fd: FormData): DadosPagamento {
