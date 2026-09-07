@@ -879,12 +879,17 @@
      CAMPOS_EXTRA junta campos fixos ao corpo do pedido, para os serviços
      que precisam de uma chave — por exemplo { access_key: "..." }.
      ========================================================= */
-  const ENDPOINT = "https://formspree.io/f/mnpqbrql";   /* email, via Formspree */
-  /* CRM: recebe o mesmo pedido em JSON, ao mesmo tempo que o email. Vazio =
-     só o email. CAMPOS_CRM junta campos fixos ao pedido para o CRM — por
-     exemplo uma chave pública; nunca um segredo, porque a página é visível. */
-  const ENDPOINT_CRM = "";
-  const CAMPOS_CRM = {};
+  const ENDPOINT = "https://formspree.io/f/mnpqbrql";
+  /* CRM_ENDPOINT é a entrada de leads do CRM (a rota /api/public/leads do
+     backoffice). Cada pedido de casal vai para os dois sítios: o ENDPOINT
+     manda o email à equipa, o CRM guarda o cliente com estado "novo".
+     O envio ao CRM é feito em segundo plano e nunca trava a resposta ao
+     casal — se falhar, o email já foi e fica um aviso na consola.
+     Vazio = o site não fala com o CRM. */
+  const CRM_ENDPOINT = "https://quantocustacasar-production.up.railway.app/api/public/leads";
+  /* O mesmo para os pedidos de parceria: entram no catálogo de fornecedores
+     do CRM como inativos, até a equipa rever as condições. */
+  const CRM_ENDPOINT_FORNECEDORES = "https://quantocustacasar-production.up.railway.app/api/public/fornecedores";
   /* Tabela de preços gerida no CRM: endereço público que devolve o JSON no
      formato de «Copiar tabela (JSON)». Vazio = usam-se os valores deste
      ficheiro. Se o CRM estiver em baixo, o site continua com estes valores. */
@@ -901,41 +906,86 @@
     return !!(isco && isco.value);
   }
 
+  /* O que o CRM guarda de cada casal. Os campos com nome próprio no CRM
+     (nome, email, telefone, data, convidados, orçamento, distrito) vão como
+     tal; o resto do que o simulador apurou — estimativa, intervalo, rubricas,
+     autorizações — vai nas notas, que é onde a equipa o lê na ficha. */
+  function paraCrm(d) {
+    const notas = [
+      d.quemResponde !== "—" ? "Responde: " + d.quemResponde : null,
+      "Estimativa do simulador: " + eur(d.estimativa) + " (" + d.intervalo + ")",
+      "Região " + d.regiao + " · época " + d.epoca + " · estilo " + d.estilo,
+      "Inclui (" + d.nRubricas + "): " + d.rubricasIncluidas,
+      "Exclui: " + d.rubricasExcluidas,
+      d.partilhaFornecedores
+        ? "Autoriza partilha do pedido com fornecedores parceiros."
+        : "NÃO autoriza partilha com fornecedores.",
+      d.observacoes !== "—" ? "Observações: " + d.observacoes : null
+    ].filter(Boolean).join("\n");
+    return {
+      nome: d.nome,
+      email: d.email,
+      telefone: d.telefone,
+      data_casamento: /^\d{4}-\d{2}-\d{2}$/.test(d.data) ? d.data : null,
+      num_convidados: d.convidados,
+      /* O orçamento-alvo do casal, se o definiu; senão a nossa estimativa. */
+      orcamento: d.orcamento || d.estimativa,
+      distrito: d.distrito !== "—" ? d.distrito : null,
+      origem: "Simulador",
+      notas: notas
+    };
+  }
+
+  /* O que o CRM guarda de cada pedido de parceria. A categoria e o distrito
+     vão como o fornecedor os escreveu; é o CRM que os converte para a sua
+     lista, guardando o texto original nas notas quando não bate certo. */
+  function paraCrmFornecedor(d) {
+    return {
+      empresa: d.empresa,
+      categoria: d.categoria,
+      distrito: d.distrito,
+      responsavel: d.nome,
+      email: d.email,
+      telefone: d.telefone || null
+    };
+  }
+
+  function enviarAoCrm(url, corpo) {
+    if (!url) return;
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(corpo)
+    }).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+    }).catch(function (e) {
+      console.warn("O pedido não chegou ao CRM:", e);
+    });
+  }
+
   function enviar(tipo, dados, form) {
-    const destinos = [];
-    if (ENDPOINT) destinos.push({ url: ENDPOINT, extra: CAMPOS_EXTRA });
-    if (ENDPOINT_CRM) destinos.push({ url: ENDPOINT_CRM, extra: CAMPOS_CRM });
-    if (form && ehRobo(form)) return Promise.resolve({ local: !destinos.length });
-    if (!destinos.length) return Promise.resolve({ local: true });
+    if (form && ehRobo(form)) return Promise.resolve({ local: !ENDPOINT });
+    if (tipo === "casal") enviarAoCrm(CRM_ENDPOINT, paraCrm(dados));
+    if (tipo === "fornecedor") enviarAoCrm(CRM_ENDPOINT_FORNECEDORES, paraCrmFornecedor(dados));
+    if (!ENDPOINT) return Promise.resolve({ local: true });
     const assunto = tipo === "fornecedor"
       ? "Quanto Custa Casar — new supplier (EN site): " + (dados.empresa || "")
       : "Quanto Custa Casar — new couple (EN site): " + (dados.nome || "");
-    /* Envia a todos os destinos. Basta um chegar para o pedido não se perder;
-       só falha se falharem todos. */
-    const envios = destinos.map(function (d) {
-      const corpo = Object.assign(
-        /* Sem o endereço da página: um link no corpo do pedido é um dos sinais
-           que os filtros de spam mais penalizam. */
-        { tipo: tipo, idioma: "en", origem: location.hostname || "local file" },
-        d.extra,
-        /* Formspree lê "_subject"; Web3Forms lê "subject". Ambos ignoram o outro. */
-        { _subject: assunto, subject: assunto, resumo: resumoDe(tipo, dados) },
-        dados
-      );
-      return fetch(d.url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(corpo)
-      }).then(function (r) {
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        return true;
-      }).catch(function (e) {
-        console.warn("Envio falhou para " + d.url + ": " + e.message);
-        return false;
-      });
-    });
-    return Promise.all(envios).then(function (res) {
-      if (!res.some(Boolean)) throw new Error("nenhum destino aceitou o pedido");
+    const corpo = Object.assign(
+      /* Sem o endereço da página: um link no corpo do pedido é um dos sinais
+         que os filtros de spam mais penalizam. */
+      { tipo: tipo, idioma: "en", origem: location.hostname || "local file" },
+      CAMPOS_EXTRA,
+      /* Formspree lê "_subject"; Web3Forms lê "subject". Ambos ignoram o outro. */
+      { _subject: assunto, subject: assunto, resumo: resumoDe(tipo, dados) },
+      dados
+    );
+    return fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(corpo)
+    }).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
       return { local: false };
     });
   }

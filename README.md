@@ -87,26 +87,23 @@ atualiza os valores de `RUBRICAS_BASE` e `MULT_BASE` no `index.html`.
 
 ## Ligar os formulários
 
-Os formulários (casal e fornecedor) enviam um POST em JSON, ao mesmo tempo,
-para até dois destinos definidos no topo do script do `index.html`:
+Cada pedido sai do site para dois sítios ao mesmo tempo, definidos no topo do
+script do `index.html`:
 
 ```js
-const ENDPOINT = "https://formspree.io/f/mnpqbrql";  // email, via Formspree
-const ENDPOINT_CRM = "";                             // o CRM; vazio = só o email
-const CAMPOS_CRM = {};                               // ex.: { chave: "..." } se o CRM exigir
+const ENDPOINT = "https://formspree.io/f/mnpqbrql";   // email à equipa, via Formspree
+const CRM_ENDPOINT = "https://.../api/public/leads";  // entrada de casais no CRM
+const CRM_ENDPOINT_FORNECEDORES = "https://.../api/public/fornecedores";
 ```
 
-Basta um destino aceitar o pedido para o casal ver a confirmação; só aparece
-erro se falharem todos. Uma falha num deles fica registada na consola do
-browser.
+O email é o caminho garantido: é ele que decide a confirmação que o casal vê.
+O envio ao CRM é feito em segundo plano e nunca trava a resposta; se falhar,
+fica um aviso na consola do browser e o email já foi.
 
-### O que o CRM tem de aceitar
-
-Um `POST` com `Content-Type: application/json`, vindo do browser — por isso
-com CORS aberto para o domínio do site — e a responder com um código 2xx. O
-corpo é o mesmo que o Formspree recebe (ver «O que é enviado» abaixo), com
-`tipo` igual a `casal` ou `fornecedor`. Se o CRM exigir uma chave, tem de ser
-uma chave pública: tudo o que está na página é visível a quem a abrir.
+O CRM recebe os campos com nome próprio na ficha (nome, email, telefone,
+data, convidados, orçamento, distrito) e o resto do que o simulador apurou —
+estimativa, intervalo, rubricas, autorizações, observações — nas notas. Os
+pedidos de parceria entram no catálogo de fornecedores como inativos.
 
 ## Tabela de preços gerida no CRM
 
@@ -114,7 +111,7 @@ Se `PRECOS_URL` estiver definido, o site vai buscar a tabela de preços ao
 abrir e substitui os valores do ficheiro:
 
 ```js
-const PRECOS_URL = "";   // ex.: "https://crm.exemplo.pt/api/precos"
+const PRECOS_URL = "";   // ex.: "https://.../api/public/precos"
 ```
 
 O CRM tem de responder a um `GET` com JSON (CORS aberto) **exatamente no
