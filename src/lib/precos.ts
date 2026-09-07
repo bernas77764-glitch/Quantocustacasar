@@ -23,33 +23,37 @@ export type RubricaBase = {
   min: number;
   base: number;
   max: number;
+  /** Sensível ao mercado: os multiplicadores de região, época e estilo aplicam-se. */
+  mercado: boolean;
+  /** Ligada por omissão no simulador. */
+  on: boolean;
 };
 
 export const RUBRICAS_BASE: RubricaBase[] = [
-  { id: "espaco",     grupo: "O dia",         nome: "Espaço / quinta",                un: "fixo",      min: 1500, base: 3000, max: 6000 },
-  { id: "catering",   grupo: "O dia",         nome: "Catering e bebidas",             un: "convidado", min: 55,   base: 80,   max: 130 },
-  { id: "openbar",    grupo: "O dia",         nome: "Open bar / bar de noite",        un: "convidado", min: 10,   base: 18,   max: 32 },
-  { id: "bolo",       grupo: "O dia",         nome: "Bolo de noiva",                  un: "fixo",      min: 250,  base: 450,  max: 900 },
-  { id: "cerimonia",  grupo: "O dia",         nome: "Cerimónia (taxas e celebrante)", un: "fixo",      min: 150,  base: 300,  max: 700 },
-  { id: "somluz",     grupo: "O dia",         nome: "Som, luz e estruturas",          un: "fixo",      min: 400,  base: 900,  max: 1800 },
-  { id: "foto",       grupo: "Imagem",        nome: "Fotografia",                     un: "fixo",      min: 900,  base: 1600, max: 3000 },
-  { id: "video",      grupo: "Imagem",        nome: "Vídeo",                          un: "fixo",      min: 800,  base: 1500, max: 2800 },
-  { id: "booth",      grupo: "Imagem",        nome: "Fotobooth / animação extra",     un: "fixo",      min: 300,  base: 600,  max: 1200 },
-  { id: "dj",         grupo: "Música",        nome: "DJ",                             un: "fixo",      min: 600,  base: 950,  max: 1600 },
-  { id: "banda",      grupo: "Música",        nome: "Banda ao vivo",                  un: "fixo",      min: 1200, base: 2200, max: 4000 },
-  { id: "musicacer",  grupo: "Música",        nome: "Música da cerimónia",            un: "fixo",      min: 250,  base: 400,  max: 800 },
-  { id: "flores",     grupo: "Decoração",     nome: "Decoração e flores",             un: "fixo",      min: 800,  base: 1800, max: 4000 },
-  { id: "mesas",      grupo: "Decoração",     nome: "Centros de mesa e mise en place", un: "convidado", min: 4,   base: 8,    max: 15 },
-  { id: "papelaria",  grupo: "Decoração",     nome: "Convites e papelaria",           un: "convidado", min: 3,    base: 6,    max: 12 },
-  { id: "lembrancas", grupo: "Decoração",     nome: "Lembranças para os convidados",  un: "convidado", min: 2,    base: 5,    max: 10 },
-  { id: "vestido",    grupo: "Os noivos",     nome: "Vestido de noiva e acessórios",  un: "fixo",      min: 900,  base: 1800, max: 3500 },
-  { id: "fato",       grupo: "Os noivos",     nome: "Fato do noivo",                  un: "fixo",      min: 350,  base: 700,  max: 1400 },
-  { id: "aliancas",   grupo: "Os noivos",     nome: "Alianças",                       un: "fixo",      min: 500,  base: 1100, max: 2500 },
-  { id: "beleza",     grupo: "Os noivos",     nome: "Cabelo e maquilhagem",           un: "fixo",      min: 250,  base: 450,  max: 900 },
-  { id: "transporte", grupo: "Os noivos",     nome: "Transporte dos noivos",          un: "fixo",      min: 250,  base: 450,  max: 900 },
-  { id: "planner",    grupo: "Apoio",         nome: "Wedding planner e coordenação",  un: "fixo",      min: 1200, base: 2500, max: 5000 },
-  { id: "criancas",   grupo: "Apoio",         nome: "Espaço e apoio para crianças",   un: "fixo",      min: 200,  base: 400,  max: 700 },
-  { id: "luamel",     grupo: "Depois do dia", nome: "Lua de mel",                     un: "fixo",      min: 2000, base: 4000, max: 9000 },
+  { id: "espaco",     grupo: "O dia",         nome: "Espaço / quinta",                un: "fixo",      min: 1500, base: 3000, max: 6000, mercado: true,  on: true },
+  { id: "catering",   grupo: "O dia",         nome: "Catering e bebidas",             un: "convidado", min: 55,   base: 80,   max: 130,  mercado: true,  on: true },
+  { id: "openbar",    grupo: "O dia",         nome: "Open bar / bar de noite",        un: "convidado", min: 10,   base: 18,   max: 32,   mercado: true,  on: true },
+  { id: "bolo",       grupo: "O dia",         nome: "Bolo de noiva",                  un: "fixo",      min: 250,  base: 450,  max: 900,  mercado: true,  on: true },
+  { id: "cerimonia",  grupo: "O dia",         nome: "Cerimónia (taxas e celebrante)", un: "fixo",      min: 150,  base: 300,  max: 700,  mercado: true,  on: true },
+  { id: "somluz",     grupo: "O dia",         nome: "Som, luz e estruturas",          un: "fixo",      min: 400,  base: 900,  max: 1800, mercado: true,  on: true },
+  { id: "foto",       grupo: "Imagem",        nome: "Fotografia",                     un: "fixo",      min: 900,  base: 1600, max: 3000, mercado: true,  on: true },
+  { id: "video",      grupo: "Imagem",        nome: "Vídeo",                          un: "fixo",      min: 800,  base: 1500, max: 2800, mercado: true,  on: true },
+  { id: "booth",      grupo: "Imagem",        nome: "Fotobooth / animação extra",     un: "fixo",      min: 300,  base: 600,  max: 1200, mercado: true,  on: false },
+  { id: "dj",         grupo: "Música",        nome: "DJ",                             un: "fixo",      min: 600,  base: 950,  max: 1600, mercado: true,  on: true },
+  { id: "banda",      grupo: "Música",        nome: "Banda ao vivo",                  un: "fixo",      min: 1200, base: 2200, max: 4000, mercado: true,  on: false },
+  { id: "musicacer",  grupo: "Música",        nome: "Música da cerimónia",            un: "fixo",      min: 250,  base: 400,  max: 800,  mercado: true,  on: true },
+  { id: "flores",     grupo: "Decoração",     nome: "Decoração e flores",             un: "fixo",      min: 800,  base: 1800, max: 4000, mercado: true,  on: true },
+  { id: "mesas",      grupo: "Decoração",     nome: "Centros de mesa e mise en place", un: "convidado", min: 4,   base: 8,    max: 15,   mercado: true,  on: true },
+  { id: "papelaria",  grupo: "Decoração",     nome: "Convites e papelaria",           un: "convidado", min: 3,    base: 6,    max: 12,   mercado: true,  on: true },
+  { id: "lembrancas", grupo: "Decoração",     nome: "Lembranças para os convidados",  un: "convidado", min: 2,    base: 5,    max: 10,   mercado: true,  on: false },
+  { id: "vestido",    grupo: "Os noivos",     nome: "Vestido de noiva e acessórios",  un: "fixo",      min: 900,  base: 1800, max: 3500, mercado: false, on: true },
+  { id: "fato",       grupo: "Os noivos",     nome: "Fato do noivo",                  un: "fixo",      min: 350,  base: 700,  max: 1400, mercado: false, on: true },
+  { id: "aliancas",   grupo: "Os noivos",     nome: "Alianças",                       un: "fixo",      min: 500,  base: 1100, max: 2500, mercado: false, on: true },
+  { id: "beleza",     grupo: "Os noivos",     nome: "Cabelo e maquilhagem",           un: "fixo",      min: 250,  base: 450,  max: 900,  mercado: true,  on: true },
+  { id: "transporte", grupo: "Os noivos",     nome: "Transporte dos noivos",          un: "fixo",      min: 250,  base: 450,  max: 900,  mercado: true,  on: false },
+  { id: "planner",    grupo: "Apoio",         nome: "Wedding planner e coordenação",  un: "fixo",      min: 1200, base: 2500, max: 5000, mercado: true,  on: true },
+  { id: "criancas",   grupo: "Apoio",         nome: "Espaço e apoio para crianças",   un: "fixo",      min: 200,  base: 400,  max: 700,  mercado: true,  on: false },
+  { id: "luamel",     grupo: "Depois do dia", nome: "Lua de mel",                     un: "fixo",      min: 2000, base: 4000, max: 9000, mercado: false, on: false },
 ];
 
 export type Dimensao = "regiao" | "epoca" | "estilo";

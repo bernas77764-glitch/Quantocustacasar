@@ -59,6 +59,13 @@ conta ou redefinir-lhe a palavra-passe termina as sessões dessa pessoa; o CRM
 recusa desativar a própria conta e recusa deixar o sistema sem nenhum
 administrador ativo.
 
+Administradores têm ainda a página **Demonstração**: insere dez casais e dez
+pedidos de parceria construídos com o mesmo código e o mesmo formato que o site
+usa ao enviar um pedido real, para aprender a trabalhar no CRM sem tocar em
+clientes reais; reconhecem-se pelo email `@demo.quantocustacasar.pt` e
+removem-se todos de uma vez (com as contratações e pagamentos criados a
+praticar).
+
 Contas também podem ser criadas no servidor, o que é útil se todos os
 administradores perderem o acesso (a conta criada pelo script é sempre
 administradora):
