@@ -34,7 +34,10 @@ COPY --from=build /app/scripts ./scripts
 COPY --from=build /app/src/lib/db.ts ./src/lib/db.ts
 COPY --from=build /app/src/lib/palavra-passe.ts ./src/lib/palavra-passe.ts
 
-# A base de dados vive no volume persistente montado em /data.
+# A base de dados vive no volume persistente montado em /data. O volume é
+# declarado no serviço de alojamento, não aqui: o Railway rejeita a instrução
+# `VOLUME` num Dockerfile ("use Railway Volumes"), e no `docker run` local
+# basta `-v crm-dados:/data`.
 #
 # O processo corre como root de propósito: Railway, Render e Fly montam os
 # volumes com dono root, e um `chown` feito aqui é anulado pela montagem —
@@ -42,7 +45,6 @@ COPY --from=build /app/src/lib/palavra-passe.ts ./src/lib/palavra-passe.ts
 # utilizador sem privilégios exigiria um entrypoint que ajustasse o dono do
 # volume no arranque; fica para quando houver um deploy onde o testar.
 RUN mkdir -p /data
-VOLUME ["/data"]
 EXPOSE 3000
 
 CMD ["node", "server.js"]
