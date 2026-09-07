@@ -924,6 +924,13 @@
      que precisam de uma chave — por exemplo { access_key: "..." }.
      ========================================================= */
   const ENDPOINT = "https://formspree.io/f/mnpqbrql";
+  /* CRM_ENDPOINT é a entrada de leads do CRM (a rota /api/public/leads do
+     backoffice). Cada pedido de casal vai para os dois sítios: o ENDPOINT
+     manda o email à equipa, o CRM guarda o cliente com estado "novo".
+     O envio ao CRM é feito em segundo plano e nunca trava a resposta ao
+     casal — se falhar, o email já foi e fica um aviso na consola.
+     Vazio = o site não fala com o CRM. */
+  const CRM_ENDPOINT = "https://quantocustacasar-production.up.railway.app/api/public/leads";
   /* Número que atende o WhatsApp, em formato internacional e só dígitos,
      por exemplo "351912345678". Vazio = o botão não aparece. */
   const WHATSAPP = "351912263717";
@@ -936,8 +943,52 @@
     return !!(isco && isco.value);
   }
 
+  /* O que o CRM guarda de cada casal. Os campos com nome próprio no CRM
+     (nome, email, telefone, data, convidados, orçamento, distrito) vão como
+     tal; o resto do que o simulador apurou — estimativa, intervalo, rubricas,
+     autorizações — vai nas notas, que é onde a equipa o lê na ficha. */
+  function paraCrm(d) {
+    const notas = [
+      d.quemResponde !== "—" ? "Responde: " + d.quemResponde : null,
+      "Estimativa do simulador: " + eur(d.estimativa) + " (" + d.intervalo + ")",
+      "Região " + d.regiao + " · época " + d.epoca + " · estilo " + d.estilo,
+      "Inclui (" + d.nRubricas + "): " + d.rubricasIncluidas,
+      "Exclui: " + d.rubricasExcluidas,
+      d.partilhaFornecedores
+        ? "Autoriza partilha do pedido com fornecedores parceiros."
+        : "NÃO autoriza partilha com fornecedores.",
+      d.observacoes !== "—" ? "Observações: " + d.observacoes : null
+    ].filter(Boolean).join("\n");
+    return {
+      nome: d.nome,
+      email: d.email,
+      telefone: d.telefone,
+      data_casamento: /^\d{4}-\d{2}-\d{2}$/.test(d.data) ? d.data : null,
+      num_convidados: d.convidados,
+      /* O orçamento-alvo do casal, se o definiu; senão a nossa estimativa. */
+      orcamento: d.orcamento || d.estimativa,
+      distrito: d.distrito !== "—" ? d.distrito : null,
+      origem: "Simulador",
+      notas: notas
+    };
+  }
+
+  function enviarAoCrm(dados) {
+    if (!CRM_ENDPOINT) return;
+    fetch(CRM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(paraCrm(dados))
+    }).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+    }).catch(function (e) {
+      console.warn("A lead não chegou ao CRM:", e);
+    });
+  }
+
   function enviar(tipo, dados, form) {
     if (form && ehRobo(form)) return Promise.resolve({ local: !ENDPOINT });
+    if (tipo === "casal") enviarAoCrm(dados);
     if (!ENDPOINT) return Promise.resolve({ local: true });
     const assunto = tipo === "fornecedor"
       ? "Quanto Custa Casar — novo fornecedor: " + (dados.empresa || "")
