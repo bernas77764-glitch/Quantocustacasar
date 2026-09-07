@@ -76,11 +76,20 @@ docker build -t crm-quantocustacasar .
 docker run -p 3000:3000 -v crm-dados:/data crm-quantocustacasar
 ```
 
+O processo corre como root dentro do contentor: estes serviços montam os
+volumes com dono root, e um utilizador sem privilégios não conseguiria escrever
+em `/data`.
+
 Serve tal e qual em Railway, Render ou Fly.io. Em qualquer um deles é preciso:
 
 1. Apontar o serviço a este repositório (todos detetam o `Dockerfile`).
-2. Criar um volume e montá-lo em `/data`.
+2. Criar um volume e montá-lo em `/data`. No Railway o volume não está nas
+   definições do serviço: use `⌘K`/`Ctrl+K` e escreva "volume", ou clique com
+   o botão direito no serviço e escolha *Attach Volume*; o *Mount Path* é
+   `/data`.
 3. Definir `CRM_DB_PATH=/data/crm.db` (já é o valor por omissão na imagem).
+4. Gerar o endereço público: no Railway, *Settings → Networking → Public
+   Networking → Generate Domain*, porta `3000`.
 
 Depois do primeiro arranque, abra `/login` e crie a conta de administração. Em
 alternativa, crie-a a partir do servidor:

@@ -35,8 +35,13 @@ COPY --from=build /app/src/lib/db.ts ./src/lib/db.ts
 COPY --from=build /app/src/lib/palavra-passe.ts ./src/lib/palavra-passe.ts
 
 # A base de dados vive no volume persistente montado em /data.
-RUN mkdir -p /data && chown -R node:node /data /app
-USER node
+#
+# O processo corre como root de propósito: Railway, Render e Fly montam os
+# volumes com dono root, e um `chown` feito aqui é anulado pela montagem —
+# com `USER node` o primeiro acesso a /data falhava com EACCES. Correr como
+# utilizador sem privilégios exigiria um entrypoint que ajustasse o dono do
+# volume no arranque; fica para quando houver um deploy onde o testar.
+RUN mkdir -p /data
 VOLUME ["/data"]
 EXPOSE 3000
 
