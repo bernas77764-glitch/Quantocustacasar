@@ -57,6 +57,7 @@ export default async function DetalheCliente({
             <FormularioAuto action={alterarEstadoCliente}>
               <input type="hidden" name="id" value={cliente.id} />
               <select
+                key={cliente.estado}
                 name="estado"
                 defaultValue={cliente.estado}
                 aria-label="Estado do cliente"

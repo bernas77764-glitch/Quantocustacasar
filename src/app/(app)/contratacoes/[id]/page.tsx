@@ -62,6 +62,7 @@ export default async function DetalheContratacao({
             <FormularioAuto action={alterarEstadoContratacao}>
               <input type="hidden" name="id" value={c.id} />
               <select
+                key={c.estado}
                 name="estado"
                 defaultValue={c.estado}
                 aria-label="Estado da contratação"
