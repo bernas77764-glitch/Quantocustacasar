@@ -1,10 +1,15 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useRef, useTransition, type ReactNode } from "react";
 
 /**
  * Formulário que se submete assim que um controlo muda — usado nos seletores
  * de estado, onde um botão "guardar" extra só acrescentaria cliques.
+ *
+ * A ação é chamada diretamente numa transição em vez de passar pela submissão
+ * do formulário: assim o React não repõe os campos nos valores iniciais depois
+ * de gravar (o que fazia o seletor "saltar" para o estado antigo) e não depende
+ * de `requestSubmit`, que falta em versões antigas do Safari.
  */
 export function FormularioAuto({
   action,
@@ -16,12 +21,28 @@ export function FormularioAuto({
   className?: string;
 }) {
   const ref = useRef<HTMLFormElement>(null);
+  const [pendente, iniciar] = useTransition();
+
+  function enviar() {
+    const form = ref.current;
+    if (!form || pendente) return;
+    const dados = new FormData(form);
+    iniciar(async () => {
+      await action(dados);
+    });
+  }
+
   return (
     <form
       ref={ref}
       action={action}
-      className={className}
-      onChange={() => ref.current?.requestSubmit()}
+      className={[className, pendente ? "pointer-events-none opacity-60" : ""].filter(Boolean).join(" ") || undefined}
+      aria-busy={pendente || undefined}
+      onSubmit={(e) => {
+        e.preventDefault();
+        enviar();
+      }}
+      onChange={enviar}
     >
       {children}
     </form>
