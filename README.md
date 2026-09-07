@@ -38,8 +38,71 @@ Outros comandos:
 | --- | --- |
 | `npm run seed` | Insere dados de demonstração (só se a base estiver vazia) |
 | `npm run seed -- --forcar` | Apaga tudo e volta a inserir os dados de demonstração |
+| `npm run criar-utilizador -- "Nome" email@exemplo.pt` | Cria ou atualiza uma conta de acesso |
 | `npm run typecheck` | Verificação de tipos |
 | `npm run lint` | ESLint |
+
+## Acesso
+
+O CRM exige autenticação: todas as páginas, Server Actions e a exportação CSV
+verificam a sessão. A única exceção é a API pública de captação de leads, que
+tem o seu próprio token.
+
+Na primeira utilização, o `/login` propõe criar a conta de administração —
+depois disso essa opção desaparece e as contas passam a criar-se no servidor:
+
+```bash
+npm run criar-utilizador -- "Bernardo Soares" bernardo@exemplo.pt
+```
+
+A palavra-passe nunca vai nos argumentos (ficaria no histórico da shell e na
+lista de processos). O script aceita-a de três formas: escrita no terminal
+(sem eco), canalizada por `stdin`, ou na variável `CRM_PALAVRA_PASSE`. Se o
+email já existir, a palavra-passe é substituída e as sessões abertas terminam.
+
+Detalhes de implementação: as palavras-passe são guardadas com `scrypt` e sal
+aleatório; as sessões são registos na base de dados (revogáveis) referenciados
+por um cookie `HttpOnly`, `SameSite=Lax` e `Secure` em produção, válido 30
+dias.
+
+## Alojamento
+
+O `Dockerfile` produz uma imagem com o servidor autónomo do Next. A base de
+dados vive num **volume persistente montado em `/data`** — sem esse volume, os
+dados desaparecem a cada arranque.
+
+```bash
+docker build -t crm-quantocustacasar .
+docker run -p 3000:3000 -v crm-dados:/data crm-quantocustacasar
+```
+
+Serve tal e qual em Railway, Render ou Fly.io. Em qualquer um deles é preciso:
+
+1. Apontar o serviço a este repositório (todos detetam o `Dockerfile`).
+2. Criar um volume e montá-lo em `/data`.
+3. Definir `CRM_DB_PATH=/data/crm.db` (já é o valor por omissão na imagem).
+
+Depois do primeiro arranque, abra `/login` e crie a conta de administração. Em
+alternativa, crie-a a partir do servidor:
+
+```bash
+docker exec -e CRM_PALAVRA_PASSE='…' <contentor> \
+  node --no-warnings scripts/criar-utilizador.ts "Nome" email@exemplo.pt
+```
+
+Cópias de segurança: o estado todo é o ficheiro `/data/crm.db` (mais os
+`-wal`/`-shm` que o acompanham). Copie os três, ou use
+`sqlite3 /data/crm.db ".backup /data/copia.db"` para uma cópia consistente com
+o servidor a correr.
+
+### Variáveis de ambiente
+
+| Variável | Para que serve |
+| --- | --- |
+| `CRM_DB_PATH` | Caminho do ficheiro SQLite (por omissão `data/crm.db`; `/data/crm.db` na imagem) |
+| `CRM_API_TOKEN` | Se definida, a API pública de leads passa a exigir `Authorization: Bearer …` |
+| `CRM_PALAVRA_PASSE` | Só para o script `criar-utilizador`, em automatismos |
+| `PORT` | Porta do servidor (por omissão 3000) |
 
 ## Stack
 
@@ -69,6 +132,12 @@ Defina `CRM_DB_PATH` para a guardar noutro sítio.
   simples.
 - **Eliminar um fornecedor com contratações desativa-o** em vez de o apagar,
   para não perder o histórico financeiro.
+- **Cada Server Action verifica a sessão por si.** O guarda no layout protege
+  as páginas, mas uma Server Action pode ser invocada diretamente — por isso o
+  `exigirSessao()` aparece no topo de todas.
+- **A base de dados está excluída do file tracing** (`next.config.ts`). Sem
+  isso, o `output: "standalone"` copiava `data/crm.db` para dentro da saída —
+  ou seja, para dentro da imagem de contentor.
 
 ## API pública (captação de leads)
 
@@ -101,14 +170,21 @@ Excel) em `/api/pagamentos/csv`, respeitando os filtros ativos.
 
 ```
 src/
-  app/                    páginas (painel, clientes, fornecedores,
-                          contratações, pagamentos) e rotas de API
+  app/
+    (app)/                páginas do CRM, atrás do guarda de autenticação
+    login/                autenticação e criação da conta inicial
+    api/                  captação pública de leads e exportação CSV
   components/             componentes de UI partilhados e formulários
   lib/
     db.ts                 ligação e esquema SQLite
+    auth.ts               sessões e guardas de acesso
+    palavra-passe.ts      hashing scrypt (sem dependências do Next)
     constants.ts          vocabulário de domínio (estados, categorias, …)
     format.ts             euros, datas e percentagens em pt-PT
     queries/              leituras e escritas por entidade
     actions/              Server Actions dos formulários
-scripts/seed.ts           dados de demonstração
+scripts/
+  seed.ts                 dados de demonstração
+  criar-utilizador.ts     criação de contas de acesso
+Dockerfile                imagem para alojamento com volume persistente
 ```

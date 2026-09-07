@@ -1,5 +1,7 @@
 "use server";
 
+import { exigirSessao } from "@/lib/auth";
+
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import {
@@ -35,6 +37,7 @@ function dadosDoFormulario(fd: FormData): DadosCliente {
 }
 
 export async function guardarCliente(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id")) || 0;
   const dados = dadosDoFormulario(fd);
 
@@ -51,6 +54,7 @@ export async function guardarCliente(fd: FormData) {
 }
 
 export async function alterarEstadoCliente(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id"));
   const estado = String(fd.get("estado")) as EstadoCliente;
   if (!id || !ESTADOS_CLIENTE.includes(estado)) return;
@@ -61,6 +65,7 @@ export async function alterarEstadoCliente(fd: FormData) {
 }
 
 export async function adicionarNota(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id"));
   const descricao = texto(fd, "descricao");
   const tipo = texto(fd, "tipo") ?? "nota";
@@ -70,6 +75,7 @@ export async function adicionarNota(fd: FormData) {
 }
 
 export async function apagarCliente(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id"));
   if (!id) return;
   eliminarCliente(id);

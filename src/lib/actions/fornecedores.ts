@@ -1,5 +1,7 @@
 "use server";
 
+import { exigirSessao } from "@/lib/auth";
+
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import {
@@ -28,6 +30,7 @@ function dadosDoFormulario(fd: FormData): DadosFornecedor {
 }
 
 export async function guardarFornecedor(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id")) || 0;
   const dados = dadosDoFormulario(fd);
 
@@ -44,6 +47,7 @@ export async function guardarFornecedor(fd: FormData) {
 }
 
 export async function apagarFornecedor(fd: FormData) {
+  await exigirSessao();
   const id = Number(fd.get("id"));
   if (!id) return;
   const removido = eliminarFornecedor(id);

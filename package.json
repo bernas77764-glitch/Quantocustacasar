@@ -8,12 +8,14 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "node --no-warnings scripts/seed.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "criar-utilizador": "node --no-warnings scripts/criar-utilizador.ts"
   },
   "dependencies": {
     "next": "16.3.4",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

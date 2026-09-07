@@ -1,4 +1,5 @@
 import { listarPagamentos } from "@/lib/queries/pagamentos";
+import { exigirSessao } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -9,6 +10,9 @@ function celula(valor: unknown): string {
 }
 
 export async function GET(pedido: Request) {
+  // A exportação expõe dados financeiros: exige sessão, como as páginas.
+  await exigirSessao();
+
   const sp = new URL(pedido.url).searchParams;
   const pagamentos = listarPagamentos({
     q: sp.get("q") ?? undefined,
