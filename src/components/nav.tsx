@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 const LIGACOES = [
   { href: "/", rotulo: "Painel", icone: "◧" },
+  { href: "/calendario", rotulo: "Calendário", icone: "▦" },
   { href: "/clientes", rotulo: "Clientes", icone: "◍" },
   { href: "/fornecedores", rotulo: "Fornecedores", icone: "◈" },
   { href: "/contratacoes", rotulo: "Contratações", icone: "◇" },

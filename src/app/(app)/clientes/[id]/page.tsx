@@ -5,6 +5,8 @@ import { listarContratacoes } from "@/lib/queries/contratacoes";
 import { sugestoesParaCliente } from "@/lib/queries/fornecedores";
 import { listarPagamentos } from "@/lib/queries/pagamentos";
 import { adicionarNota, alterarEstadoCliente, apagarCliente } from "@/lib/actions/clientes";
+import { apagarCompromisso } from "@/lib/actions/calendario";
+import { listarCompromissosDoCliente } from "@/lib/queries/compromissos";
 import { alternarPagamento } from "@/lib/actions/pagamentos";
 import {
   ESTADOS_CLIENTE,
@@ -38,6 +40,7 @@ export default async function DetalheCliente({
   const contratacoes = listarContratacoes({ cliente_id: id });
   const pagamentos = listarPagamentos({ cliente_id: id });
   const atividades = listarAtividades(id);
+  const compromissos = listarCompromissosDoCliente(id);
   const sugestoes = sugestoesParaCliente(id);
   const dias = diasAte(cliente.data_casamento);
 
@@ -75,6 +78,12 @@ export default async function DetalheCliente({
               className="btn btn-principal"
             >
               Associar fornecedor
+            </Link>
+            <Link
+              href={`/calendario/novo?cliente_id=${cliente.id}&voltar_para=/clientes/${cliente.id}`}
+              className="btn"
+            >
+              Marcar compromisso
             </Link>
             <Link href={`/clientes/${cliente.id}/editar`} className="btn">
               Editar
@@ -271,6 +280,35 @@ export default async function DetalheCliente({
         </div>
 
         <div className="space-y-6">
+          <Seccao titulo="Compromissos" vazio={compromissos.length === 0}>
+            {compromissos.length === 0 ? (
+              "Sem compromissos marcados."
+            ) : (
+              <ul className="divide-y divide-line">
+                {compromissos.map((c) => (
+                  <li key={c.id} className="flex items-start gap-3 px-4 py-3 text-sm">
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium">{c.titulo}</p>
+                      <p className="text-xs text-muted">
+                        <Link href={`/calendario?mes=${c.data.slice(0, 7)}#d-${c.data}`} className="hover:text-brand">
+                          {data(c.data)}
+                        </Link>
+                        {c.hora_inicio ? ` · ${c.hora_inicio}${c.hora_fim ? `–${c.hora_fim}` : ""}` : " · dia inteiro"}
+                        {c.local ? ` · ${c.local}` : ""}
+                      </p>
+                    </div>
+                    <form action={apagarCompromisso}>
+                      <input type="hidden" name="id" value={c.id} />
+                      <input type="hidden" name="voltar_para" value={`/clientes/${cliente.id}`} />
+                      <BotaoConfirmar mensagem={`Eliminar o compromisso "${c.titulo}"?`} className="btn-perigo rounded-lg px-2 py-1 text-xs">
+                        ✕
+                      </BotaoConfirmar>
+                    </form>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Seccao>
           <Seccao titulo="Dados do cliente">
             <dl className="grid grid-cols-2 gap-4 p-4">
               <Detalhe rotulo="Email">

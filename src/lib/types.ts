@@ -122,3 +122,48 @@ export type ComissoesDoFornecedor = {
   recebida_cents: number;
   num_a_receber: number;
 };
+
+/** Reunião, visita ou outro compromisso marcado à mão no calendário. */
+export type Compromisso = {
+  id: number;
+  titulo: string;
+  /** YYYY-MM-DD, em hora de Lisboa. */
+  data: string;
+  /** HH:MM; nulo para compromissos de dia inteiro. */
+  hora_inicio: string | null;
+  hora_fim: string | null;
+  local: string | null;
+  cliente_id: number | null;
+  fornecedor_id: number | null;
+  notas: string | null;
+  criado_em: string;
+  atualizado_em: string;
+};
+
+export type CompromissoDetalhado = Compromisso & {
+  cliente_nome: string | null;
+  fornecedor_nome: string | null;
+};
+
+export type TipoEvento = "casamento" | "servico" | "vencimento" | "compromisso" | "google";
+
+/** Uma entrada do calendário, seja qual for a origem. */
+export type EventoCalendario = {
+  chave: string;
+  tipo: TipoEvento;
+  titulo: string;
+  /** Dia em que aparece (YYYY-MM-DD, hora de Lisboa). */
+  data: string;
+  /** Último dia, inclusive, para eventos de vários dias. */
+  data_fim: string | null;
+  hora: string | null;
+  hora_fim: string | null;
+  detalhe: string | null;
+  local: string | null;
+  /** Ligação dentro do CRM. */
+  href: string | null;
+  /** Ligação "adicionar ao Google Calendar" (só para eventos do CRM). */
+  google_url: string | null;
+  atrasado: boolean;
+  compromisso_id: number | null;
+};

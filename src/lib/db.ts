@@ -108,6 +108,20 @@ CREATE TABLE IF NOT EXISTS sessoes (
   criado_em     TEXT    NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS compromissos (
+  id            INTEGER PRIMARY KEY AUTOINCREMENT,
+  titulo        TEXT    NOT NULL,
+  data          TEXT    NOT NULL,
+  hora_inicio   TEXT,
+  hora_fim      TEXT,
+  local         TEXT,
+  cliente_id    INTEGER REFERENCES clientes(id) ON DELETE SET NULL,
+  fornecedor_id INTEGER REFERENCES fornecedores(id) ON DELETE SET NULL,
+  notas         TEXT,
+  criado_em     TEXT    NOT NULL,
+  atualizado_em TEXT    NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS definicoes (
   chave         TEXT PRIMARY KEY,
   valor         TEXT NOT NULL,
@@ -122,6 +136,7 @@ CREATE INDEX IF NOT EXISTS idx_contratacoes_forn     ON contratacoes(fornecedor_
 CREATE INDEX IF NOT EXISTS idx_pagamentos_contratacao ON pagamentos(contratacao_id);
 CREATE INDEX IF NOT EXISTS idx_pagamentos_estado     ON pagamentos(estado, data_prevista);
 CREATE INDEX IF NOT EXISTS idx_atividades_cliente    ON atividades(cliente_id);
+CREATE INDEX IF NOT EXISTS idx_compromissos_data     ON compromissos(data);
 `;
 
 /** Valores que o SQLite aceita como parâmetro de uma consulta. */

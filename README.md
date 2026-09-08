@@ -27,6 +27,11 @@ atraso.
   receber do fornecedor**, em destaque no painel, na contratação e na ficha
   do fornecedor, até ser marcada como recebida — por pagamento ou de uma vez
   por fornecedor. A página Comissões lista tudo por estado e por fornecedor.
+- **Calendário** — vista mensal (e agenda, no telemóvel) com casamentos, datas
+  de serviço, vencimentos por pagar (em atraso a vermelho) e compromissos
+  marcados à mão (reuniões, visitas, chamadas), ligados a um cliente ou
+  fornecedor. Comunica com o **Google Calendar** nos dois sentidos, sem conta
+  de programador — ver [Calendário e Google Calendar](#calendário-e-google-calendar).
 
 ## Como correr
 
@@ -137,6 +142,7 @@ o servidor a correr.
 | `CRM_ORIGENS_PERMITIDAS` | Origens (separadas por vírgulas) autorizadas a enviar leads a partir do browser; por omissão, as do próprio site |
 | `CRM_API_TOKEN` | Se definida, os pedidos de leads servidor-a-servidor (sem `Origin`) passam a exigir `Authorization: Bearer …` |
 | `CRM_PALAVRA_PASSE` | Só para o script `criar-utilizador`, em automatismos |
+| `CRM_PERMITIR_ICS_LOCAL` | `1` aceita um feed iCal em `localhost`/`http` na ligação ao Google Calendar; só para testes |
 | `PORT` | Porta do servidor (por omissão 3000) |
 
 ## Stack
@@ -245,6 +251,37 @@ valores são em euros, não em cêntimos: é o formato do site.
 A tesouraria também exporta CSV (separador `;`, UTF-8 com BOM, pronto para
 Excel) em `/api/pagamentos/csv`, respeitando os filtros ativos.
 
+## Calendário e Google Calendar
+
+A página **Calendário** junta tudo o que tem data no CRM e o que a equipa marca
+à mão (**Novo compromisso**, ou o `+` de um dia; a ficha do cliente tem
+"Marcar compromisso"). A ligação ao Google faz-se em **Calendário › Google
+Calendar** e não precisa de OAuth, projeto na Google Cloud nem chaves:
+
+1. **O CRM no Google (e no telemóvel).** O CRM publica um feed iCalendar em
+   `/api/calendario/<token>/quantocustacasar.ics` com casamentos, datas de
+   serviço, vencimentos pendentes e compromissos (com hora, convertida de
+   Lisboa para UTC). No Google Calendar, *Outros calendários → + → A partir de
+   URL*, colar a ligação. O token é o único segredo: um administrador pode
+   gerar outro ("Gerar nova ligação"), e o antigo passa a responder 403. O
+   Google relê feeds subscritos de poucas em poucas horas; para um evento
+   entrar já, cada linha da agenda tem um botão **+ Google** que abre o Google
+   Calendar com o evento pré-preenchido.
+2. **O Google no CRM.** Um administrador cola o *Endereço secreto em formato
+   iCal* do seu calendário (Definições do Google Calendar → Integrar
+   calendário). O CRM lê-o com cache de 10 minutos (`Atualizar` força), e
+   mostra os eventos a roxo, ao lado dos do negócio. Suporta eventos com hora
+   e de dia inteiro, de vários dias, recorrentes (diários, semanais, mensais,
+   anuais, com `INTERVAL`, `COUNT`, `UNTIL`, `BYDAY`, `BYMONTHDAY`), exceções
+   e instâncias alteradas. Um erro de leitura não deita a página abaixo: fica
+   um aviso e mostram-se os últimos eventos lidos. Só aceita ligações `https`
+   públicas (`CRM_PERMITIR_ICS_LOCAL=1` deixa passar `localhost`, para
+   testes).
+
+Datas e horas são sempre em hora de Lisboa, mesmo com o servidor em UTC
+(`src/lib/tempo.ts`); o iCalendar é gerado e lido em `src/lib/ics.ts`, sem
+dependências.
+
 ## Estrutura
 
 ```
@@ -252,7 +289,7 @@ src/
   app/
     (app)/                páginas do CRM, atrás do guarda de autenticação
     login/                autenticação e criação da conta inicial
-    api/                  captação pública de leads e exportação CSV
+    api/                  captação pública de leads, exportação CSV, feed iCalendar
   components/             componentes de UI partilhados e formulários
   lib/
     db.ts                 ligação e esquema SQLite
@@ -260,6 +297,10 @@ src/
     palavra-passe.ts      hashing scrypt (sem dependências do Next)
     constants.ts          vocabulário de domínio (estados, categorias, …)
     format.ts             euros, datas e percentagens em pt-PT
+    tempo.ts              datas e horas em hora de Lisboa
+    ics.ts                iCalendar: feed para o Google e leitura do Google
+    calendario.ts         eventos do CRM (casamentos, serviços, vencimentos, compromissos)
+    google-calendar.ts    token do feed, endereço secreto do Google, cache
     queries/              leituras e escritas por entidade
     actions/              Server Actions dos formulários
 scripts/
