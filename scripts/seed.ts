@@ -23,7 +23,7 @@ if (total > 0 && !forcar) {
 }
 
 if (forcar) {
-  for (const t of ["pagamentos", "contratacoes", "atividades", "clientes", "fornecedores"]) {
+  for (const t of ["pagamentos", "contratacoes", "compromissos", "atividades", "clientes", "fornecedores"]) {
     db.exec(`DELETE FROM ${t}`);
   }
   db.exec("DELETE FROM sqlite_sequence");
@@ -237,6 +237,25 @@ for (const c of contratacoes) {
   }
 }
 
+const compromissos: [string, number, string | null, string | null, string | null, string | null][] = [
+  // título, dias a partir de hoje, início, fim, cliente, local
+  ["Reunião de apresentação", 2, "15:00", "16:00", "Helena Barros", "Café Central, Faro"],
+  ["Visita à quinta com o casal", 6, "10:30", "12:00", "Ana Ferreira", "Quinta da Bela Vista"],
+  ["Chamada de acompanhamento", 9, "18:00", null, "Gabriela Sousa", "Videochamada"],
+  ["Feira de casamentos", 20, null, null, null, "Exponor, Porto"],
+];
+const inserirCompromisso = db.prepare(
+  `INSERT INTO compromissos
+     (titulo, data, hora_inicio, hora_fim, local, cliente_id, fornecedor_id, notas, criado_em, atualizado_em)
+   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+);
+for (const [titulo, dias, inicio, fim, cliente, local] of compromissos) {
+  inserirCompromisso.run(
+    titulo, emDias(dias), inicio, fim, local,
+    cliente ? (idCliente.get(cliente) ?? null) : null, null, null, agora, agora,
+  );
+}
+
 console.log(
-  `Dados de demonstração criados: ${clientes.length} clientes, ${fornecedores.length} fornecedores, ${contratacoes.length} contratações, ${numPagamentos} pagamentos.`,
+  `Dados de demonstração criados: ${clientes.length} clientes, ${fornecedores.length} fornecedores, ${contratacoes.length} contratações, ${numPagamentos} pagamentos, ${compromissos.length} compromissos.`,
 );
