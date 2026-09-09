@@ -45,12 +45,15 @@ vier a incomodar. Exige projeto na Google Cloud e ecrã de consentimento.
   fornecedores já pagaram antes de existir o controlo (uma vez só).
 - Em Calendário › Google Calendar, num computador: subscrever a ligação do
   CRM no Google e colar o endereço secreto iCal do calendário pessoal.
-- Domínio: confirmar que quantocustacasar.pt abre o site e ligar "Enforce
-  HTTPS" no GitHub Pages; depois, o CRM em crm.quantocustacasar.pt (Railway
-  › Settings › Networking › Custom Domain, mais um CNAME na dominios.pt).
 
 ## Concluído
 
+- 2026-09-09 — Domínio quantocustacasar.pt ligado a tudo: site (GitHub
+  Pages, HTTPS), CRM em crm.quantocustacasar.pt (Railway), site a enviar
+  leads e a ler preços no endereço novo, e correio geral@quantocustacasar.pt
+  no cPanel da dominios.pt com MX, SPF (com include:spf.dominios.pt, porque
+  o correio sai por um relay deles), DKIM e DMARC. DNS gerido no editor da
+  dominios.pt (nameservers host-redirect).
 - 2026-09-09 — Pedido de disponibilidade ao fornecedor por email
   construído (PR #13), adiado por decisão do Bernardo; não fundido.
 - 2026-09-09 — Despesas com IVA, categorias e lucro por período (PR #12).
