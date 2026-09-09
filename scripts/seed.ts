@@ -23,7 +23,7 @@ if (total > 0 && !forcar) {
 }
 
 if (forcar) {
-  for (const t of ["pagamentos", "contratacoes", "compromissos", "atividades", "clientes", "fornecedores"]) {
+  for (const t of ["pagamentos", "contratacoes", "compromissos", "despesas", "atividades", "clientes", "fornecedores"]) {
     db.exec(`DELETE FROM ${t}`);
   }
   db.exec("DELETE FROM sqlite_sequence");
@@ -256,6 +256,39 @@ for (const [titulo, dias, inicio, fim, cliente, local] of compromissos) {
   );
 }
 
+// Despesas: descrição, dias a partir de hoje, categoria, pago a, valor (€, como no recibo), taxa de IVA, com IVA?
+const despesas: [string, number, string, string, number, number | null, boolean][] = [
+  ["Anúncios Instagram e Facebook", -3, "Marketing e publicidade", "Meta", 92.25, 23, true],
+  ["Gasolina — visitas a quintas", -8, "Deslocações", "Galp", 61.5, 23, true],
+  ["Subscrição do site e domínio", -12, "Software e subscrições", "Alojamento", 14.99, 23, true],
+  ["Avença do contabilista", -15, "Contabilidade, impostos e taxas", "Contabilista", 75, 23, false],
+  ["Portagens", -20, "Deslocações", "Via Verde", 18.4, 23, true],
+  ["Cartões de visita", -40, "Material e equipamento", "Gráfica", 32, 23, false],
+  ["Stand na feira de casamentos", -50, "Formação e eventos", "Organização da feira", 250, 23, true],
+  ["Seguro de responsabilidade civil", -70, "Outra", "Seguradora", 120, null, false],
+];
+const categoriaDespesaId = new Map(
+  (db.prepare("SELECT id, nome FROM categorias_despesa").all() as { id: number; nome: string }[]).map((c) => [c.nome, c.id]),
+);
+const inserirDespesa = db.prepare(
+  `INSERT INTO despesas
+     (data, descricao, categoria_id, fornecedor, valor_cents, iva_pct, iva_cents, total_cents, metodo, notas, criado_em, atualizado_em)
+   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+);
+for (const [descricao, dias, categoria, pagoA, valor, iva, comIva] of despesas) {
+  const escrito = eur(valor);
+  let base = escrito;
+  let ivaCents = 0;
+  if (iva !== null && iva > 0) {
+    base = comIva ? Math.round(escrito / (1 + iva / 100)) : escrito;
+    ivaCents = comIva ? escrito - base : Math.round((escrito * iva) / 100);
+  }
+  inserirDespesa.run(
+    emDias(dias), descricao, categoriaDespesaId.get(categoria) ?? null, pagoA,
+    base, iva, ivaCents, base + ivaCents, "Cartão", null, agora, agora,
+  );
+}
+
 console.log(
-  `Dados de demonstração criados: ${clientes.length} clientes, ${fornecedores.length} fornecedores, ${contratacoes.length} contratações, ${numPagamentos} pagamentos, ${compromissos.length} compromissos.`,
+  `Dados de demonstração criados: ${clientes.length} clientes, ${fornecedores.length} fornecedores, ${contratacoes.length} contratações, ${numPagamentos} pagamentos, ${compromissos.length} compromissos, ${despesas.length} despesas.`,
 );

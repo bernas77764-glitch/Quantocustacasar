@@ -20,6 +20,8 @@ export type Resumo = {
   comissao_a_receber_cents: number;
   comissao_recebida_cents: number;
   comissao_recebida_mes_cents: number;
+  /** Despesas registadas este mês, com IVA. */
+  despesas_mes_cents: number;
   taxa_conversao: number;
   casamentos_90d: number;
 };
@@ -114,6 +116,11 @@ export function resumo(): Resumo {
     comissao_a_receber_cents: pagamentos.comissao_a_receber_cents,
     comissao_recebida_cents: pagamentos.comissao_recebida_cents,
     comissao_recebida_mes_cents: pagamentos.comissao_recebida_mes_cents,
+    despesas_mes_cents: (
+      getDb()
+        .prepare("SELECT COALESCE(SUM(total_cents), 0) AS total FROM despesas WHERE data >= ?")
+        .get(`${hoje().slice(0, 7)}-01`) as unknown as { total: number }
+    ).total,
     taxa_conversao: fechados > 0 ? (clientes.ganhos / fechados) * 100 : 0,
     casamentos_90d: clientes.casamentos_90d,
   };

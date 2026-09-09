@@ -122,6 +122,29 @@ CREATE TABLE IF NOT EXISTS compromissos (
   atualizado_em TEXT    NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS categorias_despesa (
+  id        INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome      TEXT    NOT NULL UNIQUE,
+  criado_em TEXT    NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS despesas (
+  id            INTEGER PRIMARY KEY AUTOINCREMENT,
+  data          TEXT    NOT NULL,
+  descricao     TEXT    NOT NULL,
+  categoria_id  INTEGER REFERENCES categorias_despesa(id) ON DELETE SET NULL,
+  fornecedor    TEXT,
+  valor_cents   INTEGER NOT NULL DEFAULT 0,
+  iva_pct       REAL,
+  iva_cents     INTEGER NOT NULL DEFAULT 0,
+  total_cents   INTEGER NOT NULL DEFAULT 0,
+  metodo        TEXT,
+  cliente_id    INTEGER REFERENCES clientes(id) ON DELETE SET NULL,
+  notas         TEXT,
+  criado_em     TEXT    NOT NULL,
+  atualizado_em TEXT    NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS definicoes (
   chave         TEXT PRIMARY KEY,
   valor         TEXT NOT NULL,
@@ -137,6 +160,7 @@ CREATE INDEX IF NOT EXISTS idx_pagamentos_contratacao ON pagamentos(contratacao_
 CREATE INDEX IF NOT EXISTS idx_pagamentos_estado     ON pagamentos(estado, data_prevista);
 CREATE INDEX IF NOT EXISTS idx_atividades_cliente    ON atividades(cliente_id);
 CREATE INDEX IF NOT EXISTS idx_compromissos_data     ON compromissos(data);
+CREATE INDEX IF NOT EXISTS idx_despesas_data         ON despesas(data);
 `;
 
 /** Valores que o SQLite aceita como parâmetro de uma consulta. */
@@ -225,12 +249,32 @@ function migrar(db: DatabaseSync): void {
   }
 }
 
+/** Categorias de despesa com que o CRM nasce; a equipa pode criar outras. */
+const CATEGORIAS_DESPESA_INICIAIS = [
+  "Marketing e publicidade",
+  "Deslocações",
+  "Software e subscrições",
+  "Contabilidade, impostos e taxas",
+  "Material e equipamento",
+  "Formação e eventos",
+  "Outra",
+];
+
+function semearCategoriasDespesa(db: DatabaseSync): void {
+  const total = (db.prepare("SELECT COUNT(*) AS n FROM categorias_despesa").get() as { n: number }).n;
+  if (total > 0) return;
+  const inserir = db.prepare("INSERT INTO categorias_despesa (nome, criado_em) VALUES (?, ?)");
+  const ts = new Date().toISOString();
+  for (const nome of CATEGORIAS_DESPESA_INICIAIS) inserir.run(nome, ts);
+}
+
 function open(): BaseDados {
   const file = dbPath();
   fs.mkdirSync(path.dirname(file), { recursive: true });
   const db = new DatabaseSync(file);
   db.exec(SCHEMA);
   migrar(db);
+  semearCategoriasDespesa(db);
   return envolver(db);
 }
 

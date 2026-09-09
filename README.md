@@ -27,6 +27,12 @@ atraso.
   receber do fornecedor**, em destaque no painel, na contratação e na ficha
   do fornecedor, até ser marcada como recebida — por pagamento ou de uma vez
   por fornecedor. A página Comissões lista tudo por estado e por fornecedor.
+- **Despesas e lucro** — registo das despesas do negócio com categorias
+  criadas pela equipa e IVA quando se aplica (o valor pode ser escrito como
+  está no recibo, com IVA, ou sem; o CRM separa base, imposto e total).
+  Filtros por período, categoria e texto; o mesmo período conta as
+  **comissões recebidas** dos fornecedores e mostra o **lucro** (comissões −
+  despesas), por mês e por categoria, com exportação para CSV.
 - **Calendário** — vista mensal (e agenda, no telemóvel) com casamentos, datas
   de serviço, vencimentos por pagar (em atraso a vermelho) e compromissos
   marcados à mão (reuniões, visitas, chamadas), ligados a um cliente ou
@@ -251,6 +257,24 @@ valores são em euros, não em cêntimos: é o formato do site.
 A tesouraria também exporta CSV (separador `;`, UTF-8 com BOM, pronto para
 Excel) em `/api/pagamentos/csv`, respeitando os filtros ativos.
 
+## Despesas e lucro
+
+A página **Despesas** guarda o que o negócio gasta. Cada despesa tem data,
+descrição, categoria, a quem se pagou, método, cliente opcional (quando é de
+um casamento em concreto) e IVA: escolhe-se a taxa (não se aplica, 0, 6, 13,
+23 ou outra, para as Regiões Autónomas) e diz-se se o valor escrito já inclui
+IVA (recibos) ou não (orçamentos); o formulário pré-visualiza base, IVA e
+total, e o CRM guarda os três. As **categorias** criam-se, renomeiam-se e
+eliminam-se (só as sem despesas) na própria página; o CRM nasce com um
+conjunto inicial.
+
+O **lucro** compara, no período filtrado, as comissões marcadas como
+recebidas (pelo dia em que o fornecedor pagou, na página Comissões) com as
+despesas dessas datas. Sem filtro, mostra o mês atual; há atalhos para o mês
+passado, o ano e "tudo", e uma tabela de lucro por mês. Como o IVA das
+despesas pode ser dedutível, o cartão do lucro indica também o valor sem IVA.
+`GET /api/despesas/csv` exporta a lista filtrada (exige sessão).
+
 ## Calendário e Google Calendar
 
 A página **Calendário** junta tudo o que tem data no CRM e o que a equipa marca
@@ -289,7 +313,7 @@ src/
   app/
     (app)/                páginas do CRM, atrás do guarda de autenticação
     login/                autenticação e criação da conta inicial
-    api/                  captação pública de leads, exportação CSV, feed iCalendar
+    api/                  captação pública de leads, exportações CSV, feed iCalendar
   components/             componentes de UI partilhados e formulários
   lib/
     db.ts                 ligação e esquema SQLite
@@ -298,6 +322,7 @@ src/
     constants.ts          vocabulário de domínio (estados, categorias, …)
     format.ts             euros, datas e percentagens em pt-PT
     tempo.ts              datas e horas em hora de Lisboa
+    iva.ts                base, IVA e total de uma despesa
     ics.ts                iCalendar: feed para o Google e leitura do Google
     calendario.ts         eventos do CRM (casamentos, serviços, vencimentos, compromissos)
     google-calendar.ts    token do feed, endereço secreto do Google, cache
