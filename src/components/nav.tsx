@@ -11,6 +11,7 @@ const LIGACOES = [
   { href: "/contratacoes", rotulo: "Contratações", icone: "◇" },
   { href: "/pagamentos", rotulo: "Pagamentos", icone: "€" },
   { href: "/comissoes", rotulo: "Comissões", icone: "%" },
+  { href: "/despesas", rotulo: "Despesas", icone: "▽" },
   { href: "/precos", rotulo: "Tabela de preços", icone: "≡" },
 ];
 

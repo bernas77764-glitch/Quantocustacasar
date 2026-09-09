@@ -167,3 +167,39 @@ export type EventoCalendario = {
   atrasado: boolean;
   compromisso_id: number | null;
 };
+
+export type CategoriaDespesa = {
+  id: number;
+  nome: string;
+  criado_em: string;
+};
+
+export type CategoriaDespesaComTotal = CategoriaDespesa & {
+  num_despesas: number;
+  total_cents: number;
+};
+
+/** Uma despesa do negócio. `valor_cents` é a base sem IVA; `total_cents` inclui-o. */
+export type Despesa = {
+  id: number;
+  data: string;
+  descricao: string;
+  categoria_id: number | null;
+  /** A quem se pagou (loja, serviço, pessoa). */
+  fornecedor: string | null;
+  valor_cents: number;
+  /** Taxa de IVA aplicada; nulo quando não se aplica. */
+  iva_pct: number | null;
+  iva_cents: number;
+  total_cents: number;
+  metodo: string | null;
+  cliente_id: number | null;
+  notas: string | null;
+  criado_em: string;
+  atualizado_em: string;
+};
+
+export type DespesaDetalhada = Despesa & {
+  categoria_nome: string | null;
+  cliente_nome: string | null;
+};

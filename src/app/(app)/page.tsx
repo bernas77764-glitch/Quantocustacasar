@@ -100,6 +100,13 @@ export default function Painel() {
           href="/comissoes?estado=recebida"
         />
         <Indicador
+          rotulo="Lucro este mês"
+          valor={eurosCompacto(r.comissao_recebida_mes_cents - r.despesas_mes_cents)}
+          detalhe={`${eurosCompacto(r.despesas_mes_cents)} de despesas este mês`}
+          tom={r.comissao_recebida_mes_cents - r.despesas_mes_cents >= 0 ? "ok" : "bad"}
+          href="/despesas"
+        />
+        <Indicador
           rotulo="Comissões previstas"
           valor={eurosCompacto(r.comissao_cents)}
           detalhe="Sobre as contratações confirmadas"
