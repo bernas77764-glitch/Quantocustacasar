@@ -5,21 +5,23 @@ Quando pedir "os pendentes", é isto que se lê e atualiza.
 
 ## Por desenvolver
 
-### 1. Email ao fornecedor: ligar a conta de envio
+### 1. Emails a fornecedores e clientes (adiado, 2026-09-09)
 
-O CRM já prepara e envia o pedido de disponibilidade (PR #13). Falta, do
-lado do Bernardo, a conta de envio:
+O Bernardo decidiu não avançar por agora; é uma aposta para o futuro.
 
-- Criar conta no Resend ou no Brevo, adicionar o domínio quantocustacasar.pt
-  e criar no editor de DNS da dominios.pt os registos que o serviço indicar
-  (SPF, DKIM e, no Resend, um MX para o subdomínio de devoluções).
-- Criar uma chave da API e colá-la em Definições › Email, com o remetente
-  do domínio (por exemplo bernardo@quantocustacasar.pt).
-- Carregar em "Enviar teste" e confirmar que chega.
+O pedido de disponibilidade ao fornecedor está construído e testado no
+PR #13 (commit 8b2aff5, ramo de trabalho), com Definições › Email
+(Resend/Brevo por API, remetente do domínio, modelo editável, email de
+teste). Não foi fundido. Para retomar: reabrir o PR #13 ou recuperar o
+commit, fundir, e depois criar conta no Resend (ou Brevo), verificar o
+domínio quantocustacasar.pt com os registos DNS na dominios.pt e colar a
+chave em Definições › Email com o remetente geral@quantocustacasar.pt.
+Alternativa sem conta nova: enviar pela caixa geral@ do cPanel, o que
+exige acrescentar SMTP ao CRM.
 
-Ideias para depois: modelo de email ao casal a agradecer a simulação, e
-modelo de proposta de parceria a novos fornecedores, ambos já escritos em
-conversa (2026-09-09) e por transformar em modelos no CRM.
+Também por fazer: modelos de email ao casal (agradecer a simulação) e de
+proposta de parceria a novos fornecedores, ambos escritos em conversa a
+2026-09-09.
 
 ### 2. Tabela de preços só para administradores
 
@@ -49,8 +51,8 @@ vier a incomodar. Exige projeto na Google Cloud e ecrã de consentimento.
 
 ## Concluído
 
-- 2026-09-09 — Pedido de disponibilidade ao fornecedor por email, com
-  Definições › Email (PR #13).
+- 2026-09-09 — Pedido de disponibilidade ao fornecedor por email
+  construído (PR #13), adiado por decisão do Bernardo; não fundido.
 - 2026-09-09 — Despesas com IVA, categorias e lucro por período (PR #12).
 - 2026-09-08 — Calendário com ligação ao Google Calendar (PR #11).
 - 2026-09-07 — Seletores de estado a manter o valor escolhido (PR #10).
