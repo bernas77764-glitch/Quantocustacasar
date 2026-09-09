@@ -203,3 +203,19 @@ export type DespesaDetalhada = Despesa & {
   categoria_nome: string | null;
   cliente_nome: string | null;
 };
+
+/** Um email enviado (ou tentado) pelo CRM. */
+export type EmailEnviado = {
+  id: number;
+  tipo: string;
+  contratacao_id: number | null;
+  cliente_id: number | null;
+  para: string;
+  assunto: string;
+  corpo: string;
+  estado: "enviado" | "erro";
+  erro: string | null;
+  id_externo: string | null;
+  utilizador_id: number | null;
+  criado_em: string;
+};

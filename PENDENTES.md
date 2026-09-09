@@ -5,33 +5,21 @@ Quando pedir "os pendentes", é isto que se lê e atualiza.
 
 ## Por desenvolver
 
-### 1. Email automático ao fornecedor com pedido de disponibilidade
+### 1. Email ao fornecedor: ligar a conta de envio
 
-Pedido a 2026-09-09. Ao associar um cliente a um fornecedor (nova
-contratação), o CRM envia ao fornecedor um email com a data do casamento,
-o número de convidados, o valor e o local, se existir.
+O CRM já prepara e envia o pedido de disponibilidade (PR #13). Falta, do
+lado do Bernardo, a conta de envio:
 
-Desenho combinado:
+- Criar conta no Resend ou no Brevo, adicionar o domínio quantocustacasar.pt
+  e criar no editor de DNS da dominios.pt os registos que o serviço indicar
+  (SPF, DKIM e, no Resend, um MX para o subdomínio de devoluções).
+- Criar uma chave da API e colá-la em Definições › Email, com o remetente
+  do domínio (por exemplo bernardo@quantocustacasar.pt).
+- Carregar em "Enviar teste" e confirmar que chega.
 
-- Opção "Enviar pedido de disponibilidade ao fornecedor" no formulário
-  "Nova contratação", ligada por omissão.
-- Modelo de texto editável nas definições, com campos `{casal}`, `{data}`,
-  `{convidados}`, `{valor}`, `{local}`, `{categoria}`.
-- Envio registado na atividade do cliente; botão "Reenviar pedido" na
-  contratação; aviso quando o fornecedor não tem email.
-- Respostas chegam à caixa de correio do Bernardo (Reply-To).
-- Página de definições "Email", só para administradores, com os dados de
-  envio (SMTP) e um botão "Enviar email de teste".
-
-Decisões que faltam (são do Bernardo):
-
-- Conta de envio: Gmail/email do domínio com palavra-passe de aplicação, ou
-  serviço de envio (Brevo, Resend) com validação do domínio.
-- Envio automático ao guardar, ou pré-visualização para confirmar com um
-  toque (recomendado ao início).
-
-Nota: a partir do ambiente de desenvolvimento não se enviam emails reais; o
-teste final é feito no CRM em produção com "Enviar email de teste".
+Ideias para depois: modelo de email ao casal a agradecer a simulação, e
+modelo de proposta de parceria a novos fornecedores, ambos já escritos em
+conversa (2026-09-09) e por transformar em modelos no CRM.
 
 ### 2. Tabela de preços só para administradores
 
@@ -55,9 +43,14 @@ vier a incomodar. Exige projeto na Google Cloud e ecrã de consentimento.
   fornecedores já pagaram antes de existir o controlo (uma vez só).
 - Em Calendário › Google Calendar, num computador: subscrever a ligação do
   CRM no Google e colar o endereço secreto iCal do calendário pessoal.
+- Domínio: confirmar que quantocustacasar.pt abre o site e ligar "Enforce
+  HTTPS" no GitHub Pages; depois, o CRM em crm.quantocustacasar.pt (Railway
+  › Settings › Networking › Custom Domain, mais um CNAME na dominios.pt).
 
 ## Concluído
 
+- 2026-09-09 — Pedido de disponibilidade ao fornecedor por email, com
+  Definições › Email (PR #13).
 - 2026-09-09 — Despesas com IVA, categorias e lucro por período (PR #12).
 - 2026-09-08 — Calendário com ligação ao Google Calendar (PR #11).
 - 2026-09-07 — Seletores de estado a manter o valor escolhido (PR #10).

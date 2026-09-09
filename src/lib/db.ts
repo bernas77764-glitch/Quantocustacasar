@@ -145,6 +145,21 @@ CREATE TABLE IF NOT EXISTS despesas (
   atualizado_em TEXT    NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS emails (
+  id             INTEGER PRIMARY KEY AUTOINCREMENT,
+  tipo           TEXT    NOT NULL,
+  contratacao_id INTEGER REFERENCES contratacoes(id) ON DELETE SET NULL,
+  cliente_id     INTEGER REFERENCES clientes(id) ON DELETE SET NULL,
+  para           TEXT    NOT NULL,
+  assunto        TEXT    NOT NULL,
+  corpo          TEXT    NOT NULL,
+  estado         TEXT    NOT NULL,
+  erro           TEXT,
+  id_externo     TEXT,
+  utilizador_id  INTEGER,
+  criado_em      TEXT    NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS definicoes (
   chave         TEXT PRIMARY KEY,
   valor         TEXT NOT NULL,
@@ -161,6 +176,7 @@ CREATE INDEX IF NOT EXISTS idx_pagamentos_estado     ON pagamentos(estado, data_
 CREATE INDEX IF NOT EXISTS idx_atividades_cliente    ON atividades(cliente_id);
 CREATE INDEX IF NOT EXISTS idx_compromissos_data     ON compromissos(data);
 CREATE INDEX IF NOT EXISTS idx_despesas_data         ON despesas(data);
+CREATE INDEX IF NOT EXISTS idx_emails_contratacao    ON emails(contratacao_id);
 `;
 
 /** Valores que o SQLite aceita como parâmetro de uma consulta. */

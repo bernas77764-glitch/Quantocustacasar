@@ -283,3 +283,9 @@ export function anexarNotaFornecedor(id: number, nota: string): void {
     )
     .run(nota, nota, agora(), id);
 }
+
+export function atualizarEmailDoFornecedor(id: number, email: string): void {
+  getDb()
+    .prepare("UPDATE fornecedores SET email = ?, atualizado_em = ? WHERE id = ?")
+    .run(email, agora(), id);
+}

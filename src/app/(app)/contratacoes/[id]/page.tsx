@@ -14,12 +14,13 @@ import {
   guardarPagamento,
 } from "@/lib/actions/pagamentos";
 import { ComissaoBadge } from "@/components/comissao";
+import { emailsDaContratacao, ultimoPedidoEnviado } from "@/lib/queries/emails";
 import {
   ESTADOS_CONTRATACAO,
   METODOS_PAGAMENTO,
   ROTULO_ESTADO_CONTRATACAO,
 } from "@/lib/constants";
-import { euros, eurosCompacto, data, percentagem } from "@/lib/format";
+import { euros, eurosCompacto, data, dataHora, percentagem } from "@/lib/format";
 import {
   BarraProgresso,
   CabecalhoPagina,
@@ -34,13 +35,18 @@ export const dynamic = "force-dynamic";
 
 export default async function DetalheContratacao({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { id: idTexto } = await params;
+  const sp = await searchParams;
   const id = Number(idTexto);
   const c = obterContratacao(id);
   if (!c) notFound();
+  const pedidoEnviado = ultimoPedidoEnviado(id);
+  const emails = emailsDaContratacao(id);
 
   const pagamentos = listarPagamentos({ contratacao_id: id });
   const comissao = Math.round((c.valor_cents * c.comissao_pct) / 100);
@@ -75,6 +81,9 @@ export default async function DetalheContratacao({
                 ))}
               </select>
             </FormularioAuto>
+            <Link href={`/contratacoes/${c.id}/pedido`} className="btn">
+              {pedidoEnviado ? "Reenviar pedido" : "Pedido de disponibilidade"}
+            </Link>
             <Link href={`/contratacoes/${c.id}/editar`} className="btn">
               Editar
             </Link>
@@ -87,6 +96,12 @@ export default async function DetalheContratacao({
           </>
         }
       />
+
+      {sp.email === "enviado" && (
+        <p role="status" className="mb-4 rounded-lg bg-[color:var(--ok)]/10 px-4 py-3 text-sm text-[color:var(--ok)]">
+          Pedido de disponibilidade enviado a {c.fornecedor_nome}. A resposta chega à sua caixa de correio.
+        </p>
+      )}
 
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <Indicador
@@ -293,6 +308,18 @@ export default async function DetalheContratacao({
             <Detalhe rotulo="Data do serviço">{data(c.data_servico)}</Detalhe>
             <Detalhe rotulo="Comissão">{percentagem(c.comissao_pct)}</Detalhe>
             <Detalhe rotulo="Criada em">{data(c.criado_em)}</Detalhe>
+            <div className="col-span-2">
+              <Detalhe rotulo="Pedido de disponibilidade">
+                {pedidoEnviado ? (
+                  <>
+                    Enviado a {dataHora(pedidoEnviado.criado_em)} para {pedidoEnviado.para}
+                    {emails.length > 1 ? ` · ${emails.length} envios` : ""}
+                  </>
+                ) : (
+                  <span className="text-muted">Ainda não enviado</span>
+                )}
+              </Detalhe>
+            </div>
             {c.notas && (
               <div className="col-span-2">
                 <Detalhe rotulo="Notas">
