@@ -886,14 +886,14 @@
      O envio ao CRM é feito em segundo plano e nunca trava a resposta ao
      casal — se falhar, o email já foi e fica um aviso na consola.
      Vazio = o site não fala com o CRM. */
-  const CRM_ENDPOINT = "https://quantocustacasar-production.up.railway.app/api/public/leads";
+  const CRM_ENDPOINT = "https://crm.quantocustacasar.pt/api/public/leads";
   /* O mesmo para os pedidos de parceria: entram no catálogo de fornecedores
      do CRM como inativos, até a equipa rever as condições. */
-  const CRM_ENDPOINT_FORNECEDORES = "https://quantocustacasar-production.up.railway.app/api/public/fornecedores";
+  const CRM_ENDPOINT_FORNECEDORES = "https://crm.quantocustacasar.pt/api/public/fornecedores";
   /* Tabela de preços gerida no CRM: endereço público que devolve o JSON no
      formato de «Copiar tabela (JSON)». Vazio = usam-se os valores deste
      ficheiro. Se o CRM estiver em baixo, o site continua com estes valores. */
-  const PRECOS_URL = "https://quantocustacasar-production.up.railway.app/api/public/precos";
+  const PRECOS_URL = "https://crm.quantocustacasar.pt/api/public/precos";
   /* Número que atende o WhatsApp, em formato internacional e só dígitos,
      por exemplo "351912345678". Vazio = o botão não aparece. */
   const WHATSAPP = "351912263717";
