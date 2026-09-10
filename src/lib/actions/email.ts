@@ -15,6 +15,7 @@ import {
   preencherModelo,
   removerConfiguracaoEmail,
   reporModelo as reporModeloEmail,
+  ASSINATURA_BASE,
   type Anexo,
   type ServicoEmail,
 } from "@/lib/email";
@@ -54,6 +55,18 @@ export async function guardarConfiguracao(_anterior: EstadoFormulario, fd: FormD
   const remetenteEmail = (texto(fd, "remetente_email") ?? "").toLowerCase();
   const responderPara = (texto(fd, "responder_para") ?? "").toLowerCase();
   const iban = (texto(fd, "iban") ?? "").toUpperCase().replace(/\s+/g, " ");
+  const assinatura = {
+    ativa: fd.get("assinatura_ativa") === "on",
+    nome: texto(fd, "assinatura_nome") ?? ASSINATURA_BASE.nome,
+    cargo: texto(fd, "assinatura_cargo") ?? "",
+    telefone: texto(fd, "assinatura_telefone") ?? "",
+    email: texto(fd, "assinatura_email") ?? remetenteEmail,
+    site: texto(fd, "assinatura_site") ?? ASSINATURA_BASE.site,
+    instagram: texto(fd, "assinatura_instagram") ?? "",
+    facebook: texto(fd, "assinatura_facebook") ?? "",
+    whatsapp: texto(fd, "assinatura_whatsapp") ?? "",
+    lema: texto(fd, "assinatura_lema") ?? "",
+  };
   const valores = {
     servico: servico ?? "",
     smtp_servidor: smtpServidor,
@@ -63,6 +76,7 @@ export async function guardarConfiguracao(_anterior: EstadoFormulario, fd: FormD
     remetente_email: remetenteEmail,
     responder_para: responderPara,
     iban,
+    ...Object.fromEntries(Object.entries(assinatura).map(([k, v]) => [`assinatura_${k}`, String(v)])),
   };
 
   if (!servico || !SERVICOS_EMAIL.includes(servico)) return { erro: "Escolha a forma de envio.", valores };
@@ -90,6 +104,7 @@ export async function guardarConfiguracao(_anterior: EstadoFormulario, fd: FormD
     remetente_email: remetenteEmail,
     responder_para: responderPara,
     iban,
+    assinatura,
   });
   revalidar();
   return { sucesso: "Configuração guardada. Envie um email de teste para confirmar." };

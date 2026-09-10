@@ -40,9 +40,8 @@ export type DefinicaoModelo = {
   modelo: ModeloEmail;
 };
 
-const ASSINATURA = `Cumprimentos,
-{remetente}
-Quanto Custa Casar`;
+// A assinatura com logótipo e contactos entra sozinha no fim de cada email.
+const ASSINATURA = `Cumprimentos,`;
 
 export const MODELOS: DefinicaoModelo[] = [
   {
@@ -96,9 +95,7 @@ Assim que tiver as respostas, faço um ponto de situação convosco.
 
 Qualquer dúvida entretanto, é só responder a este email ou ligar.
 
-Abraço,
-{remetente}
-Quanto Custa Casar`,
+Abraço,`,
     },
   },
   {
@@ -154,8 +151,7 @@ Nos próximos dias a nossa equipa entra em contacto para conhecer o vosso trabal
 
 Se quiserem adiantar, respondam a este email com o site ou o Instagram e a faixa de preços que praticam.
 
-Cumprimentos,
-Equipa Quanto Custa Casar`,
+Cumprimentos,`,
     },
   },
   {
