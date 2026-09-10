@@ -19,9 +19,15 @@ chave em Definições › Email com o remetente geral@quantocustacasar.pt.
 Alternativa sem conta nova: enviar pela caixa geral@ do cPanel, o que
 exige acrescentar SMTP ao CRM.
 
-Também por fazer: modelos de email ao casal (agradecer a simulação) e de
-proposta de parceria a novos fornecedores, ambos escritos em conversa a
-2026-09-09.
+Modelos escritos a 2026-09-10 (ficheiro modelos-de-email.md enviado ao
+Bernardo para ajustar): C1 agradecimento pela simulação (automático, ao
+receber o lead do site), C2 depois do primeiro telefonema, C3 proposta de
+orçamentos; F1 agradecimento pela candidatura (automático, ao receber o
+pedido de parceria do site), F2 apresentação e condições, F3 pedido de
+disponibilidade e cotação com notas, F4 ponto de situação para controlar
+comissões, F5 envio de fatura. Integrar no CRM quando o envio de email for
+retomado: os automáticos disparam nas rotas públicas; os outros abrem
+pré-preenchidos a partir da ficha, como o pedido de disponibilidade.
 
 ### 2. Tabela de preços só para administradores
 
