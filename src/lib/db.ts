@@ -145,6 +145,23 @@ CREATE TABLE IF NOT EXISTS despesas (
   atualizado_em TEXT    NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS emails (
+  id             INTEGER PRIMARY KEY AUTOINCREMENT,
+  tipo           TEXT    NOT NULL,
+  contratacao_id INTEGER REFERENCES contratacoes(id) ON DELETE SET NULL,
+  cliente_id     INTEGER REFERENCES clientes(id) ON DELETE SET NULL,
+  para           TEXT    NOT NULL,
+  assunto        TEXT    NOT NULL,
+  corpo          TEXT    NOT NULL,
+  estado         TEXT    NOT NULL,
+  erro           TEXT,
+  id_externo     TEXT,
+  utilizador_id  INTEGER,
+  fornecedor_id  INTEGER REFERENCES fornecedores(id) ON DELETE SET NULL,
+  anexo_nome     TEXT,
+  criado_em      TEXT    NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS definicoes (
   chave         TEXT PRIMARY KEY,
   valor         TEXT NOT NULL,
@@ -161,6 +178,7 @@ CREATE INDEX IF NOT EXISTS idx_pagamentos_estado     ON pagamentos(estado, data_
 CREATE INDEX IF NOT EXISTS idx_atividades_cliente    ON atividades(cliente_id);
 CREATE INDEX IF NOT EXISTS idx_compromissos_data     ON compromissos(data);
 CREATE INDEX IF NOT EXISTS idx_despesas_data         ON despesas(data);
+CREATE INDEX IF NOT EXISTS idx_emails_contratacao    ON emails(contratacao_id);
 `;
 
 /** Valores que o SQLite aceita como parâmetro de uma consulta. */
@@ -268,12 +286,23 @@ function semearCategoriasDespesa(db: DatabaseSync): void {
   for (const nome of CATEGORIAS_DESPESA_INICIAIS) inserir.run(nome, ts);
 }
 
+function migrarEmails(db: DatabaseSync): void {
+  const colunas = (db.prepare("PRAGMA table_info(emails)").all() as { name: string }[]).map((c) => c.name);
+  if (!colunas.includes("fornecedor_id")) {
+    db.exec("ALTER TABLE emails ADD COLUMN fornecedor_id INTEGER REFERENCES fornecedores(id) ON DELETE SET NULL");
+  }
+  if (!colunas.includes("anexo_nome")) {
+    db.exec("ALTER TABLE emails ADD COLUMN anexo_nome TEXT");
+  }
+}
+
 function open(): BaseDados {
   const file = dbPath();
   fs.mkdirSync(path.dirname(file), { recursive: true });
   const db = new DatabaseSync(file);
   db.exec(SCHEMA);
   migrar(db);
+  migrarEmails(db);
   semearCategoriasDespesa(db);
   return envolver(db);
 }

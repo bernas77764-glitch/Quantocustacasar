@@ -17,6 +17,7 @@ const LIGACOES = [
 
 const SO_ADMINISTRADOR = [
   { href: "/utilizadores", rotulo: "Utilizadores", icone: "◎" },
+  { href: "/definicoes/email", rotulo: "Email", icone: "✉" },
   { href: "/demonstracao", rotulo: "Demonstração", icone: "✎" },
 ];
 

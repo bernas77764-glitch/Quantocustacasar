@@ -217,3 +217,7 @@ export function listarClientesSimples(): { id: number; nome: string; data_casame
     )
     .all() as unknown as { id: number; nome: string; data_casamento: string | null }[];
 }
+
+export function atualizarEmailDoCliente(id: number, email: string): void {
+  getDb().prepare("UPDATE clientes SET email = ?, atualizado_em = ? WHERE id = ?").run(email, agora(), id);
+}

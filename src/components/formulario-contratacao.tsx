@@ -175,15 +175,26 @@ export function FormularioContratacao({
       </fieldset>
 
       {!contratacao && (
-        <label className="flex items-center gap-2 text-sm">
-          <input
-            type="checkbox"
-            name="gerar_plano"
-            defaultChecked
-            className="size-4 accent-[color:var(--brand)]"
-          />
-          Gerar plano de pagamentos (sinal de 30% a 30 dias + liquidação)
-        </label>
+        <div className="space-y-2">
+          <label className="flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              name="gerar_plano"
+              defaultChecked
+              className="size-4 accent-[color:var(--brand)]"
+            />
+            Gerar plano de pagamentos (sinal de 30% a 30 dias + liquidação)
+          </label>
+          <label className="flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              name="pedir_disponibilidade"
+              defaultChecked
+              className="size-4 accent-[color:var(--brand)]"
+            />
+            Preparar o pedido de disponibilidade ao fornecedor (abre o email preenchido para rever antes de enviar)
+          </label>
+        </div>
       )}
 
       <div className="flex items-center gap-2 border-t border-line pt-4">

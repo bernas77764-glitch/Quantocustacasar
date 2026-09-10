@@ -3,9 +3,16 @@ import { notFound } from "next/navigation";
 import { obterFornecedor } from "@/lib/queries/fornecedores";
 import { listarContratacoes } from "@/lib/queries/contratacoes";
 import { listarComissoes } from "@/lib/queries/pagamentos";
+import { emailsDoFornecedor } from "@/lib/queries/emails";
 import { apagarFornecedor } from "@/lib/actions/fornecedores";
 import { receberComissoesDoFornecedor } from "@/lib/actions/pagamentos";
-import { euros, eurosCompacto, data, percentagem } from "@/lib/format";
+import {
+  euros,
+  eurosCompacto,
+  data,
+  dataHora,
+  percentagem,
+} from "@/lib/format";
 import type { EstadoContratacao } from "@/lib/constants";
 import {
   BarraProgresso,
@@ -32,6 +39,7 @@ export default async function DetalheFornecedor({
 
   const contratacoes = listarContratacoes({ fornecedor_id: id });
   const comissoes = listarComissoes({ fornecedor_id: id });
+  const emails = emailsDoFornecedor(id);
   const comissaoAReceber = comissoes
     .filter((p) => p.comissao_a_receber)
     .reduce((s, p) => s + p.comissao_cents, 0);
@@ -58,6 +66,25 @@ export default async function DetalheFornecedor({
             >
               Associar a cliente
             </Link>
+            <details className="relative">
+              <summary className="btn cursor-pointer list-none">
+                Enviar email ▾
+              </summary>
+              <div className="absolute right-0 z-10 mt-1 w-64 rounded-lg border border-line bg-surface p-1 shadow-lg">
+                <Link
+                  href={`/emails/novo?modelo=fornecedor_parceria&fornecedor_id=${f.id}`}
+                  className="block rounded px-3 py-2 text-sm hover:bg-surface-2"
+                >
+                  Apresentação e condições de parceria
+                </Link>
+                <Link
+                  href={`/emails/novo?modelo=fornecedor_candidatura&fornecedor_id=${f.id}`}
+                  className="block rounded px-3 py-2 text-sm hover:bg-surface-2"
+                >
+                  Agradecimento pela candidatura
+                </Link>
+              </div>
+            </details>
             <Link href={`/fornecedores/${f.id}/editar`} className="btn">
               Editar
             </Link>
@@ -91,7 +118,11 @@ export default async function DetalheFornecedor({
           valor={eurosCompacto(f.contratado_cents)}
           detalhe={`${f.num_contratacoes} contratações · ${f.num_clientes} clientes`}
         />
-        <Indicador rotulo="Recebido" valor={eurosCompacto(f.pago_cents)} tom="ok" />
+        <Indicador
+          rotulo="Recebido"
+          valor={eurosCompacto(f.pago_cents)}
+          tom="ok"
+        />
         <Indicador
           rotulo="Por receber"
           valor={eurosCompacto(f.em_divida_cents)}
@@ -107,12 +138,20 @@ export default async function DetalheFornecedor({
       </div>
 
       {comissaoAReceber > 0 && (
-        <form action={receberComissoesDoFornecedor} className="mt-3 flex items-center gap-3 rounded-lg bg-[color:var(--warn)]/10 px-4 py-3 text-sm">
+        <form
+          action={receberComissoesDoFornecedor}
+          className="mt-3 flex items-center gap-3 rounded-lg bg-[color:var(--warn)]/10 px-4 py-3 text-sm"
+        >
           <input type="hidden" name="fornecedor_id" value={f.id} />
-          <input type="hidden" name="voltar_para" value={`/fornecedores/${f.id}`} />
+          <input
+            type="hidden"
+            name="voltar_para"
+            value={`/fornecedores/${f.id}`}
+          />
           <span className="flex-1">
-            Este fornecedor deve <strong>{eurosCompacto(comissaoAReceber)}</strong> de comissões sobre
-            pagamentos que os casais já fizeram.
+            Este fornecedor deve{" "}
+            <strong>{eurosCompacto(comissaoAReceber)}</strong> de comissões
+            sobre pagamentos que os casais já fizeram.
           </span>
           <BotaoConfirmar
             mensagem={`Marcar todas as comissões de ${f.nome} (${eurosCompacto(comissaoAReceber)}) como recebidas hoje?`}
@@ -125,7 +164,10 @@ export default async function DetalheFornecedor({
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <Seccao titulo="Clientes associados" vazio={contratacoes.length === 0}>
+          <Seccao
+            titulo="Clientes associados"
+            vazio={contratacoes.length === 0}
+          >
             {contratacoes.length === 0 ? (
               "Este fornecedor ainda não está associado a nenhum cliente."
             ) : (
@@ -153,13 +195,18 @@ export default async function DetalheFornecedor({
                         </td>
                         <td>{data(c.data_servico)}</td>
                         <td>
-                          <EstadoContratacaoBadge estado={c.estado as EstadoContratacao} />
+                          <EstadoContratacaoBadge
+                            estado={c.estado as EstadoContratacao}
+                          />
                         </td>
                         <td className="text-right font-medium tabular-nums">
                           {euros(c.valor_cents)}
                         </td>
                         <td>
-                          <BarraProgresso pago={c.pago_cents} total={c.valor_cents} />
+                          <BarraProgresso
+                            pago={c.pago_cents}
+                            total={c.valor_cents}
+                          />
                         </td>
                       </tr>
                     ))}
@@ -170,53 +217,78 @@ export default async function DetalheFornecedor({
           </Seccao>
         </div>
 
-        <Seccao titulo="Ficha">
-          <dl className="grid grid-cols-2 gap-4 p-4">
-            <Detalhe rotulo="Contacto">{f.contacto ?? "—"}</Detalhe>
-            <Detalhe rotulo="Telefone">
-              {f.telefone ? (
-                <a href={`tel:${f.telefone}`} className="hover:text-brand">
-                  {f.telefone}
-                </a>
-              ) : (
-                "—"
-              )}
-            </Detalhe>
-            <Detalhe rotulo="Email">
-              {f.email ? (
-                <a href={`mailto:${f.email}`} className="hover:text-brand">
-                  {f.email}
-                </a>
-              ) : (
-                "—"
-              )}
-            </Detalhe>
-            <Detalhe rotulo="Website">
-              {f.website ? (
-                <a
-                  href={f.website}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-brand"
-                >
-                  Abrir
-                </a>
-              ) : (
-                "—"
-              )}
-            </Detalhe>
-            <div className="col-span-2">
-              <Detalhe rotulo="Faixa de preço">{faixa}</Detalhe>
-            </div>
-            {f.notas && (
-              <div className="col-span-2">
-                <Detalhe rotulo="Notas">
-                  <p className="whitespace-pre-wrap">{f.notas}</p>
-                </Detalhe>
-              </div>
+        <div className="space-y-6">
+          <Seccao titulo="Emails enviados" vazio={emails.length === 0}>
+            {emails.length === 0 ? (
+              "Ainda não foi enviado nenhum email a este fornecedor."
+            ) : (
+              <ul className="divide-y divide-line text-sm">
+                {emails.slice(0, 8).map((e) => (
+                  <li key={e.id} className="px-4 py-2">
+                    <p
+                      className={
+                        e.estado === "erro" ? "text-[color:var(--bad)]" : ""
+                      }
+                    >
+                      {e.assunto}
+                    </p>
+                    <p className="text-xs text-muted">
+                      {dataHora(e.criado_em)} · {e.para}
+                      {e.estado === "erro" ? ` · erro: ${e.erro}` : ""}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             )}
-          </dl>
-        </Seccao>
+          </Seccao>
+          <Seccao titulo="Ficha">
+            <dl className="grid grid-cols-2 gap-4 p-4">
+              <Detalhe rotulo="Contacto">{f.contacto ?? "—"}</Detalhe>
+              <Detalhe rotulo="Telefone">
+                {f.telefone ? (
+                  <a href={`tel:${f.telefone}`} className="hover:text-brand">
+                    {f.telefone}
+                  </a>
+                ) : (
+                  "—"
+                )}
+              </Detalhe>
+              <Detalhe rotulo="Email">
+                {f.email ? (
+                  <a href={`mailto:${f.email}`} className="hover:text-brand">
+                    {f.email}
+                  </a>
+                ) : (
+                  "—"
+                )}
+              </Detalhe>
+              <Detalhe rotulo="Website">
+                {f.website ? (
+                  <a
+                    href={f.website}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-brand"
+                  >
+                    Abrir
+                  </a>
+                ) : (
+                  "—"
+                )}
+              </Detalhe>
+              <div className="col-span-2">
+                <Detalhe rotulo="Faixa de preço">{faixa}</Detalhe>
+              </div>
+              {f.notas && (
+                <div className="col-span-2">
+                  <Detalhe rotulo="Notas">
+                    <p className="whitespace-pre-wrap">{f.notas}</p>
+                  </Detalhe>
+                </div>
+              )}
+            </dl>
+          </Seccao>
+        </div>
       </div>
     </>
   );

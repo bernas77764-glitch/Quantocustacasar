@@ -79,6 +79,20 @@ export default async function DetalheCliente({
             >
               Associar fornecedor
             </Link>
+            <details className="relative">
+              <summary className="btn cursor-pointer list-none">Enviar email ▾</summary>
+              <div className="absolute right-0 z-10 mt-1 w-64 rounded-lg border border-line bg-surface p-1 shadow-lg">
+                <Link href={`/emails/novo?modelo=cliente_contacto&cliente_id=${cliente.id}`} className="block rounded px-3 py-2 text-sm hover:bg-surface-2">
+                  Depois do primeiro telefonema
+                </Link>
+                <Link href={`/emails/novo?modelo=cliente_proposta&cliente_id=${cliente.id}`} className="block rounded px-3 py-2 text-sm hover:bg-surface-2">
+                  Proposta de orçamentos
+                </Link>
+                <Link href={`/emails/novo?modelo=cliente_simulacao&cliente_id=${cliente.id}`} className="block rounded px-3 py-2 text-sm hover:bg-surface-2">
+                  Agradecimento pela simulação
+                </Link>
+              </div>
+            </details>
             <Link
               href={`/calendario/novo?cliente_id=${cliente.id}&voltar_para=/clientes/${cliente.id}`}
               className="btn"

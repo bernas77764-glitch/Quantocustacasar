@@ -1,4 +1,6 @@
+import { after } from "next/server";
 import { criarCliente } from "@/lib/queries/clientes";
+import { enviarAutomatico } from "@/lib/email-automatico";
 import { paraCents } from "@/lib/format";
 import { aceitarPedido, responder, responderPreflight } from "@/lib/api-publica";
 
@@ -41,6 +43,9 @@ export async function POST(pedido: Request) {
     estado: "novo",
     notas: texto("notas"),
   });
+
+  // O agradecimento ao casal sai depois da resposta ao site, para não a atrasar.
+  after(() => enviarAutomatico("cliente_simulacao", { cliente_id: id }));
 
   return responder({ id, estado: "novo" }, 201, cors);
 }

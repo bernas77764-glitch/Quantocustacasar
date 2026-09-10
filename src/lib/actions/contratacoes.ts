@@ -65,6 +65,7 @@ export async function guardarContratacao(fd: FormData) {
   const novoId = criarContratacao(dados);
   if (fd.get("gerar_plano") === "on") gerarPlanoPagamentos(novoId);
   revalidar(novoId, dados.cliente_id, dados.fornecedor_id);
+  if (fd.get("pedir_disponibilidade") === "on") redirect(`/contratacoes/${novoId}/pedido`);
   redirect(`/contratacoes/${novoId}`);
 }
 
