@@ -5,29 +5,18 @@ Quando pedir "os pendentes", é isto que se lê e atualiza.
 
 ## Por desenvolver
 
-### 1. Emails a fornecedores e clientes (adiado, 2026-09-09)
+### 1. Emails: ligar a caixa de correio e rever os modelos
 
-O Bernardo decidiu não avançar por agora; é uma aposta para o futuro.
+Construído e testado (PR #13, retomado a 2026-09-10). Falta, do lado do
+Bernardo, em Definições › Email:
 
-O pedido de disponibilidade ao fornecedor está construído e testado no
-PR #13 (commit 8b2aff5, ramo de trabalho), com Definições › Email
-(Resend/Brevo por API, remetente do domínio, modelo editável, email de
-teste). Não foi fundido. Para retomar: reabrir o PR #13 ou recuperar o
-commit, fundir, e depois criar conta no Resend (ou Brevo), verificar o
-domínio quantocustacasar.pt com os registos DNS na dominios.pt e colar a
-chave em Definições › Email com o remetente geral@quantocustacasar.pt.
-Alternativa sem conta nova: enviar pela caixa geral@ do cPanel, o que
-exige acrescentar SMTP ao CRM.
-
-Modelos escritos a 2026-09-10 (ficheiro modelos-de-email.md enviado ao
-Bernardo para ajustar): C1 agradecimento pela simulação (automático, ao
-receber o lead do site), C2 depois do primeiro telefonema, C3 proposta de
-orçamentos; F1 agradecimento pela candidatura (automático, ao receber o
-pedido de parceria do site), F2 apresentação e condições, F3 pedido de
-disponibilidade e cotação com notas, F4 ponto de situação para controlar
-comissões, F5 envio de fatura. Integrar no CRM quando o envio de email for
-retomado: os automáticos disparam nas rotas públicas; os outros abrem
-pré-preenchidos a partir da ficha, como o pedido de disponibilidade.
+- Escolher "A minha caixa de correio (SMTP)", servidor
+  `webdomain04.dnscpanel.com`, porta 465, utilizador
+  `geral@quantocustacasar.pt` e a palavra-passe da caixa; remetente
+  geral@quantocustacasar.pt; IBAN para as faturas. Carregar em "Enviar
+  teste".
+- Rever os oito modelos (o texto é o do ficheiro modelos-de-email.md) e
+  confirmar os dois automáticos, que vêm ligados.
 
 ### 2. Tabela de preços só para administradores
 
@@ -60,8 +49,9 @@ vier a incomodar. Exige projeto na Google Cloud e ecrã de consentimento.
   no cPanel da dominios.pt com MX, SPF (com include:spf.dominios.pt, porque
   o correio sai por um relay deles), DKIM e DMARC. DNS gerido no editor da
   dominios.pt (nameservers host-redirect).
-- 2026-09-09 — Pedido de disponibilidade ao fornecedor por email
-  construído (PR #13), adiado por decisão do Bernardo; não fundido.
+- 2026-09-10 — Emails a casais e fornecedores: oito modelos editáveis,
+  dois automáticos a partir do site, envio por SMTP/Resend/Brevo, anexos
+  (PR #13).
 - 2026-09-09 — Despesas com IVA, categorias e lucro por período (PR #12).
 - 2026-09-08 — Calendário com ligação ao Google Calendar (PR #11).
 - 2026-09-07 — Seletores de estado a manter o valor escolhido (PR #10).

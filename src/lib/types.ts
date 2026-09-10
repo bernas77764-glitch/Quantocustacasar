@@ -217,5 +217,7 @@ export type EmailEnviado = {
   erro: string | null;
   id_externo: string | null;
   utilizador_id: number | null;
+  fornecedor_id: number | null;
+  anexo_nome: string | null;
   criado_em: string;
 };

@@ -157,6 +157,8 @@ CREATE TABLE IF NOT EXISTS emails (
   erro           TEXT,
   id_externo     TEXT,
   utilizador_id  INTEGER,
+  fornecedor_id  INTEGER REFERENCES fornecedores(id) ON DELETE SET NULL,
+  anexo_nome     TEXT,
   criado_em      TEXT    NOT NULL
 );
 
@@ -284,12 +286,23 @@ function semearCategoriasDespesa(db: DatabaseSync): void {
   for (const nome of CATEGORIAS_DESPESA_INICIAIS) inserir.run(nome, ts);
 }
 
+function migrarEmails(db: DatabaseSync): void {
+  const colunas = (db.prepare("PRAGMA table_info(emails)").all() as { name: string }[]).map((c) => c.name);
+  if (!colunas.includes("fornecedor_id")) {
+    db.exec("ALTER TABLE emails ADD COLUMN fornecedor_id INTEGER REFERENCES fornecedores(id) ON DELETE SET NULL");
+  }
+  if (!colunas.includes("anexo_nome")) {
+    db.exec("ALTER TABLE emails ADD COLUMN anexo_nome TEXT");
+  }
+}
+
 function open(): BaseDados {
   const file = dbPath();
   fs.mkdirSync(path.dirname(file), { recursive: true });
   const db = new DatabaseSync(file);
   db.exec(SCHEMA);
   migrar(db);
+  migrarEmails(db);
   semearCategoriasDespesa(db);
   return envolver(db);
 }

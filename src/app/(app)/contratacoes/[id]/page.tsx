@@ -14,7 +14,7 @@ import {
   guardarPagamento,
 } from "@/lib/actions/pagamentos";
 import { ComissaoBadge } from "@/components/comissao";
-import { emailsDaContratacao, ultimoPedidoEnviado } from "@/lib/queries/emails";
+import { emailsDaContratacao, ultimoEnviado } from "@/lib/queries/emails";
 import {
   ESTADOS_CONTRATACAO,
   METODOS_PAGAMENTO,
@@ -45,8 +45,9 @@ export default async function DetalheContratacao({
   const id = Number(idTexto);
   const c = obterContratacao(id);
   if (!c) notFound();
-  const pedidoEnviado = ultimoPedidoEnviado(id);
+  const pedidoEnviado = ultimoEnviado(id, "fornecedor_disponibilidade");
   const emails = emailsDaContratacao(id);
+  const emailNovo = (modelo: string) => `/emails/novo?modelo=${modelo}&contratacao_id=${id}`;
 
   const pagamentos = listarPagamentos({ contratacao_id: id });
   const comissao = Math.round((c.valor_cents * c.comissao_pct) / 100);
@@ -81,9 +82,20 @@ export default async function DetalheContratacao({
                 ))}
               </select>
             </FormularioAuto>
-            <Link href={`/contratacoes/${c.id}/pedido`} className="btn">
-              {pedidoEnviado ? "Reenviar pedido" : "Pedido de disponibilidade"}
-            </Link>
+            <details className="relative">
+              <summary className="btn cursor-pointer list-none">Enviar email ▾</summary>
+              <div className="absolute right-0 z-10 mt-1 w-64 rounded-lg border border-line bg-surface p-1 shadow-lg">
+                <Link href={emailNovo("fornecedor_disponibilidade")} className="block rounded px-3 py-2 text-sm hover:bg-surface-2">
+                  {pedidoEnviado ? "Reenviar pedido de disponibilidade" : "Pedido de disponibilidade e cotação"}
+                </Link>
+                <Link href={emailNovo("fornecedor_ponto_situacao")} className="block rounded px-3 py-2 text-sm hover:bg-surface-2">
+                  Ponto de situação ao fornecedor
+                </Link>
+                <Link href={emailNovo("fornecedor_fatura")} className="block rounded px-3 py-2 text-sm hover:bg-surface-2">
+                  Enviar fatura da comissão
+                </Link>
+              </div>
+            </details>
             <Link href={`/contratacoes/${c.id}/editar`} className="btn">
               Editar
             </Link>
@@ -99,7 +111,7 @@ export default async function DetalheContratacao({
 
       {sp.email === "enviado" && (
         <p role="status" className="mb-4 rounded-lg bg-[color:var(--ok)]/10 px-4 py-3 text-sm text-[color:var(--ok)]">
-          Pedido de disponibilidade enviado a {c.fornecedor_nome}. A resposta chega à sua caixa de correio.
+          Email enviado. A resposta chega à sua caixa de correio.
         </p>
       )}
 
@@ -309,14 +321,19 @@ export default async function DetalheContratacao({
             <Detalhe rotulo="Comissão">{percentagem(c.comissao_pct)}</Detalhe>
             <Detalhe rotulo="Criada em">{data(c.criado_em)}</Detalhe>
             <div className="col-span-2">
-              <Detalhe rotulo="Pedido de disponibilidade">
-                {pedidoEnviado ? (
-                  <>
-                    Enviado a {dataHora(pedidoEnviado.criado_em)} para {pedidoEnviado.para}
-                    {emails.length > 1 ? ` · ${emails.length} envios` : ""}
-                  </>
+              <Detalhe rotulo="Emails ao fornecedor">
+                {emails.length === 0 ? (
+                  <span className="text-muted">Ainda nenhum</span>
                 ) : (
-                  <span className="text-muted">Ainda não enviado</span>
+                  <ul className="space-y-0.5 text-sm">
+                    {emails.slice(0, 5).map((e) => (
+                      <li key={e.id} className={e.estado === "erro" ? "text-[color:var(--bad)]" : ""}>
+                        {dataHora(e.criado_em)} · {e.assunto}
+                        {e.estado === "erro" ? " (erro)" : ""}
+                      </li>
+                    ))}
+                    {emails.length > 5 && <li className="text-xs text-muted">e mais {emails.length - 5}</li>}
+                  </ul>
                 )}
               </Detalhe>
             </div>

@@ -33,11 +33,13 @@ atraso.
   Filtros por período, categoria e texto; o mesmo período conta as
   **comissões recebidas** dos fornecedores e mostra o **lucro** (comissões −
   despesas), por mês e por categoria, com exportação para CSV.
-- **Email aos fornecedores** — ao associar um cliente a um fornecedor, o CRM
-  prepara um pedido de disponibilidade com a data, os convidados, o valor e o
-  local, para rever e enviar com um toque. O envio sai pelo Resend ou pelo
-  Brevo (planos gratuitos), com o remetente do domínio, e fica registado na
-  ficha do cliente. Modelo editável em Definições › Email.
+- **Emails a casais e fornecedores** — oito modelos editáveis (agradecimento
+  pela simulação e pela candidatura, ambos automáticos a partir do site;
+  depois do primeiro telefonema; proposta de orçamentos; apresentação da
+  parceria; pedido de disponibilidade e cotação; ponto de situação; envio de
+  fatura com PDF). Cada um abre preenchido com os dados da ficha, para rever e
+  enviar. O envio sai pela caixa de correio do negócio (SMTP) ou pelo Resend
+  ou Brevo, e fica registado na ficha.
 - **Calendário** — vista mensal (e agenda, no telemóvel) com casamentos, datas
   de serviço, vencimentos por pagar (em atraso a vermelho) e compromissos
   marcados à mão (reuniões, visitas, chamadas), ligados a um cliente ou
@@ -154,6 +156,7 @@ o servidor a correr.
 | `CRM_API_TOKEN` | Se definida, os pedidos de leads servidor-a-servidor (sem `Origin`) passam a exigir `Authorization: Bearer …` |
 | `CRM_PALAVRA_PASSE` | Só para o script `criar-utilizador`, em automatismos |
 | `CRM_EMAIL_API_BASE` | Só para testes: base das APIs de email (Resend/Brevo) apontada a um servidor local |
+| `CRM_SMTP_INSEGURO` | Só para testes: `1` aceita um servidor SMTP local sem certificado válido |
 | `CRM_PERMITIR_ICS_LOCAL` | `1` aceita um feed iCal em `localhost`/`http` na ligação ao Google Calendar; só para testes |
 | `PORT` | Porta do servidor (por omissão 3000) |
 
@@ -281,24 +284,33 @@ passado, o ano e "tudo", e uma tabela de lucro por mês. Como o IVA das
 despesas pode ser dedutível, o cartão do lucro indica também o valor sem IVA.
 `GET /api/despesas/csv` exporta a lista filtrada (exige sessão).
 
-## Email aos fornecedores
+## Emails a casais e fornecedores
 
-O CRM envia email através da API HTTPS do **Resend** ou do **Brevo**, sem
-dependências nem SMTP. Um administrador configura em **Definições › Email**:
-o serviço, a chave da API, o nome e o email do remetente (de um domínio
-verificado no serviço) e, se quiser, um endereço diferente para as respostas.
-Há um botão de email de teste e um histórico dos últimos envios, com o erro
-devolvido pelo serviço quando falha. A chave fica nas definições da base de
-dados e nunca volta ao browser.
+O CRM envia email pela **caixa de correio do negócio** (SMTP, com o
+`nodemailer`; para a dominios.pt: `webdomain04.dnscpanel.com`, porta 465,
+utilizador igual ao email) ou pela API do **Resend** ou do **Brevo**. Um
+administrador configura em **Definições › Email**: a forma de envio, o
+segredo (palavra-passe da caixa ou chave da API; nunca volta ao browser),
+nome e email do remetente, endereço de resposta, e o IBAN para as faturas.
+Há um email de teste e um histórico dos últimos envios com o erro devolvido
+quando falha.
 
-O **pedido de disponibilidade** nasce ao criar uma contratação (opção ligada
-por omissão) ou pelo botão na ficha da contratação. Abre com destinatário,
-assunto e texto preenchidos a partir do modelo, que se edita nas definições
-com campos como `{casal}`, `{data}`, `{convidados}`, `{valor}`, `{local}` e
-`{contacto}`; o texto pode ser alterado antes de enviar. O envio regista uma
-atividade no cliente e fica na tabela `emails`; se o fornecedor não tiver
-email na ficha, a página pede-o e guarda-o. Nos testes, `CRM_EMAIL_API_BASE`
-aponta as duas APIs para um servidor local.
+Os **modelos** (`src/lib/email-modelo.ts`) usam campos entre chavetas
+(`{casal}`, `{data}`, `{convidados}`, `{valor}`, `{contacto}`, `{iban}`…)
+que o CRM preenche a partir das fichas (`src/lib/email-preparar.ts`); o que
+não se sabe fica "a definir". Cada modelo pode ser alterado nas definições,
+com pré-visualização, e reposto ao original. Dois são **automáticos**:
+disparam nas rotas públicas quando o site envia um lead ou uma candidatura
+(`after()`, para não atrasar a resposta ao site) e podem ser desligados. Os
+outros abrem em `/emails/novo?modelo=…` a partir do menu "Enviar email" das
+fichas de cliente, fornecedor e contratação: alguns pedem campos no momento
+do envio (notas, serviços a propor, validade, n.º e valor da fatura,
+vencimento), que entram no texto ao vivo até se editar o texto à mão; a
+proposta e a fatura aceitam um anexo (PDF ou imagem, até 8 MB). Se o
+destinatário não tiver email na ficha, a página pede-o e guarda-o. Cada
+envio fica na tabela `emails` e, quando há cliente, na atividade dele. Nos
+testes, `CRM_EMAIL_API_BASE` aponta as APIs para um servidor local e
+`CRM_SMTP_INSEGURO=1` aceita um SMTP local sem certificado.
 
 ## Calendário e Google Calendar
 
@@ -348,8 +360,10 @@ src/
     format.ts             euros, datas e percentagens em pt-PT
     tempo.ts              datas e horas em hora de Lisboa
     iva.ts                base, IVA e total de uma despesa
-    email.ts              envio pelo Resend/Brevo, configuração e modelos
-    email-modelo.ts       campos e preenchimento dos modelos (também no browser)
+    email.ts              envio por SMTP/Resend/Brevo, configuração e modelos guardados
+    email-modelo.ts       os oito modelos, campos e preenchimento (também no browser)
+    email-preparar.ts     um email pronto a rever a partir das fichas
+    email-automatico.ts   agradecimentos disparados pelo site
     ics.ts                iCalendar: feed para o Google e leitura do Google
     calendario.ts         eventos do CRM (casamentos, serviços, vencimentos, compromissos)
     google-calendar.ts    token do feed, endereço secreto do Google, cache

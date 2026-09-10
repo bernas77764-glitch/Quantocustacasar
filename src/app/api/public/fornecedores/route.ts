@@ -1,4 +1,6 @@
+import { after } from "next/server";
 import { registarPedidoDeParceria } from "@/lib/registo-site";
+import { enviarAutomatico } from "@/lib/email-automatico";
 import { aceitarPedido, responder, responderPreflight } from "@/lib/api-publica";
 
 export const dynamic = "force-dynamic";
@@ -37,5 +39,6 @@ export async function POST(pedido: Request) {
   if (resultado.repetido) {
     return responder({ id: resultado.id, ativo: resultado.ativo, repetido: true }, 200, cors);
   }
+  after(() => enviarAutomatico("fornecedor_candidatura", { fornecedor_id: resultado.id }));
   return responder({ id: resultado.id, ativo: 0 }, 201, cors);
 }
