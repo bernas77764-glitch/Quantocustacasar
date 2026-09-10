@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { exigirAdministrador } from "@/lib/auth";
-import { ROTULO_SERVICO, chaveMascarada, configuracaoEmail, todosOsModelos } from "@/lib/email";
+import { ASSINATURA_BASE, ROTULO_SERVICO, chaveMascarada, configuracaoEmail, todosOsModelos } from "@/lib/email";
 import { ultimosEmails } from "@/lib/queries/emails";
 import {
   alternarAutomatico,
@@ -63,9 +63,11 @@ export default async function DefinicoesEmail() {
                     remetente_email: config.remetente_email,
                     responder_para: config.responder_para,
                     iban: config.iban,
+                    assinatura: config.assinatura,
                   }
                 : null
             }
+            assinaturaBase={ASSINATURA_BASE}
           />
           {config && (
             <>

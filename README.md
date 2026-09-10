@@ -295,6 +295,12 @@ nome e email do remetente, endereço de resposta, e o IBAN para as faturas.
 Há um email de teste e um histórico dos últimos envios com o erro devolvido
 quando falha.
 
+Os emails saem em HTML (com versão em texto simples) e levam no fim a
+**assinatura** com logótipo, nome, cargo, contactos e botões para Instagram,
+Facebook e WhatsApp (`src/lib/email-assinatura.ts`), configurável nas
+definições, com pré-visualização, e desligável. Por isso os modelos terminam
+em "Cumprimentos," ou "Abraço," sem repetir o nome.
+
 Os **modelos** (`src/lib/email-modelo.ts`) usam campos entre chavetas
 (`{casal}`, `{data}`, `{convidados}`, `{valor}`, `{contacto}`, `{iban}`…)
 que o CRM preenche a partir das fichas (`src/lib/email-preparar.ts`); o que
@@ -363,6 +369,7 @@ src/
     email.ts              envio por SMTP/Resend/Brevo, configuração e modelos guardados
     email-modelo.ts       os oito modelos, campos e preenchimento (também no browser)
     email-preparar.ts     um email pronto a rever a partir das fichas
+    email-assinatura.ts   assinatura com logótipo e botões, e o corpo em HTML
     email-automatico.ts   agradecimentos disparados pelo site
     ics.ts                iCalendar: feed para o Google e leitura do Google
     calendario.ts         eventos do CRM (casamentos, serviços, vencimentos, compromissos)

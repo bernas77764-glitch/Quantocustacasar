@@ -5,18 +5,17 @@ Quando pedir "os pendentes", é isto que se lê e atualiza.
 
 ## Por desenvolver
 
-### 1. Emails: ligar a caixa de correio e rever os modelos
+### 1. Emails: rever os modelos
 
-Construído e testado (PR #13, retomado a 2026-09-10). Falta, do lado do
-Bernardo, em Definições › Email:
+O envio está ligado e a funcionar (2026-09-10). Falta só rever os oito
+modelos em Definições › Email e confirmar os dois automáticos, que vêm
+ligados.
 
-- Escolher "A minha caixa de correio (SMTP)", servidor
-  `webdomain04.dnscpanel.com`, porta 465, utilizador
-  `geral@quantocustacasar.pt` e a palavra-passe da caixa; remetente
-  geral@quantocustacasar.pt; IBAN para as faturas. Carregar em "Enviar
-  teste".
-- Rever os oito modelos (o texto é o do ficheiro modelos-de-email.md) e
-  confirmar os dois automáticos, que vêm ligados.
+Nota técnica: o Railway bloqueia SMTP (portas 25/465/587) nos planos Free,
+Trial e Hobby; só o Pro deixa. Por isso o CRM envia pelo Resend (API HTTPS,
+região Irlanda), com o domínio verificado por três registos DNS na
+dominios.pt (TXT resend._domainkey, CNAME rsend e CNAME send). A opção SMTP
+do CRM fica para quem tiver alojamento sem bloqueio.
 
 ### 2. Tabela de preços só para administradores
 
@@ -51,7 +50,7 @@ vier a incomodar. Exige projeto na Google Cloud e ecrã de consentimento.
   dominios.pt (nameservers host-redirect).
 - 2026-09-10 — Emails a casais e fornecedores: oito modelos editáveis,
   dois automáticos a partir do site, envio por SMTP/Resend/Brevo, anexos
-  (PR #13).
+  (PR #13). Em produção a enviar pelo Resend, com o domínio verificado.
 - 2026-09-09 — Despesas com IVA, categorias e lucro por período (PR #12).
 - 2026-09-08 — Calendário com ligação ao Google Calendar (PR #11).
 - 2026-09-07 — Seletores de estado a manter o valor escolhido (PR #10).

@@ -13,8 +13,10 @@ import {
   type ModeloEmail,
   type ServicoEmail,
 } from "@/lib/email-modelo";
+import { ASSINATURA_BASE, assinaturaTexto, corpoHtml, type Assinatura } from "@/lib/email-assinatura";
 
 export * from "@/lib/email-modelo";
+export * from "@/lib/email-assinatura";
 
 export type ConfiguracaoEmail = {
   servico: ServicoEmail;
@@ -29,6 +31,7 @@ export type ConfiguracaoEmail = {
   responder_para: string;
   /** Para o campo {iban} das faturas. */
   iban: string;
+  assinatura: Assinatura;
 };
 
 const CHAVE_CONFIG = "email_config";
@@ -75,6 +78,7 @@ export function configuracaoEmail(): (ConfiguracaoEmail & { atualizado_em: strin
       remetente_email: c.remetente_email,
       responder_para: c.responder_para ?? "",
       iban: c.iban ?? "",
+      assinatura: { ...ASSINATURA_BASE, ...(c.assinatura ?? {}) },
       atualizado_em: linha.atualizado_em,
     };
   } catch {
@@ -165,6 +169,15 @@ function remetente(c: ConfiguracaoEmail): string {
   return c.remetente_nome ? `${c.remetente_nome} <${c.remetente_email}>` : c.remetente_email;
 }
 
+/** As duas versões do corpo: texto simples com a assinatura em texto, e HTML com a assinatura completa. */
+function corpos(c: ConfiguracaoEmail, texto: string): { texto: string; html: string } {
+  const a = c.assinatura;
+  return {
+    texto: a.ativa ? `${texto.replace(/\s+$/, "")}\n\n${assinaturaTexto(a)}` : texto,
+    html: corpoHtml(texto, a),
+  };
+}
+
 function mensagemDeErro(status: number, corpo: string): string {
   let detalhe = "";
   try {
@@ -180,13 +193,14 @@ function mensagemDeErro(status: number, corpo: string): string {
 
 async function enviarPorApi(c: ConfiguracaoEmail, pedido: PedidoEnvio): Promise<ResultadoEnvio> {
   const responder = c.responder_para || c.remetente_email;
+  const { texto: textoFinal, html } = corpos(c, pedido.texto);
   let url: string;
   let cabecalhos: Record<string, string>;
   let corpo: Record<string, unknown>;
   if (c.servico === "resend") {
     url = `${baseDaApi("resend")}/emails`;
     cabecalhos = { Authorization: `Bearer ${c.chave}` };
-    corpo = { from: remetente(c), to: [pedido.para], subject: pedido.assunto, text: pedido.texto, reply_to: responder };
+    corpo = { from: remetente(c), to: [pedido.para], subject: pedido.assunto, text: textoFinal, html, reply_to: responder };
     if (pedido.anexo) corpo.attachments = [{ filename: pedido.anexo.nome, content: pedido.anexo.conteudo.toString("base64") }];
   } else {
     url = `${baseDaApi("brevo")}/v3/smtp/email`;
@@ -196,7 +210,8 @@ async function enviarPorApi(c: ConfiguracaoEmail, pedido: PedidoEnvio): Promise<
       to: [{ email: pedido.para }],
       replyTo: { email: responder },
       subject: pedido.assunto,
-      textContent: pedido.texto,
+      textContent: textoFinal,
+      htmlContent: html,
     };
     if (pedido.anexo) corpo.attachment = [{ name: pedido.anexo.nome, content: pedido.anexo.conteudo.toString("base64") }];
   }
@@ -232,12 +247,14 @@ async function enviarPorSmtp(c: ConfiguracaoEmail, pedido: PedidoEnvio): Promise
     // Só nos testes, contra um servidor SMTP local sem certificado.
     tls: process.env.CRM_SMTP_INSEGURO === "1" ? { rejectUnauthorized: false } : undefined,
   });
+  const { texto: textoFinal, html } = corpos(c, pedido.texto);
   const info = await transporte.sendMail({
     from: remetente(c),
     to: pedido.para,
     replyTo: c.responder_para || c.remetente_email,
     subject: pedido.assunto,
-    text: pedido.texto,
+    text: textoFinal,
+    html,
     attachments: pedido.anexo
       ? [{ filename: pedido.anexo.nome, content: pedido.anexo.conteudo, contentType: pedido.anexo.tipo }]
       : undefined,

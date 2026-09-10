@@ -13,6 +13,7 @@ import {
   type ModeloEmail,
   type ServicoEmail,
 } from "@/lib/email-modelo";
+import { assinaturaHtml, type Assinatura } from "@/lib/email-assinatura";
 
 type Acao = (anterior: EstadoFormulario, fd: FormData) => Promise<EstadoFormulario>;
 
@@ -46,13 +47,42 @@ export type ConfiguracaoVisivel = {
   remetente_email: string;
   responder_para: string;
   iban: string;
+  assinatura: Assinatura;
 };
 
-export function FormularioConfiguracaoEmail({ acao, atual }: { acao: Acao; atual: ConfiguracaoVisivel | null }) {
+const CAMPOS_ASSINATURA: { campo: keyof Assinatura; rotulo: string; largo?: boolean }[] = [
+  { campo: "nome", rotulo: "Nome" },
+  { campo: "cargo", rotulo: "Cargo" },
+  { campo: "telefone", rotulo: "Telefone" },
+  { campo: "email", rotulo: "Email" },
+  { campo: "site", rotulo: "Site" },
+  { campo: "instagram", rotulo: "Instagram (ligação)" },
+  { campo: "facebook", rotulo: "Facebook (ligação)" },
+  { campo: "whatsapp", rotulo: "WhatsApp (ligação)" },
+  { campo: "lema", rotulo: "Frase por baixo", largo: true },
+];
+
+export function FormularioConfiguracaoEmail({
+  acao,
+  atual,
+  assinaturaBase,
+}: {
+  acao: Acao;
+  atual: ConfiguracaoVisivel | null;
+  assinaturaBase: Assinatura;
+}) {
   const [estado, submeter, pendente] = useActionState(acao, {});
   const v = estado.valores ?? {};
   const [servico, setServico] = useState<ServicoEmail>((v.servico as ServicoEmail) || atual?.servico || "smtp");
   const mesmoServico = atual?.servico === servico;
+  const inicial = atual?.assinatura ?? assinaturaBase;
+  const [assinatura, setAssinatura] = useState<Assinatura>(() => ({
+    ...inicial,
+    ...Object.fromEntries(
+      CAMPOS_ASSINATURA.filter((c) => v[`assinatura_${c.campo}`] !== undefined).map((c) => [c.campo, v[`assinatura_${c.campo}`]]),
+    ),
+    ativa: v.assinatura_ativa !== undefined ? v.assinatura_ativa === "true" : inicial.ativa,
+  }));
   return (
     <form action={submeter} className="grid gap-3 p-4 sm:grid-cols-2">
       <label className="sm:col-span-2">
@@ -124,6 +154,38 @@ export function FormularioConfiguracaoEmail({ acao, atual }: { acao: Acao; atual
         <span className="rotulo">IBAN para as faturas (campo {"{iban}"})</span>
         <input name="iban" placeholder="PT50 …" defaultValue={v.iban ?? atual?.iban ?? ""} className="campo font-mono text-xs" />
       </label>
+      <fieldset className="grid gap-3 rounded-lg border border-line p-3 sm:col-span-2 sm:grid-cols-2">
+        <legend className="px-1 text-xs font-medium tracking-wide text-muted uppercase">Assinatura no fim dos emails</legend>
+        <label className="flex items-center gap-2 text-sm sm:col-span-2">
+          <input
+            type="checkbox"
+            name="assinatura_ativa"
+            checked={assinatura.ativa}
+            onChange={(e) => setAssinatura({ ...assinatura, ativa: e.target.checked })}
+            className="size-4 accent-[color:var(--brand)]"
+          />
+          Juntar a assinatura com logótipo e botões a todos os emails
+        </label>
+        {CAMPOS_ASSINATURA.map((c) => (
+          <label key={c.campo} className={c.largo ? "sm:col-span-2" : ""}>
+            <span className="rotulo">{c.rotulo}</span>
+            <input
+              name={`assinatura_${c.campo}`}
+              value={String(assinatura[c.campo])}
+              onChange={(e) => setAssinatura({ ...assinatura, [c.campo]: e.target.value })}
+              className="campo"
+            />
+          </label>
+        ))}
+        <div className="overflow-x-auto rounded-lg bg-white p-4 sm:col-span-2" data-previa-assinatura>
+          <p className="mb-2 text-[11px] tracking-wide text-muted uppercase">Pré-visualização</p>
+          {assinatura.ativa ? (
+            <div dangerouslySetInnerHTML={{ __html: assinaturaHtml(assinatura) }} />
+          ) : (
+            <p className="text-sm text-muted">Sem assinatura.</p>
+          )}
+        </div>
+      </fieldset>
       <div className="flex flex-wrap items-center gap-3 sm:col-span-2">
         <button type="submit" disabled={pendente} className="btn btn-principal">
           {pendente ? "A guardar…" : "Guardar configuração"}
