@@ -100,12 +100,19 @@
   :root {
     --paper: #FDF8F2;
     --surface: #FFFFFF;
+    --c-surface: #FFFFFF;
     --surface-2: #F4EDE4;
+    --c-surface-2: #F4EDE4;
     --ink: #1A1613;
+    --c-ink: #1A1613;
     --ink-2: #5C5249;
+    --c-ink-2: #5C5249;
     --ink-3: #9C8F84;
+    --c-ink-3: #9C8F84;
     --line: #EADFD2;
+    --c-line: #EADFD2;
     --line-soft: #F2E9DE;
+    --c-line-soft: #F2E9DE;
     --accent: #A8552B;
     --accent-deep: #7E3E1F;
     --accent-soft: #F7EDE4;
@@ -129,12 +136,19 @@
     :root:not([data-theme="light"]) {
       --paper: #16120F;
       --surface: #1F1A16;
+      --c-surface: #1F1A16;
       --surface-2: #26201A;
+      --c-surface-2: #26201A;
       --ink: #F2EAE1;
+      --c-ink: #F2EAE1;
       --ink-2: #B5A899;
+      --c-ink-2: #B5A899;
       --ink-3: #877A6D;
+      --c-ink-3: #877A6D;
       --line: #322A23;
+      --c-line: #322A23;
       --line-soft: #241E19;
+      --c-line-soft: #241E19;
       --accent: #D98A5A;
       --accent-deep: #EBA87D;
       --accent-soft: #2B211B;
@@ -149,12 +163,19 @@
   :root[data-theme="dark"] {
     --paper: #16120F;
     --surface: #1F1A16;
+    --c-surface: #1F1A16;
     --surface-2: #26201A;
+    --c-surface-2: #26201A;
     --ink: #F2EAE1;
+    --c-ink: #F2EAE1;
     --ink-2: #B5A899;
+    --c-ink-2: #B5A899;
     --ink-3: #877A6D;
+    --c-ink-3: #877A6D;
     --line: #322A23;
+    --c-line: #322A23;
     --line-soft: #241E19;
+    --c-line-soft: #241E19;
     --accent: #D98A5A;
     --accent-deep: #EBA87D;
     --accent-soft: #2B211B;
@@ -213,6 +234,7 @@
   .abre h1 { font-size: 38px; line-height: 1.08; font-weight: 800; letter-spacing: -0.035em; }
   .abre p { font-size: 17px; line-height: 1.6; color: var(--ink-2); }
   @media (min-width: 700px) { .abre h1 { font-size: 50px; } .abre { padding: 62px 0 30px; } }
+  .wrap.abre { padding-left: 20px; padding-right: 20px; }
 
   /* ---------- percurso ---------- */
   .flow { padding-bottom: 150px; }
@@ -387,21 +409,24 @@
 
   .cta { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px 20px; display: flex; flex-direction: column; gap: 16px; }
   .cta h2 { font-size: 24px; line-height: 1.15; }
-  .cta.foto {
-    position: relative; overflow: hidden; border-color: rgba(255,255,255,.14); color: #FDF8F2;
-    background: linear-gradient(180deg, rgba(26,22,19,.40) 0%, rgba(26,22,19,.58) 50%, rgba(26,22,19,.74) 100%), url("marca/fundo-formulario.jpg") center 42% / cover no-repeat;
-    box-shadow: var(--shadow);
+  /* ---------- palco: fotografia de fundo do simulador ---------- */
+  .palco { position: relative; isolation: isolate; clip-path: inset(0); color: var(--ink);
+    --ink: #FFFFFF; --ink-2: rgba(253,248,242,.88); --ink-3: rgba(253,248,242,.72);
+    --line: rgba(255,255,255,.32); --line-soft: rgba(255,255,255,.2); --surface-2: rgba(255,255,255,.16);
   }
-  .cta.foto h2 { color: #FFFFFF; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
-  .cta.foto > p { color: rgba(253,248,242,.9); }
-  .cta.foto .lab { color: rgba(253,248,242,.82); }
-  .cta.foto select, .cta.foto input[type="text"], .cta.foto input[type="email"], .cta.foto input[type="tel"], .cta.foto input[type="date"], .cta.foto textarea {
-    background: rgba(255,255,255,.96); color: #1A1613; border-color: rgba(255,255,255,.6); color-scheme: light;
+  .palco::before {
+    content: ""; position: fixed; inset: 0; z-index: -1;
+    background: linear-gradient(180deg, rgba(26,22,19,.6), rgba(26,22,19,.72)), url("marca/fundo-formulario.jpg") center / cover no-repeat;
   }
-  .cta.foto .consent { color: rgba(253,248,242,.92); }
-  .cta.foto .legal { color: rgba(253,248,242,.72); }
-  .cta.foto .err { color: #FFC2AE; }
-  .cta.foto .btn { box-shadow: 0 8px 24px -10px rgba(0,0,0,.6); }
+  .palco .eyebrow { color: #F2B78F; }
+  .palco h1, .palco .passo h2 { text-shadow: 0 1px 14px rgba(0,0,0,.35); }
+  .palco .cartao, .palco .cta, .palco details.dobra .corpo {
+    --ink: var(--c-ink); --ink-2: var(--c-ink-2); --ink-3: var(--c-ink-3);
+    --line: var(--c-line); --line-soft: var(--c-line-soft); --surface-2: var(--c-surface-2);
+    color: var(--ink);
+  }
+  .palco .cartao, .palco .cta { box-shadow: var(--shadow); }
+  .palco details.dobra .corpo { background: var(--surface); border-radius: var(--r-lg); padding: 6px 14px 14px; margin-bottom: 20px; }
   .cta > p { font-size: 15.5px; color: var(--ink-2); line-height: 1.6; }
   .form-grid { display: grid; gap: 14px; }
   @media (min-width: 620px) { .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -464,6 +489,7 @@
   </div>
 </header>
 
+<div class="palco">
 <div class="wrap abre" id="abertura">
   <span class="eyebrow">Simulador gratuito · Portugal</span>
   <h1>Quanto custa casar em Portugal?</h1>
@@ -559,7 +585,7 @@
 
 <!-- ================= RESULTADO ================= -->
 <main class="wrap" id="resultado" hidden style="padding-bottom: 60px;">
-  <div class="abre" style="padding: 34px 0 20px;">
+  <div class="abre" style="padding-top: 34px; padding-bottom: 20px;">
     <span class="eyebrow">A vossa estimativa</span>
     <h1 style="font-size: 32px;">É este o valor a ter em conta</h1>
   </div>
@@ -585,7 +611,7 @@
     <button type="button" class="btn ghost pequeno" id="btnRever">Rever as respostas</button>
   </div>
 
-  <div class="cta foto" id="ctaBox" style="margin-top: 26px;">
+  <div class="cta" id="ctaBox" style="margin-top: 26px;">
     <h2>Querem esta estimativa afinada ao vosso caso?</h2>
     <p>Enviamos o orçamento detalhado e propostas reais de quintas, catering, fotografia e música para a vossa data. Sem custos para vocês.</p>
     <form id="leadForm" novalidate>
@@ -639,6 +665,7 @@
   </details>
 
 </main>
+</div><!-- /palco -->
 
 <!-- ================= WHATSAPP ================= -->
 <a class="whats" id="whats" href="#" target="_blank" rel="noopener" aria-label="Falar connosco no WhatsApp" hidden>
