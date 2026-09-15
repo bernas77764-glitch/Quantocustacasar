@@ -387,6 +387,21 @@
 
   .cta { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px 20px; display: flex; flex-direction: column; gap: 16px; }
   .cta h2 { font-size: 24px; line-height: 1.15; }
+  .cta.foto {
+    position: relative; overflow: hidden; border-color: rgba(255,255,255,.14); color: #FDF8F2;
+    background: linear-gradient(180deg, rgba(26,22,19,.40) 0%, rgba(26,22,19,.58) 50%, rgba(26,22,19,.74) 100%), url("marca/fundo-formulario.jpg") center 42% / cover no-repeat;
+    box-shadow: var(--shadow);
+  }
+  .cta.foto h2 { color: #FFFFFF; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+  .cta.foto > p { color: rgba(253,248,242,.9); }
+  .cta.foto .lab { color: rgba(253,248,242,.82); }
+  .cta.foto select, .cta.foto input[type="text"], .cta.foto input[type="email"], .cta.foto input[type="tel"], .cta.foto input[type="date"], .cta.foto textarea {
+    background: rgba(255,255,255,.96); color: #1A1613; border-color: rgba(255,255,255,.6); color-scheme: light;
+  }
+  .cta.foto .consent { color: rgba(253,248,242,.92); }
+  .cta.foto .legal { color: rgba(253,248,242,.72); }
+  .cta.foto .err { color: #FFC2AE; }
+  .cta.foto .btn { box-shadow: 0 8px 24px -10px rgba(0,0,0,.6); }
   .cta > p { font-size: 15.5px; color: var(--ink-2); line-height: 1.6; }
   .form-grid { display: grid; gap: 14px; }
   @media (min-width: 620px) { .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -570,7 +585,7 @@
     <button type="button" class="btn ghost pequeno" id="btnRever">Rever as respostas</button>
   </div>
 
-  <div class="cta" id="ctaBox" style="margin-top: 26px;">
+  <div class="cta foto" id="ctaBox" style="margin-top: 26px;">
     <h2>Querem esta estimativa afinada ao vosso caso?</h2>
     <p>Enviamos o orçamento detalhado e propostas reais de quintas, catering, fotografia e música para a vossa data. Sem custos para vocês.</p>
     <form id="leadForm" novalidate>

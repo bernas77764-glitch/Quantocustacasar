@@ -26,6 +26,7 @@ sub(u'<meta property="og:title" content="Quanto custa casar em Portugal? — Sim
 sub(u'<meta property="og:description" content="Cinco perguntas, uma de cada vez. No fim ficas a saber quanto custa o teu casamento, rubrica a rubrica.">',
     u'<meta property="og:description" content="Five questions, one at a time. At the end you know what your wedding costs, item by item.">')
 sub(u'<link rel="apple-touch-icon" href="marca/apple-touch-icon-180.png">', u'<link rel="apple-touch-icon" href="../marca/apple-touch-icon-180.png">')
+sub(u'url("marca/fundo-formulario.jpg")', u'url("../marca/fundo-formulario.jpg")')
 # JSON-LD inteiro
 ini = s.index('<script type="application/ld+json">'); fim = s.index('</script>', ini) + len('</script>')
 s = s[:ini] + u'''<script type="application/ld+json">
