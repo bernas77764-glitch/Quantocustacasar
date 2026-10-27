@@ -40,7 +40,7 @@ const db=R.map(([n,a,b,c])=>`<div style="display:grid;grid-template-columns:280p
 <span style="position:absolute;top:0;left:${pc(b)}%;transform:translateX(-50%);font-size:24px;font-weight:700;white-space:nowrap">${eur(b)}</span></div>
 <div style="font-size:21px;color:${C.muted};text-align:right;white-space:nowrap;padding-top:22px">${k(a)} – ${k(c)}</div></div>`).join('');
 pages['05-precos-fornecedores']=shell('Quanto custam os fornecedores','Do mais em conta ao mais exclusivo',
- `<div style="display:flex;gap:28px;font-size:21px;color:${C.muted};margin-bottom:18px;align-items:center"><span style="display:inline-flex;align-items:center;gap:10px"><i style="width:18px;height:18px;border-radius:50%;background:${C.brand};display:inline-block"></i>valor mais comum</span><span style="display:inline-flex;align-items:center;gap:10px"><i style="width:40px;height:10px;border-radius:5px;background:#D9B8A0;display:inline-block"></i>do mínimo ao máximo</span></div>`+db,
+ `<div style="display:flex;gap:28px;font-size:21px;color:${C.muted};margin-bottom:18px;align-items:center"><span style="display:inline-flex;align-items:center;gap:10px"><i style="width:18px;height:18px;border-radius:50%;background:${C.brand};display:inline-block"></i>valor de referência</span><span style="display:inline-flex;align-items:center;gap:10px"><i style="width:40px;height:10px;border-radius:5px;background:#D9B8A0;display:inline-block"></i>do mínimo ao máximo</span></div>`+db,
  'Intervalos de referência do simulador Quanto Custa Casar, antes do ajuste por região, época e estilo. Façam a vossa simulação.');
 const b=await chromium.launch();const p=await b.newPage({viewport:{width:1080,height:1350}});
 const out=new URL('.',import.meta.url).pathname;
