@@ -142,7 +142,10 @@ docker exec -e CRM_PALAVRA_PASSE='…' <contentor> \
   node --no-warnings scripts/criar-utilizador.ts "Nome" email@exemplo.pt
 ```
 
-Cópias de segurança: o estado todo é o ficheiro `/data/crm.db` (mais os
+Cópias de segurança: a forma simples é o botão **Descarregar cópia de
+segurança** na página Utilizadores (só administradores), que serve
+`GET /api/copia` — um `VACUUM INTO` com tudo, incluindo o que ainda está no
+WAL. No servidor: o estado todo é o ficheiro `/data/crm.db` (mais os
 `-wal`/`-shm` que o acompanham). Copie os três, ou use
 `sqlite3 /data/crm.db ".backup /data/copia.db"` para uma cópia consistente com
 o servidor a correr.
