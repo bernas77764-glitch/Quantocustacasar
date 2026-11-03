@@ -33,6 +33,11 @@ ajusta as permissões de `/data` e larga privilégios para o utilizador `node`.
 Só se o atraso do feed subscrito (o Google relê de poucas em poucas horas)
 vier a incomodar. Exige projeto na Google Cloud e ecrã de consentimento.
 
+### 5. Publicar no Instagram a partir do CRM
+
+Só se o Metricool (ligado a 2026-11-03 como conector do Claude) não
+chegar. Exigiria uma aplicação Meta e a API de publicação do Instagram.
+
 ## Ações do Bernardo (não são código)
 
 - Na página Comissões, marcar como recebidas as comissões que os
@@ -41,6 +46,11 @@ vier a incomodar. Exige projeto na Google Cloud e ecrã de consentimento.
   CRM no Google e colar o endereço secreto iCal do calendário pessoal.
 
 ## Concluído
+
+- 2026-11-03 — Instagram `quantocustacasar` ligado à Página de Facebook
+  (feito no computador em business.facebook.com) e Metricool ligado ao
+  Claude para agendar publicações. Ficheiro `MEMORIA.md` com o resumo do
+  projeto para recuperação noutra conta.
 
 - 2026-09-09 — Domínio quantocustacasar.pt ligado a tudo: site (GitHub
   Pages, HTTPS), CRM em crm.quantocustacasar.pt (Railway), site a enviar
