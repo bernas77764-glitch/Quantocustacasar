@@ -120,9 +120,24 @@ export default async function Utilizadores({
           </Seccao>
         </div>
 
-        <Seccao titulo="Nova conta">
-          <FormularioNovaConta acao={criarConta} />
-        </Seccao>
+        <div className="grid content-start gap-6">
+          <Seccao titulo="Nova conta">
+            <FormularioNovaConta acao={criarConta} />
+          </Seccao>
+
+          <Seccao titulo="Cópia de segurança">
+            <div className="grid gap-3 px-4 py-4 text-sm">
+              <p className="text-muted">
+                Descarrega a base de dados inteira do CRM, com todos os clientes, fornecedores,
+                pagamentos e contas. Guarde o ficheiro num sítio seguro: inclui dados pessoais e
+                as definições de email.
+              </p>
+              <a href="/api/copia" className="btn justify-self-start">
+                Descarregar cópia de segurança
+              </a>
+            </div>
+          </Seccao>
+        </div>
       </div>
     </>
   );
